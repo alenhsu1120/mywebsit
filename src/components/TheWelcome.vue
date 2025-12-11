@@ -5,12 +5,12 @@
         <DocumentationIcon class="icon-large" />
       </template>
       <template #heading>
-        <a href="about:blank" rel="noopener">Life Journal</a>
+        <a href="about:blank" rel="noopener" class="bold-black">
+          Life Journal
+        </a>
       </template>
       <p class="welcome-text">
-        Vue’s
-        <a href="https://vuejs.org/" target="_blank" rel="noopener">official documentation</a>
-        provides you with all information you need to get started.
+        To be filled.
       </p>
     </WelcomeItem>
 
@@ -19,13 +19,12 @@
         <ToolingIcon />
       </template>
       <template #heading>
-        <a href="about:blank" rel="noopener">Game Log</a>
+        <a href="about:blank" rel="noopener" class="bold-black">
+          Game Log
+        </a>
       </template>
       <p class="welcome-text">
-      This project is served and bundled with
-      <a href="https://vite.dev/guide/features.html" target="_blank" rel="noopener">Vite</a>.
-        More instructions are available in
-        <a href="javascript:void(0)" @click="openReadmeInEditor"><code>README.md</code></a>.
+        To be filled.
       </p>
     </WelcomeItem>
 
@@ -34,12 +33,12 @@
         <EcosystemIcon />
       </template>
       <template #heading>
-        <a href="about:blank" rel="noopener">Programming</a>
+        <a href="about:blank" rel="noopener" class="bold-black">
+          Programming
+        </a>
       </template>
       <p class="welcome-text">
-        Get official tools and libraries for your project:
-        <a href="https://pinia.vuejs.org/" target="_blank" rel="noopener">Pinia</a>,
-        <a href="https://router.vuejs.org/" target="_blank" rel="noopener">Vue Router</a>, etc.
+        To be filled.
       </p>
     </WelcomeItem>
 
@@ -48,11 +47,12 @@
         <SupportIcon />
       </template>
       <template #heading>
-        <a href="about:blank" rel="noopener">Psychology Articles</a>
+        <a href="about:blank" rel="noopener" class="bold-black">
+          Psychology Articles
+        </a>
       </template>
       <p class="welcome-text">
-        Got stuck? Ask your question on
-        <a href="https://chat.vuejs.org" target="_blank" rel="noopener">Vue Land</a>.
+        To be filled.
       </p>
     </WelcomeItem>
   </div>
@@ -76,15 +76,20 @@ const openReadmeInEditor = () => fetch('/__open-in-editor?file=README.md')
   min-height: 100vh; /* 至少滿螢幕高度 */
   padding: 2rem;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), /* 半透明白覆蓋 */
+    linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), /* 半透明白覆蓋 */
     url('@/assets/back.png');
   background-repeat: no-repeat;
-  background-position: right 100px top 160px;
+  background-position: right 50px top 250px;
   background-size: 320px auto;
 }
 
 .welcome-text {
   font-size: 0.8rem; /* 文字變大 */
   line-height: 1.1;  /* 可選：增加行距 */
+}
+
+.bold-black {
+  font-weight: bold;
+  color: #666; /* 改成灰色 */
 }
 </style>

@@ -6,9 +6,9 @@ defineProps<{
 
 <template>
   <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
+    <h1 class="black">{{ msg }}</h1>
     <h3>
-      This is my first wedsite
+      This is my first website
     </h3>
   </div>
 </template>
@@ -19,6 +19,7 @@ h1 {
   font-size: 2.6rem;
   position: relative;
   top: -10px;
+  color: black; /* ← 這裡改成黑色 */
 }
 
 h3 {

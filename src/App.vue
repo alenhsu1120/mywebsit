@@ -8,7 +8,7 @@ import TheWelcome from './components/TheWelcome.vue'
     <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <HelloWorld msg="hello this is cuteHsu!" />
+      <HelloWorld msg="hello this is cuteHsu!" class="msg" />
     </div>
   </header>
 
@@ -44,4 +44,9 @@ header {
     flex-wrap: wrap;
   }
 }
+
+.msg {
+  color: gray;
+}
+
 </style>
