@@ -5,7 +5,7 @@ import TheWelcome from './components/TheWelcome.vue'
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+    <img alt="Vue logo" class="logo" src="./assets/logo.png" width="300" height="320" />
 
     <div class="wrapper">
       <HelloWorld msg="hello this is cuteHsu!" class="msg" />
@@ -24,7 +24,7 @@ header {
 
 .logo {
   display: block;
-  margin: 0 auto 2rem;
+  margin: 0 auto 0rem;
 }
 
 @media (min-width: 1024px) {
@@ -35,7 +35,7 @@ header {
   }
 
   .logo {
-    margin: 0 2rem 0 0;
+    margin: 0 -1rem 0 0;
   }
 
   header .wrapper {
