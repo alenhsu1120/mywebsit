@@ -5,7 +5,7 @@
         <DocumentationIcon class="icon-large" />
       </template>
       <template #heading>
-        <a href="about:blank" rel="noopener">Life Journal</a>
+        <router-link to="/life-journal">Life Journal</router-link>
       </template>
       <p class="welcome-text">
         Vue’s
