@@ -1,5 +1,9 @@
+<script setup lang="ts">
+defineProps<{ clickable?: boolean }>()
+</script>
+
 <template>
-  <div class="field-card">
+  <div class="field-card" :class="{ 'is-clickable': clickable }">
     <!-- Corner leaf decorations -->
     <span class="corner c-tl">✦</span>
     <span class="corner c-tr">✦</span>
@@ -47,6 +51,9 @@
   animation: card-rise 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
   overflow: hidden;
   cursor: default;
+}
+.is-clickable {
+  cursor: pointer;
 }
 
 /* Parchment texture overlay */
