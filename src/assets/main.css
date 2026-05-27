@@ -1,69 +1,9 @@
 @import './base.css';
 
-/* ═══════════════════════════════════════════════════════
-   HYRULE COAST — Animations
-   ═══════════════════════════════════════════════════════ */
-
-@keyframes cloud-drift {
-  from { transform: translateX(-350px); }
-  to   { transform: translateX(calc(100vw + 350px)); }
-}
-
-@keyframes ocean-shimmer {
-  0%, 100% { opacity: 0.4; transform: scaleX(1); }
-  50%       { opacity: 0.7; transform: scaleX(1.01); }
-}
-
-@keyframes seed-float {
-  0%   { transform: translate(0, 0) rotate(0deg); opacity: 0; }
-  8%   { opacity: var(--seed-opacity, 0.65); }
-  85%  { opacity: var(--seed-opacity, 0.65); }
-  100% { transform: translate(var(--drift-x, 90px), var(--drift-y, -110px)) rotate(180deg); opacity: 0; }
-}
-
-@keyframes grass-sway {
-  0%, 100% { transform: rotate(-5deg) skewX(-1deg); transform-origin: bottom center; }
-  50%       { transform: rotate( 6deg) skewX( 2deg); transform-origin: bottom center; }
-}
-@keyframes grass-sway-b {
-  0%, 100% { transform: rotate( 4deg) skewX(1deg); transform-origin: bottom center; }
-  50%       { transform: rotate(-6deg) skewX(-2deg); transform-origin: bottom center; }
-}
-
-@keyframes sun-breathe {
-  0%, 100% { opacity: 0.85; transform: scale(1); }
-  50%       { opacity: 1;    transform: scale(1.08); }
-}
-
-@keyframes horizon-pulse {
-  0%, 100% { opacity: 0.7; }
-  50%       { opacity: 1; }
-}
-
-@keyframes title-reveal {
-  from { opacity: 0; transform: translateY(12px); filter: blur(4px); }
-  to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
-}
-
-@keyframes card-rise {
-  from { opacity: 0; transform: translateY(18px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes triforce-shimmer {
-  0%, 100% { filter: drop-shadow(0 2px 6px var(--gold-glow)); }
-  50%       { filter: drop-shadow(0 2px 20px var(--gold-glow)); }
-}
-
-@keyframes rustle {
-  0%, 100% { transform: rotate(-1.5deg); }
-  50%       { transform: rotate(2deg); }
-}
-
 body   { margin: 0; min-height: 100vh; }
 #app   { width: 100%; margin: 0; padding: 0; }
 
 ::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--grass-deep); }
-::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+::-webkit-scrollbar-track { background: #2e7008; }
+::-webkit-scrollbar-thumb { background: #9a7a1e; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #c9a227; }
