@@ -1,55 +1,56 @@
-/* color palette from <https://github.com/vuejs/theme> */
+/* ═══════════════════════════════════════════════════════
+   SHEIKAH SLATE — Breath of the Wild Color System
+   ═══════════════════════════════════════════════════════ */
+
 :root {
-  --vt-c-white: #ffffff;
-  --vt-c-white-soft: #f8f8f8;
-  --vt-c-white-mute: #f2f2f2;
+  /* ── Deep Space Blacks ── */
+  --botw-void:        #030810;
+  --botw-abyss:       #060f1c;
+  --botw-deep:        #0a1828;
+  --botw-slate:       #0d2238;
 
-  --vt-c-black: #181818;
-  --vt-c-black-soft: #222222;
-  --vt-c-black-mute: #282828;
+  /* ── Sheikah Cyan — Primary Accent ── */
+  --botw-cyan:        #4af9f9;
+  --botw-cyan-bright: #9fffff;
+  --botw-cyan-dim:    #1a7a7a;
+  --botw-cyan-dark:   #0a3a3a;
+  --botw-cyan-ghost:  rgba(74, 249, 249, 0.07);
+  --botw-cyan-glow:   rgba(74, 249, 249, 0.22);
+  --botw-cyan-pulse:  rgba(74, 249, 249, 0.45);
+  --botw-cyan-halo:   rgba(74, 249, 249, 0.12);
 
-  --vt-c-indigo: #2c3e50;
+  /* ── Hylian Gold — Secondary Accent ── */
+  --botw-gold:        #c9a227;
+  --botw-gold-bright: #f0d060;
+  --botw-gold-dim:    #7a6218;
+  --botw-gold-ghost:  rgba(201, 162, 39, 0.15);
+  --botw-gold-glow:   rgba(240, 208, 96, 0.35);
 
-  --vt-c-divider-light-1: rgba(60, 60, 60, 0.29);
-  --vt-c-divider-light-2: rgba(60, 60, 60, 0.12);
-  --vt-c-divider-dark-1: rgba(84, 84, 84, 0.65);
-  --vt-c-divider-dark-2: rgba(84, 84, 84, 0.48);
+  /* ── Ancient Parchment — Text ── */
+  --botw-parchment:       #f5e6c8;
+  --botw-parchment-soft:  #d4c5a0;
+  --botw-parchment-dim:   #a89470;
+  --botw-parchment-ghost: rgba(245, 230, 200, 0.55);
 
-  --vt-c-text-light-1: var(--vt-c-indigo);
-  --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
-  --vt-c-text-dark-1: var(--vt-c-white);
-  --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+  /* ── Hyrule Nature ── */
+  --botw-forest-deep:  #0e2018;
+  --botw-forest:       #1a3a22;
+  --botw-forest-mid:   #2a5030;
+  --botw-horizon:      #3a6040;
+
+  /* ── Semantic Tokens ── */
+  --color-background:       var(--botw-void);
+  --color-background-soft:  var(--botw-abyss);
+  --color-background-mute:  var(--botw-deep);
+  --color-border:           var(--botw-cyan-dim);
+  --color-border-hover:     var(--botw-cyan);
+  --color-heading:          var(--botw-gold);
+  --color-text:             var(--botw-parchment-soft);
+
+  --section-gap: 120px;
 }
 
-/* semantic color variables for this project */
-:root {
-  --color-background: var(--vt-c-white);
-  --color-background-soft: var(--vt-c-white-soft);
-  --color-background-mute: var(--vt-c-white-mute);
-
-  --color-border: var(--vt-c-divider-light-2);
-  --color-border-hover: var(--vt-c-divider-light-1);
-
-  --color-heading: var(--vt-c-text-light-1);
-  --color-text: var(--vt-c-text-light-1);
-
-  --section-gap: 160px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: var(--vt-c-black);
-    --color-background-soft: var(--vt-c-black-soft);
-    --color-background-mute: var(--vt-c-black-mute);
-
-    --color-border: var(--vt-c-divider-dark-2);
-    --color-border-hover: var(--vt-c-divider-dark-1);
-
-    --color-heading: var(--vt-c-text-dark-1);
-    --color-text: var(--vt-c-text-dark-2);
-  }
-}
-
+/* ── Global Reset ── */
 *,
 *::before,
 *::after {
@@ -62,25 +63,22 @@ body {
   min-height: 100vh;
   color: var(--color-text);
   background: var(--color-background);
-  transition:
-    color 0.5s,
-    background-color 0.5s;
-  line-height: 1.6;
-  font-family:
-    Inter,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    'Fira Sans',
-    'Droid Sans',
-    'Helvetica Neue',
-    sans-serif;
-  font-size: 15px;
+  line-height: 1.7;
+  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  font-size: 16px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: var(--botw-cyan);
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+a:hover {
+  color: var(--botw-cyan-bright);
+  text-shadow: 0 0 12px var(--botw-cyan-pulse);
 }

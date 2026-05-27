@@ -1,59 +1,121 @@
 @import './base.css';
 
+/* ═══════════════════════════════════════════════════════
+   HYRULE WORLD — Global Layout & BotW Animations
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Keyframes ── */
+
+@keyframes sheikah-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 8px var(--botw-cyan-glow),
+      inset 0 0 8px var(--botw-cyan-ghost);
+  }
+  50% {
+    box-shadow:
+      0 0 24px var(--botw-cyan-pulse),
+      0 0 48px var(--botw-cyan-glow),
+      inset 0 0 16px var(--botw-cyan-halo);
+  }
+}
+
+@keyframes sheikah-border-pulse {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1; }
+}
+
+@keyframes wisp-float {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0;
+  }
+  15% { opacity: 1; }
+  50% {
+    transform: translate(var(--drift-x, 40px), calc(var(--drift-y, -60px) * 0.6)) scale(1.2);
+  }
+  85% { opacity: 0.6; }
+  100% {
+    transform: translate(var(--drift-x, 40px), var(--drift-y, -60px)) scale(0.8);
+    opacity: 0;
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.4); }
+}
+
+@keyframes eye-rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes eye-glow {
+  0%, 100% { filter: drop-shadow(0 0 6px var(--botw-cyan-glow)); }
+  50%       { filter: drop-shadow(0 0 20px var(--botw-cyan-pulse)) drop-shadow(0 0 40px var(--botw-cyan-glow)); }
+}
+
+@keyframes triforce-shimmer {
+  0%, 100% { filter: drop-shadow(0 0 4px var(--botw-gold-glow)); opacity: 0.85; }
+  50%       { filter: drop-shadow(0 0 14px var(--botw-gold-glow)) drop-shadow(0 0 28px var(--botw-gold-ghost)); opacity: 1; }
+}
+
+@keyframes title-reveal {
+  from {
+    opacity: 0;
+    letter-spacing: 0.3em;
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    letter-spacing: 0.12em;
+    filter: blur(0);
+  }
+}
+
+@keyframes card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rune-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes horizon-glow {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 0.8; }
+}
+
+/* ── Base Layout ── */
+
 body {
-  margin: 0;       /* 移除預設 margin */
+  margin: 0;
   min-height: 100vh;
 }
 
-
 #app {
-  width: 100%;     /* 撐滿整個螢幕 */
-  max-width: 100%; /* 移除 max-width 限制 */
+  width: 100%;
+  max-width: 100%;
   margin: 0;
-  padding: 2rem;
+  padding: 0;
   font-weight: normal;
+  position: relative;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--botw-void); }
+::-webkit-scrollbar-thumb {
+  background: var(--botw-cyan-dim);
+  border-radius: 3px;
 }
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-@media (min-width: 1024px) {
-  html {
-    font-size: 175%; /* 放大整個頁面 150% */
-  }
-
-  .icon {
-    width: 1.5em;
-    height: 1.5em;
-  }
-
-  body {
-    display: flex;
-    justify-content: center; /* 水平置中 */
-    align-items: flex-start; /* 垂直靠上 */
-    min-height: 100vh;
-  }
-
-  #app {
-    max-width: 1280px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 2rem;
-    display: block;
-  }
-
-  .page-container {
-    flex: 1;
-  }
-}
+::-webkit-scrollbar-thumb:hover { background: var(--botw-cyan); }
