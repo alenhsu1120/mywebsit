@@ -1,57 +1,61 @@
 /* ═══════════════════════════════════════════════════════
-   HYRULE FIELD — Breath of the Wild Grassland Theme
+   HYRULE COAST — BotW Soft Seaside Palette
    ═══════════════════════════════════════════════════════ */
 
 :root {
-  /* ── Sky ── */
-  --sky-zenith:    #1a5fa8;
-  --sky-mid:       #4898d0;
-  --sky-upper:     #6ab4e8;
-  --sky-horizon:   #b8dff5;
+  /* ── Washed-out Sky ── */
+  --sky-zenith:    #b8d8ee;
+  --sky-mid:       #cfe8f4;
+  --sky-pale:      #e4f2f8;
+  --sky-horizon:   #f5f0e0;
+  --sky-sun-area:  #fff8d8;
 
-  /* ── Sun & Light ── */
-  --sun-core:      #fff9c4;
-  --sun-warm:      #ffe566;
-  --sun-glow:      rgba(255, 220, 80, 0.45);
-  --sun-halo:      rgba(255, 240, 160, 0.2);
+  /* ── Sun Haze ── */
+  --sun-core:      #fffce0;
+  --sun-warm:      #ffe88a;
+  --sun-glow:      rgba(255, 230, 100, 0.5);
+  --sun-horizon-glow: rgba(255, 248, 200, 0.8);
 
-  /* ── Grassland Greens ── */
-  --grass-far:     #3d6e2a;
-  --grass-mid:     #4d8832;
-  --grass-near:    #5da038;
-  --grass-bright:  #72c048;
-  --grass-vivid:   #88d055;
+  /* ── Ocean / Sea ── */
+  --ocean-far:     #9acfcc;
+  --ocean-mid:     #7ab8b4;
+  --ocean-near:    #6aaaa6;
+  --ocean-shimmer: rgba(180, 230, 226, 0.4);
 
-  /* ── Parchment / Warm Tones ── */
-  --parchment:         #f8f2e0;
-  --parchment-warm:    #f2e8cc;
-  --parchment-shadow:  #e8d8a8;
-  --ink-dark:          #2c1e08;
-  --ink-mid:           #4a3418;
-  --ink-soft:          #7a5c30;
+  /* ── Distant Land (muted, hazy) ── */
+  --land-far:      rgba(100, 148, 160, 0.35);
+  --land-mid:      rgba(80, 130, 100, 0.45);
 
-  /* ── Hylian Gold ── */
-  --gold:          #c9a227;
-  --gold-bright:   #f0d060;
-  --gold-dim:      #9a7a1e;
-  --gold-glow:     rgba(201, 162, 39, 0.4);
-  --gold-shadow:   rgba(140, 100, 20, 0.25);
+  /* ── Vivid Grass ── */
+  --grass-vivid:   #72d030;
+  --grass-bright:  #5aba1e;
+  --grass-mid:     #4a9a18;
+  --grass-deep:    #3a7a10;
+  --grass-shadow:  #2a5c0c;
 
-  /* ── Wind / Seeds ── */
-  --wind-white:    rgba(255, 255, 255, 0.85);
+  /* ── Parchment / Warm (cards) ── */
+  --parchment:       #f8f4e8;
+  --parchment-warm:  #f0ead4;
+  --parchment-line:  rgba(160, 130, 60, 0.12);
+  --ink-dark:        #2c1e08;
+  --ink-mid:         #4a3418;
+  --ink-soft:        #7a5c30;
+
+  /* ── Gold ── */
+  --gold:        #c9a227;
+  --gold-bright: #f0d060;
+  --gold-dim:    #9a7a1e;
+  --gold-glow:   rgba(201, 162, 39, 0.35);
 
   /* ── Semantic ── */
   --color-background:      var(--sky-zenith);
   --color-background-soft: var(--parchment);
   --color-border:          var(--gold-dim);
-  --color-border-hover:    var(--gold);
   --color-heading:         var(--ink-dark);
   --color-text:            var(--ink-mid);
-
   --section-gap: 120px;
 }
 
-/* ── Global Reset ── */
 *,
 *::before,
 *::after {
@@ -72,11 +76,5 @@ body {
   overflow-x: hidden;
 }
 
-a {
-  text-decoration: none;
-  color: var(--gold-dim);
-  transition: color 0.3s;
-}
-a:hover {
-  color: var(--gold);
-}
+a { text-decoration: none; color: var(--gold-dim); transition: color 0.3s; }
+a:hover { color: var(--gold); }

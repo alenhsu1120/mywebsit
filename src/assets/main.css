@@ -1,78 +1,69 @@
 @import './base.css';
 
 /* ═══════════════════════════════════════════════════════
-   HYRULE FIELD — Animations & Global Layout
+   HYRULE COAST — Animations
    ═══════════════════════════════════════════════════════ */
 
-/* ── Cloud Drift ── */
 @keyframes cloud-drift {
-  from { transform: translateX(-320px) scaleX(var(--cloud-scale, 1)); }
-  to   { transform: translateX(calc(100vw + 320px)) scaleX(var(--cloud-scale, 1)); }
+  from { transform: translateX(-350px); }
+  to   { transform: translateX(calc(100vw + 350px)); }
 }
 
-/* ── Wind Seed Float ── */
+@keyframes ocean-shimmer {
+  0%, 100% { opacity: 0.4; transform: scaleX(1); }
+  50%       { opacity: 0.7; transform: scaleX(1.01); }
+}
+
 @keyframes seed-float {
-  0%   { transform: translate(0, 0) rotate(0deg);    opacity: 0; }
-  8%   { opacity: var(--seed-opacity, 0.7); }
-  80%  { opacity: var(--seed-opacity, 0.7); }
-  100% { transform: translate(var(--drift-x, 80px), var(--drift-y, -120px)) rotate(200deg); opacity: 0; }
+  0%   { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+  8%   { opacity: var(--seed-opacity, 0.65); }
+  85%  { opacity: var(--seed-opacity, 0.65); }
+  100% { transform: translate(var(--drift-x, 90px), var(--drift-y, -110px)) rotate(180deg); opacity: 0; }
 }
 
-/* ── Grass Sway ── */
 @keyframes grass-sway {
-  0%, 100% { transform: rotate(-4deg) skewX(-2deg); }
-  50%       { transform: rotate( 5deg) skewX( 2deg); }
+  0%, 100% { transform: rotate(-5deg) skewX(-1deg); transform-origin: bottom center; }
+  50%       { transform: rotate( 6deg) skewX( 2deg); transform-origin: bottom center; }
 }
-@keyframes grass-sway-2 {
-  0%, 100% { transform: rotate(3deg)  skewX(1deg); }
-  50%       { transform: rotate(-5deg) skewX(-2deg); }
+@keyframes grass-sway-b {
+  0%, 100% { transform: rotate( 4deg) skewX(1deg); transform-origin: bottom center; }
+  50%       { transform: rotate(-6deg) skewX(-2deg); transform-origin: bottom center; }
 }
 
-/* ── Sun Breathe ── */
 @keyframes sun-breathe {
-  0%, 100% { opacity: 0.7; transform: scale(1); }
-  50%       { opacity: 1;   transform: scale(1.06); }
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  50%       { opacity: 1;    transform: scale(1.08); }
 }
 
-/* ── Title Rise ── */
+@keyframes horizon-pulse {
+  0%, 100% { opacity: 0.7; }
+  50%       { opacity: 1; }
+}
+
 @keyframes title-reveal {
-  from { opacity: 0; transform: translateY(14px); filter: blur(3px); }
+  from { opacity: 0; transform: translateY(12px); filter: blur(4px); }
   to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
 }
 
-/* ── Card Rise ── */
 @keyframes card-rise {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(18px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Triforce shimmer ── */
 @keyframes triforce-shimmer {
-  0%, 100% { filter: drop-shadow(0 2px 6px var(--gold-shadow)); }
-  50%       { filter: drop-shadow(0 2px 18px var(--gold-glow)); }
+  0%, 100% { filter: drop-shadow(0 2px 6px var(--gold-glow)); }
+  50%       { filter: drop-shadow(0 2px 20px var(--gold-glow)); }
 }
 
-/* ── Wind rustle (subtle page element) ── */
 @keyframes rustle {
-  0%, 100% { transform: rotate(-1deg); }
-  50%       { transform: rotate(1.5deg); }
+  0%, 100% { transform: rotate(-1.5deg); }
+  50%       { transform: rotate(2deg); }
 }
 
-/* ── Base ── */
 body   { margin: 0; min-height: 100vh; }
+#app   { width: 100%; margin: 0; padding: 0; }
 
-#app {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  font-weight: normal;
-}
-
-/* ── Scrollbar ── */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--grass-far); }
-::-webkit-scrollbar-thumb {
-  background: var(--gold-dim);
-  border-radius: 3px;
-}
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--grass-deep); }
+::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
