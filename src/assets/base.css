@@ -1,51 +1,52 @@
 /* ═══════════════════════════════════════════════════════
-   SHEIKAH SLATE — Breath of the Wild Color System
+   HYRULE FIELD — Breath of the Wild Grassland Theme
    ═══════════════════════════════════════════════════════ */
 
 :root {
-  /* ── Deep Space Blacks ── */
-  --botw-void:        #030810;
-  --botw-abyss:       #060f1c;
-  --botw-deep:        #0a1828;
-  --botw-slate:       #0d2238;
+  /* ── Sky ── */
+  --sky-zenith:    #1a5fa8;
+  --sky-mid:       #4898d0;
+  --sky-upper:     #6ab4e8;
+  --sky-horizon:   #b8dff5;
 
-  /* ── Sheikah Cyan — Primary Accent ── */
-  --botw-cyan:        #4af9f9;
-  --botw-cyan-bright: #9fffff;
-  --botw-cyan-dim:    #1a7a7a;
-  --botw-cyan-dark:   #0a3a3a;
-  --botw-cyan-ghost:  rgba(74, 249, 249, 0.07);
-  --botw-cyan-glow:   rgba(74, 249, 249, 0.22);
-  --botw-cyan-pulse:  rgba(74, 249, 249, 0.45);
-  --botw-cyan-halo:   rgba(74, 249, 249, 0.12);
+  /* ── Sun & Light ── */
+  --sun-core:      #fff9c4;
+  --sun-warm:      #ffe566;
+  --sun-glow:      rgba(255, 220, 80, 0.45);
+  --sun-halo:      rgba(255, 240, 160, 0.2);
 
-  /* ── Hylian Gold — Secondary Accent ── */
-  --botw-gold:        #c9a227;
-  --botw-gold-bright: #f0d060;
-  --botw-gold-dim:    #7a6218;
-  --botw-gold-ghost:  rgba(201, 162, 39, 0.15);
-  --botw-gold-glow:   rgba(240, 208, 96, 0.35);
+  /* ── Grassland Greens ── */
+  --grass-far:     #3d6e2a;
+  --grass-mid:     #4d8832;
+  --grass-near:    #5da038;
+  --grass-bright:  #72c048;
+  --grass-vivid:   #88d055;
 
-  /* ── Ancient Parchment — Text ── */
-  --botw-parchment:       #f5e6c8;
-  --botw-parchment-soft:  #d4c5a0;
-  --botw-parchment-dim:   #a89470;
-  --botw-parchment-ghost: rgba(245, 230, 200, 0.55);
+  /* ── Parchment / Warm Tones ── */
+  --parchment:         #f8f2e0;
+  --parchment-warm:    #f2e8cc;
+  --parchment-shadow:  #e8d8a8;
+  --ink-dark:          #2c1e08;
+  --ink-mid:           #4a3418;
+  --ink-soft:          #7a5c30;
 
-  /* ── Hyrule Nature ── */
-  --botw-forest-deep:  #0e2018;
-  --botw-forest:       #1a3a22;
-  --botw-forest-mid:   #2a5030;
-  --botw-horizon:      #3a6040;
+  /* ── Hylian Gold ── */
+  --gold:          #c9a227;
+  --gold-bright:   #f0d060;
+  --gold-dim:      #9a7a1e;
+  --gold-glow:     rgba(201, 162, 39, 0.4);
+  --gold-shadow:   rgba(140, 100, 20, 0.25);
 
-  /* ── Semantic Tokens ── */
-  --color-background:       var(--botw-void);
-  --color-background-soft:  var(--botw-abyss);
-  --color-background-mute:  var(--botw-deep);
-  --color-border:           var(--botw-cyan-dim);
-  --color-border-hover:     var(--botw-cyan);
-  --color-heading:          var(--botw-gold);
-  --color-text:             var(--botw-parchment-soft);
+  /* ── Wind / Seeds ── */
+  --wind-white:    rgba(255, 255, 255, 0.85);
+
+  /* ── Semantic ── */
+  --color-background:      var(--sky-zenith);
+  --color-background-soft: var(--parchment);
+  --color-border:          var(--gold-dim);
+  --color-border-hover:    var(--gold);
+  --color-heading:         var(--ink-dark);
+  --color-text:            var(--ink-mid);
 
   --section-gap: 120px;
 }
@@ -61,24 +62,21 @@
 
 body {
   min-height: 100vh;
-  color: var(--color-text);
-  background: var(--color-background);
+  color: var(--ink-mid);
+  background: var(--sky-zenith);
   line-height: 1.7;
-  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 16px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
 a {
   text-decoration: none;
-  color: var(--botw-cyan);
-  transition: color 0.3s, text-shadow 0.3s;
+  color: var(--gold-dim);
+  transition: color 0.3s;
 }
-
 a:hover {
-  color: var(--botw-cyan-bright);
-  text-shadow: 0 0 12px var(--botw-cyan-pulse);
+  color: var(--gold);
 }

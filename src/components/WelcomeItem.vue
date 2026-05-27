@@ -1,24 +1,24 @@
 <template>
-  <div class="rune-card">
-    <!-- Hex corner decorations -->
-    <span class="corner corner-tl" />
-    <span class="corner corner-tr" />
-    <span class="corner corner-bl" />
-    <span class="corner corner-br" />
+  <div class="field-card">
+    <!-- Corner leaf decorations -->
+    <span class="corner c-tl">✦</span>
+    <span class="corner c-tr">✦</span>
+    <span class="corner c-bl">✦</span>
+    <span class="corner c-br">✦</span>
 
-    <!-- Icon circle -->
-    <div class="rune-icon-wrap">
-      <div class="rune-icon-bg">
+    <!-- Icon area -->
+    <div class="card-icon-wrap">
+      <div class="card-icon-bg">
         <slot name="icon" />
       </div>
     </div>
 
-    <!-- Text content -->
-    <div class="rune-body">
-      <h3 class="rune-heading">
+    <!-- Text -->
+    <div class="card-body">
+      <h3 class="card-heading">
         <slot name="heading" />
       </h3>
-      <div class="rune-content">
+      <div class="card-content">
         <slot />
       </div>
     </div>
@@ -27,134 +27,123 @@
 
 <style scoped>
 /* ── Card Shell ── */
-.rune-card {
+.field-card {
   position: relative;
   display: flex;
   align-items: flex-start;
-  gap: 1.2rem;
-  padding: 1.4rem 1.6rem;
-  background:
-    linear-gradient(135deg, rgba(13,34,56,0.88) 0%, rgba(6,15,28,0.92) 100%);
-  border: 1px solid var(--botw-cyan-dim);
-  border-radius: 4px;
+  gap: 1.1rem;
+  padding: 1.4rem 1.5rem 1.3rem;
+
+  background: linear-gradient(145deg, #faf5e8 0%, #f2ead4 100%);
+  border: 1.5px solid #d4b870;
+  border-radius: 6px;
 
   box-shadow:
-    0 0 12px var(--botw-cyan-ghost),
-    inset 0 0 20px rgba(74, 249, 249, 0.04);
+    0 3px 12px rgba(100, 70, 20, 0.15),
+    0 1px 4px  rgba(100, 70, 20, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
 
-  transition:
-    border-color 0.35s ease,
-    box-shadow   0.35s ease,
-    transform    0.35s ease;
-
-  animation: card-rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  animation: card-rise 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
   overflow: hidden;
   cursor: default;
 }
 
-/* Subtle scan-line on hover */
-.rune-card::after {
+/* Parchment texture overlay */
+.field-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 3px,
-    rgba(74, 249, 249, 0.015) 3px,
-    rgba(74, 249, 249, 0.015) 4px
-  );
-  opacity: 0;
-  transition: opacity 0.4s;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 28px,
+      rgba(180, 140, 60, 0.04) 28px,
+      rgba(180, 140, 60, 0.04) 29px
+    );
   pointer-events: none;
+  border-radius: 6px;
 }
 
-.rune-card:hover {
-  border-color: var(--botw-cyan);
+.field-card:hover {
+  transform: translateY(-4px) rotate(0.3deg);
+  border-color: var(--gold);
   box-shadow:
-    0 0 24px var(--botw-cyan-glow),
-    0 0 60px var(--botw-cyan-ghost),
-    inset 0 0 24px var(--botw-cyan-ghost);
-  transform: translateY(-3px);
+    0 8px 24px rgba(100, 70, 20, 0.2),
+    0 2px 8px  rgba(100, 70, 20, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
-.rune-card:hover::after { opacity: 1; }
 
-/* ── Corner Decorations ── */
+/* ── Corner Stars ── */
 .corner {
   position: absolute;
-  width: 12px;
-  height: 12px;
-  border-color: var(--botw-gold-dim);
-  border-style: solid;
-  transition: border-color 0.35s;
+  color: var(--gold-dim);
+  font-size: 0.5rem;
+  transition: color 0.3s, transform 0.3s;
+  line-height: 1;
 }
-.rune-card:hover .corner { border-color: var(--botw-gold); }
+.field-card:hover .corner { color: var(--gold); }
 
-.corner-tl { top: 5px;    left: 5px;    border-width: 1.5px 0 0 1.5px; }
-.corner-tr { top: 5px;    right: 5px;   border-width: 1.5px 1.5px 0 0; }
-.corner-bl { bottom: 5px; left: 5px;    border-width: 0 0 1.5px 1.5px; }
-.corner-br { bottom: 5px; right: 5px;   border-width: 0 1.5px 1.5px 0; }
+.c-tl { top: 5px;    left: 6px;  }
+.c-tr { top: 5px;    right: 6px; }
+.c-bl { bottom: 5px; left: 6px;  }
+.c-br { bottom: 5px; right: 6px; }
 
 /* ── Icon ── */
-.rune-icon-wrap {
+.card-icon-wrap {
   flex-shrink: 0;
-  width: 52px;
-  height: 52px;
+  width: 50px;
+  height: 50px;
 }
-.rune-icon-bg {
+.card-icon-bg {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  border: 1.5px solid var(--botw-cyan-dim);
-  background:
-    radial-gradient(circle at 38% 32%, rgba(74,249,249,0.14) 0%, rgba(10,24,40,0.96) 70%);
+  border: 1.5px solid var(--parchment-shadow);
+  background: radial-gradient(circle at 38% 32%,
+    rgba(255, 240, 180, 0.6) 0%,
+    rgba(230, 210, 150, 0.4) 60%,
+    rgba(200, 175, 110, 0.2) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: border-color 0.35s, box-shadow 0.35s;
-  box-shadow: 0 0 8px var(--botw-cyan-ghost);
+  box-shadow: 0 2px 6px rgba(120, 80, 20, 0.15), inset 0 1px 2px rgba(255,255,255,0.6);
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
-.rune-card:hover .rune-icon-bg {
-  border-color: var(--botw-cyan);
-  box-shadow:
-    0 0 16px var(--botw-cyan-glow),
-    inset 0 0 12px var(--botw-cyan-ghost);
+.field-card:hover .card-icon-bg {
+  border-color: var(--gold-dim);
+  box-shadow: 0 2px 12px rgba(180, 140, 40, 0.3), inset 0 1px 2px rgba(255,255,255,0.7);
 }
 
 /* ── Heading ── */
-.rune-body { flex: 1; min-width: 0; }
+.card-body { flex: 1; min-width: 0; }
 
-.rune-heading {
+.card-heading {
   font-family: 'Cinzel', serif;
-  font-weight: 600;
-  font-size: 1rem;
-  letter-spacing: 0.1em;
-  color: var(--botw-gold);
-  margin-bottom: 0.5rem;
-  transition: color 0.3s, text-shadow 0.3s;
-  text-shadow: 0 0 8px var(--botw-gold-ghost);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-dark);
+  margin-bottom: 0.45rem;
+  transition: color 0.3s;
 }
-.rune-card:hover .rune-heading {
-  color: var(--botw-gold-bright);
-  text-shadow: 0 0 14px var(--botw-gold-glow);
-}
+.field-card:hover .card-heading { color: var(--gold-dim); }
 
 /* ── Content ── */
-.rune-content {
+.card-content {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 0.92rem;
-  line-height: 1.7;
-  color: var(--botw-parchment-dim);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--ink-mid);
 }
-.rune-content :deep(a) {
-  color: var(--botw-cyan);
-  border-bottom: 1px solid var(--botw-cyan-dark);
-  padding-bottom: 1px;
-  transition: color 0.3s, border-color 0.3s, text-shadow 0.3s;
+.card-content :deep(a) {
+  color: var(--gold-dim);
+  border-bottom: 1px solid var(--parchment-shadow);
+  transition: color 0.3s, border-color 0.3s;
 }
-.rune-content :deep(a:hover) {
-  color: var(--botw-cyan-bright);
-  border-color: var(--botw-cyan);
-  text-shadow: 0 0 10px var(--botw-cyan-pulse);
+.card-content :deep(a:hover) {
+  color: var(--gold);
+  border-color: var(--gold);
 }
 </style>
