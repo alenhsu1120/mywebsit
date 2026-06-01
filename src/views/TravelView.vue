@@ -228,12 +228,237 @@
 
     <!-- 第四天 -->
     <div v-if="activeDay === 4">
-      <div class="coming-soon">
-        <div class="cs-icon">🍵</div>
-        <div class="cs-title">第四天行程規劃中</div>
-        <div class="cs-desc">2026 年 6 月 21 日（日）｜內容即將更新，敬請期待。</div>
+
+    <div class="day-header">
+      <div class="day-badge">
+        <span class="badge-num">D4</span>
+        <span class="badge-label">DAY 4</span>
+      </div>
+      <div class="day-info">
+        <h2>名古屋 → 大阪！</h2>
+        <div class="day-weekday">2026 年 6 月 21 日（日）</div>
       </div>
     </div>
+
+    <!-- 早餐 -->
+    <div class="card food">
+      <div class="card-header">
+        <span class="card-icon">🍱</span>
+        <span class="card-title">早餐</span>
+        <span class="card-time">08:00～09:00</span>
+      </div>
+      <ul class="steps">
+        <li><span class="step-num food-color">●</span><span>在飯店附近找早餐，或前往附近便利商店（7-Eleven、Family Mart）簡單解決，省時方便。</span></li>
+      </ul>
+    </div>
+
+    <!-- 名古屋最後散步 -->
+    <div class="card sightseeing">
+      <div class="card-header">
+        <span class="card-icon">🚶</span>
+        <span class="card-title">名古屋最後散步</span>
+        <span class="card-time">09:00～10:30</span>
+      </div>
+      <div class="spot-grid">
+        <div class="spot-item">
+          <div class="spot-icon">🏙</div>
+          <div class="spot-name">選項 A：名古屋站周邊</div>
+          <div class="spot-desc">JR Central Towers ／ Midland Square，可上高樓層欣賞名古屋市景，最後一瞥城市全貌。</div>
+        </div>
+        <div class="spot-item">
+          <div class="spot-icon">🐟</div>
+          <div class="spot-name">選項 B：柳橋中央市場</div>
+          <div class="spot-desc">距離飯店不遠的老市場，適合吃海鮮丼、壽司、烤魚定食，當作最後一頓名古屋美食。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 退房 -->
+    <div class="card hotel">
+      <div class="card-header">
+        <span class="card-icon">🏨</span>
+        <span class="card-title">整理行李 ＆ 退房</span>
+        <span class="card-time">10:30 整理 ／ 11:00 退房</span>
+      </div>
+      <div class="hotel-name">名古屋日航尚格酒店</div>
+      <div class="alert" style="margin-top:10px">
+        <span class="alert-icon">💡</span>
+        <span>退房後步行或搭計程車（約 6 分鐘）前往名古屋站，準備搭新幹線出發。</span>
+      </div>
+    </div>
+
+    <!-- 前往大阪 -->
+    <div class="card transport">
+      <div class="card-header">
+        <span class="card-icon">🚄</span>
+        <span class="card-title">名古屋 → 新大阪　（東海道新幹線 Nozomi）</span>
+        <span class="card-time">11:30 出發</span>
+      </div>
+      <ul class="steps">
+        <li><span class="step-num blue">1</span><span>從名古屋站搭乘 <strong>東海道新幹線 Nozomi</strong> 前往新大阪</span></li>
+        <li><span class="step-num blue">2</span><span>車程約 <strong>50 分鐘</strong>，約 <strong>12:50</strong> 抵達新大阪</span></li>
+        <li><span class="step-num blue">3</span><span>在新大阪轉乘地下鐵御堂筋線，前往難波（約 20 分鐘）</span></li>
+      </ul>
+      <table class="info-table" style="margin-top:14px">
+        <thead><tr><th>路線</th><th style="text-align:right">費用估算</th></tr></thead>
+        <tbody>
+          <tr><td>東海道新幹線 Nozomi（名古屋 → 新大阪）</td><td class="price">¥4,000～6,000</td></tr>
+          <tr><td>地下鐵御堂筋線（新大阪 → 難波）</td><td class="price">¥280 左右</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 抵達難波飯店 -->
+    <div class="card hotel">
+      <div class="card-header">
+        <span class="card-icon">🏨</span>
+        <span class="card-title">抵達難波 － 飯店寄放行李</span>
+        <span class="card-time">13:00</span>
+      </div>
+      <div class="hotel-name">難波京阪格蘭德飯店</div>
+      <div class="hotel-name-sub">ホテル京阪 なんば グランデ</div>
+      <a
+        href="https://www.google.com/maps/search/?api=1&query=ホテル京阪+なんば+グランデ"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="address-box address-link"
+        style="margin-bottom:8px"
+      >
+        <span class="addr-label">地址　<span class="map-hint">📍 點擊開啟 Google Maps</span></span>
+        <span class="addr-text">〒556-0011　大阪府大阪市浪速區難波中 2-3-33</span>
+        <span class="addr-dist">🚶 南海電鐵難波站步行 6 分鐘</span>
+      </a>
+      <div class="alert" style="margin-top:8px">
+        <span class="alert-icon">💡</span>
+        <span>Check-in 時間未到可先寄放行李，輕裝前往梅田逛街。</span>
+      </div>
+    </div>
+
+    <!-- 前往梅田 -->
+    <div class="card transport">
+      <div class="card-header">
+        <span class="card-icon">🚇</span>
+        <span class="card-title">難波 → 梅田　（御堂筋線）</span>
+        <span class="card-time">14:00 出發</span>
+      </div>
+      <ul class="steps">
+        <li><span class="step-num blue">1</span><span>搭乘 <strong>地下鐵御堂筋線</strong>，難波站 → 梅田站</span></li>
+        <li><span class="step-num blue">2</span><span>車程約 <strong>10 分鐘</strong>，約 <strong>14:30</strong> 抵達梅田</span></li>
+      </ul>
+    </div>
+
+    <!-- 梅田自由活動 -->
+    <div class="card sightseeing">
+      <div class="card-header">
+        <span class="card-icon">🛍</span>
+        <span class="card-title">梅田自由活動</span>
+        <span class="card-time">14:30～17:30</span>
+      </div>
+      <div class="spot-grid">
+        <div class="spot-item">
+          <div class="spot-icon">🏬</div>
+          <div class="spot-name">Grand Front Osaka</div>
+          <div class="spot-desc">UNIQLO、無印良品、設計雜貨，購物與咖啡廳一應俱全。</div>
+        </div>
+        <div class="spot-item">
+          <div class="spot-icon">👗</div>
+          <div class="spot-name">LUCUA Osaka</div>
+          <div class="spot-desc">年輕品牌眾多，潮流服飾與餐廳選擇豐富。</div>
+        </div>
+        <div class="spot-item">
+          <div class="spot-icon">🎁</div>
+          <div class="spot-name">阪急百貨</div>
+          <div class="spot-desc">梅田本店伴手禮非常齊全，帶禮物回家的不二選擇。</div>
+        </div>
+        <div class="spot-item">
+          <div class="spot-icon">🌆</div>
+          <div class="spot-name">梅田藍天大廈（可選）</div>
+          <div class="spot-desc">Umeda Sky Building，天氣好可俯瞰大阪市景，建議預留 40～60 分鐘。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 晚餐 -->
+    <div class="card food">
+      <div class="card-header">
+        <span class="card-icon">🍽</span>
+        <span class="card-title">晚餐</span>
+        <span class="card-time">17:30～19:00</span>
+      </div>
+      <ul class="steps">
+        <li><span class="step-num food-color">A</span><span><strong>燒肉</strong>　Yakiniku M Hozenji Yokocho　法善寺橫丁，道頓堀周邊名店。</span></li>
+        <li><span class="step-num food-color">B</span><span><strong>壽喜燒</strong>　Harijyu Dotonbori　道頓堀老牌壽喜燒餐廳，肉質鮮嫩。</span></li>
+        <li><span class="step-num food-color">C</span><span><strong>大阪燒</strong>　Mizuno　道頓堀大阪燒代表名店，排隊也值得。</span></li>
+      </ul>
+    </div>
+
+    <!-- 心齋橋交通 -->
+    <div class="card transport">
+      <div class="card-header">
+        <span class="card-icon">🚇</span>
+        <span class="card-title">梅田 → 心齋橋　（御堂筋線）</span>
+        <span class="card-time">19:00 出發</span>
+      </div>
+      <ul class="steps">
+        <li><span class="step-num blue">1</span><span>搭乘御堂筋線，梅田 → 心齋橋，約 <strong>8 分鐘</strong></span></li>
+      </ul>
+    </div>
+
+    <!-- 心齋橋、道頓堀 -->
+    <div class="card sightseeing">
+      <div class="card-header">
+        <span class="card-icon">🦀</span>
+        <span class="card-title">心齋橋 ＆ 道頓堀夜遊</span>
+        <span class="card-time">19:15～22:00</span>
+      </div>
+      <div class="spot-grid">
+        <div class="spot-item">
+          <div class="spot-icon">🛍</div>
+          <div class="spot-name">心齋橋筋商店街</div>
+          <div class="spot-desc">大阪最長的拱廊商店街，藥妝、服飾、美食琳瑯滿目。</div>
+        </div>
+        <div class="spot-item">
+          <div class="spot-icon">🌉</div>
+          <div class="spot-name">道頓堀 ＆ 戎橋</div>
+          <div class="spot-desc">道頓堀運河夜景，必拍固力果跑跑人，大阪最具代表的地標。</div>
+        </div>
+        <div class="spot-item">
+          <div class="spot-icon">💊</div>
+          <div class="spot-name">藥妝採買</div>
+          <div class="spot-desc">松本清、科摩斯 COSMOS 等藥妝店林立，伴手禮一次買齊。</div>
+        </div>
+        <div class="spot-item">
+          <div class="spot-icon">🛒</div>
+          <div class="spot-name">唐吉軻德</div>
+          <div class="spot-desc">Don Quijote 道頓堀店，零食、生活雜貨、電器一應俱全。</div>
+        </div>
+      </div>
+      <div class="alert">
+        <span class="alert-icon">🌙</span>
+        <span>22:00 後從心齋橋步行回難波飯店約 <strong>15～20 分鐘</strong>，或搭地鐵 1 站即達。</span>
+      </div>
+    </div>
+
+    <!-- 備忘清單 -->
+    <div class="card tip">
+      <div class="card-header">
+        <span class="card-icon">📋</span>
+        <span class="card-title">第四天行前備忘</span>
+      </div>
+      <ul class="steps">
+        <li><span class="step-num gray">✓</span><span>提前購買新幹線 Nozomi 車票（綠色窗口或自動售票機）</span></li>
+        <li><span class="step-num gray">✓</span><span>退房前確認行李不遺漏</span></li>
+        <li><span class="step-num gray">✓</span><span>難波飯店先寄放行李，下午輕裝逛梅田</span></li>
+        <li><span class="step-num gray">✓</span><span>晚餐熱門餐廳（如 Mizuno）建議提前預約或早點排隊</span></li>
+        <li><span class="step-num gray">✓</span><span>藥妝購物確認品項清單，避免遺漏</span></li>
+      </ul>
+    </div>
+
+    <footer class="travel-footer">
+      🇯🇵 Japan Trip 2026 &nbsp;｜&nbsp; Have a great journey!
+    </footer>
+
+    </div><!-- end day 4 -->
 
     <!-- 第五天 -->
     <div v-if="activeDay === 5">
