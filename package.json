@@ -15,6 +15,7 @@
     "deploy": "pnpm run build && gh-pages -d dist"
   },
   "dependencies": {
+    "firebase": "^12.13.0",
     "vue": "^3.5.25",
     "vue-router": "^4.6.4"
   },

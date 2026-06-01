@@ -1,6 +1,23 @@
 <template>
   <div class="field-wrap">
 
+    <!-- About Me — full width banner (moved to top) -->
+    <RouterLink to="/about" class="card-link about-link">
+      <div class="about-banner">
+        <div class="about-icon">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="card-icon-svg">
+            <circle cx="16" cy="11" r="6" fill="rgba(180,130,50,.2)" stroke="#8b6914" stroke-width="1.4"/>
+            <path d="M5 28 Q5 20 16 20 Q27 20 27 28" fill="rgba(180,130,50,.15)" stroke="#8b6914" stroke-width="1.4" stroke-linecap="round"/>
+            <polygon points="16,21 17.5,24 14.5,24" fill="#c9a227" opacity=".8"/>
+          </svg>
+        </div>
+        <div class="about-text">
+          <span class="about-label">About Me <span class="arrow">›</span></span>
+          <span class="about-desc">自我介紹 · 技術技能 · 學歷 · 興趣嗜好</span>
+        </div>
+      </div>
+    </RouterLink>
+
     <div class="section-head">
       <span class="sh-line" />
       <span class="sh-icon">🌿</span>
@@ -12,22 +29,48 @@
     <div class="field-grid">
 
       <!-- ① Life Journal -->
-      <WelcomeItem>
-        <template #icon>
-          <svg class="card-icon-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="6" y="4" width="16" height="22" rx="2"
-                  fill="rgba(180,130,50,.2)" stroke="#8b6914" stroke-width="1.5"/>
-            <line x1="10" y1="4" x2="10" y2="26" stroke="#8b6914" stroke-width="1" opacity=".5"/>
-            <line x1="13" y1="9"  x2="20" y2="9"  stroke="#8b6914" stroke-width="1" stroke-linecap="round" opacity=".7"/>
-            <line x1="13" y1="12" x2="20" y2="12" stroke="#8b6914" stroke-width="1" stroke-linecap="round" opacity=".6"/>
-            <line x1="13" y1="15" x2="18" y2="15" stroke="#8b6914" stroke-width="1" stroke-linecap="round" opacity=".5"/>
-            <path d="M22 6 Q27 8 27 13 Q24 12 22 15 Z" fill="#5da038" opacity=".85"/>
-            <line x1="22" y1="6" x2="22" y2="15" stroke="#3d6e2a" stroke-width=".8"/>
-          </svg>
-        </template>
-        <template #heading>Life Journal</template>
-        <p>旅途的記憶，刻在羊皮卷上。</p>
-      </WelcomeItem>
+      <RouterLink to="/journal" class="card-link">
+        <WelcomeItem :clickable="true">
+          <template #icon>
+            <svg class="card-icon-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="6" y="4" width="16" height="22" rx="2"
+                    fill="rgba(180,130,50,.2)" stroke="#8b6914" stroke-width="1.5"/>
+              <line x1="10" y1="4" x2="10" y2="26" stroke="#8b6914" stroke-width="1" opacity=".5"/>
+              <line x1="13" y1="9"  x2="20" y2="9"  stroke="#8b6914" stroke-width="1" stroke-linecap="round" opacity=".7"/>
+              <line x1="13" y1="12" x2="20" y2="12" stroke="#8b6914" stroke-width="1" stroke-linecap="round" opacity=".6"/>
+              <line x1="13" y1="15" x2="18" y2="15" stroke="#8b6914" stroke-width="1" stroke-linecap="round" opacity=".5"/>
+              <path d="M22 6 Q27 8 27 13 Q24 12 22 15 Z" fill="#5da038" opacity=".85"/>
+              <line x1="22" y1="6" x2="22" y2="15" stroke="#3d6e2a" stroke-width=".8"/>
+            </svg>
+          </template>
+          <template #heading>
+            Life Journal
+            <span class="arrow">›</span>
+          </template>
+          <p>旅途的記憶，刻在羊皮卷上。</p>
+        </WelcomeItem>
+      </RouterLink>
+
+      <!-- ① Travel Guide -->
+      <RouterLink to="/travel" class="card-link">
+        <WelcomeItem :clickable="true">
+          <template #icon>
+            <svg class="card-icon-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 4 C10 4 6 9 6 14 C6 21 16 28 16 28 C16 28 26 21 26 14 C26 9 22 4 16 4 Z"
+                    fill="rgba(192,57,43,.2)" stroke="#c0392b" stroke-width="1.4"/>
+              <circle cx="16" cy="14" r="3.5" fill="rgba(192,57,43,.35)" stroke="#c0392b" stroke-width="1.2"/>
+              <path d="M10 6 Q16 3 22 6" stroke="#e74c3c" stroke-width="1" fill="none" opacity=".6" stroke-linecap="round"/>
+              <line x1="22" y1="5" x2="25" y2="3" stroke="#f39c12" stroke-width="1.2" stroke-linecap="round" opacity=".8"/>
+              <circle cx="25.5" cy="2.5" r="1.5" fill="#f39c12" opacity=".85"/>
+            </svg>
+          </template>
+          <template #heading>
+            Travel Guide
+            <span class="arrow">›</span>
+          </template>
+          <p>日本旅遊手冊 · 2026 夏の旅。</p>
+        </WelcomeItem>
+      </RouterLink>
 
       <!-- ② Game Log -->
       <WelcomeItem>
@@ -126,7 +169,7 @@ import WelcomeItem from './WelcomeItem.vue'
 .sh-line.right { background:linear-gradient(90deg, #4a9818, transparent); }
 .sh-icon { font-size:.85rem; }
 .sh-title {
-  font-family:'Cinzel',serif; font-size:.65rem;
+  font-family:'Poppins','Noto Sans TC',sans-serif; font-size:.65rem;
   letter-spacing:.3em; color:#7a5c30; white-space:nowrap;
 }
 
@@ -158,6 +201,42 @@ import WelcomeItem from './WelcomeItem.vue'
 .card-link:hover .arrow { transform:translateX(4px); }
 
 .card-icon-svg { width:24px; height:24px; }
+
+/* ── About Me banner ── */
+.about-link { display:block; text-decoration:none; color:inherit; margin-bottom:1.2rem; }
+.about-banner {
+  display:flex; align-items:center; gap:1.1rem;
+  padding:1rem 1.5rem;
+  background: linear-gradient(145deg, #fdf8ec 0%, #f0e8cc 100%);
+  border: 1.5px solid #c9a227;
+  border-radius: 2px;
+  box-shadow: 3px 3px 0 #8a6e10, inset 0 1px 0 rgba(255,255,255,.8);
+  transition: transform .25s, box-shadow .25s, border-color .25s;
+}
+.about-link:hover .about-banner {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 #8a6e10;
+}
+.about-icon {
+  flex-shrink:0; width:44px; height:44px; border-radius:50%;
+  border:1.5px solid #d4b870;
+  background: radial-gradient(circle at 38% 32%,
+    rgba(255,240,180,.55) 0%, rgba(230,210,150,.35) 60%, rgba(200,175,110,.15) 100%);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: 0 2px 6px rgba(120,80,20,.12), inset 0 1px 2px rgba(255,255,255,.6);
+  transition: border-color .25s;
+}
+.about-link:hover .about-icon { border-color: #c9a227; }
+.about-text { flex:1; display:flex; flex-direction:column; gap:.2rem; }
+.about-label {
+  font-family:'Poppins','Noto Sans TC',sans-serif; font-size:.95rem; font-weight:400;
+  letter-spacing:.06em; color:#2c1e08;
+  transition: color .25s;
+}
+.about-link:hover .about-label { color:#9a7a1e; }
+.about-desc {
+  font-family:'Poppins','Noto Sans TC',sans-serif; font-size:.88rem; color:#7a5c30;
+}
 
 .bottom-deco {
   display:flex; align-items:center; gap:.5rem;

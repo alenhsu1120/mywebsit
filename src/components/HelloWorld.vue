@@ -18,8 +18,8 @@ defineProps<{ msg: string }>()
 }
 
 .hero-name {
-  font-family: 'Cinzel Decorative', 'Cinzel', serif;
-  font-weight: 700;
+  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
+  font-weight: 400;
   font-size: clamp(2rem, 6vw, 3.4rem);
   letter-spacing: 0.1em;
   color: #2a1e08;
@@ -32,7 +32,7 @@ defineProps<{ msg: string }>()
 }
 
 .hero-sub {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-style: italic;
   font-size: clamp(0.85rem, 2vw, 1.05rem);
   color: #5a4020;

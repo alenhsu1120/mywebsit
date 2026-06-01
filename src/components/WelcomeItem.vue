@@ -38,16 +38,15 @@ defineProps<{ clickable?: boolean }>()
   gap: 1.1rem;
   padding: 1.4rem 1.5rem 1.3rem;
 
-  background: linear-gradient(145deg, #faf5e8 0%, #f2ead4 100%);
-  border: 1.5px solid #d4b870;
-  border-radius: 6px;
+  background: #f8f2e0;
+  border: 2px solid #b89830;
+  border-radius: 2px;              /* pixel-style: near-square corners */
 
   box-shadow:
-    0 3px 12px rgba(100, 70, 20, 0.15),
-    0 1px 4px  rgba(100, 70, 20, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    3px 3px 0 #8a6e10,             /* hard pixel offset shadow */
+    inset 0 1px 0 rgba(255,255,255,0.85);
 
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   animation: card-rise 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
   overflow: hidden;
   cursor: default;
@@ -74,11 +73,10 @@ defineProps<{ clickable?: boolean }>()
 }
 
 .field-card:hover {
-  transform: translateY(-4px) rotate(0.3deg);
-  border-color: var(--gold);
+  transform: translate(-2px, -2px);
+  border-color: #c9a227;
   box-shadow:
-    0 8px 24px rgba(100, 70, 20, 0.2),
-    0 2px 8px  rgba(100, 70, 20, 0.15),
+    5px 5px 0 #8a6e10,
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
@@ -127,8 +125,8 @@ defineProps<{ clickable?: boolean }>()
 .card-body { flex: 1; min-width: 0; }
 
 .card-heading {
-  font-family: 'Cinzel', serif;
-  font-weight: 700;
+  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
+  font-weight: 400;
   font-size: 0.95rem;
   letter-spacing: 0.08em;
   color: var(--ink-dark);
@@ -139,7 +137,7 @@ defineProps<{ clickable?: boolean }>()
 
 /* ── Content ── */
 .card-content {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-size: 0.95rem;
   line-height: 1.65;
   color: var(--ink-mid);

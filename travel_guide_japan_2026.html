@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日本旅遊手冊 2026</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+      background: #f5f0eb;
+      color: #2c2c2c;
+    }
+
+    /* 封面 */
+    .cover {
+      background: linear-gradient(160deg, #c0392b 0%, #e74c3c 40%, #f39c12 100%);
+      color: white;
+      text-align: center;
+      padding: 80px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::before {
+      content: '⛩';
+      font-size: 120px;
+      position: absolute;
+      top: -20px;
+      right: -10px;
+      opacity: 0.15;
+    }
+    .cover .sub { font-size: 14px; letter-spacing: 4px; text-transform: uppercase; opacity: 0.85; margin-bottom: 12px; }
+    .cover h1 { font-size: 48px; font-weight: 900; letter-spacing: 2px; margin-bottom: 8px; }
+    .cover .dates { font-size: 18px; opacity: 0.9; margin-top: 16px; letter-spacing: 1px; }
+    .cover .cities { display: flex; justify-content: center; gap: 16px; margin-top: 24px; flex-wrap: wrap; }
+    .cover .city-tag {
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 20px;
+      padding: 6px 18px;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    /* 容器 */
+    .container { max-width: 860px; margin: 0 auto; padding: 0 20px 60px; }
+
+    /* 日期標題 */
+    .day-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 48px 0 24px;
+    }
+    .day-badge {
+      background: #c0392b;
+      color: white;
+      border-radius: 50%;
+      width: 64px;
+      height: 64px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(192,57,43,0.4);
+    }
+    .day-badge .num { font-size: 26px; line-height: 1; }
+    .day-badge .label { font-size: 10px; letter-spacing: 1px; opacity: 0.85; }
+    .day-info h2 { font-size: 22px; font-weight: 800; color: #1a1a1a; }
+    .day-info .weekday { font-size: 13px; color: #888; margin-top: 2px; }
+
+    /* 卡片 */
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      border-left: 5px solid #e74c3c;
+    }
+    .card.transport { border-left-color: #3498db; }
+    .card.hotel    { border-left-color: #9b59b6; }
+    .card.food     { border-left-color: #e67e22; }
+    .card.sightseeing { border-left-color: #27ae60; }
+    .card.ticket   { border-left-color: #f39c12; }
+    .card.tip      { border-left-color: #95a5a6; background: #fafafa; }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .card-icon { font-size: 22px; }
+    .card-title { font-size: 16px; font-weight: 700; color: #1a1a1a; }
+    .card-time  { margin-left: auto; font-size: 13px; font-weight: 700; color: #888; background: #f0f0f0; padding: 3px 10px; border-radius: 12px; }
+
+    /* 行程步驟 */
+    .steps { list-style: none; }
+    .steps li {
+      display: flex;
+      gap: 14px;
+      padding: 8px 0;
+      border-bottom: 1px dashed #f0f0f0;
+      font-size: 14px;
+      line-height: 1.6;
+      align-items: flex-start;
+    }
+    .steps li:last-child { border-bottom: none; }
+    .step-num {
+      background: #3498db;
+      color: white;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* 費用表格 */
+    .cost-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 14px; }
+    .cost-table th {
+      background: #f8f8f8;
+      padding: 8px 12px;
+      text-align: left;
+      font-size: 12px;
+      color: #666;
+      border-bottom: 2px solid #eee;
+    }
+    .cost-table td { padding: 9px 12px; border-bottom: 1px solid #f5f5f5; }
+    .cost-table tr:last-child td { border-bottom: none; }
+    .cost-table .price { font-weight: 700; color: #c0392b; text-align: right; }
+
+    /* 提醒 */
+    .alert {
+      background: #fff9e6;
+      border: 1px solid #f39c12;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 13px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-top: 12px;
+    }
+    .alert-icon { font-size: 18px; flex-shrink: 0; }
+
+    /* 地址框 */
+    .address-box {
+      background: #f8f4ff;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 13px;
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .address-box .label { font-size: 11px; color: #9b59b6; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+    .address-box .addr { font-weight: 600; color: #2c2c2c; }
+    .address-box .dist { font-size: 12px; color: #888; margin-top: 2px; }
+
+    /* 景點卡 */
+    .spot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+    .spot-item {
+      background: #f9f9f9;
+      border-radius: 12px;
+      padding: 14px 16px;
+      border: 1px solid #eee;
+    }
+    .spot-item .spot-icon { font-size: 24px; margin-bottom: 6px; }
+    .spot-item .spot-name { font-weight: 700; font-size: 15px; }
+    .spot-item .spot-desc { font-size: 12px; color: #777; margin-top: 4px; line-height: 1.5; }
+
+    /* 分隔線 */
+    .divider { border: none; border-top: 2px dashed #ddd; margin: 40px 0; }
+
+    /* 頁尾 */
+    footer {
+      text-align: center;
+      padding: 32px;
+      font-size: 13px;
+      color: #aaa;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 500px) {
+      .cover h1 { font-size: 32px; }
+      .spot-grid { grid-template-columns: 1fr; }
+      .card { padding: 18px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 封面 -->
+<div class="cover">
+  <div class="sub">Travel Guide 2026</div>
+  <h1>日本旅遊手冊</h1>
+  <div class="dates">2026 年 6 月 18 日出發</div>
+  <div class="cities">
+    <span class="city-tag">✈ 關西機場</span>
+    <span class="city-tag">🚄 新大阪</span>
+    <span class="city-tag">🏯 名古屋</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- DAY 1 -->
+  <div class="day-header">
+    <div class="day-badge">
+      <span class="num">D1</span>
+      <span class="label">DAY 1</span>
+    </div>
+    <div class="day-info">
+      <h2>抵達日本！前往名古屋</h2>
+      <div class="weekday">2026 年 6 月 18 日（四）</div>
+    </div>
+  </div>
+
+  <!-- 航班 -->
+  <div class="card transport">
+    <div class="card-header">
+      <span class="card-icon">✈️</span>
+      <span class="card-title">出發航班</span>
+      <span class="card-time">07:05 起飛</span>
+    </div>
+    <table class="cost-table">
+      <tr>
+        <th>出發</th>
+        <th>抵達</th>
+        <th>目的地</th>
+      </tr>
+      <tr>
+        <td><strong>07:05</strong></td>
+        <td><strong>11:10</strong></td>
+        <td>🛬 關西國際機場（KIX）</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 交通 -->
+  <div class="card transport">
+    <div class="card-header">
+      <span class="card-icon">🚄</span>
+      <span class="card-title">關西機場 → 名古屋　（JR Haruka + 新幹線）</span>
+      <span class="card-time">11:10 出發</span>
+    </div>
+    <ul class="steps">
+      <li>
+        <span class="step-num">1</span>
+        <span>在關西機場搭乘 <strong>JR 特急 Haruka</strong>，前往新大阪站</span>
+      </li>
+      <li>
+        <span class="step-num">2</span>
+        <span>抵達<strong>新大阪站</strong> — 在站內買東西吃！月台便當 / 咖啡廳都很方便</span>
+      </li>
+      <li>
+        <span class="step-num">3</span>
+        <span>轉乘<strong>東海道新幹線 Nozomi／Hikari</strong>，前往名古屋站</span>
+      </li>
+      <li>
+        <span class="step-num">4</span>
+        <span>約 <strong>15:00</strong> 抵達名古屋站</span>
+      </li>
+    </ul>
+
+    <div class="alert">
+      <span class="alert-icon">⏱</span>
+      <span>總交通時間約 <strong>2 小時</strong>，是最省時的路線。</span>
+    </div>
+
+    <table class="cost-table" style="margin-top:16px">
+      <tr>
+        <th>項目</th>
+        <th style="text-align:right">費用（日圓）</th>
+      </tr>
+      <tr>
+        <td>JR Haruka（關西機場 → 新大阪）</td>
+        <td class="price">¥3,000 左右</td>
+      </tr>
+      <tr>
+        <td>東海道新幹線（新大阪 → 名古屋）現場購票</td>
+        <td class="price">¥4,000～6,000</td>
+      </tr>
+      <tr>
+        <td><strong>合計估算</strong></td>
+        <td class="price"><strong>¥7,000～9,000</strong></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 車票提醒 -->
+  <div class="card ticket">
+    <div class="card-header">
+      <span class="card-icon">🎫</span>
+      <span class="card-title">車票備忘</span>
+    </div>
+    <ul class="steps">
+      <li>
+        <span class="step-num" style="background:#f39c12">A</span>
+        <span><strong>Haruka 票</strong>　可提前在台灣官網購買，或到關西機場服務台購票</span>
+      </li>
+      <li>
+        <span class="step-num" style="background:#f39c12">B</span>
+        <span><strong>新幹線票</strong>　新大阪站現場購票（綠色窗口或自動售票機）</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 飯店 -->
+  <div class="card hotel">
+    <div class="card-header">
+      <span class="card-icon">🏨</span>
+      <span class="card-title">飯店 Check-in</span>
+      <span class="card-time">15:00</span>
+    </div>
+    <div style="font-size:16px; font-weight:800; color:#9b59b6; margin-bottom:8px">
+      名古屋日航尚格酒店
+    </div>
+    <div class="address-box">
+      <span class="label">地址</span>
+      <span class="addr">〒450-0002　愛知縣名古屋市中村區名駅 5-20-13</span>
+      <span class="dist">🚶 名古屋站步行 11 分鐘　｜　🚗 車程 6 分鐘</span>
+    </div>
+    <div class="alert" style="margin-top:12px">
+      <span class="alert-icon">💡</span>
+      <span>行李重的話，直接搭計程車到飯店約 6 分鐘即可，省時又輕鬆。</span>
+    </div>
+  </div>
+
+  <!-- 行程 -->
+  <div class="card sightseeing">
+    <div class="card-header">
+      <span class="card-icon">🌆</span>
+      <span class="card-title">下午行程　榮商圈 ＋ 綠洲21</span>
+      <span class="card-time">16:00 出發</span>
+    </div>
+    <div class="spot-grid">
+      <div class="spot-item">
+        <div class="spot-icon">🛍</div>
+        <div class="spot-name">榮商圈</div>
+        <div class="spot-desc">名古屋最熱鬧的購物區，百貨公司、藥妝、潮流品牌一應俱全，適合閒逛購物。</div>
+      </div>
+      <div class="spot-item">
+        <div class="spot-icon">🌀</div>
+        <div class="spot-name">綠洲21</div>
+        <div class="spot-desc">名古屋地標玻璃屋頂廣場，頂層有水膜裝置，夜晚燈光尤其漂亮，免費參觀。</div>
+      </div>
+    </div>
+    <div class="alert">
+      <span class="alert-icon">🌙</span>
+      <span>綠洲21 夜晚打燈後非常美，可以在榮逛完街再去拍照。</span>
+    </div>
+  </div>
+
+  <!-- 晚餐 -->
+  <div class="card food">
+    <div class="card-header">
+      <span class="card-icon">🍜</span>
+      <span class="card-title">晚餐　名古屋名物推薦</span>
+    </div>
+    <ul class="steps">
+      <li>
+        <span class="step-num" style="background:#e67e22">1</span>
+        <span><strong>味噌豬排</strong>　甜鹹味噌醬搭炸豬排，名古屋必吃。推薦：矢場とん</span>
+      </li>
+      <li>
+        <span class="step-num" style="background:#e67e22">2</span>
+        <span><strong>台灣ラーメン</strong>　名古屋特色辣拉麵，源自名古屋的台式風格。</span>
+      </li>
+      <li>
+        <span class="step-num" style="background:#e67e22">3</span>
+        <span><strong>手羽先</strong>　名古屋特色炸雞翅，榮商圈附近有多間名店。</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 小提示 -->
+  <div class="card tip">
+    <div class="card-header">
+      <span class="card-icon">📋</span>
+      <span class="card-title">第一天行前備忘</span>
+    </div>
+    <ul class="steps">
+      <li><span class="step-num" style="background:#95a5a6">✓</span><span>確認 Haruka 車票購買方式（現場 or 預購）</span></li>
+      <li><span class="step-num" style="background:#95a5a6">✓</span><span>新大阪站轉乘時間約 20～30 分，在月台或站內買食物</span></li>
+      <li><span class="step-num" style="background:#95a5a6">✓</span><span>準備日幣現金（新幹線現場購票）</span></li>
+      <li><span class="step-num" style="background:#95a5a6">✓</span><span>飯店行李寄放：如提早到可先寄行李再逛</span></li>
+      <li><span class="step-num" style="background:#95a5a6">✓</span><span>手機確認 Suica / ICOCA 或交通卡是否可用</span></li>
+    </ul>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 更多天數預留 -->
+  <div style="text-align:center; color:#bbb; font-size:14px; padding: 20px 0;">
+    ✦ &nbsp; 更多行程持續更新中 &nbsp; ✦
+  </div>
+
+</div>
+
+<footer>
+  🇯🇵 Japan Trip 2026 &nbsp;｜&nbsp; Have a great journey!
+</footer>
+
+</body>
+</html>

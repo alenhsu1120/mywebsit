@@ -152,7 +152,7 @@ import { RouterLink } from 'vue-router'
 /* Back */
 .back-link {
   display: inline-block;
-  font-family: 'Cinzel', serif;
+  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-size: .75rem; letter-spacing: .15em;
   color: #6a5030; text-decoration: none;
   padding: .3rem 0; margin-bottom: 1.4rem;
@@ -164,14 +164,14 @@ import { RouterLink } from 'vue-router'
 /* Title */
 .page-title { margin-bottom: 1.2rem; }
 .page-title h2 {
-  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-size: clamp(1.4rem, 4vw, 2rem);
   color: #2c1e08;
   text-shadow: 0 1px 0 rgba(255,255,255,.9), 0 2px 10px rgba(255,255,255,.5);
   margin-bottom: .3rem;
 }
 .page-title p {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-style: italic; font-size: .95rem; color: #7a5c30;
   text-shadow: 0 1px 3px rgba(255,255,255,.7);
 }
@@ -183,7 +183,7 @@ import { RouterLink } from 'vue-router'
   border-left: 3px solid #c9a227;
   border-radius: 0 4px 4px 0;
   margin-bottom: 1.6rem;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-size: .95rem; line-height: 1.7; color: #4a3418;
   backdrop-filter: blur(2px);
 }
@@ -198,7 +198,7 @@ import { RouterLink } from 'vue-router'
 .project-card {
   background: linear-gradient(145deg, #faf5e8 0%, #f2ead4 100%);
   border: 1.5px solid #d4b870;
-  border-radius: 6px;
+  border-radius: 2px;
   padding: 1.4rem 1.6rem;
   box-shadow: 0 3px 12px rgba(100,70,20,.12), inset 0 1px 0 rgba(255,255,255,.8);
   position: relative;
@@ -209,7 +209,7 @@ import { RouterLink } from 'vue-router'
   position: absolute; inset: 0;
   background: repeating-linear-gradient(0deg, transparent, transparent 28px,
     rgba(180,140,60,.04) 28px, rgba(180,140,60,.04) 29px);
-  border-radius: 6px; pointer-events: none;
+  border-radius: 2px; pointer-events: none;
 }
 
 /* Project header row */
@@ -230,12 +230,12 @@ import { RouterLink } from 'vue-router'
 
 .project-title-wrap { flex: 1; min-width: 0; }
 .project-title {
-  font-family: 'Cinzel', serif;
-  font-size: 1.1rem; font-weight: 700;
+  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
+  font-size: 1.1rem; font-weight: 400;
   color: #2c1e08; margin-bottom: .15rem;
 }
 .project-sub {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-style: italic; font-size: .85rem; color: #7a5c30;
 }
 
@@ -245,7 +245,7 @@ import { RouterLink } from 'vue-router'
   padding: .35rem .85rem;
   background: #2c1e08; color: #f5e8c8;
   border-radius: 4px; text-decoration: none;
-  font-family: 'Cinzel', serif;
+  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-size: .7rem; letter-spacing: .08em;
   transition: background .2s, transform .2s;
   flex-shrink: 0;
@@ -255,7 +255,7 @@ import { RouterLink } from 'vue-router'
 
 /* Description */
 .project-desc {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-size: .96rem; line-height: 1.7; color: #4a3418;
   margin-bottom: 1rem;
 }
@@ -269,7 +269,7 @@ import { RouterLink } from 'vue-router'
 /* Features */
 .features { margin-bottom: 1rem; }
 .features h4 {
-  font-family: 'Cinzel', serif;
+  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-size: .72rem; letter-spacing: .2em;
   color: #9a7a1e; margin-bottom: .6rem;
   text-transform: uppercase;
@@ -280,7 +280,7 @@ import { RouterLink } from 'vue-router'
 }
 .features li {
   display: flex; align-items: baseline; gap: .5rem;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-size: .93rem; color: #4a3418; line-height: 1.5;
 }
 .features li span { flex: 1; }
@@ -293,7 +293,7 @@ import { RouterLink } from 'vue-router'
 .badge {
   padding: .2rem .65rem;
   border-radius: 20px;
-  font-family: 'Cinzel', serif;
+  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-size: .65rem; letter-spacing: .06em;
   background: rgba(180,140,60,.15);
   border: 1px solid rgba(180,140,60,.35);

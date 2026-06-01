@@ -65,7 +65,7 @@ import { RouterLink } from 'vue-router'
 /* Back */
 .back-link {
   display: inline-block;
-  font-family: 'Cinzel', serif;
+  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-size: .75rem;
   letter-spacing: .15em;
   color: #6a5030;
@@ -83,14 +83,14 @@ import { RouterLink } from 'vue-router'
   margin-bottom: 1.8rem;
 }
 .page-title h2 {
-  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-size: clamp(1.4rem, 4vw, 2rem);
   color: #2c1e08;
   text-shadow: 0 1px 0 rgba(255,255,255,.9), 0 2px 10px rgba(255,255,255,.5);
   margin-bottom: .35rem;
 }
 .page-title p {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-style: italic;
   font-size: .95rem;
   color: #7a5c30;
@@ -112,7 +112,7 @@ import { RouterLink } from 'vue-router'
   padding: 1.2rem 1.5rem;
   background: linear-gradient(145deg, #faf5e8 0%, #f2ead4 100%);
   border: 1.5px solid #d4b870;
-  border-radius: 6px;
+  border-radius: 2px;
   text-decoration: none;
   color: inherit;
   box-shadow: 0 3px 12px rgba(100,70,20,.12), inset 0 1px 0 rgba(255,255,255,.8);
@@ -154,16 +154,16 @@ import { RouterLink } from 'vue-router'
   display: flex; flex-direction: column; gap: .2rem;
 }
 .menu-label {
-  font-family: 'Cinzel', serif;
+  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-size: .95rem;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: .06em;
   color: #2c1e08;
   transition: color .25s;
 }
 .menu-card:not(.is-coming):hover .menu-label { color: #9a7a1e; }
 .menu-desc {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-size: .88rem;
   color: #7a5c30;
 }
