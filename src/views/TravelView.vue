@@ -298,13 +298,14 @@
     <div class="card transport">
       <div class="card-header">
         <span class="card-icon">✈️</span>
-        <span class="card-title">回程航班</span>
+        <span class="card-title">回程航班　BR181</span>
         <span class="card-time">12:10 起飛</span>
       </div>
       <table class="info-table">
-        <thead><tr><th>出發</th><th>抵達</th><th>目的地</th></tr></thead>
+        <thead><tr><th>航班</th><th>出發</th><th>抵達</th><th>目的地</th></tr></thead>
         <tbody>
           <tr>
+            <td><strong>BR181</strong></td>
             <td><strong>12:10</strong></td>
             <td><strong>14:30</strong></td>
             <td>🛬 高雄小港機場（KHH）</td>
