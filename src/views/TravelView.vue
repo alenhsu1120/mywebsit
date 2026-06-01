@@ -311,6 +311,14 @@
           </tr>
         </tbody>
       </table>
+      <div class="alert" style="margin-top:14px">
+        <span class="alert-icon">🏢</span>
+        <span>關西機場 <strong>第一航廈</strong> 出發，請確認登機門在 T1。</span>
+      </div>
+      <div class="alert" style="margin-top:8px">
+        <span class="alert-icon">🧳</span>
+        <span>行李限額：托運行李 <strong>兩件各 23 公斤</strong>，超重需在機場現場加購，費用較貴，出發前請確認。</span>
+      </div>
     </div>
 
     <!-- 備忘清單 -->
