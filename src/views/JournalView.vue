@@ -214,6 +214,7 @@ const loadingEntries = ref(true)
 let   unsub: (() => void) | null = null
 
 onMounted(() => {
+  if (!db) { loadingEntries.value = false; return }
   const q = query(collection(db, COL), orderBy('createdAt', 'desc'))
   unsub = onSnapshot(q, (snap) => {
     entries.value = snap.docs.map(d => ({
@@ -245,7 +246,7 @@ function openForm()   { draft.value = { date: today(), title: '', content: '' };
 function cancelForm() { showForm.value = false }
 
 async function saveEntry() {
-  if (!canSave.value) return
+  if (!canSave.value || !db) return
   saving.value = true
   try {
     const docRef = await addDoc(collection(db, COL), {
@@ -261,7 +262,7 @@ async function saveEntry() {
 }
 
 async function deleteEntry(id: string) {
-  if (!confirm('確定要刪除這篇日記嗎？')) return
+  if (!confirm('確定要刪除這篇日記嗎？') || !db) return
   await deleteDoc(doc(db, COL, id))
   if (expandedId.value === id) expandedId.value = null
 }

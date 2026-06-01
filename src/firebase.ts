@@ -2,10 +2,6 @@ import { initializeApp }             from 'firebase/app'
 import { getAuth, GoogleAuthProvider } from 'firebase/auth'
 import { getFirestore }               from 'firebase/firestore'
 
-// ════════════════════════════════════════════════════════════
-//  請將下方 VITE_FIREBASE_* 對應到你的 Firebase 專案設定
-//  設定值放在 .env.local 檔（已被 .gitignore 排除）
-// ════════════════════════════════════════════════════════════
 const firebaseConfig = {
   apiKey:            import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain:        import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -15,8 +11,11 @@ const firebaseConfig = {
   appId:             import.meta.env.VITE_FIREBASE_APP_ID,
 }
 
-const app = initializeApp(firebaseConfig)
+const isConfigured = !!firebaseConfig.apiKey
 
-export const auth           = getAuth(app)
-export const db             = getFirestore(app)
+const app = isConfigured ? initializeApp(firebaseConfig) : null
+
+export const auth           = isConfigured && app ? getAuth(app)      : null
+export const db             = isConfigured && app ? getFirestore(app) : null
 export const googleProvider = new GoogleAuthProvider()
+export const firebaseReady  = isConfigured
