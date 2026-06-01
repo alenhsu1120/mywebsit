@@ -318,7 +318,7 @@
       </div>
       <div class="alert" style="margin-top:8px">
         <span class="alert-icon">🧳</span>
-        <span>行李限額：托運行李 <strong>兩件各 23 公斤</strong>，超重需在機場現場加購，費用較貴，出發前請確認。</span>
+        <span>行李限額：托運行李 <strong>兩件各 23 公斤</strong></span>
       </div>
     </div>
 
