@@ -258,6 +258,17 @@
       </div>
       <div class="hotel-name">難波京阪格蘭德飯店</div>
       <div class="hotel-name-sub">ホテル京阪 なんば グランデ</div>
+      <a
+        href="https://www.google.com/maps/search/?api=1&query=ホテル京阪+なんば+グランデ"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="address-box address-link"
+        style="margin-bottom:8px"
+      >
+        <span class="addr-label">地址　<span class="map-hint">📍 點擊開啟 Google Maps</span></span>
+        <span class="addr-text">〒556-0011　大阪府大阪市浪速區難波中 2-3-33</span>
+        <span class="addr-dist">🚶 南海電鐵難波站步行 6 分鐘</span>
+      </a>
       <div class="alert" style="margin-top:8px">
         <span class="alert-icon">💡</span>
         <span>預計 9:00 前退房，退房後步行約 <strong>6 分鐘</strong>到南海電鐵難波站。</span>
