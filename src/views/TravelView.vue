@@ -408,18 +408,6 @@
       </div>
     </div>
 
-    <!-- 早餐 -->
-    <div class="card food">
-      <div class="card-header">
-        <span class="card-icon">🍱</span>
-        <span class="card-title">早餐</span>
-        <span class="card-time">08:00～09:00</span>
-      </div>
-      <ul class="steps">
-        <li><span class="step-num food-color">●</span><span>在飯店附近找早餐，或前往附近便利商店（7-Eleven、Family Mart）簡單解決，省時方便。</span></li>
-      </ul>
-    </div>
-
     <!-- 退房 -->
     <div class="card hotel">
       <div class="card-header">
