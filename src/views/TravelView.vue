@@ -933,8 +933,9 @@ const spots: Record<SpotKey, {
     subtitle: 'Atsuta Jingu, Nagoya',
     desc: '熱田神宮創建於西元113年，是全日本第三大神宮，僅次於伊勢神宮與出雲大社。神宮供奉「草薙神劍」——日本三大神器之一，相傳為日本武尊東征時所用的神劍。境內廣達19萬坪，古木參天、苔痕遍地，氣氛莊嚴靜謐，甚至有名古屋人稱這裡是「都市中的森林」。信長塀是織田信長1560年桶狹間合戰大勝後奉納的土牆，全長64公尺，是日本三大土牆之一。清水社旁的小水池據說用清水洗臉可保佑美容，頗受女性遊客喜愛。每年初詣參拜人數超過230萬，是愛知縣最重要的信仰中心。',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Atsuta_Jingu_01.jpg/800px-Atsuta_Jingu_01.jpg',
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Atsuta_Jingu_Honden.jpg/800px-Atsuta_Jingu_Honden.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Atsuta_Jingu_Torii.jpg/960px-Atsuta_Jingu_Torii.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Atsuta_Jingu_20211226-02.jpg/960px-Atsuta_Jingu_20211226-02.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Magatama-ike_in_Atsuta_Jingu_Shrine_2014.jpg/960px-Magatama-ike_in_Atsuta_Jingu_Shrine_2014.jpg',
     ],
     infos: [
       { icon: '🚇', label: '交通', value: '地下鐵名城線「神宮西站」步行 3 分鐘' },
@@ -949,8 +950,9 @@ const spots: Record<SpotKey, {
     subtitle: 'Nagoya Castle',
     desc: '名古屋城建於1612年，是德川家康為第九子義直所建的居城，也是江戶時代規模最宏大的平城之一。城頂一對金色鯱鉾（金のしゃちほこ）是名古屋最具代表性的象徵，傳說可保城池不受火災侵襲。2018年完成重建的「本丸御殿」是此次參觀重點，以江戶時代御殿建築技法復原，內部障壁畫以金箔與色彩描繪動植物，金碧輝煌令人嘆為觀止。天守閣目前因耐震補強工程封閉，無法登頂。城內廣大的二之丸庭園與外苑也適合散步拍照。入場費 ¥500，16:30 最後入場，17:00 關閉。',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Nagoya_castle_2010.jpg/800px-Nagoya_castle_2010.jpg',
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Nagoya_Castle_Honmaru_Goten_Interior.jpg/800px-Nagoya_Castle_Honmaru_Goten_Interior.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Nagoya_Castle%28Larger%29.jpg/960px-Nagoya_Castle%28Larger%29.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Kinshachi_of_Nagoya_Castle.JPG/960px-Kinshachi_of_Nagoya_Castle.JPG',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Projection_Mapping_In_Honmaru-Goten_of_Nagoya_Castle_-_1.jpg/960px-Projection_Mapping_In_Honmaru-Goten_of_Nagoya_Castle_-_1.jpg',
     ],
     infos: [
       { icon: '🚇', label: '交通', value: '地下鐵名城線「市役所站」步行 5 分鐘' },
@@ -965,8 +967,9 @@ const spots: Record<SpotKey, {
     subtitle: 'Osu Shopping Street, Nagoya',
     desc: '大須商店街是名古屋最有個性的商業街區，全長約1.7公里，擁有超過1,200間店鋪，融合傳統神社、二手動漫、電器行、街頭美食與個性小店，氣氛介於東京秋葉原與大阪日本橋之間，但更有在地庶民感。大須觀音（萬松寺）是商店街的精神核心，境內常年香火鼎盛。萬松寺旁的機器人表演每天定時展出，是必看的奇特景點。傍晚過後人潮湧入，唐揚雞、章魚燒、鯛魚燒等街頭小吃攤開始飄香，非常適合邊走邊吃解決晚餐。ACG 愛好者對這裡的二手動漫店和扭蛋機台難以自拔。',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Osu_Kannon_Nagoya.jpg/800px-Osu_Kannon_Nagoya.jpg',
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Osu_shopping_street.jpg/800px-Osu_shopping_street.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Osu_street_mall_-_5334482637.jpg/960px-Osu_street_mall_-_5334482637.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Osu_street_mall_-_5334484377.jpg/960px-Osu_street_mall_-_5334484377.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Japan-_Nagoya-_Osu_Kannon_Temple_2.jpg/960px-Japan-_Nagoya-_Osu_Kannon_Temple_2.jpg',
     ],
     infos: [
       { icon: '🚇', label: '交通', value: '地下鐵鶴舞線「大須觀音站」或名城線「上前津站」' },
@@ -980,7 +983,11 @@ const spots: Record<SpotKey, {
     name: 'ASUNAL 金山',
     subtitle: 'ASUNAL Kanayama, Nagoya',
     desc: 'ASUNAL金山是位於金山站北口旁的半開放式商業設施，名稱取自「明日（ASHITA）＋nal」，象徵充滿活力的明日感。商場以輕鬆的在地生活感為主軸，與榮商圈的觀光人潮不同，這裡是名古屋市民平日愛逛的休閒去處。一樓戶外廣場不定期舉辦市集與活動，晚上燈光柔和、氛圍宜人。餐廳區涵蓋居酒屋、咖啡廳、義式料理等多種選擇，適合晚餐或餐後甜點。對於想感受名古屋在地生活氣息、避開過多觀光客的旅人，金山是很好的選擇。',
-    photos: [],
+    photos: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/ASUNAL_Kanayama20220531-1.jpg/960px-ASUNAL_Kanayama20220531-1.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/ASUNAL_Kanayama20220531-2.jpg/960px-ASUNAL_Kanayama20220531-2.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Asunal_Kanayama_%281%29%2C_Kanayama_1-chome%2C_Naka_Ward_Nagoya_City_2023.jpg/960px-Asunal_Kanayama_%281%29%2C_Kanayama_1-chome%2C_Naka_Ward_Nagoya_City_2023.jpg',
+    ],
     infos: [
       { icon: '🚇', label: '交通', value: '地下鐵名城線「金山站」北口旁，大須搭車約 5 分鐘' },
       { icon: '🕐', label: '建議停留', value: '30 分鐘～1 小時' },
