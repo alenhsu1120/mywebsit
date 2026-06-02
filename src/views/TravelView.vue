@@ -210,12 +210,180 @@
 
     <!-- 第二天 -->
     <div v-if="activeDay === 2">
-      <div class="coming-soon">
-        <div class="cs-icon">🏯</div>
-        <div class="cs-title">第二天行程規劃中</div>
-        <div class="cs-desc">2026 年 6 月 19 日（五）｜內容即將更新，敬請期待。</div>
+
+    <div class="day-header">
+      <div class="day-badge">
+        <span class="badge-num">D2</span>
+        <span class="badge-label">DAY 2</span>
+      </div>
+      <div class="day-info">
+        <h2>名古屋市區深度遊</h2>
+        <div class="day-weekday">2026 年 6 月 19 日（五）</div>
       </div>
     </div>
+
+    <!-- 熱田神宮 -->
+    <div class="card sightseeing">
+      <div class="card-header">
+        <span class="card-icon">⛩️</span>
+        <span class="card-title">熱田神宮</span>
+        <span class="card-time">14:00～15:30</span>
+      </div>
+      <div class="spot-grid">
+        <div class="spot-item clickable" @click="openSpot('atsuta')">
+          <div class="spot-icon">⛩️</div>
+          <div class="spot-name">熱田神宮 <span class="spot-arrow">›</span></div>
+          <div class="spot-desc">全日本第三大神宮，供奉草薙神劍，境內廣大幽靜，是名古屋最具歷史分量的必訪聖地。</div>
+        </div>
+      </div>
+      <ul class="steps" style="margin-top:12px">
+        <li><span class="step-num teal">●</span><span><strong>本宮</strong>　正殿參拜，感受莊嚴氣息</span></li>
+        <li><span class="step-num teal">●</span><span><strong>清水社</strong>　據說用清水洗臉可變美，值得一訪</span></li>
+        <li><span class="step-num teal">●</span><span><strong>信長塀</strong>　織田信長奉納的土牆，歷史名物</span></li>
+        <li><span class="step-num teal">●</span><span><strong>草薙館</strong>（有興趣再進）　寶物殿，需另付費</span></li>
+      </ul>
+      <div class="alert">
+        <span class="alert-icon">💡</span>
+        <span>境內很大，走一圈約 1～1.5 小時。神社類景點白天氛圍最佳，建議準時 14:00 出發。</span>
+      </div>
+    </div>
+
+    <!-- 交通 熱田→名古屋城 -->
+    <div class="card transport">
+      <div class="card-header">
+        <span class="card-icon">🚇</span>
+        <span class="card-title">熱田神宮 → 名古屋城</span>
+        <span class="card-time">15:30 出發</span>
+      </div>
+      <ul class="steps">
+        <li><span class="step-num blue">1</span><span>從<strong>神宮西站</strong>搭地鐵名城線</span></li>
+        <li><span class="step-num blue">2</span><span>在<strong>市役所站</strong>下車，步行約 5 分鐘即達名古屋城</span></li>
+        <li><span class="step-num blue">3</span><span>車程約 <strong>20 分鐘</strong>，約 15:45 抵達</span></li>
+      </ul>
+    </div>
+
+    <!-- 名古屋城 -->
+    <div class="card sightseeing">
+      <div class="card-header">
+        <span class="card-icon">🏯</span>
+        <span class="card-title">名古屋城</span>
+        <span class="card-time">15:45～17:15</span>
+      </div>
+      <div class="spot-grid">
+        <div class="spot-item clickable" @click="openSpot('nagoyacastle')">
+          <div class="spot-icon">🏯</div>
+          <div class="spot-name">名古屋城 <span class="spot-arrow">›</span></div>
+          <div class="spot-desc">德川家康建造的名城，金色鯱鉾聞名全日本，本丸御殿內部金碧輝煌，是江戶時代建築藝術的巔峰。</div>
+        </div>
+      </div>
+      <ul class="steps" style="margin-top:12px">
+        <li><span class="step-num orange">●</span><span><strong>本丸御殿</strong>　重建完成的豪華御殿，金碧裝飾令人驚嘆，為本次必看重點</span></li>
+        <li><span class="step-num orange">●</span><span><strong>城牆與外苑</strong>　宏偉石垣，拍照絕佳角度</span></li>
+        <li><span class="step-num orange">●</span><span><strong>金鯱</strong>　在地面近距離欣賞名古屋城的象徵</span></li>
+      </ul>
+      <div class="alert" style="margin-top:12px">
+        <span class="alert-icon">⚠️</span>
+        <span>天守閣目前整修中，<strong>無法入內</strong>。最後入場約 16:30，城內 17:00 關閉，請勿太晚抵達。</span>
+      </div>
+    </div>
+
+    <!-- 交通 名古屋城→大須 -->
+    <div class="card transport">
+      <div class="card-header">
+        <span class="card-icon">🚇</span>
+        <span class="card-title">名古屋城 → 大須商店街</span>
+        <span class="card-time">17:15 出發</span>
+      </div>
+      <ul class="steps">
+        <li><span class="step-num blue">1</span><span>從<strong>市役所站</strong>搭地鐵名城線</span></li>
+        <li><span class="step-num blue">2</span><span>在<strong>上前津站</strong>下車，步行約 5 分鐘進入商店街</span></li>
+        <li><span class="step-num blue">3</span><span>車程約 <strong>15 分鐘</strong>，約 17:45 抵達</span></li>
+      </ul>
+    </div>
+
+    <!-- 大須商店街 + 晚餐 -->
+    <div class="card sightseeing">
+      <div class="card-header">
+        <span class="card-icon">🛍</span>
+        <span class="card-title">大須商店街 ＋ 晚餐</span>
+        <span class="card-time">17:45～20:30</span>
+      </div>
+      <div class="spot-grid">
+        <div class="spot-item clickable" @click="openSpot('osu')">
+          <div class="spot-icon">🏮</div>
+          <div class="spot-name">大須商店街 <span class="spot-arrow">›</span></div>
+          <div class="spot-desc">名古屋最有個性的商店街，傍晚最熱鬧，二手動漫、電器街、扭蛋、美食攤一應俱全。</div>
+        </div>
+      </div>
+      <ul class="steps" style="margin-top:12px">
+        <li><span class="step-num purple">●</span><span><strong>大須觀音</strong>　商店街起點，拍照打卡</span></li>
+        <li><span class="step-num purple">●</span><span><strong>萬松寺</strong>　商店街中間的特色寺廟，有機器人表演</span></li>
+        <li><span class="step-num purple">●</span><span><strong>電器街 ＋ 二手動漫店</strong>　ACG 愛好者必逛，品項豐富</span></li>
+        <li><span class="step-num purple">●</span><span><strong>扭蛋店</strong>　種類齊全，預算抓好</span></li>
+      </ul>
+      <div class="card food" style="margin-top:12px; box-shadow:none; border:1px solid rgba(255,255,255,.08);">
+        <div class="card-header" style="padding:0 0 8px">
+          <span class="card-icon">🍗</span>
+          <span class="card-title">大須美食街頭小吃</span>
+        </div>
+        <ul class="steps">
+          <li><span class="step-num food-color">●</span><span><strong>唐揚雞</strong>　現炸鮮嫩，大須街邊人氣第一</span></li>
+          <li><span class="step-num food-color">●</span><span><strong>章魚燒</strong>　道地大阪風，在名古屋也吃得到</span></li>
+          <li><span class="step-num food-color">●</span><span><strong>鯛魚燒</strong>　甜點收尾，邊走邊吃</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ASUNAL 金山 -->
+    <div class="card tip">
+      <div class="card-header">
+        <span class="card-icon">✨</span>
+        <span class="card-title">有空加碼　ASUNAL 金山</span>
+        <span class="card-time">20:30～21:30</span>
+      </div>
+      <div class="spot-grid">
+        <div class="spot-item clickable" @click="openSpot('asunal')">
+          <div class="spot-icon">🏬</div>
+          <div class="spot-name">ASUNAL 金山 <span class="spot-arrow">›</span></div>
+          <div class="spot-desc">金山站旁半開放式商場，晚上氣氛輕鬆愜意，偏在地人會去的地方，適合當天收尾散步。</div>
+        </div>
+      </div>
+      <ul class="steps" style="margin-top:12px">
+        <li><span class="step-num gray">●</span><span>從大須搭地鐵名城線到<strong>金山站</strong>，約 <strong>5 分鐘</strong></span></li>
+        <li><span class="step-num gray">●</span><span>商場大部分店鋪營業至 <strong>21:00～21:30</strong>，餐廳多到 22:00</span></li>
+        <li><span class="step-num gray">●</span><span>如果大須逛太久體力不足，可直接跳過；若還有精神，金山夜晚氛圍很適合收尾</span></li>
+      </ul>
+      <div class="alert">
+        <span class="alert-icon">💡</span>
+        <span>這是<strong>選擇性行程</strong>，大須逛得盡興的話不一定要去，金山比較偏在地人氛圍，不像榮商圈觀光感那麼重。</span>
+      </div>
+    </div>
+
+    <!-- 時間軸總覽 -->
+    <div class="card tip">
+      <div class="card-header">
+        <span class="card-icon">🗓</span>
+        <span class="card-title">第二天時間軸總覽</span>
+      </div>
+      <table class="info-table">
+        <thead><tr><th>時間</th><th>行程</th></tr></thead>
+        <tbody>
+          <tr><td><strong>14:00</strong></td><td>⛩️ 熱田神宮</td></tr>
+          <tr><td><strong>15:30</strong></td><td>離開熱田神宮，搭地鐵前往名古屋城</td></tr>
+          <tr><td><strong>15:45～17:15</strong></td><td>🏯 名古屋城（本丸御殿、城牆、金鯱）</td></tr>
+          <tr><td><strong>17:45～20:30</strong></td><td>🛍 大須商店街 ＋ 晚餐</td></tr>
+          <tr><td><strong>20:30～21:30</strong></td><td>✨ ASUNAL 金山（有空再去）</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="more-hint">✦ &nbsp; 路線：熱田神宮 → 名古屋城 → 大須商店街 → ASUNAL 金山 &nbsp; ✦</div>
+
+    <footer class="travel-footer">
+      🇯🇵 Japan Trip 2026 &nbsp;｜&nbsp; Have a great journey!
+    </footer>
+
+    </div><!-- end day 2 -->
 
     <!-- 第三天 -->
     <div v-if="activeDay === 3">
@@ -683,7 +851,7 @@ const dayTabs = [
 ]
 const activeDay = ref(1)
 
-type SpotKey = 'sakae' | 'oasis' | 'tvtower'
+type SpotKey = 'sakae' | 'oasis' | 'tvtower' | 'atsuta' | 'nagoyacastle' | 'osu' | 'asunal'
 
 const activeSpot = ref<SpotKey | null>(null)
 const photoIndex = ref(0)
@@ -757,6 +925,67 @@ const spots: Record<SpotKey, {
       { icon: '🕐', label: '建議停留', value: '30 分鐘～1 小時' },
       { icon: '💰', label: '費用', value: 'MIRAI360 展望台 ¥900（夜間推薦）' },
       { icon: '🌙', label: '夜景', value: '燈光亮起後與綠洲21相映，拍照絕佳' },
+    ],
+  },
+  atsuta: {
+    icon: '⛩️',
+    name: '熱田神宮',
+    subtitle: 'Atsuta Jingu, Nagoya',
+    desc: '熱田神宮創建於西元113年，是全日本第三大神宮，僅次於伊勢神宮與出雲大社。神宮供奉「草薙神劍」——日本三大神器之一，相傳為日本武尊東征時所用的神劍。境內廣達19萬坪，古木參天、苔痕遍地，氣氛莊嚴靜謐，甚至有名古屋人稱這裡是「都市中的森林」。信長塀是織田信長1560年桶狹間合戰大勝後奉納的土牆，全長64公尺，是日本三大土牆之一。清水社旁的小水池據說用清水洗臉可保佑美容，頗受女性遊客喜愛。每年初詣參拜人數超過230萬，是愛知縣最重要的信仰中心。',
+    photos: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Atsuta_Jingu_01.jpg/800px-Atsuta_Jingu_01.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Atsuta_Jingu_Honden.jpg/800px-Atsuta_Jingu_Honden.jpg',
+    ],
+    infos: [
+      { icon: '🚇', label: '交通', value: '地下鐵名城線「神宮西站」步行 3 分鐘' },
+      { icon: '🕐', label: '建議停留', value: '1～1.5 小時' },
+      { icon: '💰', label: '費用', value: '境內免費（草薙館 ¥300）' },
+      { icon: '⭐', label: '必看', value: '本宮 · 信長塀 · 清水社' },
+    ],
+  },
+  nagoyacastle: {
+    icon: '🏯',
+    name: '名古屋城',
+    subtitle: 'Nagoya Castle',
+    desc: '名古屋城建於1612年，是德川家康為第九子義直所建的居城，也是江戶時代規模最宏大的平城之一。城頂一對金色鯱鉾（金のしゃちほこ）是名古屋最具代表性的象徵，傳說可保城池不受火災侵襲。2018年完成重建的「本丸御殿」是此次參觀重點，以江戶時代御殿建築技法復原，內部障壁畫以金箔與色彩描繪動植物，金碧輝煌令人嘆為觀止。天守閣目前因耐震補強工程封閉，無法登頂。城內廣大的二之丸庭園與外苑也適合散步拍照。入場費 ¥500，16:30 最後入場，17:00 關閉。',
+    photos: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Nagoya_castle_2010.jpg/800px-Nagoya_castle_2010.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Nagoya_Castle_Honmaru_Goten_Interior.jpg/800px-Nagoya_Castle_Honmaru_Goten_Interior.jpg',
+    ],
+    infos: [
+      { icon: '🚇', label: '交通', value: '地下鐵名城線「市役所站」步行 5 分鐘' },
+      { icon: '🕐', label: '建議停留', value: '1～1.5 小時' },
+      { icon: '💰', label: '費用', value: '入場 ¥500' },
+      { icon: '⚠️', label: '注意', value: '天守閣整修中無法入內；16:30 最後入場，17:00 關閉' },
+    ],
+  },
+  osu: {
+    icon: '🏮',
+    name: '大須商店街',
+    subtitle: 'Osu Shopping Street, Nagoya',
+    desc: '大須商店街是名古屋最有個性的商業街區，全長約1.7公里，擁有超過1,200間店鋪，融合傳統神社、二手動漫、電器行、街頭美食與個性小店，氣氛介於東京秋葉原與大阪日本橋之間，但更有在地庶民感。大須觀音（萬松寺）是商店街的精神核心，境內常年香火鼎盛。萬松寺旁的機器人表演每天定時展出，是必看的奇特景點。傍晚過後人潮湧入，唐揚雞、章魚燒、鯛魚燒等街頭小吃攤開始飄香，非常適合邊走邊吃解決晚餐。ACG 愛好者對這裡的二手動漫店和扭蛋機台難以自拔。',
+    photos: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Osu_Kannon_Nagoya.jpg/800px-Osu_Kannon_Nagoya.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Osu_shopping_street.jpg/800px-Osu_shopping_street.jpg',
+    ],
+    infos: [
+      { icon: '🚇', label: '交通', value: '地下鐵鶴舞線「大須觀音站」或名城線「上前津站」' },
+      { icon: '🕐', label: '建議停留', value: '2～3 小時（傍晚最熱鬧）' },
+      { icon: '💰', label: '費用', value: '逛街免費，餐飲自費' },
+      { icon: '⭐', label: '必逛', value: '大須觀音 · 萬松寺 · 二手動漫店 · 扭蛋街' },
+    ],
+  },
+  asunal: {
+    icon: '🏬',
+    name: 'ASUNAL 金山',
+    subtitle: 'ASUNAL Kanayama, Nagoya',
+    desc: 'ASUNAL金山是位於金山站北口旁的半開放式商業設施，名稱取自「明日（ASHITA）＋nal」，象徵充滿活力的明日感。商場以輕鬆的在地生活感為主軸，與榮商圈的觀光人潮不同，這裡是名古屋市民平日愛逛的休閒去處。一樓戶外廣場不定期舉辦市集與活動，晚上燈光柔和、氛圍宜人。餐廳區涵蓋居酒屋、咖啡廳、義式料理等多種選擇，適合晚餐或餐後甜點。對於想感受名古屋在地生活氣息、避開過多觀光客的旅人，金山是很好的選擇。',
+    photos: [],
+    infos: [
+      { icon: '🚇', label: '交通', value: '地下鐵名城線「金山站」北口旁，大須搭車約 5 分鐘' },
+      { icon: '🕐', label: '建議停留', value: '30 分鐘～1 小時' },
+      { icon: '💰', label: '費用', value: '逛街免費，餐飲自費' },
+      { icon: '🕘', label: '營業時間', value: '商場 ～ 21:30，餐廳多至 22:00～23:00' },
     ],
   },
 }
@@ -977,6 +1206,8 @@ const spots: Record<SpotKey, {
 .step-num.orange     { background: #f39c12; }
 .step-num.food-color { background: #e67e22; }
 .step-num.gray       { background: #95a5a6; }
+.step-num.teal       { background: #1abc9c; }
+.step-num.purple     { background: #9b59b6; }
 
 /* ── Table ── */
 .info-table { width: 100%; border-collapse: collapse; font-size: 13px; font-family: 'Poppins', 'Noto Sans TC', sans-serif; }
