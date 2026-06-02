@@ -420,12 +420,26 @@
       </ul>
     </div>
 
+    <!-- 退房 -->
+    <div class="card hotel">
+      <div class="card-header">
+        <span class="card-icon">🏨</span>
+        <span class="card-title">整理行李 ＆ 退房</span>
+        <span class="card-time">09:00 整理 ／ 09:30 退房</span>
+      </div>
+      <div class="hotel-name">名古屋日航尚格酒店</div>
+      <div class="alert" style="margin-top:10px">
+        <span class="alert-icon">💡</span>
+        <span>退房後步行或搭計程車（約 6 分鐘）前往名古屋站，準備搭新幹線出發。</span>
+      </div>
+    </div>
+
     <!-- 名古屋最後散步 -->
     <div class="card sightseeing">
       <div class="card-header">
         <span class="card-icon">🚶</span>
         <span class="card-title">名古屋最後散步</span>
-        <span class="card-time">09:00～10:30</span>
+        <span class="card-time">散步午餐</span>
       </div>
       <div class="spot-grid">
         <div class="spot-item">
@@ -438,20 +452,6 @@
           <div class="spot-name">選項 B：柳橋中央市場</div>
           <div class="spot-desc">距離飯店不遠的老市場，適合吃海鮮丼、壽司、烤魚定食，當作最後一頓名古屋美食。</div>
         </div>
-      </div>
-    </div>
-
-    <!-- 退房 -->
-    <div class="card hotel">
-      <div class="card-header">
-        <span class="card-icon">🏨</span>
-        <span class="card-title">整理行李 ＆ 退房</span>
-        <span class="card-time">10:30 整理 ／ 11:00 退房</span>
-      </div>
-      <div class="hotel-name">名古屋日航尚格酒店</div>
-      <div class="alert" style="margin-top:10px">
-        <span class="alert-icon">💡</span>
-        <span>退房後步行或搭計程車（約 6 分鐘）前往名古屋站，準備搭新幹線出發。</span>
       </div>
     </div>
 
