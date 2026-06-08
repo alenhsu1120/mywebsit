@@ -559,38 +559,22 @@
       </div>
     </div>
 
-    <!-- 退房 -->
+    <!-- 早餐 + 退房 -->
     <div class="card hotel">
       <div class="card-header">
         <span class="card-icon">🏨</span>
-        <span class="card-title">整理行李 ＆ 退房</span>
-        <span class="card-time">09:00 整理 ／ 09:30 退房</span>
+        <span class="card-title">飯店早餐 ＋ 整理行李 ＆ 退房</span>
+        <span class="card-time">早餐後 ／ 11:00 退房</span>
       </div>
       <div class="hotel-name">名古屋日航尚格酒店</div>
+      <ul class="steps" style="margin-top:12px">
+        <li><span class="step-num teal">●</span><span>早上在飯店享用<strong>早餐</strong>，悠閒開始這天</span></li>
+        <li><span class="step-num teal">●</span><span>餐後回房<strong>整理行李</strong>，確認不遺漏任何物品</span></li>
+        <li><span class="step-num teal">●</span><span><strong>11:00</strong> 辦理退房，步行前往名古屋站</span></li>
+      </ul>
       <div class="alert" style="margin-top:10px">
         <span class="alert-icon">💡</span>
         <span>退房後步行或搭計程車（約 6 分鐘）前往名古屋站，準備搭新幹線出發。</span>
-      </div>
-    </div>
-
-    <!-- 名古屋最後散步 -->
-    <div class="card sightseeing">
-      <div class="card-header">
-        <span class="card-icon">🚶</span>
-        <span class="card-title">名古屋最後散步</span>
-        <span class="card-time">散步午餐</span>
-      </div>
-      <div class="spot-grid">
-        <div class="spot-item">
-          <div class="spot-icon">🏙</div>
-          <div class="spot-name">選項 A：名古屋站周邊</div>
-          <div class="spot-desc">JR Central Towers ／ Midland Square，可上高樓層欣賞名古屋市景，最後一瞥城市全貌。</div>
-        </div>
-        <div class="spot-item">
-          <div class="spot-icon">🐟</div>
-          <div class="spot-name">選項 B：柳橋中央市場</div>
-          <div class="spot-desc">距離飯店不遠的老市場，適合吃海鮮丼、壽司、烤魚定食，當作最後一頓名古屋美食。</div>
-        </div>
       </div>
     </div>
 
