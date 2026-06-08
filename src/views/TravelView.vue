@@ -222,43 +222,42 @@
       </div>
     </div>
 
-    <!-- 熱田神宮 -->
+    <!-- 名古屋三井Outlet -->
     <div class="card sightseeing">
       <div class="card-header">
-        <span class="card-icon">⛩️</span>
-        <span class="card-title">熱田神宮</span>
-        <span class="card-time">14:00～15:30</span>
+        <span class="card-icon">🛍️</span>
+        <span class="card-title">名古屋三井 Outlet Park</span>
+        <span class="card-time">9:00 出發 ｜ 10:00～15:00</span>
       </div>
       <div class="spot-grid">
-        <div class="spot-item clickable" @click="openSpot('atsuta')">
-          <div class="spot-icon">⛩️</div>
-          <div class="spot-name">熱田神宮 <span class="spot-arrow">›</span></div>
-          <div class="spot-desc">全日本第三大神宮，供奉草薙神劍，境內廣大幽靜，是名古屋最具歷史分量的必訪聖地。</div>
+        <div class="spot-item clickable" @click="openSpot('mitsui')">
+          <div class="spot-icon">🛍️</div>
+          <div class="spot-name">名古屋三井 Outlet <span class="spot-arrow">›</span></div>
+          <div class="spot-desc">位於名古屋港旁，超過 200 間品牌進駐，時尚、運動、生活雜貨一次逛齊，是名古屋最大的 Outlet。</div>
         </div>
       </div>
       <ul class="steps" style="margin-top:12px">
-        <li><span class="step-num teal">●</span><span><strong>本宮</strong>　正殿參拜，感受莊嚴氣息</span></li>
-        <li><span class="step-num teal">●</span><span><strong>清水社</strong>　據說用清水洗臉可變美，值得一訪</span></li>
-        <li><span class="step-num teal">●</span><span><strong>信長塀</strong>　織田信長奉納的土牆，歷史名物</span></li>
-        <li><span class="step-num teal">●</span><span><strong>草薙館</strong>（有興趣再進）　寶物殿，需另付費</span></li>
+        <li><span class="step-num teal">1</span><span>9:00 從飯店出發，搭地鐵<strong>名港線</strong>至<strong>名古屋港站</strong>（約 30 分鐘）</span></li>
+        <li><span class="step-num teal">2</span><span>10:00 開門，建議先鎖定目標品牌，範圍較大請穿舒適鞋</span></li>
+        <li><span class="step-num teal">3</span><span>15:00 離開，搭地鐵前往名古屋城</span></li>
       </ul>
       <div class="alert">
         <span class="alert-icon">💡</span>
-        <span>境內很大，走一圈約 1～1.5 小時。神社類景點白天氛圍最佳，建議準時 14:00 出發。</span>
+        <span>Outlet 開門時間為 <strong>10:00</strong>，若提早抵達可在附近的<strong>名古屋港水族館</strong>外拍照等候。</span>
       </div>
     </div>
 
-    <!-- 交通 熱田→名古屋城 -->
+    <!-- 交通 Outlet→名古屋城 -->
     <div class="card transport">
       <div class="card-header">
         <span class="card-icon">🚇</span>
-        <span class="card-title">熱田神宮 → 名古屋城</span>
-        <span class="card-time">15:30 出發</span>
+        <span class="card-title">名古屋三井 Outlet → 名古屋城</span>
+        <span class="card-time">15:00 出發</span>
       </div>
       <ul class="steps">
-        <li><span class="step-num blue">1</span><span>從<strong>神宮西站</strong>搭地鐵名城線</span></li>
-        <li><span class="step-num blue">2</span><span>在<strong>市役所站</strong>下車，步行約 5 分鐘即達名古屋城</span></li>
-        <li><span class="step-num blue">3</span><span>車程約 <strong>20 分鐘</strong>，約 15:45 抵達</span></li>
+        <li><span class="step-num blue">1</span><span>從<strong>名古屋港站</strong>搭地鐵名港線，在<strong>金山站</strong>轉乘名城線</span></li>
+        <li><span class="step-num blue">2</span><span>名城線搭至<strong>市役所站</strong>下車，步行約 5 分鐘即達名古屋城</span></li>
+        <li><span class="step-num blue">3</span><span>全程約 <strong>30 分鐘</strong>，約 15:30 抵達</span></li>
       </ul>
     </div>
 
@@ -267,7 +266,7 @@
       <div class="card-header">
         <span class="card-icon">🏯</span>
         <span class="card-title">名古屋城</span>
-        <span class="card-time">15:45～17:15</span>
+        <span class="card-time">15:30～17:00</span>
       </div>
       <div class="spot-grid">
         <div class="spot-item clickable" @click="openSpot('nagoyacastle')">
@@ -292,12 +291,12 @@
       <div class="card-header">
         <span class="card-icon">🚇</span>
         <span class="card-title">名古屋城 → 大須商店街</span>
-        <span class="card-time">17:15 出發</span>
+        <span class="card-time">17:00 出發</span>
       </div>
       <ul class="steps">
         <li><span class="step-num blue">1</span><span>從<strong>市役所站</strong>搭地鐵名城線</span></li>
         <li><span class="step-num blue">2</span><span>在<strong>上前津站</strong>下車，步行約 5 分鐘進入商店街</span></li>
-        <li><span class="step-num blue">3</span><span>車程約 <strong>15 分鐘</strong>，約 17:45 抵達</span></li>
+        <li><span class="step-num blue">3</span><span>車程約 <strong>15 分鐘</strong>，約 17:30 抵達</span></li>
       </ul>
     </div>
 
@@ -306,7 +305,7 @@
       <div class="card-header">
         <span class="card-icon">🛍</span>
         <span class="card-title">大須商店街 ＋ 晚餐</span>
-        <span class="card-time">17:45～20:30</span>
+        <span class="card-time">17:30～20:30</span>
       </div>
       <div class="spot-grid">
         <div class="spot-item clickable" @click="openSpot('osu')">
@@ -368,16 +367,17 @@
       <table class="info-table">
         <thead><tr><th>時間</th><th>行程</th></tr></thead>
         <tbody>
-          <tr><td><strong>14:00</strong></td><td>⛩️ 熱田神宮</td></tr>
-          <tr><td><strong>15:30</strong></td><td>離開熱田神宮，搭地鐵前往名古屋城</td></tr>
-          <tr><td><strong>15:45～17:15</strong></td><td>🏯 名古屋城（本丸御殿、城牆、金鯱）</td></tr>
-          <tr><td><strong>17:45～20:30</strong></td><td>🛍 大須商店街 ＋ 晚餐</td></tr>
+          <tr><td><strong>9:00</strong></td><td>從飯店出發，搭地鐵名港線前往名古屋港</td></tr>
+          <tr><td><strong>10:00～15:00</strong></td><td>🛍️ 名古屋三井 Outlet Park</td></tr>
+          <tr><td><strong>15:00</strong></td><td>離開 Outlet，搭地鐵前往名古屋城</td></tr>
+          <tr><td><strong>15:30～17:00</strong></td><td>🏯 名古屋城（本丸御殿、城牆、金鯱）</td></tr>
+          <tr><td><strong>17:30～20:30</strong></td><td>🛍 大須商店街 ＋ 晚餐</td></tr>
           <tr><td><strong>20:30～21:30</strong></td><td>✨ ASUNAL 金山（有空再去）</td></tr>
         </tbody>
       </table>
     </div>
 
-    <div class="more-hint">✦ &nbsp; 路線：熱田神宮 → 名古屋城 → 大須商店街 → ASUNAL 金山 &nbsp; ✦</div>
+    <div class="more-hint">✦ &nbsp; 路線：三井 Outlet → 名古屋城 → 大須商店街 → ASUNAL 金山 &nbsp; ✦</div>
 
     <footer class="travel-footer">
       🇯🇵 Japan Trip 2026 &nbsp;｜&nbsp; Have a great journey!
@@ -387,12 +387,163 @@
 
     <!-- 第三天 -->
     <div v-if="activeDay === 3">
-      <div class="coming-soon">
-        <div class="cs-icon">⛩️</div>
-        <div class="cs-title">第三天行程規劃中</div>
-        <div class="cs-desc">2026 年 6 月 20 日（六）｜內容即將更新，敬請期待。</div>
+
+    <div class="day-header">
+      <div class="day-badge">
+        <span class="badge-num">D3</span>
+        <span class="badge-label">DAY 3</span>
+      </div>
+      <div class="day-info">
+        <h2>AEON ＋ 犬山城下町</h2>
+        <div class="day-weekday">2026 年 6 月 20 日（六）</div>
       </div>
     </div>
+
+    <!-- AEON Noritake Garden -->
+    <div class="card sightseeing">
+      <div class="card-header">
+        <span class="card-icon">🏬</span>
+        <span class="card-title">AEON MALL Nagoya Noritake Garden</span>
+        <span class="card-time">10:00～12:45</span>
+      </div>
+      <div class="spot-grid">
+        <div class="spot-item clickable" @click="openSpot('aeon')">
+          <div class="spot-icon">🏬</div>
+          <div class="spot-name">AEON Noritake Garden <span class="spot-arrow">›</span></div>
+          <div class="spot-desc">緊鄰名古屋站的舒適商場，結合 MUJI、UNIQLO 與小庭園，適合早午餐和輕鬆暖身購物。</div>
+        </div>
+      </div>
+      <ul class="steps" style="margin-top:12px">
+        <li><span class="step-num teal">●</span><span><strong>早午餐</strong>　Starbucks（面對綠地，氣氛絕佳）或日式定食、甜點店</span></li>
+        <li><span class="step-num teal">●</span><span><strong>輕鬆逛</strong>　MUJI、UNIQLO、日系生活雜貨、藥妝</span></li>
+        <li><span class="step-num teal">●</span><span><strong>散步拍照</strong>　商場旁小庭園，氣氛悠閒，很適合拍照</span></li>
+      </ul>
+      <div class="alert">
+        <span class="alert-icon">⏰</span>
+        <span>這裡是「舒服型」非血拼型商場。<strong>12:45 前務必離開</strong>，否則犬山會變得很趕。</span>
+      </div>
+    </div>
+
+    <!-- 交通 AEON→犬山 -->
+    <div class="card transport">
+      <div class="card-header">
+        <span class="card-icon">🚆</span>
+        <span class="card-title">AEON Noritake Garden → 犬山</span>
+        <span class="card-time">12:45 出發</span>
+      </div>
+      <ul class="steps">
+        <li><span class="step-num blue">1</span><span>步行至<strong>名古屋站</strong>，搭名鐵<strong>犬山線</strong></span></li>
+        <li><span class="step-num blue">2</span><span>名鐵特急直達<strong>犬山站</strong>，約 <strong>25～30 分鐘</strong></span></li>
+        <li><span class="step-num blue">3</span><span>含等車時間共約 <strong>1 小時</strong>，約 13:50 抵達犬山</span></li>
+      </ul>
+    </div>
+
+    <!-- 犬山城 -->
+    <div class="card sightseeing">
+      <div class="card-header">
+        <span class="card-icon">🏯</span>
+        <span class="card-title">犬山城</span>
+        <span class="card-time">13:50～15:00</span>
+      </div>
+      <div class="spot-grid">
+        <div class="spot-item clickable" @click="openSpot('inuyama')">
+          <div class="spot-icon">🏯</div>
+          <div class="spot-name">犬山城 <span class="spot-arrow">›</span></div>
+          <div class="spot-desc">日本現存最古老的木造天守之一，國寶級城堡，居高俯瞰木曾川，景色壯觀。</div>
+        </div>
+      </div>
+      <ul class="steps" style="margin-top:12px">
+        <li><span class="step-num orange">●</span><span><strong>上天守</strong>　木造樓梯，爬上頂層感受400年歷史</span></li>
+        <li><span class="step-num orange">●</span><span><strong>木曾川景色</strong>　天守頂部 360 度俯瞰，晴天遠眺絕美</span></li>
+        <li><span class="step-num orange">●</span><span><strong>拍照留念</strong>　城牆外拍全景，夏日綠意盎然</span></li>
+      </ul>
+      <div class="alert" style="margin-top:12px">
+        <span class="alert-icon">⚠️</span>
+        <span>天守樓梯極陡，請穿防滑鞋並注意安全。入場費 <strong>¥550</strong>，17:00 關閉（16:30 最後入場）。</span>
+      </div>
+    </div>
+
+    <!-- 城下町 -->
+    <div class="card sightseeing">
+      <div class="card-header">
+        <span class="card-icon">🍡</span>
+        <span class="card-title">城下町散策 ＋ 美食</span>
+        <span class="card-time">15:00～17:30</span>
+      </div>
+      <div class="spot-grid">
+        <div class="spot-item clickable" @click="openSpot('jokamachi')">
+          <div class="spot-icon">🏮</div>
+          <div class="spot-name">犬山城下町 <span class="spot-arrow">›</span></div>
+          <div class="spot-desc">城堡腳下的江戶古街，石板路兩側滿是老鋪，下午人潮最旺、店家全開，是整趟犬山的精華段。</div>
+        </div>
+      </div>
+      <ul class="steps" style="margin-top:12px">
+        <li><span class="step-num food-color">●</span><span><strong>飛驒牛握壽司</strong>　城下町必吃，現握現食，鮮甜入口即化</span></li>
+        <li><span class="step-num food-color">●</span><span><strong>五平餅</strong>　串烤米餅抹醬，香氣十足的傳統小吃</span></li>
+        <li><span class="step-num food-color">●</span><span><strong>抹茶甜點</strong>　宇治抹茶霜淇淋、抹茶大福，邊走邊吃</span></li>
+        <li><span class="step-num purple">●</span><span><strong>老街散步</strong>　古民家改建小店、和風雜貨、陶器紀念品</span></li>
+      </ul>
+      <div class="alert">
+        <span class="alert-icon">💡</span>
+        <span>15:00 後才是城下町最熱鬧的時段，店家全開、人氣最旺，不要提早離開。</span>
+      </div>
+    </div>
+
+    <!-- 收尾散步 -->
+    <div class="card tip">
+      <div class="card-header">
+        <span class="card-icon">🌇</span>
+        <span class="card-title">收尾散步</span>
+        <span class="card-time">17:30～18:00</span>
+      </div>
+      <ul class="steps">
+        <li><span class="step-num gray">●</span><span>沿<strong>木曾川河邊</strong>散步，看傍晚夕陽映在河面</span></li>
+        <li><span class="step-num gray">●</span><span>找間城下町的<strong>咖啡廳</strong>休息，喝杯飲料補充體力</span></li>
+        <li><span class="step-num gray">●</span><span>夕陽角度絕佳，拍幾張<strong>夜色城堡</strong>再離開</span></li>
+      </ul>
+    </div>
+
+    <!-- 交通 犬山→名古屋 -->
+    <div class="card transport">
+      <div class="card-header">
+        <span class="card-icon">🚆</span>
+        <span class="card-title">犬山 → 名古屋</span>
+        <span class="card-time">18:00 出發</span>
+      </div>
+      <ul class="steps">
+        <li><span class="step-num blue">1</span><span>從<strong>犬山站</strong>搭名鐵犬山線回名古屋</span></li>
+        <li><span class="step-num blue">2</span><span>車程約 <strong>30～40 分鐘</strong>，約 19:00 抵達名古屋站</span></li>
+        <li><span class="step-num blue">3</span><span>回飯店休息，或前往<strong>榮商圈</strong>吃晚餐</span></li>
+      </ul>
+    </div>
+
+    <!-- 時間軸總覽 -->
+    <div class="card tip">
+      <div class="card-header">
+        <span class="card-icon">🗓</span>
+        <span class="card-title">第三天時間軸總覽</span>
+      </div>
+      <table class="info-table">
+        <thead><tr><th>時間</th><th>行程</th></tr></thead>
+        <tbody>
+          <tr><td><strong>10:00～12:45</strong></td><td>🏬 AEON Noritake Garden（早午餐 ＋ 輕鬆逛）</td></tr>
+          <tr><td><strong>12:45</strong></td><td>離開 AEON，前往名古屋站搭名鐵</td></tr>
+          <tr><td><strong>13:50～15:00</strong></td><td>🏯 犬山城（天守 ＋ 木曾川全景）</td></tr>
+          <tr><td><strong>15:00～17:30</strong></td><td>🍡 城下町（飛驒牛 ＋ 五平餅 ＋ 抹茶 ＋ 老街）</td></tr>
+          <tr><td><strong>17:30～18:00</strong></td><td>🌇 木曾川河邊收尾散步</td></tr>
+          <tr><td><strong>18:00</strong></td><td>搭名鐵返回名古屋站</td></tr>
+          <tr><td><strong>19:00</strong></td><td>回飯店 or 榮商圈晚餐</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="more-hint">✦ &nbsp; 路線：AEON Noritake → 犬山城 → 城下町 → 返回名古屋 &nbsp; ✦</div>
+
+    <footer class="travel-footer">
+      🇯🇵 Japan Trip 2026 &nbsp;｜&nbsp; Have a great journey!
+    </footer>
+
+    </div><!-- end day 3 -->
 
     <!-- 第四天 -->
     <div v-if="activeDay === 4">
@@ -839,7 +990,7 @@ const dayTabs = [
 ]
 const activeDay = ref(1)
 
-type SpotKey = 'sakae' | 'oasis' | 'tvtower' | 'atsuta' | 'nagoyacastle' | 'osu' | 'asunal'
+type SpotKey = 'sakae' | 'oasis' | 'tvtower' | 'mitsui' | 'nagoyacastle' | 'osu' | 'asunal' | 'aeon' | 'inuyama' | 'jokamachi'
 
 const activeSpot = ref<SpotKey | null>(null)
 const photoIndex = ref(0)
@@ -915,21 +1066,19 @@ const spots: Record<SpotKey, {
       { icon: '🌙', label: '夜景', value: '燈光亮起後與綠洲21相映，拍照絕佳' },
     ],
   },
-  atsuta: {
-    icon: '⛩️',
-    name: '熱田神宮',
-    subtitle: 'Atsuta Jingu, Nagoya',
-    desc: '熱田神宮創建於西元113年，是全日本第三大神宮，僅次於伊勢神宮與出雲大社。神宮供奉「草薙神劍」——日本三大神器之一，相傳為日本武尊東征時所用的神劍。境內廣達19萬坪，古木參天、苔痕遍地，氣氛莊嚴靜謐，甚至有名古屋人稱這裡是「都市中的森林」。信長塀是織田信長1560年桶狹間合戰大勝後奉納的土牆，全長64公尺，是日本三大土牆之一。清水社旁的小水池據說用清水洗臉可保佑美容，頗受女性遊客喜愛。每年初詣參拜人數超過230萬，是愛知縣最重要的信仰中心。',
+  mitsui: {
+    icon: '🛍️',
+    name: '名古屋三井 Outlet Park',
+    subtitle: 'Mitsui Outlet Park Nagoya Port',
+    desc: '名古屋三井 Outlet Park（港店）緊鄰名古屋港，是名古屋規模最大的 Outlet，擁有超過 200 間品牌，涵蓋時尚服飾（Adidas、Nike、Coach、Prada 等）、生活雜貨、餐廳及甜點店。商場採開放式街廓設計，戶外走廊充滿歐式風情，天氣好的時候逛起來特別舒適。附近就是名古屋港水族館，購物前後可順道一探。平日人潮較少，週末相對擁擠，若能選平日前往購物體驗更佳。',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Atsuta_Jingu_Torii.jpg/960px-Atsuta_Jingu_Torii.jpg',
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Atsuta_Jingu_20211226-02.jpg/960px-Atsuta_Jingu_20211226-02.jpg',
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Magatama-ike_in_Atsuta_Jingu_Shrine_2014.jpg/960px-Magatama-ike_in_Atsuta_Jingu_Shrine_2014.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Nagoya_Port_area.jpg/960px-Nagoya_Port_area.jpg',
     ],
     infos: [
-      { icon: '🚇', label: '交通', value: '地下鐵名城線「神宮西站」步行 3 分鐘' },
-      { icon: '🕐', label: '建議停留', value: '1～1.5 小時' },
-      { icon: '💰', label: '費用', value: '境內免費（草薙館 ¥300）' },
-      { icon: '⭐', label: '必看', value: '本宮 · 信長塀 · 清水社' },
+      { icon: '🚇', label: '交通', value: '地下鐵名港線「名古屋港站」步行 5 分鐘' },
+      { icon: '🕐', label: '營業時間', value: '10:00～20:00（餐廳至 21:00）' },
+      { icon: '💰', label: '費用', value: '入場免費，依品牌消費' },
+      { icon: '⭐', label: '推薦', value: 'Adidas · Nike · Coach · 各式餐廳' },
     ],
   },
   nagoyacastle: {
@@ -964,6 +1113,57 @@ const spots: Record<SpotKey, {
       { icon: '🕐', label: '建議停留', value: '2～3 小時（傍晚最熱鬧）' },
       { icon: '💰', label: '費用', value: '逛街免費，餐飲自費' },
       { icon: '⭐', label: '必逛', value: '大須觀音 · 萬松寺 · 二手動漫店 · 扭蛋街' },
+    ],
+  },
+  aeon: {
+    icon: '🏬',
+    name: 'AEON MALL Nagoya Noritake Garden',
+    subtitle: 'AEON Mall Noritake Garden, Nagoya',
+    desc: 'AEON MALL Nagoya Noritake Garden 緊鄰名古屋站西口，步行約 10 分鐘，是結合購物、餐飲與自然綠地的舒適型商場。商場一側緊鄰知名的則武（Noritake）陶瓷工廠舊址改建的「Noritake no Mori」公園，綠意盎然。館內進駐 MUJI、UNIQLO、各式餐廳及甜點咖啡廳，非常適合早午餐後輕鬆閒逛。Starbucks 面對庭園的座位區氣氛尤佳。這裡不是大型血拼型商場，而是以舒適悠閒著稱，適合旅程暖身、不耗費太多精力的上午行程。',
+    photos: [
+      'https://upload.wikimedia.org/wikipedia/commons/0/08/Entrance_of_AEON_MALL_Nagoya_Noritake_Garden_%28Noritake_Garden_side%29.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/9/9f/AEON_MALL_Nagoya_Noritake_Garden_-_2.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/2/23/230429_Noritake_Garden_Nagoya_Japan16s3.jpg',
+    ],
+    infos: [
+      { icon: '🚶', label: '交通', value: '名古屋站西口步行約 10～15 分鐘' },
+      { icon: '🕐', label: '營業時間', value: '10:00～21:00（餐廳至 22:00）' },
+      { icon: '💰', label: '費用', value: '入場免費，消費自費' },
+      { icon: '⭐', label: '推薦', value: 'Starbucks 庭園座位 · MUJI · UNIQLO · 甜點店' },
+    ],
+  },
+  inuyama: {
+    icon: '🏯',
+    name: '犬山城',
+    subtitle: 'Inuyama Castle, Aichi',
+    desc: '犬山城建於1537年，是日本現存最古老的木造天守之一，被指定為國寶（日本僅五座國寶城堡之一）。天守聳立於木曾川旁的小丘之上，高約18公尺，登頂可360度俯瞰木曾川蜿蜒流過的壯麗景色，晴天時甚至遠眺可見御嶽山。城內保留原始木造樓梯，坡度極陡，爬上去需要手腳並用，但頂層的視野令人嘆為觀止。城堡對岸是成田山名古屋別院，搭船渡河也是特色體驗之一。春天賞櫻、秋天紅葉，犬山城四季皆美，是愛知縣最值得一訪的城堡。',
+    photos: [
+      'https://upload.wikimedia.org/wikipedia/commons/f/fd/Inuyama_Castle_Keep_Tower_20170409.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/9/9a/Castle_in_Inuyama.JPG',
+      'https://upload.wikimedia.org/wikipedia/commons/5/54/Inuyama_Castle_%28Inuyama_Aichi%29_VLux5_hdsr_24.jpg',
+    ],
+    infos: [
+      { icon: '🚆', label: '交通', value: '名鐵犬山線「犬山站」步行約 15 分鐘' },
+      { icon: '🕐', label: '建議停留', value: '1～1.5 小時' },
+      { icon: '💰', label: '費用', value: '入場 ¥550' },
+      { icon: '⚠️', label: '注意', value: '樓梯極陡請穿防滑鞋；16:30 最後入場，17:00 關閉' },
+    ],
+  },
+  jokamachi: {
+    icon: '🏮',
+    name: '犬山城下町',
+    subtitle: 'Inuyama Jokamachi Old Town',
+    desc: '犬山城下町是城堡腳下延伸出來的江戶時代古街，全長約400公尺，兩側林立著古民家改建的餐廳、甜點鋪、工藝雜貨店和土產店。街道保留了江戶時代的町屋建築風貌，石板路與格子窗構成濃厚的歷史氛圍。必吃的飛驒牛握壽司是城下町的招牌美食，肉質軟嫩鮮甜，通常一口一個即食；五平餅是傳統串烤米餅，塗上味噌醬或核桃醬烤製，香氣十足；各式抹茶甜點也是人氣選擇。下午是人潮最旺、店家最齊全的時段，建議 15:00 後悠閒漫步，是整趟犬山行程最精華的體驗。',
+    photos: [
+      'https://upload.wikimedia.org/wikipedia/commons/a/a0/Inuyama_Castle_from_Inuyama_Jokamachi_in_the_Spring.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/8/88/Inuyama_Castle_from_Inuyama_Jokamachi_in_early_Spring.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/6/6b/Inuyamajouka1.jpg',
+    ],
+    infos: [
+      { icon: '📍', label: '位置', value: '犬山城天守下方，步行即達' },
+      { icon: '🕐', label: '建議停留', value: '2～2.5 小時' },
+      { icon: '💰', label: '費用', value: '逛街免費，飲食小吃自費' },
+      { icon: '🍡', label: '必吃', value: '飛驒牛握壽司 · 五平餅 · 抹茶霜淇淋' },
     ],
   },
   asunal: {
