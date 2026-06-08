@@ -44,6 +44,14 @@
         <span class="day-tab-num">D{{ d.day }}</span>
         <span class="day-tab-date">{{ d.date }}</span>
       </button>
+      <button
+        class="day-tab-btn extra-tab"
+        :class="{ active: activeDay === 6 }"
+        @click="activeDay = 6"
+      >
+        <span class="day-tab-num">✦</span>
+        <span class="day-tab-date">EXTRA</span>
+      </button>
     </div>
 
     <!-- 第一天 -->
@@ -859,6 +867,15 @@
 
     </div><!-- end day 5 -->
 
+    <!-- EXTRA -->
+    <div v-if="activeDay === 6">
+      <div class="coming-soon">
+        <div class="cs-icon">✦</div>
+        <div class="cs-title">EXTRA</div>
+        <div class="cs-desc">額外資訊、備用行程、旅遊小貼士 ｜ 內容即將更新。</div>
+      </div>
+    </div><!-- end extra -->
+
     </div><!-- end nagoya -->
 
     <!-- 香港 -->
@@ -1241,6 +1258,23 @@ const spots: Record<SpotKey, {
   border-color: #c0392b;
   box-shadow: 0 3px 10px rgba(192,57,43,.35);
 }
+.extra-tab {
+  border-color: #7b5ea7;
+  background: rgba(123,94,167,.08);
+}
+.extra-tab .day-tab-num { color: #7b5ea7; }
+.extra-tab .day-tab-date { color: #7b5ea7; }
+.extra-tab:hover {
+  background: rgba(123,94,167,.18);
+  border-color: #6a4d96;
+}
+.extra-tab.active {
+  background: #7b5ea7;
+  border-color: #7b5ea7;
+  box-shadow: 0 3px 10px rgba(123,94,167,.35);
+}
+.extra-tab.active .day-tab-num { color: #fff; }
+.extra-tab.active .day-tab-date { color: rgba(255,255,255,.85); }
 .day-tab-num {
   font-family: 'Poppins', sans-serif;
   font-size: 13px;
