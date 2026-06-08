@@ -253,6 +253,7 @@ const seeds = Array.from({ length: 8 }, (_, i) => ({
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   z-index: 0;
+  opacity: 0.95;
 }
 
 /* ── Grid lines — use same BLOCK_PX → always square ── */
