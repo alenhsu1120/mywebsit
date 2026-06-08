@@ -341,31 +341,6 @@
       </div>
     </div>
 
-    <!-- ASUNAL 金山 -->
-    <div class="card tip">
-      <div class="card-header">
-        <span class="card-icon">✨</span>
-        <span class="card-title">有空加碼　ASUNAL 金山</span>
-        <span class="card-time">20:30～21:30</span>
-      </div>
-      <div class="spot-grid">
-        <div class="spot-item clickable" @click="openSpot('asunal')">
-          <div class="spot-icon">🏬</div>
-          <div class="spot-name">ASUNAL 金山 <span class="spot-arrow">›</span></div>
-          <div class="spot-desc">金山站旁半開放式商場，晚上氣氛輕鬆愜意，偏在地人會去的地方，適合當天收尾散步。</div>
-        </div>
-      </div>
-      <ul class="steps" style="margin-top:12px">
-        <li><span class="step-num gray">●</span><span>從大須搭地鐵名城線到<strong>金山站</strong>，約 <strong>5 分鐘</strong></span></li>
-        <li><span class="step-num gray">●</span><span>商場大部分店鋪營業至 <strong>21:00～21:30</strong>，餐廳多到 22:00</span></li>
-        <li><span class="step-num gray">●</span><span>如果大須逛太久體力不足，可直接跳過；若還有精神，金山夜晚氛圍很適合收尾</span></li>
-      </ul>
-      <div class="alert">
-        <span class="alert-icon">💡</span>
-        <span>這是<strong>選擇性行程</strong>，大須逛得盡興的話不一定要去，金山比較偏在地人氛圍，不像榮商圈觀光感那麼重。</span>
-      </div>
-    </div>
-
     <!-- 時間軸總覽 -->
     <div class="card tip">
       <div class="card-header">
@@ -380,12 +355,11 @@
           <tr><td><strong>15:00</strong></td><td>離開 Outlet，搭地鐵前往名古屋城</td></tr>
           <tr><td><strong>15:30～17:00</strong></td><td>🏯 名古屋城（本丸御殿、城牆、金鯱）</td></tr>
           <tr><td><strong>17:30～20:30</strong></td><td>🛍 大須商店街 ＋ 晚餐</td></tr>
-          <tr><td><strong>20:30～21:30</strong></td><td>✨ ASUNAL 金山（有空再去）</td></tr>
         </tbody>
       </table>
     </div>
 
-    <div class="more-hint">✦ &nbsp; 路線：三井 Outlet → 名古屋城 → 大須商店街 → ASUNAL 金山 &nbsp; ✦</div>
+    <div class="more-hint">✦ &nbsp; 路線：三井 Outlet → 名古屋城 → 大須商店街 &nbsp; ✦</div>
 
     <footer class="travel-footer">
       🇯🇵 Japan Trip 2026 &nbsp;｜&nbsp; Have a great journey!
@@ -869,11 +843,47 @@
 
     <!-- EXTRA -->
     <div v-if="activeDay === 6">
-      <div class="coming-soon">
-        <div class="cs-icon">✦</div>
-        <div class="cs-title">EXTRA</div>
-        <div class="cs-desc">額外資訊、備用行程、旅遊小貼士 ｜ 內容即將更新。</div>
+
+    <div class="day-header">
+      <div class="day-badge" style="background: linear-gradient(135deg,#7b5ea7,#a07cc0)">
+        <span class="badge-num">✦</span>
+        <span class="badge-label">EXTRA</span>
       </div>
+      <div class="day-info">
+        <h2>備用景點 ＆ 加碼行程</h2>
+        <div class="day-weekday">有空就去，沒空就跳過</div>
+      </div>
+    </div>
+
+    <!-- ASUNAL 金山 -->
+    <div class="card tip">
+      <div class="card-header">
+        <span class="card-icon">✨</span>
+        <span class="card-title">有空加碼　ASUNAL 金山</span>
+        <span class="card-time">大須逛完後 20:30～21:30</span>
+      </div>
+      <div class="spot-grid">
+        <div class="spot-item clickable" @click="openSpot('asunal')">
+          <div class="spot-icon">🏬</div>
+          <div class="spot-name">ASUNAL 金山 <span class="spot-arrow">›</span></div>
+          <div class="spot-desc">金山站旁半開放式商場，晚上氣氛輕鬆愜意，偏在地人會去的地方，適合當天收尾散步。</div>
+        </div>
+      </div>
+      <ul class="steps" style="margin-top:12px">
+        <li><span class="step-num gray">●</span><span>從大須搭地鐵名城線到<strong>金山站</strong>，約 <strong>5 分鐘</strong></span></li>
+        <li><span class="step-num gray">●</span><span>商場大部分店鋪營業至 <strong>21:00～21:30</strong>，餐廳多到 22:00</span></li>
+        <li><span class="step-num gray">●</span><span>如果大須逛太久體力不足，可直接跳過；若還有精神，金山夜晚氛圍很適合收尾</span></li>
+      </ul>
+      <div class="alert">
+        <span class="alert-icon">💡</span>
+        <span>這是<strong>選擇性行程</strong>，大須逛得盡興的話不一定要去，金山比較偏在地人氛圍，不像榮商圈觀光感那麼重。</span>
+      </div>
+    </div>
+
+    <footer class="travel-footer">
+      🇯🇵 Japan Trip 2026 &nbsp;｜&nbsp; Have a great journey!
+    </footer>
+
     </div><!-- end extra -->
 
     </div><!-- end nagoya -->
