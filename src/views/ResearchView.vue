@@ -29,10 +29,10 @@
           <div class="project-icon">
             <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="4" y="4" width="28" height="28" rx="4"
-                    fill="rgba(180,130,50,.15)" stroke="#8b6914" stroke-width="1.5"/>
-              <path d="M11 14 L16 18 L11 22" stroke="#8b6914" stroke-width="2"
+                    fill="rgba(74,138,88,.15)" stroke="#4a8a58" stroke-width="1.5"/>
+              <path d="M11 14 L16 18 L11 22" stroke="#4a8a58" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round"/>
-              <line x1="18" y1="22" x2="26" y2="22" stroke="#c9a227" stroke-width="2"
+              <line x1="18" y1="22" x2="26" y2="22" stroke="#4a8a58" stroke-width="2"
                     stroke-linecap="round"/>
             </svg>
           </div>
@@ -81,18 +81,18 @@
           <div class="project-icon">
             <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="3" y="3" width="30" height="30" rx="4"
-                    fill="rgba(180,130,50,.15)" stroke="#8b6914" stroke-width="1.5"/>
+                    fill="rgba(74,138,88,.15)" stroke="#4a8a58" stroke-width="1.5"/>
               <!-- Grid -->
-              <line x1="3" y1="12" x2="33" y2="12" stroke="#8b6914" stroke-width=".8" opacity=".4"/>
-              <line x1="3" y1="21" x2="33" y2="21" stroke="#8b6914" stroke-width=".8" opacity=".4"/>
-              <line x1="12" y1="3" x2="12" y2="33" stroke="#8b6914" stroke-width=".8" opacity=".4"/>
-              <line x1="21" y1="3" x2="21" y2="33" stroke="#8b6914" stroke-width=".8" opacity=".4"/>
+              <line x1="3" y1="12" x2="33" y2="12" stroke="#4a8a58" stroke-width=".8" opacity=".4"/>
+              <line x1="3" y1="21" x2="33" y2="21" stroke="#4a8a58" stroke-width=".8" opacity=".4"/>
+              <line x1="12" y1="3" x2="12" y2="33" stroke="#4a8a58" stroke-width=".8" opacity=".4"/>
+              <line x1="21" y1="3" x2="21" y2="33" stroke="#4a8a58" stroke-width=".8" opacity=".4"/>
               <!-- Agent paths -->
               <circle cx="7.5"  cy="7.5"  r="2.5" fill="#5da038"/>
               <path d="M7.5 7.5 L7.5 16.5 L16.5 16.5" stroke="#5da038" stroke-width="1.5"
                     stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="25.5" cy="7.5"  r="2.5" fill="#c9a227"/>
-              <path d="M25.5 7.5 L25.5 16.5 L16.5 16.5" stroke="#c9a227" stroke-width="1.5"
+              <circle cx="25.5" cy="7.5"  r="2.5" fill="#4a8a58"/>
+              <path d="M25.5 7.5 L25.5 16.5 L16.5 16.5" stroke="#4a8a58" stroke-width="1.5"
                     stroke-linecap="round" stroke-linejoin="round"/>
               <circle cx="16.5" cy="16.5" r="3" fill="rgba(220,100,100,.8)" stroke="#cc4444" stroke-width="1"/>
             </svg>
@@ -154,53 +154,53 @@ import { RouterLink } from 'vue-router'
   display: inline-block;
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-size: .75rem; letter-spacing: .15em;
-  color: #6a5030; text-decoration: none;
+  color: #3d5440; text-decoration: none;
   padding: .3rem 0; margin-bottom: 1.4rem;
   opacity: .75; transition: opacity .2s, color .2s;
   text-shadow: 0 1px 3px rgba(255,255,255,.7);
 }
-.back-link:hover { opacity: 1; color: #3d2810; }
+.back-link:hover { opacity: 1; color: #1b3a28; }
 
 /* Title */
 .page-title { margin-bottom: 1.2rem; }
 .page-title h2 {
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-size: clamp(1.4rem, 4vw, 2rem);
-  color: #2c1e08;
+  color: #162a1e;
   text-shadow: 0 1px 0 rgba(255,255,255,.9), 0 2px 10px rgba(255,255,255,.5);
   margin-bottom: .3rem;
 }
 .page-title p {
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
-  font-style: italic; font-size: .95rem; color: #7a5c30;
+  font-style: italic; font-size: .95rem; color: #6a8870;
   text-shadow: 0 1px 3px rgba(255,255,255,.7);
 }
 
 /* Context box */
 .context-card {
   padding: .9rem 1.2rem;
-  background: rgba(250,245,232,.75);
-  border-left: 3px solid #c9a227;
+  background: rgba(250,253,250,.75);
+  border-left: 3px solid #4a8a58;
   border-radius: 0 4px 4px 0;
   margin-bottom: 1.6rem;
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
-  font-size: .95rem; line-height: 1.7; color: #4a3418;
+  font-size: .95rem; line-height: 1.7; color: #3d5440;
   backdrop-filter: blur(2px);
 }
-.context-card strong { color: #2c1e08; }
-.context-card a { color: #8b6914; border-bottom: 1px solid #d4b870; }
-.context-card a:hover { color: #c9a227; border-color: #c9a227; }
+.context-card strong { color: #162a1e; }
+.context-card a { color: #4a8a58; border-bottom: 1px solid #b8d8be; }
+.context-card a:hover { color: #4a8a58; border-color: #4a8a58; }
 
 /* Projects */
 .projects { display: flex; flex-direction: column; gap: 1.2rem; }
 
 /* Project card */
 .project-card {
-  background: linear-gradient(145deg, #faf5e8 0%, #f2ead4 100%);
-  border: 1.5px solid #d4b870;
-  border-radius: 2px;
+  background: linear-gradient(145deg, #ffffff 0%, #f6fbf6 100%);
+  border: 1.5px solid #b8d8be;
+  border-radius: 14px;
   padding: 1.4rem 1.6rem;
-  box-shadow: 0 3px 12px rgba(100,70,20,.12), inset 0 1px 0 rgba(255,255,255,.8);
+  box-shadow: 0 2px 12px rgba(27,58,40,0.08), 0 1px 3px rgba(27,58,40,0.04);
   position: relative;
   overflow: hidden;
 }
@@ -208,8 +208,8 @@ import { RouterLink } from 'vue-router'
   content: '';
   position: absolute; inset: 0;
   background: repeating-linear-gradient(0deg, transparent, transparent 28px,
-    rgba(180,140,60,.04) 28px, rgba(180,140,60,.04) 29px);
-  border-radius: 2px; pointer-events: none;
+    rgba(74,138,88,.04) 28px, rgba(74,138,88,.04) 29px);
+  border-radius: 14px; pointer-events: none;
 }
 
 /* Project header row */
@@ -220,11 +220,11 @@ import { RouterLink } from 'vue-router'
 .project-icon {
   flex-shrink: 0; width: 46px; height: 46px;
   border-radius: 10px;
-  border: 1.5px solid #d4b870;
+  border: 1.5px solid #b8d8be;
   background: radial-gradient(circle at 38% 32%,
-    rgba(255,240,180,.55) 0%, rgba(200,175,110,.2) 100%);
+    rgba(200,235,210,.55) 0%, rgba(150,200,165,.2) 100%);
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 2px 6px rgba(120,80,20,.1), inset 0 1px 2px rgba(255,255,255,.6);
+  box-shadow: 0 2px 6px rgba(27,58,40,.1), inset 0 1px 2px rgba(255,255,255,.6);
 }
 .project-icon svg { width: 26px; height: 26px; }
 
@@ -232,18 +232,18 @@ import { RouterLink } from 'vue-router'
 .project-title {
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-size: 1.1rem; font-weight: 400;
-  color: #2c1e08; margin-bottom: .15rem;
+  color: #162a1e; margin-bottom: .15rem;
 }
 .project-sub {
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
-  font-style: italic; font-size: .85rem; color: #7a5c30;
+  font-style: italic; font-size: .85rem; color: #6a8870;
 }
 
 /* GitHub button */
 .github-btn {
   display: inline-flex; align-items: center; gap: .4rem;
   padding: .35rem .85rem;
-  background: #2c1e08; color: #f5e8c8;
+  background: linear-gradient(135deg, #4a8a58, #2d6040); color: #ffffff;
   border-radius: 4px; text-decoration: none;
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-size: .7rem; letter-spacing: .08em;
@@ -251,18 +251,18 @@ import { RouterLink } from 'vue-router'
   flex-shrink: 0;
 }
 .github-btn svg { width: 14px; height: 14px; }
-.github-btn:hover { background: #4a3418; transform: translateY(-1px); }
+.github-btn:hover { background: linear-gradient(135deg, #3d7a4c, #2d6040); transform: translateY(-1px); }
 
 /* Description */
 .project-desc {
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
-  font-size: .96rem; line-height: 1.7; color: #4a3418;
+  font-size: .96rem; line-height: 1.7; color: #3d5440;
   margin-bottom: 1rem;
 }
 .project-desc code {
-  background: rgba(180,140,60,.15);
+  background: rgba(74,138,88,.15);
   padding: .1rem .4rem; border-radius: 3px;
-  font-size: .88em; color: #3d2810;
+  font-size: .88em; color: #2d6040;
   font-family: 'Courier New', monospace;
 }
 
@@ -271,7 +271,7 @@ import { RouterLink } from 'vue-router'
 .features h4 {
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-size: .72rem; letter-spacing: .2em;
-  color: #9a7a1e; margin-bottom: .6rem;
+  color: #2d6040; margin-bottom: .6rem;
   text-transform: uppercase;
 }
 .features ul {
@@ -281,7 +281,7 @@ import { RouterLink } from 'vue-router'
 .features li {
   display: flex; align-items: baseline; gap: .5rem;
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
-  font-size: .93rem; color: #4a3418; line-height: 1.5;
+  font-size: .93rem; color: #3d5440; line-height: 1.5;
 }
 .features li span { flex: 1; }
 
@@ -295,9 +295,9 @@ import { RouterLink } from 'vue-router'
   border-radius: 20px;
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-size: .65rem; letter-spacing: .06em;
-  background: rgba(180,140,60,.15);
-  border: 1px solid rgba(180,140,60,.35);
-  color: #6a4a18;
+  background: rgba(74,138,88,.15);
+  border: 1px solid rgba(74,138,88,.35);
+  color: #2d6040;
 }
 .badge.cpp    { background: rgba(0,89,156,.1);  border-color: rgba(0,89,156,.3);  color: #005b9c; }
 .badge.python { background: rgba(55,118,171,.1); border-color: rgba(55,118,171,.3); color: #3776ab; }

@@ -1218,18 +1218,18 @@ const spots: Record<SpotKey, {
   gap: 6px;
   padding: 7px 18px;
   border-radius: 22px;
-  border: 1.5px solid #d4b870;
-  background: rgba(250,245,232,.7);
+  border: 1.5px solid #b8d8be;
+  background: rgba(255,255,255,.7);
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-size: 13px;
   font-weight: 600;
-  color: #7a5c20;
+  color: #3d5440;
   cursor: pointer;
   transition: background .18s, color .18s, border-color .18s, box-shadow .18s;
 }
 .tab-btn:hover {
-  background: rgba(212,184,112,.3);
-  border-color: #b8963e;
+  background: rgba(74,138,88,.15);
+  border-color: #4a8a58;
 }
 .tab-btn.active {
   background: #c0392b;
@@ -1253,15 +1253,15 @@ const spots: Record<SpotKey, {
   gap: 1px;
   padding: 8px 14px;
   border-radius: 10px;
-  border: 1.5px solid #d4b870;
-  background: rgba(250,245,232,.7);
+  border: 1.5px solid #b8d8be;
+  background: rgba(255,255,255,.7);
   cursor: pointer;
   transition: background .18s, color .18s, border-color .18s, box-shadow .18s;
   min-width: 56px;
 }
 .day-tab-btn:hover {
-  background: rgba(212,184,112,.3);
-  border-color: #b8963e;
+  background: rgba(74,138,88,.15);
+  border-color: #4a8a58;
 }
 .day-tab-btn.active {
   background: #c0392b;
@@ -1289,14 +1289,14 @@ const spots: Record<SpotKey, {
   font-family: 'Poppins', sans-serif;
   font-size: 13px;
   font-weight: 800;
-  color: #7a5c20;
+  color: #3d5440;
   line-height: 1;
 }
 .day-tab-btn.active .day-tab-num { color: #fff; }
 .day-tab-date {
   font-family: 'Poppins', sans-serif;
   font-size: 10px;
-  color: #a07840;
+  color: #6a8870;
   letter-spacing: .04em;
 }
 .day-tab-btn.active .day-tab-date { color: rgba(255,255,255,.8); }
@@ -1311,7 +1311,7 @@ const spots: Record<SpotKey, {
   text-align: center;
 }
 .cs-icon  { font-size: 56px; margin-bottom: 16px; opacity: .7; }
-.cs-title { font-family: 'Poppins', 'Noto Sans TC', sans-serif; font-size: 1.2rem; font-weight: 800; color: #2c1e08; margin-bottom: 8px; }
+.cs-title { font-family: 'Poppins', 'Noto Sans TC', sans-serif; font-size: 1.2rem; font-weight: 800; color: #162a1e; margin-bottom: 8px; }
 .cs-desc  { font-family: 'Poppins', 'Noto Sans TC', sans-serif; font-size: 13px; color: #999; }
 
 /* ── Back ── */
@@ -1320,7 +1320,7 @@ const spots: Record<SpotKey, {
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-size: .75rem;
   letter-spacing: .15em;
-  color: #6a5030;
+  color: #3d5440;
   text-decoration: none;
   padding: .3rem 0;
   margin-bottom: 1.4rem;
@@ -1328,7 +1328,7 @@ const spots: Record<SpotKey, {
   transition: opacity .2s, color .2s;
   text-shadow: 0 1px 3px rgba(255,255,255,.7);
 }
-.back-link:hover { opacity: 1; color: #3d2810; }
+.back-link:hover { opacity: 1; color: #1b3a28; }
 
 /* ── Cover ── */
 .cover {
@@ -1336,11 +1336,11 @@ const spots: Record<SpotKey, {
   color: white;
   text-align: center;
   padding: 52px 28px 44px;
-  border-radius: 4px;
+  border-radius: 14px;
   position: relative;
   overflow: hidden;
   margin-bottom: 2rem;
-  box-shadow: 3px 3px 0 rgba(0,0,0,.15);
+  box-shadow: 0 2px 12px rgba(27,58,40,0.08), 0 1px 3px rgba(27,58,40,0.04);
 }
 .cover::before {
   content: '⛩';
@@ -1387,12 +1387,12 @@ const spots: Record<SpotKey, {
 
 /* ── Cards ── */
 .card {
-  background: linear-gradient(145deg, #faf5e8, #f2ead4);
-  border-radius: 2px;
+  background: linear-gradient(145deg, #ffffff, #f6fbf6);
+  border-radius: 14px;
   padding: 1.2rem 1.4rem;
   margin-bottom: 1rem;
-  box-shadow: 3px 3px 0 #8a6e10, inset 0 1px 0 rgba(255,255,255,.8);
-  border: 1.5px solid #d4b870;
+  box-shadow: 0 2px 12px rgba(27,58,40,0.08), 0 1px 3px rgba(27,58,40,0.04);
+  border: 1.5px solid #b8d8be;
 }
 .card.transport  { border-left: 5px solid #3498db; }
 .card.hotel      { border-left: 5px solid #9b59b6; }
@@ -1406,14 +1406,14 @@ const spots: Record<SpotKey, {
   margin-bottom: 12px; flex-wrap: wrap;
 }
 .card-icon  { font-size: 20px; }
-.card-title { font-family: 'Poppins', 'Noto Sans TC', sans-serif; font-size: 14px; font-weight: 700; color: #2c1e08; flex: 1; }
+.card-title { font-family: 'Poppins', 'Noto Sans TC', sans-serif; font-size: 14px; font-weight: 700; color: #162a1e; flex: 1; }
 .card-time  { font-size: 12px; font-weight: 700; color: #888; background: rgba(0,0,0,.06); padding: 3px 10px; border-radius: 12px; white-space: nowrap; }
 
 /* ── Steps ── */
 .steps { list-style: none; padding: 0; margin: 0; }
 .steps li {
   display: flex; gap: 12px; padding: 7px 0;
-  border-bottom: 1px dashed rgba(212,184,112,.5);
+  border-bottom: 1px dashed rgba(74,138,88,.3);
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-size: 13px; line-height: 1.6; align-items: flex-start;
 }
@@ -1434,8 +1434,8 @@ const spots: Record<SpotKey, {
 
 /* ── Table ── */
 .info-table { width: 100%; border-collapse: collapse; font-size: 13px; font-family: 'Poppins', 'Noto Sans TC', sans-serif; }
-.info-table th { background: rgba(0,0,0,.04); padding: 7px 10px; text-align: left; font-size: 11px; color: #666; border-bottom: 2px solid rgba(212,184,112,.4); }
-.info-table td { padding: 8px 10px; border-bottom: 1px solid rgba(212,184,112,.25); }
+.info-table th { background: rgba(0,0,0,.04); padding: 7px 10px; text-align: left; font-size: 11px; color: #666; border-bottom: 2px solid rgba(74,138,88,.3); }
+.info-table td { padding: 8px 10px; border-bottom: 1px solid rgba(74,138,88,.18); }
 .info-table tr:last-child td { border-bottom: none; }
 .price { font-weight: 700; color: #c0392b; text-align: right; }
 
@@ -1479,7 +1479,7 @@ const spots: Record<SpotKey, {
 .spot-item {
   background: rgba(255,255,255,.5);
   border-radius: 8px; padding: 12px 14px;
-  border: 1px solid rgba(212,184,112,.4);
+  border: 1px solid rgba(74,138,88,.3);
   transition: transform .15s, box-shadow .15s, border-color .15s;
 }
 .spot-item.clickable {
@@ -1491,20 +1491,20 @@ const spots: Record<SpotKey, {
   border-color: #27ae60;
 }
 .spot-icon  { font-size: 22px; margin-bottom: 5px; }
-.spot-name  { font-weight: 700; font-size: 14px; font-family: 'Poppins', 'Noto Sans TC', sans-serif; color: #2c1e08; }
+.spot-name  { font-weight: 700; font-size: 14px; font-family: 'Poppins', 'Noto Sans TC', sans-serif; color: #162a1e; }
 .spot-arrow { color: #27ae60; font-size: 16px; margin-left: 2px; }
 .spot-desc  { font-size: 12px; color: #777; margin-top: 4px; line-height: 1.55; font-family: 'Poppins', 'Noto Sans TC', sans-serif; }
 
 /* ── More / Footer ── */
 .more-hint {
-  text-align: center; color: #b0906a;
+  text-align: center; color: #6a8870;
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-style: italic; font-size: 13px; padding: 24px 0 8px;
 }
 .travel-footer {
   text-align: center; padding: 20px;
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
-  font-size: 13px; color: #a08848; letter-spacing: 1px;
+  font-size: 13px; color: #6a8870; letter-spacing: 1px;
 }
 
 /* ── Modal ── */
@@ -1516,10 +1516,10 @@ const spots: Record<SpotKey, {
   backdrop-filter: blur(3px);
 }
 .modal-box {
-  background: linear-gradient(160deg, #fdf8ec, #f5ead0);
-  border: 2px solid #c9a227;
-  border-radius: 4px;
-  box-shadow: 6px 6px 0 #8a6e10, inset 0 1px 0 rgba(255,255,255,.85);
+  background: linear-gradient(160deg, #ffffff, #f6fbf6);
+  border: 2px solid #b8d8be;
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(27,58,40,0.13), 0 2px 6px rgba(27,58,40,0.07);
   width: 100%; max-width: 560px;
   max-height: 88vh;
   overflow-y: auto;
@@ -1529,27 +1529,27 @@ const spots: Record<SpotKey, {
 .modal-close {
   position: absolute; top: 1rem; right: 1rem;
   background: transparent; border: none;
-  font-size: 1.1rem; color: #9a7a3a; cursor: pointer;
+  font-size: 1.1rem; color: #6a8870; cursor: pointer;
   line-height: 1; padding: 4px 6px;
   transition: color .2s;
 }
-.modal-close:hover { color: #3d2810; }
+.modal-close:hover { color: #1b3a28; }
 
 .modal-header {
   display: flex; align-items: center; gap: 14px;
   margin-bottom: 1.2rem; padding-right: 2rem;
 }
 .modal-icon    { font-size: 36px; }
-.modal-title   { font-family: 'Poppins', 'Noto Sans TC', sans-serif; font-size: 1.3rem; font-weight: 800; color: #2c1e08; }
-.modal-subtitle{ font-family: 'Poppins', sans-serif; font-size: 0.75rem; letter-spacing: .12em; color: #9a7a3a; margin-top: 2px; }
+.modal-title   { font-family: 'Poppins', 'Noto Sans TC', sans-serif; font-size: 1.3rem; font-weight: 800; color: #162a1e; }
+.modal-subtitle{ font-family: 'Poppins', sans-serif; font-size: 0.75rem; letter-spacing: .12em; color: #6a8870; margin-top: 2px; }
 
 /* ── Photo gallery ── */
 .photo-gallery { margin-bottom: 1.2rem; }
 .photo-main {
   width: 100%; height: 220px;
-  border-radius: 4px; overflow: hidden;
-  background: #e8d8b0;
-  border: 1.5px solid #d4b870;
+  border-radius: 14px; overflow: hidden;
+  background: #d4eada;
+  border: 1.5px solid #b8d8be;
   margin-bottom: 8px;
 }
 .photo-main img {
@@ -1573,13 +1573,13 @@ const spots: Record<SpotKey, {
 .photo-thumbs img.active,
 .photo-thumbs img:hover {
   opacity: 1;
-  border-color: #c9a227;
+  border-color: #4a8a58;
 }
 
 /* ── Modal desc ── */
 .modal-desc {
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
-  font-size: 13px; line-height: 1.85; color: #3a2a10;
+  font-size: 13px; line-height: 1.85; color: #3d5440;
   margin-bottom: 1.2rem;
 }
 
@@ -1589,14 +1589,14 @@ const spots: Record<SpotKey, {
 }
 .info-chip {
   background: rgba(255,255,255,.55);
-  border: 1px solid rgba(212,184,112,.5);
+  border: 1px solid rgba(74,138,88,.3);
   border-radius: 8px;
   padding: 10px 12px;
   display: flex; gap: 10px; align-items: flex-start;
 }
 .info-chip-icon  { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
-.info-chip-label { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: .12em; color: #9a7a3a; text-transform: uppercase; margin-bottom: 2px; }
-.info-chip-value { font-family: 'Poppins', 'Noto Sans TC', sans-serif; font-size: 12px; color: #2c1e08; font-weight: 600; line-height: 1.4; }
+.info-chip-label { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: .12em; color: #6a8870; text-transform: uppercase; margin-bottom: 2px; }
+.info-chip-value { font-family: 'Poppins', 'Noto Sans TC', sans-serif; font-size: 12px; color: #162a1e; font-weight: 600; line-height: 1.4; }
 
 /* ── Transition ── */
 .modal-enter-active, .modal-leave-active { transition: opacity .2s, transform .2s; }

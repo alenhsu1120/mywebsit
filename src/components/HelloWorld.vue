@@ -22,11 +22,11 @@ defineProps<{ msg: string }>()
   font-weight: 400;
   font-size: clamp(2rem, 6vw, 3.4rem);
   letter-spacing: 0.1em;
-  color: #2a1e08;
+  color: var(--green-deep);
   text-shadow:
     0 1px 0 rgba(255,255,255,0.9),
-    0 2px 8px rgba(255,255,255,0.6),
-    0 4px 20px rgba(201,162,39,0.2);
+    0 2px 8px rgba(255,255,255,0.5),
+    0 4px 20px rgba(74,138,88,0.15);
   animation: title-reveal 1s cubic-bezier(0.16, 1, 0.3, 1) both;
   text-align: center;
 }
@@ -35,7 +35,7 @@ defineProps<{ msg: string }>()
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-style: italic;
   font-size: clamp(0.85rem, 2vw, 1.05rem);
-  color: #5a4020;
+  color: var(--text-soft);
   letter-spacing: 0.1em;
   animation: title-reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
   text-align: center;

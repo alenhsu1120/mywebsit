@@ -17,10 +17,10 @@
         <div class="menu-icon">
           <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             <!-- Graduation cap -->
-            <polygon points="20,8 36,16 20,24 4,16" fill="rgba(180,130,50,.25)" stroke="#8b6914" stroke-width="1.4" stroke-linejoin="round"/>
-            <path d="M36,16 L36,26" stroke="#8b6914" stroke-width="1.4" stroke-linecap="round"/>
-            <path d="M10,19 L10,28 Q20,33 30,28 L30,19" fill="rgba(180,130,50,.2)" stroke="#8b6914" stroke-width="1.4" stroke-linejoin="round"/>
-            <circle cx="36" cy="27" r="2" fill="#c9a227"/>
+            <polygon points="20,8 36,16 20,24 4,16" fill="rgba(74,138,88,.25)" stroke="#4a8a58" stroke-width="1.4" stroke-linejoin="round"/>
+            <path d="M36,16 L36,26" stroke="#4a8a58" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M10,19 L10,28 Q20,33 30,28 L30,19" fill="rgba(74,138,88,.2)" stroke="#4a8a58" stroke-width="1.4" stroke-linejoin="round"/>
+            <circle cx="36" cy="27" r="2" fill="#4a8a58"/>
           </svg>
         </div>
         <div class="menu-text">
@@ -68,7 +68,7 @@ import { RouterLink } from 'vue-router'
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-size: .75rem;
   letter-spacing: .15em;
-  color: #6a5030;
+  color: #3d5440;
   text-decoration: none;
   padding: .3rem 0;
   margin-bottom: 1.4rem;
@@ -76,7 +76,7 @@ import { RouterLink } from 'vue-router'
   transition: opacity .2s, color .2s;
   text-shadow: 0 1px 3px rgba(255,255,255,.7);
 }
-.back-link:hover { opacity: 1; color: #3d2810; }
+.back-link:hover { opacity: 1; color: #1b3a28; }
 
 /* Title */
 .page-title {
@@ -85,7 +85,7 @@ import { RouterLink } from 'vue-router'
 .page-title h2 {
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-size: clamp(1.4rem, 4vw, 2rem);
-  color: #2c1e08;
+  color: #162a1e;
   text-shadow: 0 1px 0 rgba(255,255,255,.9), 0 2px 10px rgba(255,255,255,.5);
   margin-bottom: .35rem;
 }
@@ -93,7 +93,7 @@ import { RouterLink } from 'vue-router'
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-style: italic;
   font-size: .95rem;
-  color: #7a5c30;
+  color: #6a8870;
   text-shadow: 0 1px 3px rgba(255,255,255,.7);
 }
 
@@ -110,19 +110,19 @@ import { RouterLink } from 'vue-router'
   align-items: center;
   gap: 1.1rem;
   padding: 1.2rem 1.5rem;
-  background: linear-gradient(145deg, #faf5e8 0%, #f2ead4 100%);
-  border: 1.5px solid #d4b870;
-  border-radius: 2px;
+  background: linear-gradient(145deg, #ffffff 0%, #f6fbf6 100%);
+  border: 1.5px solid #b8d8be;
+  border-radius: 14px;
   text-decoration: none;
   color: inherit;
-  box-shadow: 0 3px 12px rgba(100,70,20,.12), inset 0 1px 0 rgba(255,255,255,.8);
+  box-shadow: 0 2px 12px rgba(27,58,40,0.08), 0 1px 3px rgba(27,58,40,0.04);
   transition: transform .25s, box-shadow .25s, border-color .25s;
   cursor: pointer;
 }
 .menu-card:not(.is-coming):hover {
   transform: translateX(5px);
-  border-color: #c9a227;
-  box-shadow: 0 6px 20px rgba(100,70,20,.18), inset 0 1px 0 rgba(255,255,255,.9);
+  border-color: #4a8a58;
+  box-shadow: 0 6px 24px rgba(27,58,40,0.13), 0 2px 6px rgba(27,58,40,0.07);
 }
 
 .is-coming {
@@ -135,17 +135,17 @@ import { RouterLink } from 'vue-router'
   flex-shrink: 0;
   width: 44px; height: 44px;
   border-radius: 50%;
-  border: 1.5px solid #d4b870;
+  border: 1.5px solid #b8d8be;
   background: radial-gradient(circle at 38% 32%,
-    rgba(255,240,180,.55) 0%, rgba(230,210,150,.35) 60%, rgba(200,175,110,.15) 100%);
+    rgba(74,138,88,.18) 0%, rgba(74,138,88,.10) 60%, rgba(74,138,88,.05) 100%);
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 2px 6px rgba(120,80,20,.12), inset 0 1px 2px rgba(255,255,255,.6);
+  box-shadow: 0 2px 6px rgba(27,58,40,.12), inset 0 1px 2px rgba(255,255,255,.6);
   transition: border-color .25s, box-shadow .25s;
 }
 .menu-icon svg { width: 24px; height: 24px; }
 .menu-card:not(.is-coming):hover .menu-icon {
-  border-color: #c9a227;
-  box-shadow: 0 2px 12px rgba(180,140,40,.3), inset 0 1px 2px rgba(255,255,255,.7);
+  border-color: #4a8a58;
+  box-shadow: 0 2px 12px rgba(74,138,88,.3), inset 0 1px 2px rgba(255,255,255,.7);
 }
 
 /* Text */
@@ -158,20 +158,20 @@ import { RouterLink } from 'vue-router'
   font-size: .95rem;
   font-weight: 400;
   letter-spacing: .06em;
-  color: #2c1e08;
+  color: #162a1e;
   transition: color .25s;
 }
-.menu-card:not(.is-coming):hover .menu-label { color: #9a7a1e; }
+.menu-card:not(.is-coming):hover .menu-label { color: #2d6040; }
 .menu-desc {
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-size: .88rem;
-  color: #7a5c30;
+  color: #6a8870;
 }
 
 /* Arrow */
 .menu-arrow {
   font-size: 1.4rem;
-  color: #b89840;
+  color: #4a8a58;
   transition: transform .25s;
   line-height: 1;
 }

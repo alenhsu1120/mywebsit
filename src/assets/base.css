@@ -1,58 +1,58 @@
 /* ═══════════════════════════════════════════════════════
-   HYRULE COAST — BotW Soft Seaside Palette
+   NATURE — Organic Green Palette
    ═══════════════════════════════════════════════════════ */
 
 :root {
-  /* ── Washed-out Sky ── */
-  --sky-zenith:    #b8d8ee;
-  --sky-mid:       #cfe8f4;
-  --sky-pale:      #e4f2f8;
-  --sky-horizon:   #f5f0e0;
-  --sky-sun-area:  #fff8d8;
+  /* ── Green Scale ── */
+  --green-deep:    #1b3a28;
+  --green-forest:  #2d6040;
+  --green-mid:     #4a8a58;
+  --green-sage:    #7aaa82;
+  --green-light:   #b8d8be;
+  --green-pale:    #d8eddc;
+  --green-frost:   #eef4ec;
 
-  /* ── Sun Haze ── */
-  --sun-core:      #fffce0;
-  --sun-warm:      #ffe88a;
-  --sun-glow:      rgba(255, 230, 100, 0.5);
-  --sun-horizon-glow: rgba(255, 248, 200, 0.8);
+  /* ── Backgrounds ── */
+  --bg-page:       #edf2e9;
+  --bg-card:       #ffffff;
+  --bg-card-soft:  #f6fbf6;
+  --bg-tint:       #e4f0e6;
 
-  /* ── Ocean / Sea ── */
-  --ocean-far:     #9acfcc;
-  --ocean-mid:     #7ab8b4;
-  --ocean-near:    #6aaaa6;
-  --ocean-shimmer: rgba(180, 230, 226, 0.4);
+  /* ── Text ── */
+  --text-dark:     #162a1e;
+  --text-mid:      #3d5440;
+  --text-soft:     #6a8870;
+  --text-faint:    #9ab89e;
 
-  /* ── Distant Land (muted, hazy) ── */
-  --land-far:      rgba(100, 148, 160, 0.35);
-  --land-mid:      rgba(80, 130, 100, 0.45);
+  /* ── Borders ── */
+  --border-base:   #b8d8be;
+  --border-soft:   rgba(74,138,88,0.15);
+  --border-mid:    #8abf94;
 
-  /* ── Vivid Grass ── */
-  --grass-vivid:   #72d030;
-  --grass-bright:  #5aba1e;
-  --grass-mid:     #4a9a18;
-  --grass-deep:    #3a7a10;
-  --grass-shadow:  #2a5c0c;
+  /* ── Shadows ── */
+  --shadow-card:   0 2px 12px rgba(27,58,40,0.08), 0 1px 3px rgba(27,58,40,0.04);
+  --shadow-hover:  0 6px 24px rgba(27,58,40,0.13), 0 2px 6px rgba(27,58,40,0.07);
 
-  /* ── Parchment / Warm (cards) ── */
-  --parchment:       #f8f4e8;
-  --parchment-warm:  #f0ead4;
-  --parchment-line:  rgba(160, 130, 60, 0.12);
-  --ink-dark:        #2c1e08;
-  --ink-mid:         #4a3418;
-  --ink-soft:        #7a5c30;
+  /* ── Semantic (kept for compatibility) ── */
+  --color-background:      var(--bg-page);
+  --color-background-soft: var(--bg-card-soft);
+  --color-border:          var(--border-base);
+  --color-heading:         var(--green-deep);
+  --color-text:            var(--text-mid);
 
-  /* ── Gold ── */
-  --gold:        #c9a227;
-  --gold-bright: #f0d060;
-  --gold-dim:    #9a7a1e;
-  --gold-glow:   rgba(201, 162, 39, 0.35);
+  /* legacy aliases used in scoped styles */
+  --gold:          var(--green-mid);
+  --gold-bright:   var(--green-sage);
+  --gold-dim:      var(--green-forest);
+  --gold-glow:     rgba(74,138,88,0.30);
+  --parchment:     var(--bg-card);
+  --parchment-warm:var(--bg-card-soft);
+  --parchment-line:rgba(74,138,88,0.10);
+  --parchment-shadow: var(--border-base);
+  --ink-dark:      var(--text-dark);
+  --ink-mid:       var(--text-mid);
+  --ink-soft:      var(--text-soft);
 
-  /* ── Semantic ── */
-  --color-background:      var(--sky-zenith);
-  --color-background-soft: var(--parchment);
-  --color-border:          var(--gold-dim);
-  --color-heading:         var(--ink-dark);
-  --color-text:            var(--ink-mid);
   --section-gap: 120px;
 }
 
@@ -67,8 +67,8 @@
 
 body {
   min-height: 100vh;
-  color: var(--ink-mid);
-  background: var(--sky-zenith);
+  color: var(--text-mid);
+  background: var(--bg-page);
   line-height: 1.7;
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
   font-size: 16px;
@@ -78,5 +78,5 @@ body {
   overflow-x: hidden;
 }
 
-a { text-decoration: none; color: var(--gold-dim); transition: color 0.3s; }
-a:hover { color: var(--gold); }
+a { text-decoration: none; color: var(--green-forest); transition: color 0.3s; }
+a:hover { color: var(--green-mid); }

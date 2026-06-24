@@ -3,7 +3,7 @@
 body   { margin: 0; min-height: 100vh; }
 #app   { width: 100%; margin: 0; padding: 0; }
 
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #2e7008; }
-::-webkit-scrollbar-thumb { background: #9a7a1e; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #c9a227; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--green-pale); }
+::-webkit-scrollbar-thumb { background: var(--green-mid); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--green-forest); }
