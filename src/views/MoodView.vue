@@ -11,6 +11,7 @@
     <!-- Firebase 連線狀態（常駐） -->
     <div class="db-status" :class="dbReady ? 'db-ok' : 'db-err'">
       {{ dbReady ? '🔥 Firebase 已連線，資料會同步到所有裝置' : '⚠️ Firebase 未連線，資料只存在本機' }}
+      <span v-if="dbInitError"> — 錯誤：{{ dbInitError }}</span>
     </div>
 
     <!-- 同步狀態（儲存後顯示，不會自動消失） -->
@@ -151,12 +152,32 @@
 <script setup lang="ts">
 import { ref, onMounted, defineComponent, h } from 'vue'
 import { RouterLink } from 'vue-router'
-import { db } from '@/firebase'
+import { initializeApp, getApps, getApp } from 'firebase/app'
 import {
-  doc, setDoc, getDoc,
+  getFirestore, doc, setDoc, getDoc,
   collection, addDoc, getDocs, deleteDoc,
-  query, orderBy,
+  query, orderBy, type Firestore,
 } from 'firebase/firestore'
+
+/* 直接在此初始化 Firebase，完全繞過 firebase.ts */
+const FB_CONFIG = {
+  apiKey:            'AIzaSyAANtAQvggzSNPgwby2Jb3C1oXecc4zoNk',
+  authDomain:        'hsuwebsite-635ac.firebaseapp.com',
+  projectId:         'hsuwebsite-635ac',
+  storageBucket:     'hsuwebsite-635ac.firebasestorage.app',
+  messagingSenderId: '1027611122875',
+  appId:             '1:1027611122875:web:a34ae692170c4c78061d9e',
+}
+
+let db: Firestore | null = null
+let initError = ''
+try {
+  const app = getApps().length === 0 ? initializeApp(FB_CONFIG) : getApp()
+  db = getFirestore(app)
+} catch (e: any) {
+  initError = e?.message ?? String(e)
+  console.error('[MoodView] Firebase init error:', e)
+}
 
 /* ── SliderRow inline component ── */
 const SliderRow = defineComponent({
@@ -228,6 +249,7 @@ const xubaoSaved = ref('')
 const azaiSaved  = ref('')
 const syncStatus = ref<{ type: 'ok' | 'err'; msg: string } | null>(null)
 const dbReady    = ref(!!db)
+const dbInitError = initError
 
 function showSync(type: 'ok' | 'err', msg: string) {
   syncStatus.value = { type, msg }
