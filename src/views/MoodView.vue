@@ -8,8 +8,16 @@
       <p class="mood-sub">記錄每一天的心情色彩</p>
     </div>
 
-    <!-- 同步狀態 -->
-    <div v-if="syncStatus" class="sync-banner" :class="syncStatus.type">{{ syncStatus.msg }}</div>
+    <!-- Firebase 連線狀態（常駐） -->
+    <div class="db-status" :class="dbReady ? 'db-ok' : 'db-err'">
+      {{ dbReady ? '🔥 Firebase 已連線，資料會同步到所有裝置' : '⚠️ Firebase 未連線，資料只存在本機' }}
+    </div>
+
+    <!-- 同步狀態（儲存後顯示，不會自動消失） -->
+    <div v-if="syncStatus" class="sync-banner" :class="syncStatus.type">
+      {{ syncStatus.msg }}
+      <button class="sync-close" @click="syncStatus = null">✕</button>
+    </div>
 
     <!-- ══ 雙人心情板 ══ -->
     <div class="duo-grid">
@@ -219,12 +227,10 @@ const azai       = ref<DuoState>({ anger: 1, love: 10, mood: 8 })
 const xubaoSaved = ref('')
 const azaiSaved  = ref('')
 const syncStatus = ref<{ type: 'ok' | 'err'; msg: string } | null>(null)
+const dbReady    = ref(!!db)
 
-let syncTimer: ReturnType<typeof setTimeout> | null = null
 function showSync(type: 'ok' | 'err', msg: string) {
   syncStatus.value = { type, msg }
-  if (syncTimer) clearTimeout(syncTimer)
-  syncTimer = setTimeout(() => { syncStatus.value = null }, 4000)
 }
 
 const moods: MoodDef[] = [
@@ -356,8 +362,23 @@ async function deleteEntry(id: string) {
   gap: 1.6rem;
 }
 
+/* DB status */
+.db-status {
+  padding: .5rem 1rem;
+  border-radius: 2px;
+  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
+  font-size: .75rem;
+  text-align: center;
+}
+.db-ok  { background: rgba(60,160,60,.12); border: 1.5px solid #5da038; color: #2a5a10; }
+.db-err { background: rgba(180,60,60,.10); border: 1.5px solid #c07070; color: #7a2020; }
+
 /* Sync banner */
 .sync-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: .5rem;
   padding: .6rem 1rem;
   border-radius: 2px;
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
@@ -367,6 +388,8 @@ async function deleteEntry(id: string) {
 }
 .sync-banner.ok  { background: rgba(60,160,60,.12); border: 1.5px solid #5da038; color: #2a5a10; }
 .sync-banner.err { background: rgba(180,60,60,.10); border: 1.5px solid #c07070; color: #7a2020; }
+.sync-close { background: none; border: none; cursor: pointer; font-size: .75rem; opacity: .6; color: inherit; padding: 0 .2rem; }
+.sync-close:hover { opacity: 1; }
 @keyframes fadeIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
 
 /* Back link */
