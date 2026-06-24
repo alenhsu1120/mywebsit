@@ -190,7 +190,7 @@ const SliderRow = defineComponent({
   emits: ['update:modelValue'],
   setup(props, { emit }) {
     return () => {
-      const pct = ((props.modelValue - 1) / 9) * 100
+      const pct = (props.modelValue / 10) * 100
       return h('div', { class: 'slider-row' }, [
         h('div', { class: 'slider-top' }, [
           h('span', { class: 'slider-label' }, props.label),
@@ -199,14 +199,14 @@ const SliderRow = defineComponent({
         ]),
         h('div', { class: 'slider-track-wrap' }, [
           h('input', {
-            type: 'range', min: 1, max: 10, step: 1,
+            type: 'range', min: 0, max: 10, step: 1,
             value: props.modelValue,
             style: { '--pct': pct + '%', '--col': props.trackColor },
             class: 'slider-input',
             onInput: (e: Event) => emit('update:modelValue', Number((e.target as HTMLInputElement).value)),
           }),
           h('div', { class: 'slider-dots' },
-            Array.from({ length: 10 }, (_, i) =>
+            Array.from({ length: 11 }, (_, i) =>
               h('span', {
                 class: ['dot', i < props.modelValue ? 'dot-on' : ''],
                 style: i < props.modelValue ? { background: props.trackColor } : {},
@@ -243,8 +243,8 @@ function moodColor(v: number) {
 }
 
 /* ── State ── */
-const xubao      = ref<DuoState>({ anger: 1, love: 10, mood: 8 })
-const azai       = ref<DuoState>({ anger: 1, love: 10, mood: 8 })
+const xubao      = ref<DuoState>({ anger: 0, love: 10, mood: 8 })
+const azai       = ref<DuoState>({ anger: 0, love: 10, mood: 8 })
 const xubaoSaved = ref('')
 const azaiSaved  = ref('')
 const syncStatus  = ref<{ type: 'ok' | 'err'; msg: string } | null>(null)
