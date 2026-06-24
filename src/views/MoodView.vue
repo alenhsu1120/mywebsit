@@ -10,8 +10,8 @@
 
     <!-- Firebase 連線狀態（常駐） -->
     <div class="db-status" :class="dbReady ? 'db-ok' : 'db-err'">
-      {{ dbReady ? '🔥 Firebase 已連線，資料會同步到所有裝置' : '⚠️ Firebase 未連線，資料只存在本機' }}
-      <span v-if="dbInitError"> — 錯誤：{{ dbInitError }}</span>
+      {{ dbReady ? '🔥 Firebase 已連線' : '⚠️ Firebase 未連線' }}
+      — db={{ dbDebug }}<span v-if="dbInitError">，錯誤：{{ dbInitError }}</span>
     </div>
 
     <!-- 同步狀態（儲存後顯示，不會自動消失） -->
@@ -247,9 +247,10 @@ const xubao      = ref<DuoState>({ anger: 1, love: 10, mood: 8 })
 const azai       = ref<DuoState>({ anger: 1, love: 10, mood: 8 })
 const xubaoSaved = ref('')
 const azaiSaved  = ref('')
-const syncStatus = ref<{ type: 'ok' | 'err'; msg: string } | null>(null)
-const dbReady    = ref(!!db)
+const syncStatus  = ref<{ type: 'ok' | 'err'; msg: string } | null>(null)
+const dbReady     = ref(!!db)
 const dbInitError = initError
+const dbDebug     = db === null ? 'null' : db === undefined ? 'undefined' : typeof db
 
 function showSync(type: 'ok' | 'err', msg: string) {
   syncStatus.value = { type, msg }
