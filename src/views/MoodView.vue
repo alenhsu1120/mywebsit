@@ -1,6 +1,8 @@
 <template>
   <div class="mood-wrap">
 
+    <RouterLink to="/" class="back-link">‹ 返回</RouterLink>
+
     <div class="mood-header">
       <h2 class="mood-title">心情日記</h2>
       <p class="mood-sub">記錄每一天的心情色彩</p>
@@ -137,6 +139,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, defineComponent, h } from 'vue'
+import { RouterLink } from 'vue-router'
 import { db } from '@/firebase'
 import {
   doc, setDoc, getDoc,
@@ -331,6 +334,22 @@ async function deleteEntry(id: string) {
   flex-direction: column;
   gap: 1.6rem;
 }
+
+/* Back link */
+.back-link {
+  display: inline-block;
+  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
+  font-size: .75rem;
+  letter-spacing: .15em;
+  color: #6a5030;
+  text-decoration: none;
+  padding: .3rem 0;
+  margin-bottom: 1.4rem;
+  opacity: .75;
+  transition: opacity .2s, color .2s;
+  text-shadow: 0 1px 3px rgba(255,255,255,.7);
+}
+.back-link:hover { opacity: 1; color: #3d2810; }
 
 /* Header */
 .mood-header { text-align: center; }

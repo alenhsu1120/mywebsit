@@ -77,6 +77,9 @@
       </div>
     </div>
 
+    <!-- Firestore 錯誤提示 -->
+    <div v-if="firestoreError" class="error-banner">{{ firestoreError }}</div>
+
     <!-- 載入中 -->
     <div v-if="loadingEntries" class="center-screen">
       <span class="spin-rune">✦</span>
@@ -211,12 +214,14 @@ function lockOut() {
 // ── Firestore（公開讀寫） ───────────────────────────
 const entries        = ref<JournalEntry[]>([])
 const loadingEntries = ref(true)
+const firestoreError = ref('')
 let   unsub: (() => void) | null = null
 
 onMounted(() => {
   if (!db) { loadingEntries.value = false; return }
   const q = query(collection(db, COL), orderBy('createdAt', 'desc'))
   unsub = onSnapshot(q, (snap) => {
+    firestoreError.value = ''
     entries.value = snap.docs.map(d => ({
       id:        d.id,
       date:      d.data().date      as string,
@@ -227,6 +232,12 @@ onMounted(() => {
     entries.value.sort((a, b) =>
       b.date !== a.date ? b.date.localeCompare(a.date) : b.createdAt - a.createdAt
     )
+    loadingEntries.value = false
+  }, (err) => {
+    console.error('Firestore error:', err)
+    firestoreError.value = err.code === 'permission-denied'
+      ? '⚠️ Firestore 規則封鎖讀取，請到 Firebase Console 更新安全規則。'
+      : `⚠️ 載入失敗：${err.message}`
     loadingEntries.value = false
   })
 })
@@ -402,6 +413,19 @@ function fmtTs(ts: number) {
 }
 .enter-btn:hover:not(:disabled) { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 #8a6e10; }
 .enter-btn:disabled { opacity: .5; cursor: default; box-shadow: none; }
+
+/* ── Error banner ── */
+.error-banner {
+  background: rgba(180,60,60,.1);
+  border: 1.5px solid #c07070;
+  border-radius: 2px;
+  padding: .8rem 1rem;
+  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
+  font-size: .82rem;
+  color: #7a2020;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
 
 /* ── Loading ── */
 .center-screen {
