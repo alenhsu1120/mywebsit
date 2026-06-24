@@ -8,6 +8,9 @@
       <p class="mood-sub">記錄每一天的心情色彩</p>
     </div>
 
+    <!-- 同步狀態 -->
+    <div v-if="syncStatus" class="sync-banner" :class="syncStatus.type">{{ syncStatus.msg }}</div>
+
     <!-- ══ 雙人心情板 ══ -->
     <div class="duo-grid">
 
@@ -215,6 +218,14 @@ const xubao      = ref<DuoState>({ anger: 1, love: 10, mood: 8 })
 const azai       = ref<DuoState>({ anger: 1, love: 10, mood: 8 })
 const xubaoSaved = ref('')
 const azaiSaved  = ref('')
+const syncStatus = ref<{ type: 'ok' | 'err'; msg: string } | null>(null)
+
+let syncTimer: ReturnType<typeof setTimeout> | null = null
+function showSync(type: 'ok' | 'err', msg: string) {
+  syncStatus.value = { type, msg }
+  if (syncTimer) clearTimeout(syncTimer)
+  syncTimer = setTimeout(() => { syncStatus.value = null }, 4000)
+}
 
 const moods: MoodDef[] = [
   { key: 'happy',   emoji: '😊', label: '開心', color: '#f5c842' },
@@ -276,9 +287,16 @@ onMounted(async () => {
 async function saveDuoField(field: 'xubao' | 'azai', state: DuoState): Promise<number> {
   const ts = Date.now()
   if (db) {
-    await setDoc(doc(db, 'mood', 'duo'), { [field]: { ...state, ts } }, { merge: true })
+    try {
+      await setDoc(doc(db, 'mood', 'duo'), { [field]: { ...state, ts } }, { merge: true })
+      showSync('ok', '✓ 已同步至雲端，所有裝置都能看到')
+    } catch (e: any) {
+      showSync('err', `⚠️ 雲端儲存失敗：${e?.code ?? e?.message ?? e}`)
+      localStorage.setItem(`duo-${field}`, JSON.stringify({ ...state, ts }))
+    }
   } else {
     localStorage.setItem(`duo-${field}`, JSON.stringify({ ...state, ts }))
+    showSync('err', '⚠️ Firebase 未連線，僅儲存於本機')
   }
   return ts
 }
@@ -299,16 +317,19 @@ async function saveMood() {
   const payload = { mood: selected.value, note: note.value.trim(), ts: Date.now() }
   try {
     if (db) {
-      const ref = await addDoc(collection(db, 'moodEntries'), payload)
-      entries.value.unshift({ id: ref.id, ...payload })
+      const docRef = await addDoc(collection(db, 'moodEntries'), payload)
+      entries.value.unshift({ id: docRef.id, ...payload })
+      showSync('ok', '✓ 已同步至雲端，所有裝置都能看到')
     } else {
       const entry: Entry = { id: String(payload.ts), ...payload }
       entries.value.unshift(entry)
       localStorage.setItem('mood-entries', JSON.stringify(entries.value))
+      showSync('err', '⚠️ Firebase 未連線，僅儲存於本機')
     }
     selected.value = ''
     note.value = ''
-  } catch (e) {
+  } catch (e: any) {
+    showSync('err', `⚠️ 雲端儲存失敗：${e?.code ?? e?.message ?? e}`)
     console.error('Save error', e)
   }
   saving.value = false
@@ -334,6 +355,19 @@ async function deleteEntry(id: string) {
   flex-direction: column;
   gap: 1.6rem;
 }
+
+/* Sync banner */
+.sync-banner {
+  padding: .6rem 1rem;
+  border-radius: 2px;
+  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
+  font-size: .78rem;
+  line-height: 1.5;
+  animation: fadeIn .3s ease;
+}
+.sync-banner.ok  { background: rgba(60,160,60,.12); border: 1.5px solid #5da038; color: #2a5a10; }
+.sync-banner.err { background: rgba(180,60,60,.10); border: 1.5px solid #c07070; color: #7a2020; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
 
 /* Back link */
 .back-link {
