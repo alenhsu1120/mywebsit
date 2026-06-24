@@ -117,7 +117,28 @@
         </WelcomeItem>
       </RouterLink>
 
-      <!-- ④ Psychology Articles -->
+      <!-- ④ Mood -->
+      <RouterLink to="/mood" class="card-link">
+        <WelcomeItem :clickable="true">
+          <template #icon>
+            <svg class="card-icon-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="16" cy="16" r="11" fill="rgba(245,200,66,.18)" stroke="#c9a227" stroke-width="1.4"/>
+              <circle cx="12" cy="14" r="1.5" fill="#8b6914"/>
+              <circle cx="20" cy="14" r="1.5" fill="#8b6914"/>
+              <path d="M11 19 Q16 24 21 19" stroke="#8b6914" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+              <path d="M22 5 Q27 3 26 9" stroke="#c9a227" stroke-width="1" fill="none" opacity=".6" stroke-linecap="round"/>
+              <circle cx="26.5" cy="4" r="1.2" fill="#c9a227" opacity=".8"/>
+            </svg>
+          </template>
+          <template #heading>
+            Mood Diary
+            <span class="arrow">›</span>
+          </template>
+          <p>心情紀錄，留下每天的色彩印記。</p>
+        </WelcomeItem>
+      </RouterLink>
+
+      <!-- ⑤ Psychology Articles -->
       <WelcomeItem>
         <template #icon>
           <svg class="card-icon-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -183,6 +204,8 @@ import WelcomeItem from './WelcomeItem.vue'
 .field-grid > :nth-child(2) { animation-delay:.18s; }
 .field-grid > :nth-child(3) { animation-delay:.28s; }
 .field-grid > :nth-child(4) { animation-delay:.38s; }
+.field-grid > :nth-child(5) { animation-delay:.48s; }
+.field-grid > :nth-child(6) { animation-delay:.58s; }
 
 /* Router link wrapper — remove default link styling */
 .card-link {

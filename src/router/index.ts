@@ -5,6 +5,7 @@ import ProgrammingView from '@/views/ProgrammingView.vue'
 import ResearchView    from '@/views/ResearchView.vue'
 import JournalView     from '@/views/JournalView.vue'
 import TravelView      from '@/views/TravelView.vue'
+import MoodView        from '@/views/MoodView.vue'
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -13,6 +14,7 @@ const router = createRouter({
     { path: '/about',                  component: AboutView       },
     { path: '/journal',                component: JournalView     },
     { path: '/travel',                 component: TravelView      },
+    { path: '/mood',                   component: MoodView        },
     { path: '/programming',            component: ProgrammingView },
     { path: '/programming/research',   component: ResearchView    },
   ],
