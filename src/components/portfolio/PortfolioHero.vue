@@ -36,12 +36,19 @@
 
         <figure class="frame">
           <div class="frame-plate">
-            <div class="frame-grain" />
-            <div class="frame-lines">
-              <span v-for="n in 5" :key="n" />
-            </div>
+            <img
+              src="https://images.unsplash.com/photo-1591382696448-3809bb398c0e?q=80&w=1000&auto=format&fit=crop"
+              srcset="https://images.unsplash.com/photo-1591382696448-3809bb398c0e?q=80&w=700&auto=format&fit=crop 700w,
+                      https://images.unsplash.com/photo-1591382696448-3809bb398c0e?q=80&w=1000&auto=format&fit=crop 1000w"
+              sizes="(max-width: 900px) 80vw, 460px"
+              alt="A calm wood desk with an open laptop, a potted plant, and a stack of notebooks by a sunlit window"
+              loading="lazy"
+            />
           </div>
-          <figcaption>— a quiet corner for building things —</figcaption>
+          <figcaption>
+            <span class="cap-line">— a quiet corner for building things —</span>
+            <span class="cap-credit">Photo — Mikey Harris / Unsplash</span>
+          </figcaption>
         </figure>
       </div>
 
@@ -179,45 +186,45 @@ function scrollTo(id: string) {
 
 .frame {
   position: relative;
-  width: 78%;
-  max-width: 340px;
+  width: 92%;
+  max-width: 460px;
   z-index: 2;
 }
 .frame-plate {
   position: relative;
-  aspect-ratio: 4/5;
-  border-radius: 6px;
-  background: linear-gradient(150deg, #EAE6DA 0%, #DCE3D2 55%, #C9D6C2 100%);
+  aspect-ratio: 3/2;
+  border-radius: 18px;
   border: 1px solid rgba(255,255,255,.6);
   box-shadow: 0 26px 60px rgba(36,49,38,0.16), 0 6px 18px rgba(36,49,38,0.08);
   overflow: hidden;
 }
-.frame-grain {
-  position: absolute; inset: 0;
-  opacity: .35;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-  mix-blend-mode: multiply;
+.frame-plate img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
-.frame-lines {
-  position: absolute;
-  bottom: 14%; left: 12%; right: 12%;
-  display: flex; flex-direction: column; gap: .55rem;
-}
-.frame-lines span { display: block; height: 1px; background: rgba(36,49,38,.22); }
-.frame-lines span:nth-child(1) { width: 70%; }
-.frame-lines span:nth-child(2) { width: 92%; }
-.frame-lines span:nth-child(3) { width: 55%; }
-.frame-lines span:nth-child(4) { width: 80%; }
-.frame-lines span:nth-child(5) { width: 40%; }
 
 .frame figcaption {
   margin-top: 1rem;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .3rem;
+}
+.cap-line {
   font-family: var(--mg-font-heading);
   font-style: italic;
   font-size: .92rem;
   color: var(--mg-text-muted);
   letter-spacing: .01em;
+}
+.cap-credit {
+  font-family: var(--mg-font-body);
+  font-size: .66rem;
+  letter-spacing: .04em;
+  color: var(--mg-text-muted);
+  opacity: .7;
 }
 
 @keyframes rise {

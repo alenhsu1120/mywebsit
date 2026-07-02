@@ -11,6 +11,21 @@
           data pipelines, I care about systems that stay dependable when it matters most,
           built with the same patience quant work demands.
         </p>
+
+        <figure class="side-photo">
+          <svg class="side-blob" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M100 12C142 6 182 40 188 88C194 136 166 182 118 190C70 198 22 172 12 124C2 76 24 34 62 20C74 15 88 14 100 12Z" fill="#DCE7D5"/>
+          </svg>
+          <img
+            src="https://images.unsplash.com/photo-1637689113621-73951984fcc1?q=80&w=560&auto=format&fit=crop"
+            srcset="https://images.unsplash.com/photo-1637689113621-73951984fcc1?q=80&w=400&auto=format&fit=crop 400w,
+                    https://images.unsplash.com/photo-1637689113621-73951984fcc1?q=80&w=560&auto=format&fit=crop 560w"
+            sizes="(max-width: 860px) 60vw, 220px"
+            alt="A leather notebook, pen, and cup of coffee on a wooden table lit by window blinds"
+            loading="lazy"
+          />
+          <figcaption>Photo — Andres Molina / Unsplash</figcaption>
+        </figure>
       </div>
 
       <div class="about-right">
@@ -106,6 +121,40 @@ const cards = [
   line-height: 1.85;
   color: var(--mg-text-body);
   max-width: 380px;
+}
+
+.side-photo {
+  position: relative;
+  width: 220px;
+  margin-top: 3rem;
+}
+.side-blob {
+  position: absolute;
+  width: 145%;
+  top: 50%; left: 50%;
+  transform: translate(-52%,-46%);
+  z-index: 0;
+}
+.side-photo img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.7);
+  box-shadow: 0 20px 44px rgba(36,49,38,0.15), 0 4px 14px rgba(36,49,38,0.07);
+}
+.side-photo figcaption {
+  position: relative;
+  z-index: 1;
+  margin-top: .6rem;
+  font-family: var(--mg-font-body);
+  font-size: .66rem;
+  letter-spacing: .04em;
+  color: var(--mg-text-muted);
+  opacity: .7;
 }
 
 .about-right {
