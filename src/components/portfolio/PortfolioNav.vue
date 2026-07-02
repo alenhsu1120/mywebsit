@@ -17,6 +17,7 @@
           :href="item.href"
           @click.prevent="scrollTo(item.href.slice(1))"
         >{{ item.label }}</a>
+        <RouterLink to="/private">Private</RouterLink>
       </nav>
 
       <button class="nav-toggle" :class="{ open: mobileOpen }" @click="mobileOpen = !mobileOpen" aria-label="Toggle menu">
@@ -32,6 +33,7 @@
           :href="item.href"
           @click.prevent="scrollTo(item.href.slice(1)); mobileOpen = false"
         >{{ item.label }}</a>
+        <RouterLink to="/private" @click="mobileOpen = false">Private</RouterLink>
       </nav>
     </transition>
   </header>
@@ -39,6 +41,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import { RouterLink } from 'vue-router'
 
 const links = [
   { label: 'About',      href: '#about' },

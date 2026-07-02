@@ -7,12 +7,14 @@ import JournalView       from '@/views/JournalView.vue'
 import JournalDiaryView  from '@/views/JournalDiaryView.vue'
 import MoodDiaryView     from '@/views/MoodDiaryView.vue'
 import EyesView          from '@/views/EyesView.vue'
+import PrivateView       from '@/views/PrivateView.vue'
 import TravelView        from '@/views/TravelView.vue'
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
     { path: '/',                       component: HomeView,        meta: { bare: true } },
+    { path: '/private',                component: PrivateView,     meta: { bare: true } },
     { path: '/about',                  component: AboutView       },
     { path: '/journal',                component: JournalView     },
     { path: '/journal/entries',        component: JournalDiaryView },
