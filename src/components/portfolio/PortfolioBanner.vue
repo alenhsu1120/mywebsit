@@ -20,7 +20,7 @@
 .banner {
   position: relative;
   width: 100%;
-  height: clamp(380px, 58vw, 640px);
+  aspect-ratio: 2000 / 1287;
   overflow: hidden;
 }
 .banner img {
@@ -46,7 +46,4 @@
   text-shadow: 0 1px 4px rgba(0,0,0,.35);
 }
 
-@media (max-width: 600px) {
-  .banner { height: 320px; }
-}
 </style>
