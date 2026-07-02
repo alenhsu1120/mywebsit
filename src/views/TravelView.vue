@@ -1,7 +1,7 @@
 <template>
-  <div class="travel-wrap">
-
-    <RouterLink to="/" class="back-link">‹ 返回</RouterLink>
+  <PortfolioPageShell>
+    <PortfolioSubNav back-to="/private" back-label="‹ Private" />
+    <div class="travel-wrap">
 
     <!-- 標籤列 -->
     <div class="tab-bar">
@@ -978,12 +978,14 @@
       </div>
     </Transition>
 
-  </div>
+    </div>
+  </PortfolioPageShell>
 </template>
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import { RouterLink } from 'vue-router'
+import PortfolioPageShell from '@/components/portfolio/PortfolioPageShell.vue'
+import PortfolioSubNav from '@/components/portfolio/PortfolioSubNav.vue'
 
 const tabs = [
   { key: 'nagoya',   label: '名古屋', icon: '🏯' },
@@ -1201,7 +1203,8 @@ const spots: Record<SpotKey, {
 .travel-wrap {
   width: 100%;
   max-width: 720px;
-  padding: 0 2rem 4rem;
+  margin: 0 auto;
+  padding: 3.5rem 2rem 4rem;
   animation: card-rise .5s cubic-bezier(.16,1,.3,1) both;
 }
 
@@ -1218,18 +1221,18 @@ const spots: Record<SpotKey, {
   gap: 6px;
   padding: 7px 18px;
   border-radius: 22px;
-  border: 1.5px solid #b8d8be;
+  border: 1.5px solid var(--mg-border-soft);
   background: rgba(255,255,255,.7);
-  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
+  font-family: var(--mg-font-body);
   font-size: 13px;
   font-weight: 600;
-  color: #3d5440;
+  color: var(--mg-text-body);
   cursor: pointer;
   transition: background .18s, color .18s, border-color .18s, box-shadow .18s;
 }
 .tab-btn:hover {
   background: rgba(74,138,88,.15);
-  border-color: #4a8a58;
+  border-color: var(--mg-green-main);
 }
 .tab-btn.active {
   background: #c0392b;
@@ -1253,7 +1256,7 @@ const spots: Record<SpotKey, {
   gap: 1px;
   padding: 8px 14px;
   border-radius: 10px;
-  border: 1.5px solid #b8d8be;
+  border: 1.5px solid var(--mg-border-soft);
   background: rgba(255,255,255,.7);
   cursor: pointer;
   transition: background .18s, color .18s, border-color .18s, box-shadow .18s;
@@ -1261,7 +1264,7 @@ const spots: Record<SpotKey, {
 }
 .day-tab-btn:hover {
   background: rgba(74,138,88,.15);
-  border-color: #4a8a58;
+  border-color: var(--mg-green-main);
 }
 .day-tab-btn.active {
   background: #c0392b;
@@ -1286,17 +1289,17 @@ const spots: Record<SpotKey, {
 .extra-tab.active .day-tab-num { color: #fff; }
 .extra-tab.active .day-tab-date { color: rgba(255,255,255,.85); }
 .day-tab-num {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--mg-font-body);
   font-size: 13px;
   font-weight: 800;
-  color: #3d5440;
+  color: var(--mg-text-body);
   line-height: 1;
 }
 .day-tab-btn.active .day-tab-num { color: #fff; }
 .day-tab-date {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--mg-font-body);
   font-size: 10px;
-  color: #6a8870;
+  color: var(--mg-text-muted);
   letter-spacing: .04em;
 }
 .day-tab-btn.active .day-tab-date { color: rgba(255,255,255,.8); }
@@ -1311,24 +1314,8 @@ const spots: Record<SpotKey, {
   text-align: center;
 }
 .cs-icon  { font-size: 56px; margin-bottom: 16px; opacity: .7; }
-.cs-title { font-family: 'Poppins', 'Noto Sans TC', sans-serif; font-size: 1.2rem; font-weight: 800; color: #162a1e; margin-bottom: 8px; }
-.cs-desc  { font-family: 'Poppins', 'Noto Sans TC', sans-serif; font-size: 13px; color: #999; }
-
-/* ── Back ── */
-.back-link {
-  display: inline-block;
-  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
-  font-size: .75rem;
-  letter-spacing: .15em;
-  color: #3d5440;
-  text-decoration: none;
-  padding: .3rem 0;
-  margin-bottom: 1.4rem;
-  opacity: .75;
-  transition: opacity .2s, color .2s;
-  text-shadow: 0 1px 3px rgba(255,255,255,.7);
-}
-.back-link:hover { opacity: 1; color: #1b3a28; }
+.cs-title { font-family: var(--mg-font-heading); font-size: 1.2rem; font-weight: 800; color: var(--mg-green-deep); margin-bottom: 8px; }
+.cs-desc  { font-family: var(--mg-font-body); font-size: 13px; color: #999; }
 
 /* ── Cover ── */
 .cover {
@@ -1336,11 +1323,11 @@ const spots: Record<SpotKey, {
   color: white;
   text-align: center;
   padding: 52px 28px 44px;
-  border-radius: 14px;
+  border-radius: 20px;
   position: relative;
   overflow: hidden;
   margin-bottom: 2rem;
-  box-shadow: 0 2px 12px rgba(27,58,40,0.08), 0 1px 3px rgba(27,58,40,0.04);
+  box-shadow: 0 2px 12px rgba(36,49,38,0.08), 0 1px 3px rgba(36,49,38,0.04);
 }
 .cover::before {
   content: '⛩';
@@ -1351,7 +1338,7 @@ const spots: Record<SpotKey, {
   pointer-events: none;
 }
 .cover-sub   { font-size: 12px; letter-spacing: 4px; text-transform: uppercase; opacity: .85; margin-bottom: 10px; }
-.cover-title { font-size: clamp(28px, 6vw, 44px); font-weight: 900; letter-spacing: 2px; margin: 0 0 8px; }
+.cover-title { font-family: var(--mg-font-heading); font-size: clamp(28px, 6vw, 44px); font-weight: 900; letter-spacing: 2px; margin: 0 0 8px; }
 .cover-dates { font-size: 16px; opacity: .9; margin-top: 14px; letter-spacing: 1px; }
 .cover-cities { display: flex; justify-content: center; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
 .city-tag {
@@ -1380,19 +1367,19 @@ const spots: Record<SpotKey, {
   font-weight: 900; flex-shrink: 0;
   box-shadow: 0 4px 12px rgba(192,57,43,.4);
 }
-.badge-num   { font-size: 22px; line-height: 1; }
+.badge-num   { font-family: var(--mg-font-heading); font-size: 22px; line-height: 1; }
 .badge-label { font-size: 9px; letter-spacing: 1px; opacity: .85; }
-.day-info h2 { font-family: 'Poppins', 'Noto Sans TC', sans-serif; font-size: 1.15rem; font-weight: 800; color: #1a1a1a; margin: 0 0 2px; }
-.day-weekday { font-family: 'Poppins', 'Noto Sans TC', sans-serif; font-size: 12px; color: #888; }
+.day-info h2 { font-family: var(--mg-font-heading); font-size: 1.15rem; font-weight: 800; color: #1a1a1a; margin: 0 0 2px; }
+.day-weekday { font-family: var(--mg-font-body); font-size: 12px; color: #888; }
 
 /* ── Cards ── */
 .card {
-  background: linear-gradient(145deg, #ffffff, #f6fbf6);
-  border-radius: 14px;
+  background: linear-gradient(145deg, var(--mg-bg-card), var(--mg-bg-card));
+  border-radius: 20px;
   padding: 1.2rem 1.4rem;
   margin-bottom: 1rem;
-  box-shadow: 0 2px 12px rgba(27,58,40,0.08), 0 1px 3px rgba(27,58,40,0.04);
-  border: 1.5px solid #b8d8be;
+  box-shadow: 0 2px 12px rgba(36,49,38,0.08), 0 1px 3px rgba(36,49,38,0.04);
+  border: 1.5px solid var(--mg-border-soft);
 }
 .card.transport  { border-left: 5px solid #3498db; }
 .card.hotel      { border-left: 5px solid #9b59b6; }
@@ -1406,7 +1393,7 @@ const spots: Record<SpotKey, {
   margin-bottom: 12px; flex-wrap: wrap;
 }
 .card-icon  { font-size: 20px; }
-.card-title { font-family: 'Poppins', 'Noto Sans TC', sans-serif; font-size: 14px; font-weight: 700; color: #162a1e; flex: 1; }
+.card-title { font-family: var(--mg-font-heading); font-size: 14px; font-weight: 700; color: var(--mg-green-deep); flex: 1; }
 .card-time  { font-size: 12px; font-weight: 700; color: #888; background: rgba(0,0,0,.06); padding: 3px 10px; border-radius: 12px; white-space: nowrap; }
 
 /* ── Steps ── */
@@ -1414,7 +1401,7 @@ const spots: Record<SpotKey, {
 .steps li {
   display: flex; gap: 12px; padding: 7px 0;
   border-bottom: 1px dashed rgba(74,138,88,.3);
-  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
+  font-family: var(--mg-font-body);
   font-size: 13px; line-height: 1.6; align-items: flex-start;
 }
 .steps li:last-child { border-bottom: none; }
@@ -1433,7 +1420,7 @@ const spots: Record<SpotKey, {
 .step-num.purple     { background: #9b59b6; }
 
 /* ── Table ── */
-.info-table { width: 100%; border-collapse: collapse; font-size: 13px; font-family: 'Poppins', 'Noto Sans TC', sans-serif; }
+.info-table { width: 100%; border-collapse: collapse; font-size: 13px; font-family: var(--mg-font-body); }
 .info-table th { background: rgba(0,0,0,.04); padding: 7px 10px; text-align: left; font-size: 11px; color: #666; border-bottom: 2px solid rgba(74,138,88,.3); }
 .info-table td { padding: 8px 10px; border-bottom: 1px solid rgba(74,138,88,.18); }
 .info-table tr:last-child td { border-bottom: none; }
@@ -1445,7 +1432,7 @@ const spots: Record<SpotKey, {
   border: 1px solid rgba(243,156,18,.4);
   border-radius: 6px;
   padding: 10px 14px;
-  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
+  font-family: var(--mg-font-body);
   font-size: 13px;
   display: flex; gap: 8px; align-items: flex-start;
   margin-top: 10px;
@@ -1453,16 +1440,16 @@ const spots: Record<SpotKey, {
 .alert-icon { font-size: 16px; flex-shrink: 0; }
 
 /* ── Hotel ── */
-.hotel-name { font-size: 15px; font-weight: 800; color: #9b59b6; margin-bottom: 2px; font-family: 'Poppins', 'Noto Sans TC', sans-serif; }
-.hotel-name-sub { font-size: 11px; color: #b07bd0; font-family: 'Noto Sans TC', sans-serif; margin-bottom: 8px; letter-spacing: .04em; }
+.hotel-name { font-size: 15px; font-weight: 800; color: #9b59b6; margin-bottom: 2px; font-family: var(--mg-font-body); }
+.hotel-name-sub { font-size: 11px; color: #b07bd0; font-family: var(--mg-font-body); margin-bottom: 8px; letter-spacing: .04em; }
 .address-box {
   background: rgba(155,89,182,.06);
   border-radius: 8px; padding: 10px 14px;
   font-size: 12px; display: flex; flex-direction: column; gap: 3px;
 }
 .addr-label { font-size: 10px; color: #9b59b6; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; display: flex; align-items: center; gap: 6px; }
-.addr-text  { font-weight: 600; color: #2c2c2c; font-family: 'Poppins', 'Noto Sans TC', sans-serif; font-size: 13px; }
-.addr-dist  { font-size: 11px; color: #888; font-family: 'Poppins', 'Noto Sans TC', sans-serif; }
+.addr-text  { font-weight: 600; color: #2c2c2c; font-family: var(--mg-font-body); font-size: 13px; }
+.addr-dist  { font-size: 11px; color: #888; font-family: var(--mg-font-body); }
 .map-hint   { font-size: 10px; color: #9b59b6; font-weight: 400; letter-spacing: 0; text-transform: none; opacity: .8; }
 .address-link {
   text-decoration: none;
@@ -1491,20 +1478,20 @@ const spots: Record<SpotKey, {
   border-color: #27ae60;
 }
 .spot-icon  { font-size: 22px; margin-bottom: 5px; }
-.spot-name  { font-weight: 700; font-size: 14px; font-family: 'Poppins', 'Noto Sans TC', sans-serif; color: #162a1e; }
+.spot-name  { font-weight: 700; font-size: 14px; font-family: var(--mg-font-body); color: var(--mg-green-deep); }
 .spot-arrow { color: #27ae60; font-size: 16px; margin-left: 2px; }
-.spot-desc  { font-size: 12px; color: #777; margin-top: 4px; line-height: 1.55; font-family: 'Poppins', 'Noto Sans TC', sans-serif; }
+.spot-desc  { font-size: 12px; color: #777; margin-top: 4px; line-height: 1.55; font-family: var(--mg-font-body); }
 
 /* ── More / Footer ── */
 .more-hint {
-  text-align: center; color: #6a8870;
-  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
+  text-align: center; color: var(--mg-text-muted);
+  font-family: var(--mg-font-body);
   font-style: italic; font-size: 13px; padding: 24px 0 8px;
 }
 .travel-footer {
   text-align: center; padding: 20px;
-  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
-  font-size: 13px; color: #6a8870; letter-spacing: 1px;
+  font-family: var(--mg-font-body);
+  font-size: 13px; color: var(--mg-text-muted); letter-spacing: 1px;
 }
 
 /* ── Modal ── */
@@ -1516,10 +1503,10 @@ const spots: Record<SpotKey, {
   backdrop-filter: blur(3px);
 }
 .modal-box {
-  background: linear-gradient(160deg, #ffffff, #f6fbf6);
-  border: 2px solid #b8d8be;
-  border-radius: 14px;
-  box-shadow: 0 6px 24px rgba(27,58,40,0.13), 0 2px 6px rgba(27,58,40,0.07);
+  background: linear-gradient(160deg, var(--mg-bg-card), var(--mg-bg-card));
+  border: 2px solid var(--mg-border-soft);
+  border-radius: 20px;
+  box-shadow: 0 6px 24px rgba(36,49,38,0.13), 0 2px 6px rgba(36,49,38,0.07);
   width: 100%; max-width: 560px;
   max-height: 88vh;
   overflow-y: auto;
@@ -1529,27 +1516,27 @@ const spots: Record<SpotKey, {
 .modal-close {
   position: absolute; top: 1rem; right: 1rem;
   background: transparent; border: none;
-  font-size: 1.1rem; color: #6a8870; cursor: pointer;
+  font-size: 1.1rem; color: var(--mg-text-muted); cursor: pointer;
   line-height: 1; padding: 4px 6px;
   transition: color .2s;
 }
-.modal-close:hover { color: #1b3a28; }
+.modal-close:hover { color: var(--mg-green-deep); }
 
 .modal-header {
   display: flex; align-items: center; gap: 14px;
   margin-bottom: 1.2rem; padding-right: 2rem;
 }
 .modal-icon    { font-size: 36px; }
-.modal-title   { font-family: 'Poppins', 'Noto Sans TC', sans-serif; font-size: 1.3rem; font-weight: 800; color: #162a1e; }
-.modal-subtitle{ font-family: 'Poppins', sans-serif; font-size: 0.75rem; letter-spacing: .12em; color: #6a8870; margin-top: 2px; }
+.modal-title   { font-family: var(--mg-font-heading); font-size: 1.3rem; font-weight: 800; color: var(--mg-green-deep); }
+.modal-subtitle{ font-family: var(--mg-font-body); font-size: 0.75rem; letter-spacing: .12em; color: var(--mg-text-muted); margin-top: 2px; }
 
 /* ── Photo gallery ── */
 .photo-gallery { margin-bottom: 1.2rem; }
 .photo-main {
   width: 100%; height: 220px;
-  border-radius: 14px; overflow: hidden;
+  border-radius: 20px; overflow: hidden;
   background: #d4eada;
-  border: 1.5px solid #b8d8be;
+  border: 1.5px solid var(--mg-border-soft);
   margin-bottom: 8px;
 }
 .photo-main img {
@@ -1573,13 +1560,13 @@ const spots: Record<SpotKey, {
 .photo-thumbs img.active,
 .photo-thumbs img:hover {
   opacity: 1;
-  border-color: #4a8a58;
+  border-color: var(--mg-green-main);
 }
 
 /* ── Modal desc ── */
 .modal-desc {
-  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
-  font-size: 13px; line-height: 1.85; color: #3d5440;
+  font-family: var(--mg-font-body);
+  font-size: 13px; line-height: 1.85; color: var(--mg-text-body);
   margin-bottom: 1.2rem;
 }
 
@@ -1595,8 +1582,8 @@ const spots: Record<SpotKey, {
   display: flex; gap: 10px; align-items: flex-start;
 }
 .info-chip-icon  { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
-.info-chip-label { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: .12em; color: #6a8870; text-transform: uppercase; margin-bottom: 2px; }
-.info-chip-value { font-family: 'Poppins', 'Noto Sans TC', sans-serif; font-size: 12px; color: #162a1e; font-weight: 600; line-height: 1.4; }
+.info-chip-label { font-family: var(--mg-font-body); font-size: 9px; letter-spacing: .12em; color: var(--mg-text-muted); text-transform: uppercase; margin-bottom: 2px; }
+.info-chip-value { font-family: var(--mg-font-body); font-size: 12px; color: var(--mg-green-deep); font-weight: 600; line-height: 1.4; }
 
 /* ── Transition ── */
 .modal-enter-active, .modal-leave-active { transition: opacity .2s, transform .2s; }
@@ -1605,7 +1592,7 @@ const spots: Record<SpotKey, {
 .modal-leave-to   .modal-box { transform: scale(.96) translateY(8px); }
 
 @media (max-width: 480px) {
-  .travel-wrap    { padding: 0 1rem 3rem; }
+  .travel-wrap    { padding: 3rem 1rem 3rem; }
   .spot-grid      { grid-template-columns: 1fr; }
   .modal-info-grid{ grid-template-columns: 1fr; }
   .photo-main     { height: 180px; }

@@ -1,65 +1,64 @@
 <template>
-  <div class="eyes-wrap">
+  <PortfolioPageShell>
+    <PortfolioSubNav back-to="/journal" back-label="‹ Life Journal" />
 
-    <RouterLink to="/journal" class="back-link">‹ 返回</RouterLink>
+    <div class="eyes-wrap">
+      <div class="page-title">
+        <p class="label">Life Journal</p>
+        <h2>Eyes</h2>
+        <p class="sub">即將開放 · Coming Soon</p>
+      </div>
 
-    <div class="page-title">
-      <h2>Eyes</h2>
-      <p>即將開放 · Coming Soon</p>
+      <div class="empty-state">
+        <span class="empty-icon">🌿</span>
+        <p>這裡還是一片空白，敬請期待。</p>
+      </div>
     </div>
-
-    <div class="empty-state">
-      <span class="empty-icon">🌿</span>
-      <p>這裡還是一片空白，敬請期待。</p>
-    </div>
-
-  </div>
+  </PortfolioPageShell>
 </template>
 
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
+import PortfolioPageShell from '@/components/portfolio/PortfolioPageShell.vue'
+import PortfolioSubNav from '@/components/portfolio/PortfolioSubNav.vue'
 </script>
 
 <style scoped>
 .eyes-wrap {
   width: 100%;
   max-width: 720px;
-  padding: 0 2rem 3rem;
+  margin: 0 auto;
+  padding: 4.5rem 2rem 5rem;
   animation: card-rise .5s cubic-bezier(.16,1,.3,1) both;
 }
-
-.back-link {
-  display: inline-block;
-  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
-  font-size: .75rem;
-  letter-spacing: .15em;
-  color: #3d5440;
-  text-decoration: none;
-  padding: .3rem 0;
-  margin-bottom: 1.4rem;
-  opacity: .75;
-  transition: opacity .2s, color .2s;
-  text-shadow: 0 1px 3px rgba(255,255,255,.7);
+@keyframes card-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-.back-link:hover { opacity: 1; color: #1b3a28; }
 
 .page-title { margin-bottom: 1.8rem; }
+.label {
+  font-family: var(--mg-font-body);
+  font-size: .74rem;
+  font-weight: 600;
+  letter-spacing: .22em;
+  color: var(--mg-green-main);
+  margin-bottom: .8rem;
+}
 .page-title h2 {
-  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
-  font-size: clamp(1.4rem, 4vw, 2rem);
-  color: #162a1e;
-  text-shadow: 0 1px 0 rgba(255,255,255,.9), 0 2px 10px rgba(255,255,255,.5);
+  font-family: var(--mg-font-heading);
+  font-weight: 500;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: var(--mg-green-deep);
   margin-bottom: .35rem;
 }
-.page-title p {
-  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
+.page-title .sub {
+  font-family: var(--mg-font-body);
   font-style: italic;
   font-size: .95rem;
-  color: #6a8870;
-  text-shadow: 0 1px 3px rgba(255,255,255,.7);
+  color: var(--mg-text-muted);
 }
 
-.empty-state { text-align: center; padding: 3rem 1rem; opacity: .6; }
+.empty-state { text-align: center; padding: 3rem 1rem; opacity: .7; }
 .empty-icon { font-size: 2.5rem; margin-bottom: .7rem; display: block; }
-.empty-state p { font-family: 'Poppins', 'Noto Sans TC', sans-serif; font-style: italic; color: #6a8870; }
+.empty-state p { font-family: var(--mg-font-body); font-style: italic; color: var(--mg-text-muted); }
 </style>

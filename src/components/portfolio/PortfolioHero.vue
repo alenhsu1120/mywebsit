@@ -7,8 +7,6 @@
         <h1 class="headline">Pei-Hsuan Hsu</h1>
         <p class="subtitle">
           <span>Backend Engineer</span>
-          <span class="dot" />
-          <span>Quant Developer</span>
         </p>
         <p class="intro">
           I build the quiet architecture behind fast systems — backend services,
@@ -106,8 +104,6 @@ function scrollTo(id: string) {
   margin-bottom: 1.6rem;
   animation: rise .8s cubic-bezier(.16,1,.3,1) .2s both;
 }
-.dot { width: 5px; height: 5px; border-radius: 50%; background: var(--mg-brown); flex-shrink: 0; }
-
 .intro {
   font-family: var(--mg-font-body);
   font-size: 1.02rem;

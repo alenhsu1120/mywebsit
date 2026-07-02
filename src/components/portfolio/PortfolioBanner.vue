@@ -20,7 +20,7 @@
 .banner {
   position: relative;
   width: 100%;
-  height: clamp(300px, 46vw, 480px);
+  height: clamp(380px, 58vw, 640px);
   overflow: hidden;
 }
 .banner img {
@@ -47,6 +47,6 @@
 }
 
 @media (max-width: 600px) {
-  .banner { height: 240px; }
+  .banner { height: 320px; }
 }
 </style>
