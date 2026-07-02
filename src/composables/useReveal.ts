@@ -8,7 +8,7 @@ export function useReveal(threshold = 0.18): { el: Ref<HTMLElement | null>; visi
   onMounted(() => {
     if (!el.value) return
     observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
+      if (entry?.isIntersecting) {
         visible.value = true
         observer?.disconnect()
       }
