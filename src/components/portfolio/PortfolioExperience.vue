@@ -21,14 +21,14 @@
             <path d="M100 14C146 8 182 46 186 96C190 146 160 196 110 206C60 216 18 186 10 134C2 82 26 36 66 20C77 15 88 15 100 14Z" fill="#DCE7D5"/>
           </svg>
           <img
-            src="https://images.unsplash.com/photo-1714507767656-2fb307e1b03d?q=80&w=560&auto=format&fit=crop"
-            srcset="https://images.unsplash.com/photo-1714507767656-2fb307e1b03d?q=80&w=400&auto=format&fit=crop 400w,
-                    https://images.unsplash.com/photo-1714507767656-2fb307e1b03d?q=80&w=560&auto=format&fit=crop 560w"
+            src="https://images.unsplash.com/photo-1766243062801-3adf15136bf1?q=80&w=560&auto=format&fit=crop"
+            srcset="https://images.unsplash.com/photo-1766243062801-3adf15136bf1?q=80&w=400&auto=format&fit=crop 400w,
+                    https://images.unsplash.com/photo-1766243062801-3adf15136bf1?q=80&w=560&auto=format&fit=crop 560w"
             sizes="(max-width: 900px) 60vw, 260px"
-            alt="A striped Calathea orbifolia plant in a grey pot against a plain beige wall"
+            alt="A large Monstera deliciosa plant in a pink pot in a warm-toned corner"
             loading="lazy"
           />
-          <figcaption>Photo — Gigi Visacri / Unsplash</figcaption>
+          <figcaption>Photo — sang lee / Unsplash</figcaption>
         </figure>
       </div>
     </div>
