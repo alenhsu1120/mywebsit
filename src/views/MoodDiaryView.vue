@@ -1,7 +1,7 @@
 <template>
   <div class="mood-wrap">
 
-    <RouterLink to="/" class="back-link">‹ 返回</RouterLink>
+    <RouterLink to="/journal" class="back-link">‹ 返回</RouterLink>
 
     <div class="mood-header">
       <h2 class="mood-title">心情日記</h2>

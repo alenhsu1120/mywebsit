@@ -1,6 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { useRoute } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+
+const route = useRoute()
+const isBare = computed(() => route.meta.bare === true)
 
 const particles = ref(Array.from({ length: 10 }, (_, i) => ({
   id: i,
@@ -20,10 +24,10 @@ const particles = ref(Array.from({ length: 10 }, (_, i) => ({
   <div class="world">
 
     <!-- ── Base gradient (warm cream → sage, refs 3/4/5 style) ── -->
-    <div class="bg-base" />
+    <div v-if="!isBare" class="bg-base" />
 
     <!-- ── Top-right: dark foliage cluster (refs 1/2 style – lush monstera feel) ── -->
-    <svg class="foliage-tr" viewBox="0 0 500 560" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <svg v-if="!isBare" class="foliage-tr" viewBox="0 0 500 560" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <!-- Ambient dark depth blob -->
       <ellipse cx="310" cy="150" rx="295" ry="235" fill="#0d1f14" opacity="0.22"/>
       <ellipse cx="420" cy="60"  rx="180" ry="140" fill="#0d1f14" opacity="0.14"/>
@@ -78,7 +82,7 @@ const particles = ref(Array.from({ length: 10 }, (_, i) => ({
     </svg>
 
     <!-- ── Bottom-left: lighter sage foliage (balances composition) ── -->
-    <svg class="foliage-bl" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <svg v-if="!isBare" class="foliage-bl" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <ellipse cx="90" cy="370" rx="210" ry="168" fill="#3a7048" opacity="0.07"/>
 
       <g transform="translate(72,360) rotate(20)">
@@ -98,27 +102,29 @@ const particles = ref(Array.from({ length: 10 }, (_, i) => ({
     </svg>
 
     <!-- ── Floating leaf particles ── -->
-    <div
-      v-for="p in particles"
-      :key="p.id"
-      class="leaf-particle"
-      :style="{
-        left: p.x + '%',
-        top:  p.y + '%',
-        width:  p.size + 'px',
-        height: p.size * 1.6 + 'px',
-        '--dx': p.dx,
-        '--dy': p.dy,
-        '--op': p.opacity,
-        '--r':  p.rotate + 'deg',
-        animationDuration: p.duration,
-        animationDelay:    p.delay,
-      }"
-    />
+    <template v-if="!isBare">
+      <div
+        v-for="p in particles"
+        :key="p.id"
+        class="leaf-particle"
+        :style="{
+          left: p.x + '%',
+          top:  p.y + '%',
+          width:  p.size + 'px',
+          height: p.size * 1.6 + 'px',
+          '--dx': p.dx,
+          '--dy': p.dy,
+          '--op': p.opacity,
+          '--r':  p.rotate + 'deg',
+          animationDuration: p.duration,
+          animationDelay:    p.delay,
+        }"
+      />
+    </template>
 
     <!-- ── Content ── -->
-    <div class="content">
-      <header class="site-header">
+    <div class="content" :class="{ 'content-bare': isBare }">
+      <header v-if="!isBare" class="site-header">
         <RouterLink to="/" class="logo-link">
           <svg class="logo-leaf" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
             <path d="M24 4 C12 4 6 16 8 28 C10 40 24 44 24 44 C24 44 38 40 40 28 C42 16 36 4 24 4 Z"
@@ -198,6 +204,10 @@ const particles = ref(Array.from({ length: 10 }, (_, i) => ({
   flex-direction: column;
   align-items: center;
   padding-bottom: 120px;
+}
+.content-bare {
+  padding-bottom: 0;
+  align-items: stretch;
 }
 
 /* ── Header ── */
