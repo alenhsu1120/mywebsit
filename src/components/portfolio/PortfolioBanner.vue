@@ -20,19 +20,20 @@
 .banner {
   position: relative;
   width: 100%;
-  aspect-ratio: 2000 / 1287;
+  aspect-ratio: 17 / 10;
   overflow: hidden;
 }
 .banner img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center bottom;
   display: block;
 }
 .banner-fade {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(36,49,38,0.08) 0%, rgba(247,246,241,0) 55%, var(--mg-bg-page) 100%);
+  background: linear-gradient(180deg, rgba(36,49,38,0.06) 0%, rgba(247,246,241,0) 70%, rgba(247,246,241,0.5) 92%, var(--mg-bg-page) 100%);
 }
 .banner-credit {
   position: absolute;

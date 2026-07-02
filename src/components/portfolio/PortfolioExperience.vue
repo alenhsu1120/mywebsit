@@ -4,15 +4,32 @@
       <p class="label">Timeline</p>
       <h2 class="heading">Experience</h2>
 
-      <div class="timeline">
-        <div v-for="(item, i) in items" :key="item.title" class="item" :style="{ transitionDelay: (i*0.1)+'s' }">
-          <div class="marker"><span class="dot" /></div>
-          <div class="content">
-            <span class="period">{{ item.period }}</span>
-            <h3>{{ item.title }}</h3>
-            <p>{{ item.desc }}</p>
+      <div class="experience-body">
+        <div class="timeline">
+          <div v-for="(item, i) in items" :key="item.title" class="item" :style="{ transitionDelay: (i*0.1)+'s' }">
+            <div class="marker"><span class="dot" /></div>
+            <div class="content">
+              <span class="period">{{ item.period }}</span>
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.desc }}</p>
+            </div>
           </div>
         </div>
+
+        <figure class="side-photo">
+          <svg class="side-blob" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M100 14C146 8 182 46 186 96C190 146 160 196 110 206C60 216 18 186 10 134C2 82 26 36 66 20C77 15 88 15 100 14Z" fill="#DCE7D5"/>
+          </svg>
+          <img
+            src="https://images.unsplash.com/photo-1714507767656-2fb307e1b03d?q=80&w=560&auto=format&fit=crop"
+            srcset="https://images.unsplash.com/photo-1714507767656-2fb307e1b03d?q=80&w=400&auto=format&fit=crop 400w,
+                    https://images.unsplash.com/photo-1714507767656-2fb307e1b03d?q=80&w=560&auto=format&fit=crop 560w"
+            sizes="(max-width: 900px) 60vw, 260px"
+            alt="A striped Calathea orbifolia plant in a grey pot against a plain beige wall"
+            loading="lazy"
+          />
+          <figcaption>Photo — Gigi Visacri / Unsplash</figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -44,7 +61,7 @@ const items = [
 <style scoped>
 .experience {
   padding: 8rem 2.5rem;
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
   scroll-margin-top: 78px;
   opacity: 0;
@@ -69,6 +86,49 @@ const items = [
   color: var(--mg-green-deep);
   margin-bottom: 4rem;
   text-align: center;
+}
+
+.experience-body {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 3.5rem;
+  align-items: start;
+}
+
+.side-photo {
+  position: relative;
+  width: 100%;
+  max-width: 260px;
+  margin: 0 auto;
+}
+.side-blob {
+  position: absolute;
+  width: 145%;
+  top: 50%; left: 50%;
+  transform: translate(-52%,-48%);
+  z-index: 0;
+}
+.side-photo img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.7);
+  box-shadow: 0 20px 44px rgba(36,49,38,0.15), 0 4px 14px rgba(36,49,38,0.07);
+}
+.side-photo figcaption {
+  position: relative;
+  z-index: 1;
+  margin-top: .6rem;
+  text-align: center;
+  font-family: var(--mg-font-body);
+  font-size: .66rem;
+  letter-spacing: .04em;
+  color: var(--mg-text-muted);
+  opacity: .7;
 }
 
 .timeline { position: relative; padding-left: 2.6rem; }
@@ -126,6 +186,11 @@ const items = [
   line-height: 1.8;
   color: var(--mg-text-body);
   max-width: 560px;
+}
+
+@media (max-width: 760px) {
+  .experience-body { grid-template-columns: 1fr; gap: 3rem; }
+  .side-photo { max-width: 220px; order: -1; }
 }
 
 @media (max-width: 640px) {
