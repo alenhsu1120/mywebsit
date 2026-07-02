@@ -36,18 +36,10 @@
 
         <figure class="frame">
           <div class="frame-plate">
-            <img
-              src="https://images.unsplash.com/photo-1591382696448-3809bb398c0e?q=80&w=1000&auto=format&fit=crop"
-              srcset="https://images.unsplash.com/photo-1591382696448-3809bb398c0e?q=80&w=700&auto=format&fit=crop 700w,
-                      https://images.unsplash.com/photo-1591382696448-3809bb398c0e?q=80&w=1000&auto=format&fit=crop 1000w"
-              sizes="(max-width: 900px) 80vw, 460px"
-              alt="A calm wood desk with an open laptop, a potted plant, and a stack of notebooks by a sunlit window"
-              loading="lazy"
-            />
+            <img :src="heroPortrait" alt="Portrait at night in front of a heritage building in Hong Kong" loading="lazy" />
           </div>
           <figcaption>
-            <span class="cap-line">— a quiet corner for building things —</span>
-            <span class="cap-credit">Photo — Mikey Harris / Unsplash</span>
+            <span class="cap-line">— Hong Kong, evening —</span>
           </figcaption>
         </figure>
       </div>
@@ -57,6 +49,8 @@
 </template>
 
 <script setup lang="ts">
+import heroPortrait from '@/assets/portfolio/hero-portrait.jpg'
+
 function scrollTo(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
@@ -65,7 +59,7 @@ function scrollTo(id: string) {
 <style scoped>
 .hero {
   position: relative;
-  padding: 168px 2.5rem 96px;
+  padding: 88px 2.5rem 96px;
   max-width: 1180px;
   margin: 0 auto;
   scroll-margin-top: 78px;
@@ -192,7 +186,7 @@ function scrollTo(id: string) {
 }
 .frame-plate {
   position: relative;
-  aspect-ratio: 3/2;
+  aspect-ratio: 4/3;
   border-radius: 18px;
   border: 1px solid rgba(255,255,255,.6);
   box-shadow: 0 26px 60px rgba(36,49,38,0.16), 0 6px 18px rgba(36,49,38,0.08);
@@ -219,21 +213,13 @@ function scrollTo(id: string) {
   color: var(--mg-text-muted);
   letter-spacing: .01em;
 }
-.cap-credit {
-  font-family: var(--mg-font-body);
-  font-size: .66rem;
-  letter-spacing: .04em;
-  color: var(--mg-text-muted);
-  opacity: .7;
-}
-
 @keyframes rise {
   from { opacity: 0; transform: translateY(18px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 @media (max-width: 900px) {
-  .hero { padding: 132px 1.6rem 72px; }
+  .hero { padding: 56px 1.6rem 72px; }
   .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
   .hero-visual { height: 420px; order: -1; }
   .intro { max-width: none; }

@@ -2,6 +2,7 @@
   <div class="portfolio-page">
     <div class="grain" aria-hidden="true" />
 
+    <PortfolioBanner />
     <PortfolioNav />
     <PortfolioHero />
     <PortfolioAbout />
@@ -14,6 +15,7 @@
 </template>
 
 <script setup lang="ts">
+import PortfolioBanner     from '@/components/portfolio/PortfolioBanner.vue'
 import PortfolioNav        from '@/components/portfolio/PortfolioNav.vue'
 import PortfolioHero       from '@/components/portfolio/PortfolioHero.vue'
 import PortfolioAbout      from '@/components/portfolio/PortfolioAbout.vue'
