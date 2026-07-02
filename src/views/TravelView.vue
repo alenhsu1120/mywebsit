@@ -22,14 +22,19 @@
 
     <!-- 封面 -->
     <div class="cover">
-      <div class="cover-sub">Travel Guide 2026</div>
-      <h1 class="cover-title">日本旅遊手冊</h1>
-      <div class="cover-dates">2026 年 6 月 18 日出發</div>
-      <div class="cover-cities">
-        <span class="city-tag">✈ 關西機場</span>
-        <span class="city-tag">🚄 新大阪</span>
-        <span class="city-tag">🏯 名古屋</span>
+      <img class="cover-photo" src="https://images.unsplash.com/photo-1747546314703-6c4fc20c5a37?q=80&w=1600&auto=format&fit=crop" alt="Nagoya Castle under a clear blue sky" />
+      <div class="cover-scrim" />
+      <div class="cover-content">
+        <div class="cover-sub">Travel Guide 2026</div>
+        <h1 class="cover-title">日本旅遊手冊</h1>
+        <div class="cover-dates">2026 年 6 月 18 日出發</div>
+        <div class="cover-cities">
+          <span class="city-tag">✈ 關西機場</span>
+          <span class="city-tag">🚄 新大阪</span>
+          <span class="city-tag">🏯 名古屋</span>
+        </div>
       </div>
+      <span class="cover-credit">Photo — Gang Hao / Unsplash</span>
     </div>
 
     <!-- 天數標籤列 -->
@@ -890,15 +895,20 @@
 
     <!-- 香港 -->
     <div v-if="activeTab === 'hongkong'">
-      <div class="cover" style="background: linear-gradient(160deg, #c0392b 0%, #e74c3c 50%, #ff6b35 100%);">
-        <div class="cover-sub">Travel Guide</div>
-        <h1 class="cover-title">香港旅遊手冊</h1>
-        <div class="cover-dates">敬請期待</div>
-        <div class="cover-cities">
-          <span class="city-tag">✈ 香港國際機場</span>
-          <span class="city-tag">🌆 維多利亞港</span>
-          <span class="city-tag">🏙 九龍</span>
+      <div class="cover">
+        <img class="cover-photo" src="https://images.unsplash.com/photo-1696611085884-231d2fc7733d?q=80&w=1600&auto=format&fit=crop" alt="Hong Kong's Victoria Harbour skyline" />
+        <div class="cover-scrim" />
+        <div class="cover-content">
+          <div class="cover-sub">Travel Guide</div>
+          <h1 class="cover-title">香港旅遊手冊</h1>
+          <div class="cover-dates">敬請期待</div>
+          <div class="cover-cities">
+            <span class="city-tag">✈ 香港國際機場</span>
+            <span class="city-tag">🌆 維多利亞港</span>
+            <span class="city-tag">🏙 九龍</span>
+          </div>
         </div>
+        <span class="cover-credit">Photo — Ste / Unsplash</span>
       </div>
       <div class="coming-soon">
         <div class="cs-icon">🏮</div>
@@ -909,15 +919,20 @@
 
     <!-- 東京 -->
     <div v-if="activeTab === 'tokyo'">
-      <div class="cover" style="background: linear-gradient(160deg, #2c3e50 0%, #3498db 50%, #9b59b6 100%);">
-        <div class="cover-sub">Travel Guide</div>
-        <h1 class="cover-title">東京旅遊手冊</h1>
-        <div class="cover-dates">敬請期待</div>
-        <div class="cover-cities">
-          <span class="city-tag">✈ 成田機場</span>
-          <span class="city-tag">🗼 東京鐵塔</span>
-          <span class="city-tag">🌸 淺草</span>
+      <div class="cover">
+        <img class="cover-photo" src="https://images.unsplash.com/photo-1513407030348-c983a97b98d8?q=80&w=1600&auto=format&fit=crop" alt="Tokyo Tower lit up at dusk above the city skyline" />
+        <div class="cover-scrim" />
+        <div class="cover-content">
+          <div class="cover-sub">Travel Guide</div>
+          <h1 class="cover-title">東京旅遊手冊</h1>
+          <div class="cover-dates">敬請期待</div>
+          <div class="cover-cities">
+            <span class="city-tag">✈ 成田機場</span>
+            <span class="city-tag">🗼 東京鐵塔</span>
+            <span class="city-tag">🌸 淺草</span>
+          </div>
         </div>
+        <span class="cover-credit">Photo — Louie Martinez / Unsplash</span>
       </div>
       <div class="coming-soon">
         <div class="cs-icon">🗼</div>
@@ -1319,23 +1334,45 @@ const spots: Record<SpotKey, {
 
 /* ── Cover ── */
 .cover {
-  background: linear-gradient(160deg, #c0392b 0%, #e74c3c 40%, #f39c12 100%);
   color: white;
   text-align: center;
-  padding: 52px 28px 44px;
-  border-radius: 20px;
   position: relative;
   overflow: hidden;
   margin-bottom: 2rem;
+  border-radius: 20px;
+  aspect-ratio: 16 / 8;
+  min-height: 220px;
   box-shadow: 0 2px 12px rgba(36,49,38,0.08), 0 1px 3px rgba(36,49,38,0.04);
 }
-.cover::before {
-  content: '⛩';
-  font-size: 110px;
+.cover-photo {
   position: absolute;
-  top: -10px; right: -5px;
-  opacity: .12;
-  pointer-events: none;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.cover-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20,25,20,.35) 0%, rgba(20,25,20,.15) 45%, rgba(20,25,20,.55) 100%);
+}
+.cover-content {
+  position: relative;
+  z-index: 1;
+  padding: 52px 28px 44px;
+}
+.cover-credit {
+  position: absolute;
+  right: 14px;
+  bottom: 10px;
+  z-index: 1;
+  font-family: var(--mg-font-body);
+  font-size: 11px;
+  letter-spacing: .04em;
+  color: #fff;
+  opacity: .75;
+  text-shadow: 0 1px 4px rgba(0,0,0,.4);
 }
 .cover-sub   { font-size: 12px; letter-spacing: 4px; text-transform: uppercase; opacity: .85; margin-bottom: 10px; }
 .cover-title { font-family: var(--mg-font-heading); font-size: clamp(28px, 6vw, 44px); font-weight: 900; letter-spacing: 2px; margin: 0 0 8px; }
