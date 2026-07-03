@@ -3,13 +3,25 @@
     <PortfolioSubNav back-to="/journal" back-label="‹ Life Journal" />
     <div class="mood-wrap">
 
-    <div class="mood-header">
+    <div class="mood-header center-col">
       <h2 class="mood-title">心情日記</h2>
       <p class="mood-sub">記錄每一天的心情色彩</p>
     </div>
 
-    <!-- 裝飾照片 -->
-    <div class="mood-gallery">
+    <!-- Firebase 連線狀態（常駐） -->
+    <div class="db-status center-col" :class="dbReady ? 'db-ok' : 'db-err'">
+      {{ dbReady ? '🔥 Firebase 已連線' : '⚠️ Firebase 未連線' }}
+      — db={{ dbDebug }}<span v-if="dbInitError">，錯誤：{{ dbInitError }}</span>
+    </div>
+
+    <!-- 同步狀態（儲存後顯示，不會自動消失） -->
+    <div v-if="syncStatus" class="sync-banner center-col" :class="syncStatus.type">
+      {{ syncStatus.msg }}
+      <button class="sync-close" @click="syncStatus = null">✕</button>
+    </div>
+
+    <!-- ══ 雙人心情板（左側配圖） ══ -->
+    <div class="flank-row flank-left">
       <figure class="gallery-photo">
         <img
           src="https://images.unsplash.com/photo-1612232134966-a9b076b9fbe7?q=80&w=500&auto=format&fit=crop"
@@ -18,14 +30,83 @@
         />
         <figcaption>Photo — Oleg Moroz / Unsplash</figcaption>
       </figure>
-      <figure class="gallery-photo">
-        <img
-          src="https://images.unsplash.com/photo-1551323879-b2f626997e22?q=80&w=500&auto=format&fit=crop"
-          alt="溫暖的木質桌面，安靜書寫的角落"
-          loading="lazy"
-        />
-        <figcaption>Photo — Apaha Spi / Unsplash</figcaption>
-      </figure>
+
+      <div class="duo-grid">
+
+        <!-- 許寶 -->
+        <div class="duo-card xubao">
+          <div class="duo-name">
+            <span class="duo-avatar">🌸</span>
+            <span class="duo-label">許寶</span>
+          </div>
+          <div class="sliders">
+            <SliderRow label="生氣"    :icon="angerIcon(xubao.anger)" v-model="xubao.anger" :track-color="angerColor(xubao.anger)" />
+            <SliderRow label="多愛阿仔" :icon="loveIcon(xubao.love)"  v-model="xubao.love"  track-color="#e07090" />
+            <SliderRow label="整體心情" :icon="moodIcon(xubao.mood)"  v-model="xubao.mood"  :track-color="moodColor(xubao.mood)" />
+          </div>
+          <div class="anger-chart">
+            <p class="chart-title">生氣趨勢</p>
+            <MoodLineChart :points="xubaoAngerPoints" color="#a04060" />
+          </div>
+          <div class="duo-footer">
+            <button class="duo-save-btn" @click="saveXubao">儲存 ✦</button>
+            <span v-if="xubaoSaved" class="saved-time">最後儲存：{{ xubaoSaved }}</span>
+          </div>
+        </div>
+
+        <!-- 阿仔 -->
+        <div class="duo-card azai">
+          <div class="duo-name">
+            <span class="duo-avatar">🐾</span>
+            <span class="duo-label">阿仔</span>
+          </div>
+          <div class="sliders">
+            <SliderRow label="生氣"    :icon="angerIcon(azai.anger)" v-model="azai.anger" :track-color="angerColor(azai.anger)" />
+            <SliderRow label="多愛許寶" :icon="loveIcon(azai.love)"  v-model="azai.love"  track-color="#e07090" />
+            <SliderRow label="整體心情" :icon="moodIcon(azai.mood)"  v-model="azai.mood"  :track-color="moodColor(azai.mood)" />
+          </div>
+          <div class="anger-chart">
+            <p class="chart-title">生氣趨勢</p>
+            <MoodLineChart :points="azaiAngerPoints" color="#3a6080" />
+          </div>
+          <div class="duo-footer">
+            <button class="duo-save-btn" @click="saveAzai">儲存 ✦</button>
+            <span v-if="azaiSaved" class="saved-time">最後儲存：{{ azaiSaved }}</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══ 分隔線 ══ -->
+    <div class="section-divider center-col">
+      <span class="div-line" />
+      <span class="div-icon">🌿</span>
+      <span class="div-text">今日心情</span>
+      <span class="div-icon">🌿</span>
+      <span class="div-line" />
+    </div>
+
+    <!-- Mood selector（右側配圖） -->
+    <div class="flank-row flank-right">
+      <div class="mood-picker">
+        <p class="picker-label">今天的心情是？</p>
+        <div class="emoji-row">
+          <button
+            v-for="m in moods"
+            :key="m.key"
+            class="emoji-btn"
+            :class="{ active: selected === m.key }"
+            :style="selected === m.key ? { '--accent': m.color, borderColor: m.color } : {}"
+            @click="selected = m.key"
+            :title="m.label"
+          >
+            <span class="emoji">{{ m.emoji }}</span>
+            <span class="emoji-label">{{ m.label }}</span>
+          </button>
+        </div>
+      </div>
+
       <figure class="gallery-photo">
         <img
           src="https://images.unsplash.com/photo-1559190394-df5a28aab5c5?q=80&w=500&auto=format&fit=crop"
@@ -36,112 +117,36 @@
       </figure>
     </div>
 
-    <!-- Firebase 連線狀態（常駐） -->
-    <div class="db-status" :class="dbReady ? 'db-ok' : 'db-err'">
-      {{ dbReady ? '🔥 Firebase 已連線' : '⚠️ Firebase 未連線' }}
-      — db={{ dbDebug }}<span v-if="dbInitError">，錯誤：{{ dbInitError }}</span>
-    </div>
+    <!-- Note input（配圖隨機放在左側） -->
+    <div class="flank-row flank-left">
+      <figure class="gallery-photo">
+        <img
+          src="https://images.unsplash.com/photo-1551323879-b2f626997e22?q=80&w=500&auto=format&fit=crop"
+          alt="溫暖的木質桌面，安靜書寫的角落"
+          loading="lazy"
+        />
+        <figcaption>Photo — Apaha Spi / Unsplash</figcaption>
+      </figure>
 
-    <!-- 同步狀態（儲存後顯示，不會自動消失） -->
-    <div v-if="syncStatus" class="sync-banner" :class="syncStatus.type">
-      {{ syncStatus.msg }}
-      <button class="sync-close" @click="syncStatus = null">✕</button>
-    </div>
-
-    <!-- ══ 雙人心情板 ══ -->
-    <div class="duo-grid">
-
-      <!-- 許寶 -->
-      <div class="duo-card xubao">
-        <div class="duo-name">
-          <span class="duo-avatar">🌸</span>
-          <span class="duo-label">許寶</span>
+      <div class="note-section">
+        <textarea
+          v-model="note"
+          class="note-input"
+          placeholder="寫點什麼吧…（可以不寫）"
+          rows="3"
+          maxlength="200"
+        />
+        <div class="note-footer">
+          <span class="char-count">{{ note.length }} / 200</span>
+          <button class="save-btn" :disabled="!selected || saving" @click="saveMood">
+            {{ saving ? '儲存中…' : '記錄 ✦' }}
+          </button>
         </div>
-        <div class="sliders">
-          <SliderRow label="生氣"    :icon="angerIcon(xubao.anger)" v-model="xubao.anger" :track-color="angerColor(xubao.anger)" />
-          <SliderRow label="多愛阿仔" :icon="loveIcon(xubao.love)"  v-model="xubao.love"  track-color="#e07090" />
-          <SliderRow label="整體心情" :icon="moodIcon(xubao.mood)"  v-model="xubao.mood"  :track-color="moodColor(xubao.mood)" />
-        </div>
-        <div class="anger-chart">
-          <p class="chart-title">生氣趨勢</p>
-          <MoodLineChart :points="xubaoAngerPoints" color="#a04060" />
-        </div>
-        <div class="duo-footer">
-          <button class="duo-save-btn" @click="saveXubao">儲存 ✦</button>
-          <span v-if="xubaoSaved" class="saved-time">最後儲存：{{ xubaoSaved }}</span>
-        </div>
-      </div>
-
-      <!-- 阿仔 -->
-      <div class="duo-card azai">
-        <div class="duo-name">
-          <span class="duo-avatar">🐾</span>
-          <span class="duo-label">阿仔</span>
-        </div>
-        <div class="sliders">
-          <SliderRow label="生氣"    :icon="angerIcon(azai.anger)" v-model="azai.anger" :track-color="angerColor(azai.anger)" />
-          <SliderRow label="多愛許寶" :icon="loveIcon(azai.love)"  v-model="azai.love"  track-color="#e07090" />
-          <SliderRow label="整體心情" :icon="moodIcon(azai.mood)"  v-model="azai.mood"  :track-color="moodColor(azai.mood)" />
-        </div>
-        <div class="anger-chart">
-          <p class="chart-title">生氣趨勢</p>
-          <MoodLineChart :points="azaiAngerPoints" color="#3a6080" />
-        </div>
-        <div class="duo-footer">
-          <button class="duo-save-btn" @click="saveAzai">儲存 ✦</button>
-          <span v-if="azaiSaved" class="saved-time">最後儲存：{{ azaiSaved }}</span>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- ══ 分隔線 ══ -->
-    <div class="section-divider">
-      <span class="div-line" />
-      <span class="div-icon">🌿</span>
-      <span class="div-text">今日心情</span>
-      <span class="div-icon">🌿</span>
-      <span class="div-line" />
-    </div>
-
-    <!-- Mood selector -->
-    <div class="mood-picker">
-      <p class="picker-label">今天的心情是？</p>
-      <div class="emoji-row">
-        <button
-          v-for="m in moods"
-          :key="m.key"
-          class="emoji-btn"
-          :class="{ active: selected === m.key }"
-          :style="selected === m.key ? { '--accent': m.color, borderColor: m.color } : {}"
-          @click="selected = m.key"
-          :title="m.label"
-        >
-          <span class="emoji">{{ m.emoji }}</span>
-          <span class="emoji-label">{{ m.label }}</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Note input -->
-    <div class="note-section">
-      <textarea
-        v-model="note"
-        class="note-input"
-        placeholder="寫點什麼吧…（可以不寫）"
-        rows="3"
-        maxlength="200"
-      />
-      <div class="note-footer">
-        <span class="char-count">{{ note.length }} / 200</span>
-        <button class="save-btn" :disabled="!selected || saving" @click="saveMood">
-          {{ saving ? '儲存中…' : '記錄 ✦' }}
-        </button>
       </div>
     </div>
 
     <!-- Saved entries -->
-    <div v-if="entries.length" class="entries-section">
+    <div v-if="entries.length" class="entries-section center-col">
       <div class="section-divider">
         <span class="div-line" />
         <span class="div-icon">❧</span>
@@ -172,12 +177,12 @@
       </TransitionGroup>
     </div>
 
-    <div v-else-if="!loading" class="empty-state">
+    <div v-else-if="!loading" class="empty-state center-col">
       <span class="empty-icon">🌿</span>
       <p>還沒有心情記錄，先記錄今天的心情吧！</p>
     </div>
 
-    <div v-if="loading" class="empty-state">
+    <div v-if="loading" class="empty-state center-col">
       <span class="empty-icon">✨</span>
       <p>載入中…</p>
     </div>
@@ -461,12 +466,34 @@ async function deleteEntry(id: string) {
 <style scoped>
 .mood-wrap {
   width: 100%;
-  max-width: 680px;
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 3.5rem 1rem 3rem;
+  padding: 3.5rem 1.5rem 3rem;
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
+}
+
+/* Sections without a side photo stay at a comfortable reading width */
+.center-col { width: 100%; max-width: 680px; margin: 0 auto; }
+
+/* Sections with a side photo use the full mood-wrap width */
+.flank-row {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 1.8rem;
+  align-items: center;
+}
+.flank-row.flank-right { grid-template-columns: 1fr 260px; }
+.flank-row .duo-grid,
+.flank-row .mood-picker,
+.flank-row .note-section { max-width: 680px; }
+@media (max-width: 860px) {
+  .flank-row, .flank-row.flank-right { grid-template-columns: 1fr; }
+  .flank-row .gallery-photo { max-width: 320px; margin: 0 auto; }
+  .flank-row .duo-grid,
+  .flank-row .mood-picker,
+  .flank-row .note-section { max-width: none; }
 }
 
 /* DB status */
@@ -511,12 +538,10 @@ async function deleteEntry(id: string) {
   font-size: .78rem; color: var(--mg-text-muted); letter-spacing: .15em;
 }
 
-/* ── Decorative gallery ── */
-.mood-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+/* ── Decorative photos ── */
 .gallery-photo { margin: 0; }
-@media (max-width: 520px) { .mood-gallery { grid-template-columns: repeat(2, 1fr); } }
 .gallery-photo img {
-  width: 100%; aspect-ratio: 4/3; object-fit: cover;
+  width: 100%; aspect-ratio: 3/4; object-fit: cover;
   border-radius: 20px; border: 1px solid var(--mg-border-soft);
   box-shadow: 0 8px 26px rgba(36,49,38,0.08);
   display: block;
