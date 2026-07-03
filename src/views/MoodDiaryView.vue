@@ -26,6 +26,14 @@
         />
         <figcaption>Photo — Apaha Spi / Unsplash</figcaption>
       </figure>
+      <figure class="gallery-photo">
+        <img
+          src="https://images.unsplash.com/photo-1559190394-df5a28aab5c5?q=80&w=500&auto=format&fit=crop"
+          alt="一隻黃金獵犬坐在車裡"
+          loading="lazy"
+        />
+        <figcaption>Photo — Ja San Miguel / Unsplash</figcaption>
+      </figure>
     </div>
 
     <!-- Firebase 連線狀態（常駐） -->
@@ -504,8 +512,9 @@ async function deleteEntry(id: string) {
 }
 
 /* ── Decorative gallery ── */
-.mood-gallery { display: flex; gap: 1rem; }
-.gallery-photo { flex: 1; margin: 0; }
+.mood-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.gallery-photo { margin: 0; }
+@media (max-width: 520px) { .mood-gallery { grid-template-columns: repeat(2, 1fr); } }
 .gallery-photo img {
   width: 100%; aspect-ratio: 4/3; object-fit: cover;
   border-radius: 20px; border: 1px solid var(--mg-border-soft);
