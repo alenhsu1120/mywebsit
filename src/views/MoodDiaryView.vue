@@ -34,6 +34,10 @@
           <SliderRow label="多愛阿仔" :icon="loveIcon(xubao.love)"  v-model="xubao.love"  track-color="#e07090" />
           <SliderRow label="整體心情" :icon="moodIcon(xubao.mood)"  v-model="xubao.mood"  :track-color="moodColor(xubao.mood)" />
         </div>
+        <div class="anger-chart">
+          <p class="chart-title">生氣趨勢</p>
+          <MoodLineChart :points="xubaoAngerPoints" color="#a04060" />
+        </div>
         <div class="duo-footer">
           <button class="duo-save-btn" @click="saveXubao">儲存 ✦</button>
           <span v-if="xubaoSaved" class="saved-time">最後儲存：{{ xubaoSaved }}</span>
@@ -50,6 +54,10 @@
           <SliderRow label="生氣"    :icon="angerIcon(azai.anger)" v-model="azai.anger" :track-color="angerColor(azai.anger)" />
           <SliderRow label="多愛許寶" :icon="loveIcon(azai.love)"  v-model="azai.love"  track-color="#e07090" />
           <SliderRow label="整體心情" :icon="moodIcon(azai.mood)"  v-model="azai.mood"  :track-color="moodColor(azai.mood)" />
+        </div>
+        <div class="anger-chart">
+          <p class="chart-title">生氣趨勢</p>
+          <MoodLineChart :points="azaiAngerPoints" color="#3a6080" />
         </div>
         <div class="duo-footer">
           <button class="duo-save-btn" @click="saveAzai">儲存 ✦</button>
@@ -151,10 +159,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, defineComponent, h } from 'vue'
+import { ref, computed, onMounted, defineComponent, h } from 'vue'
 import { initializeApp, getApps, getApp } from 'firebase/app'
 import PortfolioPageShell from '@/components/portfolio/PortfolioPageShell.vue'
 import PortfolioSubNav from '@/components/portfolio/PortfolioSubNav.vue'
+import MoodLineChart from '@/components/MoodLineChart.vue'
 import {
   getFirestore, doc, setDoc, getDoc,
   collection, addDoc, getDocs, deleteDoc,
@@ -222,10 +231,11 @@ const SliderRow = defineComponent({
 })
 
 /* ── Types ── */
-interface MoodDef  { key: string; emoji: string; label: string; color: string }
-interface Entry    { id: string; mood: string; note: string; ts: number }
-interface DuoState { anger: number; love: number; mood: number }
-interface DuoDoc   { anger: number; love: number; mood: number; ts: number }
+interface MoodDef   { key: string; emoji: string; label: string; color: string }
+interface Entry     { id: string; mood: string; note: string; ts: number }
+interface DuoState  { anger: number; love: number; mood: number }
+interface DuoDoc    { anger: number; love: number; mood: number; ts: number }
+interface AngerPoint { id: string; who: 'xubao' | 'azai'; anger: number; ts: number }
 
 /* ── Icon / color helpers ── */
 function angerIcon(v: number) {
@@ -249,6 +259,10 @@ const xubao      = ref<DuoState>({ anger: 0, love: 10, mood: 8 })
 const azai       = ref<DuoState>({ anger: 0, love: 10, mood: 8 })
 const xubaoSaved = ref('')
 const azaiSaved  = ref('')
+const xubaoHistory = ref<AngerPoint[]>([])
+const azaiHistory  = ref<AngerPoint[]>([])
+const xubaoAngerPoints = computed(() => xubaoHistory.value.map(p => ({ ts: p.ts, value: p.anger })))
+const azaiAngerPoints  = computed(() => azaiHistory.value.map(p => ({ ts: p.ts, value: p.anger })))
 const syncStatus  = ref<{ type: 'ok' | 'err'; msg: string } | null>(null)
 const dbReady     = ref(!!db)
 const dbInitError = initError
@@ -298,6 +312,11 @@ onMounted(async () => {
       const q = query(collection(db, 'moodEntries'), orderBy('ts', 'desc'))
       const snap = await getDocs(q)
       entries.value = snap.docs.map(d => ({ id: d.id, ...(d.data() as Omit<Entry, 'id'>) }))
+      // anger history (for the trend charts)
+      const histSnap = await getDocs(query(collection(db, 'angerHistory'), orderBy('ts')))
+      const hist = histSnap.docs.map(d => ({ id: d.id, ...(d.data() as Omit<AngerPoint, 'id'>) }))
+      xubaoHistory.value = hist.filter(p => p.who === 'xubao')
+      azaiHistory.value  = hist.filter(p => p.who === 'azai')
     } catch (e) {
       console.error('Firestore load error', e)
     }
@@ -310,9 +329,30 @@ onMounted(async () => {
       const ad: DuoDoc = JSON.parse(localStorage.getItem('duo-azai') ?? 'null')
       if (ad) { azai.value  = { anger: ad.anger,  love: ad.love,  mood: ad.mood  }; azaiSaved.value  = formatDate(ad.ts) }
     } catch { /* empty */ }
+    try {
+      const hist: AngerPoint[] = JSON.parse(localStorage.getItem('anger-history') ?? '[]')
+      xubaoHistory.value = hist.filter(p => p.who === 'xubao')
+      azaiHistory.value  = hist.filter(p => p.who === 'azai')
+    } catch { /* empty */ }
   }
   loading.value = false
 })
+
+/* ── Anger history ── */
+async function recordAngerPoint(who: 'xubao' | 'azai', anger: number, ts: number) {
+  const target = who === 'xubao' ? xubaoHistory : azaiHistory
+  if (db) {
+    try {
+      const docRef = await addDoc(collection(db, 'angerHistory'), { who, anger, ts })
+      target.value.push({ id: docRef.id, who, anger, ts })
+    } catch (e) {
+      console.error('anger history save error', e)
+    }
+  } else {
+    target.value.push({ id: `${who}-${ts}`, who, anger, ts })
+    localStorage.setItem('anger-history', JSON.stringify([...xubaoHistory.value, ...azaiHistory.value]))
+  }
+}
 
 /* ── Save duo ── */
 async function saveDuoField(field: 'xubao' | 'azai', state: DuoState): Promise<number> {
@@ -329,6 +369,7 @@ async function saveDuoField(field: 'xubao' | 'azai', state: DuoState): Promise<n
     localStorage.setItem(`duo-${field}`, JSON.stringify({ ...state, ts }))
     showSync('err', '⚠️ Firebase 未連線，僅儲存於本機')
   }
+  await recordAngerPoint(field, state.anger, ts)
   return ts
 }
 
@@ -481,6 +522,19 @@ async function deleteEntry(id: string) {
 .slider-dots { display: flex; gap: 3px; align-items: center; }
 .dot { flex: 1; height: 5px; border-radius: 1px; background: rgba(95,127,100,.15); transition: background .2s; }
 .dot-on { background: var(--mg-green-main); }
+
+/* ── Anger chart ── */
+.anger-chart {
+  background: rgba(251,250,247,.55);
+  border: 1px solid rgba(95,127,100,.18);
+  border-radius: 14px;
+  padding: .6rem .7rem .4rem;
+}
+.chart-title {
+  font-family: var(--mg-font-body);
+  font-size: .66rem; letter-spacing: .12em;
+  color: var(--mg-text-label); margin: 0 0 .3rem;
+}
 
 .duo-footer { display: flex; flex-direction: column; gap: .4rem; align-items: flex-start; }
 .duo-save-btn {
