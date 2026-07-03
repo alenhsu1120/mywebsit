@@ -56,15 +56,16 @@ const { el, visible } = useReveal()
 
 const cards = [
   {
-    title: 'Backend Development',
-    desc: 'Designing dependable services and multithreaded systems that hold steady under real load.',
+    title: 'MAPF Research',
+    desc: 'Planning collision-free routes for multi-agent systems, competing in the League of Robot Runners.',
     icon: `<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="6" y="6" width="20" height="6" rx="1.5" stroke="#5F7F64" stroke-width="1.3"/>
-      <rect x="6" y="14" width="20" height="6" rx="1.5" stroke="#5F7F64" stroke-width="1.3"/>
-      <rect x="6" y="22" width="20" height="6" rx="1.5" stroke="#5F7F64" stroke-width="1.3"/>
-      <circle cx="10" cy="9" r="1" fill="#5F7F64"/>
-      <circle cx="10" cy="17" r="1" fill="#5F7F64"/>
-      <circle cx="10" cy="25" r="1" fill="#5F7F64"/>
+      <circle cx="7" cy="8" r="2.2" stroke="#5F7F64" stroke-width="1.3"/>
+      <path d="M7 10.2V16.5H15" stroke="#5F7F64" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="25" cy="8" r="2.2" stroke="#5F7F64" stroke-width="1.3"/>
+      <path d="M25 10.2V16.5H17" stroke="#5F7F64" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="16" cy="16.5" r="1.5" fill="#5F7F64"/>
+      <path d="M16 18V22.8" stroke="#5F7F64" stroke-width="1.3" stroke-linecap="round"/>
+      <circle cx="16" cy="25" r="2.2" stroke="#5F7F64" stroke-width="1.3"/>
     </svg>`,
   },
   {
