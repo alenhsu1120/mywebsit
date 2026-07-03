@@ -1,8 +1,8 @@
 <template>
   <div class="chart-wrap">
-    <svg v-if="coords.length >= 2" viewBox="0 0 220 64" class="chart-svg" preserveAspectRatio="none">
+    <svg v-if="coords.length >= 1" viewBox="0 0 220 64" class="chart-svg" preserveAspectRatio="none">
       <line x1="0" y1="60" x2="220" y2="60" class="baseline" />
-      <polyline :points="linePoints" fill="none" :stroke="color" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+      <polyline v-if="coords.length >= 2" :points="linePoints" fill="none" :stroke="color" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
       <circle
         v-for="(p, i) in coords"
         :key="i"
@@ -11,7 +11,8 @@
         :stroke="color" stroke-width="1.2"
       />
     </svg>
-    <p v-else class="chart-empty">還沒有足夠的紀錄，多存幾次就會看到變化趨勢</p>
+    <p v-else class="chart-empty">還沒有紀錄，存一次心情就會開始畫趨勢線</p>
+    <p v-if="coords.length === 1" class="chart-hint">再存一次就會看到變化線</p>
   </div>
 </template>
 
@@ -31,13 +32,13 @@ const props = withDefaults(defineProps<{
 
 const coords = computed(() => {
   const n = props.points.length
-  if (n < 2) return []
-  const stepX = 220 / (n - 1)
   const range = props.max - props.min
-  return props.points.map((p, i) => ({
-    x: i * stepX,
-    y: 60 - ((p.value - props.min) / range) * 52 - 4,
-  }))
+  const toY = (v: number) => 60 - ((v - props.min) / range) * 52 - 4
+  const first = props.points[0]
+  if (n === 0 || !first) return []
+  if (n === 1) return [{ x: 110, y: toY(first.value) }]
+  const stepX = 220 / (n - 1)
+  return props.points.map((p, i) => ({ x: i * stepX, y: toY(p.value) }))
 })
 
 const linePoints = computed(() => coords.value.map(c => `${c.x},${c.y}`).join(' '))
@@ -54,5 +55,13 @@ const linePoints = computed(() => coords.value.map(c => `${c.x},${c.y}`).join(' 
   text-align: center;
   padding: .6rem 0;
   opacity: .8;
+}
+.chart-hint {
+  font-family: var(--mg-font-body);
+  font-size: .64rem;
+  color: var(--mg-text-muted);
+  text-align: center;
+  margin: .2rem 0 0;
+  opacity: .7;
 }
 </style>

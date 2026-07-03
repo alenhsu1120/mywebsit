@@ -317,16 +317,25 @@ onMounted(async () => {
       const hist = histSnap.docs.map(d => ({ id: d.id, ...(d.data() as Omit<AngerPoint, 'id'>) }))
       xubaoHistory.value = hist.filter(p => p.who === 'xubao')
       azaiHistory.value  = hist.filter(p => p.who === 'azai')
+      // backfill: the only "previous" anger value we still have is whatever
+      // was last saved to mood/duo, since older saves overwrote each other
+      if (duoSnap.exists()) {
+        const d = duoSnap.data() as { xubao?: DuoDoc; azai?: DuoDoc }
+        if (xubaoHistory.value.length === 0 && d.xubao) await recordAngerPoint('xubao', d.xubao.anger, d.xubao.ts)
+        if (azaiHistory.value.length === 0 && d.azai)  await recordAngerPoint('azai',  d.azai.anger,  d.azai.ts)
+      }
     } catch (e) {
       console.error('Firestore load error', e)
     }
   } else {
     // localStorage fallback
     try { entries.value = JSON.parse(localStorage.getItem('mood-entries') ?? '[]') } catch { /* empty */ }
+    let xd: DuoDoc | null = null
+    let ad: DuoDoc | null = null
     try {
-      const xd: DuoDoc = JSON.parse(localStorage.getItem('duo-xubao') ?? 'null')
+      xd = JSON.parse(localStorage.getItem('duo-xubao') ?? 'null')
       if (xd) { xubao.value = { anger: xd.anger, love: xd.love, mood: xd.mood }; xubaoSaved.value = formatDate(xd.ts) }
-      const ad: DuoDoc = JSON.parse(localStorage.getItem('duo-azai') ?? 'null')
+      ad = JSON.parse(localStorage.getItem('duo-azai') ?? 'null')
       if (ad) { azai.value  = { anger: ad.anger,  love: ad.love,  mood: ad.mood  }; azaiSaved.value  = formatDate(ad.ts) }
     } catch { /* empty */ }
     try {
@@ -334,6 +343,9 @@ onMounted(async () => {
       xubaoHistory.value = hist.filter(p => p.who === 'xubao')
       azaiHistory.value  = hist.filter(p => p.who === 'azai')
     } catch { /* empty */ }
+    // backfill from the last locally-saved value, same reasoning as above
+    if (xubaoHistory.value.length === 0 && xd) await recordAngerPoint('xubao', xd.anger, xd.ts)
+    if (azaiHistory.value.length === 0 && ad)  await recordAngerPoint('azai',  ad.anger,  ad.ts)
   }
   loading.value = false
 })
