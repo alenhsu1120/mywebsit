@@ -8,6 +8,26 @@
       <p class="mood-sub">記錄每一天的心情色彩</p>
     </div>
 
+    <!-- 裝飾照片 -->
+    <div class="mood-gallery">
+      <figure class="gallery-photo">
+        <img
+          src="https://images.unsplash.com/photo-1612232134966-a9b076b9fbe7?q=80&w=500&auto=format&fit=crop"
+          alt="畫上不同表情的蛋，象徵各種心情"
+          loading="lazy"
+        />
+        <figcaption>Photo — Oleg Moroz / Unsplash</figcaption>
+      </figure>
+      <figure class="gallery-photo">
+        <img
+          src="https://images.unsplash.com/photo-1551323879-b2f626997e22?q=80&w=500&auto=format&fit=crop"
+          alt="溫暖的木質桌面，安靜書寫的角落"
+          loading="lazy"
+        />
+        <figcaption>Photo — Apaha Spi / Unsplash</figcaption>
+      </figure>
+    </div>
+
     <!-- Firebase 連線狀態（常駐） -->
     <div class="db-status" :class="dbReady ? 'db-ok' : 'db-err'">
       {{ dbReady ? '🔥 Firebase 已連線' : '⚠️ Firebase 未連線' }}
@@ -481,6 +501,22 @@ async function deleteEntry(id: string) {
 .mood-sub {
   font-family: var(--mg-font-body);
   font-size: .78rem; color: var(--mg-text-muted); letter-spacing: .15em;
+}
+
+/* ── Decorative gallery ── */
+.mood-gallery { display: flex; gap: 1rem; }
+.gallery-photo { flex: 1; margin: 0; }
+.gallery-photo img {
+  width: 100%; aspect-ratio: 4/3; object-fit: cover;
+  border-radius: 20px; border: 1px solid var(--mg-border-soft);
+  box-shadow: 0 8px 26px rgba(36,49,38,0.08);
+  display: block;
+}
+.gallery-photo figcaption {
+  margin-top: .4rem;
+  font-family: var(--mg-font-body);
+  font-size: .62rem; color: var(--mg-text-muted); opacity: .75;
+  text-align: center;
 }
 
 /* ── Duo grid ── */
