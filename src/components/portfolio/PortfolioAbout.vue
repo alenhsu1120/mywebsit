@@ -29,11 +29,20 @@
       </div>
 
       <div class="about-right">
-        <div v-for="(card, i) in cards" :key="card.title" class="card" :style="{ transitionDelay: (i*0.08)+'s' }">
+        <component
+          :is="card.to ? 'RouterLink' : 'div'"
+          v-for="(card, i) in cards"
+          :key="card.title"
+          :to="card.to"
+          class="card"
+          :class="{ 'is-link': card.to }"
+          :style="{ transitionDelay: (i*0.08)+'s' }"
+        >
           <div class="card-icon" v-html="card.icon" />
           <h3>{{ card.title }}</h3>
           <p>{{ card.desc }}</p>
-        </div>
+          <span v-if="card.to" class="card-arrow">›</span>
+        </component>
       </div>
 
     </div>
@@ -41,6 +50,7 @@
 </template>
 
 <script setup lang="ts">
+import { RouterLink } from 'vue-router'
 import { useReveal } from '@/composables/useReveal'
 const { el, visible } = useReveal()
 
@@ -60,6 +70,7 @@ const cards = [
   {
     title: 'Trading Systems',
     desc: 'Building order management, matching, and strategy execution logic for live trading environments.',
+    to: '/trading-systems',
     icon: `<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
       <line x1="7" y1="9" x2="7" y2="15" stroke="#5F7F64" stroke-width="1.3" stroke-linecap="round"/>
       <rect x="5" y="11" width="4" height="6" rx="1" stroke="#5F7F64" stroke-width="1.3"/>
@@ -163,6 +174,8 @@ const cards = [
   gap: 1.1rem;
 }
 .card {
+  position: relative;
+  display: block;
   background: var(--mg-bg-card);
   border: 1px solid var(--mg-border-soft);
   border-radius: 20px;
@@ -171,6 +184,8 @@ const cards = [
   transition: transform .35s cubic-bezier(.16,1,.3,1), border-color .35s, box-shadow .35s;
   opacity: 0;
   transform: translateY(16px);
+  text-decoration: none;
+  color: inherit;
 }
 .about.is-visible .card { opacity: 1; transform: translateY(0); }
 .card:hover {
@@ -178,6 +193,17 @@ const cards = [
   border-color: var(--mg-border-hover);
   box-shadow: 0 16px 36px rgba(36,49,38,0.09);
 }
+.card.is-link { cursor: pointer; }
+.card.is-link:hover { border-color: var(--mg-green-main); }
+.card-arrow {
+  position: absolute;
+  top: 1.7rem;
+  right: 1.9rem;
+  font-size: 1.3rem;
+  color: var(--mg-green-main);
+  transition: transform .3s;
+}
+.card.is-link:hover .card-arrow { transform: translateX(4px); }
 .card-icon { width: 30px; height: 30px; margin-bottom: 1rem; }
 .card-icon :deep(svg) { width: 100%; height: 100%; }
 .card h3 {

@@ -9,6 +9,7 @@ import MoodDiaryView     from '@/views/MoodDiaryView.vue'
 import EyesView          from '@/views/EyesView.vue'
 import PrivateView       from '@/views/PrivateView.vue'
 import TravelView        from '@/views/TravelView.vue'
+import TradingSystemsView from '@/views/TradingSystemsView.vue'
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -23,6 +24,7 @@ const router = createRouter({
     { path: '/travel',                 component: TravelView,      meta: { bare: true } },
     { path: '/programming',            component: ProgrammingView, meta: { bare: true } },
     { path: '/programming/research',   component: ResearchView,    meta: { bare: true } },
+    { path: '/trading-systems',        component: TradingSystemsView, meta: { bare: true } },
   ],
   scrollBehavior: () => ({ top: 0 }),
 })
