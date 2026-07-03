@@ -1,192 +1,171 @@
 <template>
   <PortfolioPageShell>
     <PortfolioSubNav back-to="/journal" back-label="‹ Life Journal" />
-    <div class="mood-wrap">
+    <div class="mood-page">
+      <div class="mood-wrap">
 
-    <div class="mood-header center-col">
-      <h2 class="mood-title">心情日記</h2>
-      <p class="mood-sub">記錄每一天的心情色彩</p>
-    </div>
-
-    <!-- Firebase 連線狀態（常駐） -->
-    <div class="db-status center-col" :class="dbReady ? 'db-ok' : 'db-err'">
-      {{ dbReady ? '🔥 Firebase 已連線' : '⚠️ Firebase 未連線' }}
-      — db={{ dbDebug }}<span v-if="dbInitError">，錯誤：{{ dbInitError }}</span>
-    </div>
-
-    <!-- 同步狀態（儲存後顯示，不會自動消失） -->
-    <div v-if="syncStatus" class="sync-banner center-col" :class="syncStatus.type">
-      {{ syncStatus.msg }}
-      <button class="sync-close" @click="syncStatus = null">✕</button>
-    </div>
-
-    <!-- ══ 雙人心情板（左側配圖） ══ -->
-    <div class="flank-row flank-left">
-      <figure class="gallery-photo">
-        <img
-          src="https://images.unsplash.com/photo-1612232134966-a9b076b9fbe7?q=80&w=500&auto=format&fit=crop"
-          alt="畫上不同表情的蛋，象徵各種心情"
-          loading="lazy"
-        />
-        <figcaption>Photo — Oleg Moroz / Unsplash</figcaption>
-      </figure>
-
-      <div class="duo-grid">
-
-        <!-- 許寶 -->
-        <div class="duo-card xubao">
-          <div class="duo-name">
-            <span class="duo-avatar">🌸</span>
-            <span class="duo-label">許寶</span>
+        <!-- Hero -->
+        <section class="hero">
+          <h2 class="hero-title">心情日記</h2>
+          <p class="hero-sub">記錄每一天的心情色彩</p>
+          <div class="hero-thumbs">
+            <img
+              class="thumb"
+              src="https://images.unsplash.com/photo-1612232134966-a9b076b9fbe7?q=80&w=200&auto=format&fit=crop"
+              alt="畫上不同表情的蛋，象徵各種心情"
+              loading="lazy"
+            />
+            <img
+              class="thumb"
+              src="https://images.unsplash.com/photo-1551323879-b2f626997e22?q=80&w=200&auto=format&fit=crop"
+              alt="溫暖的木質桌面，安靜書寫的角落"
+              loading="lazy"
+            />
+            <img
+              class="thumb"
+              src="https://images.unsplash.com/photo-1559190394-df5a28aab5c5?q=80&w=200&auto=format&fit=crop"
+              alt="一隻黃金獵犬坐在車裡"
+              loading="lazy"
+            />
           </div>
-          <div class="sliders">
-            <SliderRow label="生氣"    :icon="angerIcon(xubao.anger)" v-model="xubao.anger" :track-color="angerColor(xubao.anger)" />
-            <SliderRow label="多愛阿仔" :icon="loveIcon(xubao.love)"  v-model="xubao.love"  track-color="#e07090" />
-            <SliderRow label="整體心情" :icon="moodIcon(xubao.mood)"  v-model="xubao.mood"  :track-color="moodColor(xubao.mood)" />
-          </div>
-          <div class="anger-chart">
-            <p class="chart-title">生氣趨勢</p>
-            <MoodLineChart :points="xubaoAngerPoints" color="#a04060" />
-          </div>
-          <div class="duo-footer">
-            <button class="duo-save-btn" @click="saveXubao">儲存 ✦</button>
-            <span v-if="xubaoSaved" class="saved-time">最後儲存：{{ xubaoSaved }}</span>
-          </div>
+        </section>
+
+        <!-- 連線狀態 -->
+        <div class="status-row">
+          <span class="status-pill" :class="dbReady ? 'ok' : 'err'">
+            {{ dbReady ? '● Firebase 已連線' : '● Firebase 未連線' }}
+          </span>
+          <span v-if="dbInitError" class="status-note">{{ dbInitError }}</span>
+        </div>
+        <div v-if="syncStatus" class="sync-banner" :class="syncStatus.type">
+          {{ syncStatus.msg }}
+          <button class="sync-close" @click="syncStatus = null">✕</button>
         </div>
 
-        <!-- 阿仔 -->
-        <div class="duo-card azai">
-          <div class="duo-name">
-            <span class="duo-avatar">🐾</span>
-            <span class="duo-label">阿仔</span>
-          </div>
-          <div class="sliders">
-            <SliderRow label="生氣"    :icon="angerIcon(azai.anger)" v-model="azai.anger" :track-color="angerColor(azai.anger)" />
-            <SliderRow label="多愛許寶" :icon="loveIcon(azai.love)"  v-model="azai.love"  track-color="#e07090" />
-            <SliderRow label="整體心情" :icon="moodIcon(azai.mood)"  v-model="azai.mood"  :track-color="moodColor(azai.mood)" />
-          </div>
-          <div class="anger-chart">
-            <p class="chart-title">生氣趨勢</p>
-            <MoodLineChart :points="azaiAngerPoints" color="#3a6080" />
-          </div>
-          <div class="duo-footer">
-            <button class="duo-save-btn" @click="saveAzai">儲存 ✦</button>
-            <span v-if="azaiSaved" class="saved-time">最後儲存：{{ azaiSaved }}</span>
-          </div>
-        </div>
+        <!-- Mood Input -->
+        <section class="section">
+          <p class="section-label">今日心情</p>
+          <div class="duo-grid">
 
-      </div>
-    </div>
-
-    <!-- ══ 分隔線 ══ -->
-    <div class="section-divider center-col">
-      <span class="div-line" />
-      <span class="div-icon">🌿</span>
-      <span class="div-text">今日心情</span>
-      <span class="div-icon">🌿</span>
-      <span class="div-line" />
-    </div>
-
-    <!-- Mood selector（右側配圖） -->
-    <div class="flank-row flank-right">
-      <div class="mood-picker">
-        <p class="picker-label">今天的心情是？</p>
-        <div class="emoji-row">
-          <button
-            v-for="m in moods"
-            :key="m.key"
-            class="emoji-btn"
-            :class="{ active: selected === m.key }"
-            :style="selected === m.key ? { '--accent': m.color, borderColor: m.color } : {}"
-            @click="selected = m.key"
-            :title="m.label"
-          >
-            <span class="emoji">{{ m.emoji }}</span>
-            <span class="emoji-label">{{ m.label }}</span>
-          </button>
-        </div>
-      </div>
-
-      <figure class="gallery-photo">
-        <img
-          src="https://images.unsplash.com/photo-1559190394-df5a28aab5c5?q=80&w=500&auto=format&fit=crop"
-          alt="一隻黃金獵犬坐在車裡"
-          loading="lazy"
-        />
-        <figcaption>Photo — Ja San Miguel / Unsplash</figcaption>
-      </figure>
-    </div>
-
-    <!-- Note input（配圖隨機放在左側） -->
-    <div class="flank-row flank-left">
-      <figure class="gallery-photo">
-        <img
-          src="https://images.unsplash.com/photo-1551323879-b2f626997e22?q=80&w=500&auto=format&fit=crop"
-          alt="溫暖的木質桌面，安靜書寫的角落"
-          loading="lazy"
-        />
-        <figcaption>Photo — Apaha Spi / Unsplash</figcaption>
-      </figure>
-
-      <div class="note-section">
-        <textarea
-          v-model="note"
-          class="note-input"
-          placeholder="寫點什麼吧…（可以不寫）"
-          rows="3"
-          maxlength="200"
-        />
-        <div class="note-footer">
-          <span class="char-count">{{ note.length }} / 200</span>
-          <button class="save-btn" :disabled="!selected || saving" @click="saveMood">
-            {{ saving ? '儲存中…' : '記錄 ✦' }}
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Saved entries -->
-    <div v-if="entries.length" class="entries-section center-col">
-      <div class="section-divider">
-        <span class="div-line" />
-        <span class="div-icon">❧</span>
-        <span class="div-text">過去的心情</span>
-        <span class="div-icon">❧</span>
-        <span class="div-line" />
-      </div>
-
-      <TransitionGroup name="entry" tag="div" class="entry-list">
-        <div
-          v-for="entry in entries"
-          :key="entry.id"
-          class="entry-card"
-          :style="{ '--entry-color': getMood(entry.mood)?.color }"
-        >
-          <div class="entry-left">
-            <span class="entry-emoji">{{ getMood(entry.mood)?.emoji }}</span>
-          </div>
-          <div class="entry-body">
-            <div class="entry-meta">
-              <span class="entry-mood-label">{{ getMood(entry.mood)?.label }}</span>
-              <span class="entry-date">{{ formatDate(entry.ts) }}</span>
+            <!-- 許寶 -->
+            <div class="mood-card">
+              <div class="mood-card-head">
+                <span class="mood-avatar">🌸</span>
+                <span class="mood-name">許寶</span>
+              </div>
+              <div class="sliders">
+                <SliderRow label="生氣"    :icon="angerIcon(xubao.anger)" v-model="xubao.anger" track-color="#4F7A52" />
+                <SliderRow label="多愛阿仔" :icon="loveIcon(xubao.love)"  v-model="xubao.love"  track-color="#4F7A52" />
+                <SliderRow label="整體心情" :icon="moodIcon(xubao.mood)"  v-model="xubao.mood"  track-color="#4F7A52" />
+              </div>
+              <div class="mood-card-foot">
+                <button class="btn-primary" @click="saveXubao">儲存</button>
+                <span v-if="xubaoSaved" class="saved-note">最後儲存：{{ xubaoSaved }}</span>
+              </div>
             </div>
-            <p v-if="entry.note" class="entry-note">{{ entry.note }}</p>
+
+            <!-- 阿仔 -->
+            <div class="mood-card">
+              <div class="mood-card-head">
+                <span class="mood-avatar">🐾</span>
+                <span class="mood-name">阿仔</span>
+              </div>
+              <div class="sliders">
+                <SliderRow label="生氣"    :icon="angerIcon(azai.anger)" v-model="azai.anger" track-color="#4F7A52" />
+                <SliderRow label="多愛許寶" :icon="loveIcon(azai.love)"  v-model="azai.love"  track-color="#4F7A52" />
+                <SliderRow label="整體心情" :icon="moodIcon(azai.mood)"  v-model="azai.mood"  track-color="#4F7A52" />
+              </div>
+              <div class="mood-card-foot">
+                <button class="btn-primary" @click="saveAzai">儲存</button>
+                <span v-if="azaiSaved" class="saved-note">最後儲存：{{ azaiSaved }}</span>
+              </div>
+            </div>
+
           </div>
-          <button class="entry-del" @click="deleteEntry(entry.id)" title="刪除">✕</button>
+        </section>
+
+        <!-- Journal entry -->
+        <section class="section">
+          <p class="section-label">寫下今天</p>
+          <div class="journal-card">
+            <div class="emoji-row">
+              <button
+                v-for="m in moods"
+                :key="m.key"
+                class="emoji-btn"
+                :class="{ active: selected === m.key }"
+                @click="selected = m.key"
+                :title="m.label"
+              >
+                <span class="emoji">{{ m.emoji }}</span>
+                <span class="emoji-label">{{ m.label }}</span>
+              </button>
+            </div>
+            <textarea
+              v-model="note"
+              class="note-input"
+              placeholder="寫點什麼吧…（可以不寫）"
+              rows="3"
+              maxlength="200"
+            />
+            <div class="journal-foot">
+              <span class="char-count">{{ note.length }} / 200</span>
+              <button class="btn-primary" :disabled="!selected || saving" @click="saveMood">
+                {{ saving ? '儲存中…' : '記錄' }}
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Mood trend（次要） -->
+        <section class="section section-secondary">
+          <p class="section-label">心情趨勢</p>
+          <div class="trend-grid">
+            <div class="trend-card">
+              <p class="trend-name">許寶 · 生氣</p>
+              <MoodLineChart :points="xubaoAngerPoints" color="#4F7A52" />
+            </div>
+            <div class="trend-card">
+              <p class="trend-name">阿仔 · 生氣</p>
+              <MoodLineChart :points="azaiAngerPoints" color="#4F7A52" />
+            </div>
+          </div>
+        </section>
+
+        <!-- History -->
+        <section v-if="entries.length" class="section">
+          <p class="section-label">過去的心情</p>
+          <div class="history-card">
+            <TransitionGroup name="row" tag="div">
+              <div
+                v-for="entry in visibleEntries"
+                :key="entry.id"
+                class="history-row"
+                :title="formatDate(entry.ts)"
+              >
+                <span class="h-emoji">{{ getMood(entry.mood)?.emoji }}</span>
+                <span class="h-date">{{ formatDateShort(entry.ts) }}</span>
+                <span class="h-note">{{ entry.note || getMood(entry.mood)?.label }}</span>
+                <button class="h-del" @click="deleteEntry(entry.id)" title="刪除">✕</button>
+              </div>
+            </TransitionGroup>
+          </div>
+          <button v-if="entries.length > visibleEntries.length" class="btn-text" @click="showAllEntries = true">
+            顯示更多（還有 {{ entries.length - visibleEntries.length }} 筆）
+          </button>
+          <button v-else-if="showAllEntries && entries.length > HISTORY_PAGE" class="btn-text" @click="showAllEntries = false">
+            收合
+          </button>
+        </section>
+
+        <div v-else-if="!loading" class="empty-state">
+          <p>還沒有心情記錄，先記錄今天的心情吧！</p>
         </div>
-      </TransitionGroup>
-    </div>
+        <div v-if="loading" class="empty-state">
+          <p>載入中…</p>
+        </div>
 
-    <div v-else-if="!loading" class="empty-state center-col">
-      <span class="empty-icon">🌿</span>
-      <p>還沒有心情記錄，先記錄今天的心情吧！</p>
-    </div>
-
-    <div v-if="loading" class="empty-state center-col">
-      <span class="empty-icon">✨</span>
-      <p>載入中…</p>
-    </div>
-
+      </div>
     </div>
   </PortfolioPageShell>
 </template>
@@ -229,7 +208,7 @@ const SliderRow = defineComponent({
     label:      { type: String,  required: true },
     icon:       { type: String,  required: true },
     modelValue: { type: Number,  required: true },
-    trackColor: { type: String,  default: '#5F7F64' },
+    trackColor: { type: String,  default: '#4F7A52' },
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
@@ -264,27 +243,21 @@ const SliderRow = defineComponent({
 })
 
 /* ── Types ── */
-interface MoodDef   { key: string; emoji: string; label: string; color: string }
-interface Entry     { id: string; mood: string; note: string; ts: number }
-interface DuoState  { anger: number; love: number; mood: number }
-interface DuoDoc    { anger: number; love: number; mood: number; ts: number }
+interface MoodDef    { key: string; emoji: string; label: string; color: string }
+interface Entry      { id: string; mood: string; note: string; ts: number }
+interface DuoState   { anger: number; love: number; mood: number }
+interface DuoDoc     { anger: number; love: number; mood: number; ts: number }
 interface AngerPoint { id: string; who: 'xubao' | 'azai'; anger: number; ts: number }
 
-/* ── Icon / color helpers ── */
+/* ── Icon helpers ── */
 function angerIcon(v: number) {
   if (v <= 2) return '😇'; if (v <= 4) return '😐'; if (v <= 6) return '😠'; if (v <= 8) return '😤'; return '🤬'
-}
-function angerColor(v: number) {
-  if (v <= 3) return '#5da038'; if (v <= 6) return '#e07b20'; return '#c0392b'
 }
 function loveIcon(v: number) {
   if (v <= 2) return '🤍'; if (v <= 4) return '💛'; if (v <= 6) return '🧡'; if (v <= 8) return '❤️'; return '💖'
 }
 function moodIcon(v: number) {
   if (v <= 2) return '😢'; if (v <= 4) return '😔'; if (v <= 6) return '😐'; if (v <= 8) return '😊'; return '🥰'
-}
-function moodColor(v: number) {
-  if (v <= 3) return '#4a8ab0'; if (v <= 6) return '#8b7ab0'; return '#5da038'
 }
 
 /* ── State ── */
@@ -299,7 +272,6 @@ const azaiAngerPoints  = computed(() => azaiHistory.value.map(p => ({ ts: p.ts, 
 const syncStatus  = ref<{ type: 'ok' | 'err'; msg: string } | null>(null)
 const dbReady     = ref(!!db)
 const dbInitError = initError
-const dbDebug     = db === null ? 'null' : db === undefined ? 'undefined' : typeof db
 
 function showSync(type: 'ok' | 'err', msg: string) {
   syncStatus.value = { type, msg }
@@ -319,16 +291,20 @@ const entries  = ref<Entry[]>([])
 const loading  = ref(true)
 const saving   = ref(false)
 
+const HISTORY_PAGE = 6
+const showAllEntries = ref(false)
+const visibleEntries = computed(() => showAllEntries.value ? entries.value : entries.value.slice(0, HISTORY_PAGE))
+
 /* ── Helpers ── */
 function formatDate(ts: number): string {
   const d = new Date(ts)
   return `${d.getFullYear()}/${String(d.getMonth()+1).padStart(2,'0')}/${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`
 }
+function formatDateShort(ts: number): string {
+  const d = new Date(ts)
+  return `${d.getMonth()+1}/${d.getDate()}`
+}
 function getMood(key: string): MoodDef | undefined { return moods.find(m => m.key === key) }
-
-/* ── Firestore paths ── */
-const duoCol      = () => db ? doc(db, 'mood', 'duo')        : null
-const entriesCol  = () => db ? collection(db, 'moodEntries') : null
 
 /* ── Load ── */
 onMounted(async () => {
@@ -464,258 +440,225 @@ async function deleteEntry(id: string) {
 </script>
 
 <style scoped>
+.mood-page {
+  --j-bg:          #F5F8F4;
+  --j-card:        #FFFFFF;
+  --j-border:      #E6EAE4;
+  --j-text:        #262B26;
+  --j-text-muted:  #8B948A;
+  --j-accent:      #4F7A52;
+  --j-accent-dark: #436B46;
+  --j-accent-soft: rgba(79,122,82,.10);
+  --j-radius:      16px;
+  --j-shadow:      0 1px 2px rgba(20,30,20,.04), 0 6px 16px rgba(20,30,20,.05);
+  background: var(--j-bg);
+  min-height: 60vh;
+}
+
 .mood-wrap {
   width: 100%;
-  max-width: 1180px;
+  max-width: 960px;
   margin: 0 auto;
-  padding: 3.5rem 1.5rem 3rem;
+  padding: 48px 24px 64px;
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
+  gap: 32px;
 }
 
-/* Sections without a side photo stay at a comfortable reading width */
-.center-col { width: 100%; max-width: 680px; margin: 0 auto; }
-
-/* Sections with a side photo use the full mood-wrap width */
-.flank-row {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 1.8rem;
-  align-items: center;
+/* ── Hero ── */
+.hero { text-align: center; padding: 32px 0 8px; }
+.hero-title {
+  font-family: var(--mg-font-heading);
+  font-size: 2rem; font-weight: 500; color: var(--j-text);
+  letter-spacing: .02em; margin: 0 0 8px;
 }
-.flank-row.flank-right { grid-template-columns: 1fr 260px; }
-.flank-row .duo-grid,
-.flank-row .mood-picker,
-.flank-row .note-section { max-width: 680px; }
-@media (max-width: 860px) {
-  .flank-row, .flank-row.flank-right { grid-template-columns: 1fr; }
-  .flank-row .gallery-photo { max-width: 320px; margin: 0 auto; }
-  .flank-row .duo-grid,
-  .flank-row .mood-picker,
-  .flank-row .note-section { max-width: none; }
-}
-
-/* DB status */
-.db-status {
-  padding: .5rem 1rem;
-  border-radius: 20px;
+.hero-sub {
   font-family: var(--mg-font-body);
-  font-size: .75rem;
-  text-align: center;
+  font-size: .82rem; color: var(--j-text-muted); letter-spacing: .1em;
+  margin: 0 0 24px;
 }
-.db-ok  { background: rgba(60,160,60,.12); border: 1.5px solid #5da038; color: #2a5a10; }
-.db-err { background: rgba(180,60,60,.10); border: 1.5px solid #c07070; color: #7a2020; }
+.hero-thumbs { display: flex; justify-content: center; gap: 8px; }
+.thumb {
+  width: 48px; height: 48px; object-fit: cover;
+  border-radius: 12px; border: 1px solid var(--j-border);
+  opacity: .92;
+  transition: transform .2s, opacity .2s;
+}
+.thumb:hover { transform: translateY(-2px); opacity: 1; }
 
-/* Sync banner */
+/* ── Status ── */
+.status-row { display: flex; justify-content: center; align-items: center; gap: 8px; flex-wrap: wrap; }
+.status-pill {
+  font-family: var(--mg-font-body); font-size: .7rem;
+  padding: 4px 10px; border-radius: 999px;
+}
+.status-pill.ok  { color: #3d6b40; background: rgba(79,122,82,.10); }
+.status-pill.err { color: #a23b3b; background: rgba(190,70,70,.08); }
+.status-note { font-family: var(--mg-font-body); font-size: .68rem; color: var(--j-text-muted); }
+
 .sync-banner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: .5rem;
-  padding: .6rem 1rem;
-  border-radius: 20px;
-  font-family: var(--mg-font-body);
-  font-size: .78rem;
-  line-height: 1.5;
+  display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  padding: 8px 16px; border-radius: 12px;
+  font-family: var(--mg-font-body); font-size: .78rem; line-height: 1.5;
   animation: fadeIn .3s ease;
 }
-.sync-banner.ok  { background: rgba(60,160,60,.12); border: 1.5px solid #5da038; color: #2a5a10; }
-.sync-banner.err { background: rgba(180,60,60,.10); border: 1.5px solid #c07070; color: #7a2020; }
+.sync-banner.ok  { background: rgba(79,122,82,.10); color: #3d6b40; }
+.sync-banner.err { background: rgba(190,70,70,.08); color: #a23b3b; }
 .sync-close { background: none; border: none; cursor: pointer; font-size: .75rem; opacity: .6; color: inherit; padding: 0 .2rem; }
 .sync-close:hover { opacity: 1; }
 @keyframes fadeIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
 
-/* Header */
-.mood-header { text-align: center; }
-.mood-title {
-  font-family: var(--mg-font-heading);
-  font-size: 1.9rem; font-weight: 500; color: var(--mg-green-deep);
-  letter-spacing: .04em; margin: 0 0 .25rem;
-}
-.mood-sub {
-  font-family: var(--mg-font-body);
-  font-size: .78rem; color: var(--mg-text-muted); letter-spacing: .15em;
+/* ── Section ── */
+.section { display: flex; flex-direction: column; gap: 16px; }
+.section-secondary { opacity: .96; }
+.section-label {
+  font-family: var(--mg-font-body); font-size: .7rem; font-weight: 600;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--j-text-muted);
+  margin: 0;
 }
 
-/* ── Decorative photos ── */
-.gallery-photo { margin: 0; }
-.gallery-photo img {
-  width: 100%; aspect-ratio: 3/4; object-fit: cover;
-  border-radius: 20px; border: 1px solid var(--mg-border-soft);
-  box-shadow: 0 8px 26px rgba(36,49,38,0.08);
-  display: block;
-}
-.gallery-photo figcaption {
-  margin-top: .4rem;
-  font-family: var(--mg-font-body);
-  font-size: .62rem; color: var(--mg-text-muted); opacity: .75;
-  text-align: center;
-}
+/* ── Mood cards ── */
+.duo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 640px) { .duo-grid { grid-template-columns: 1fr; } }
 
-/* ── Duo grid ── */
-.duo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-@media (max-width: 520px) { .duo-grid { grid-template-columns: 1fr; } }
-
-.duo-card {
-  background: linear-gradient(145deg, var(--mg-bg-card) 0%, var(--mg-bg-green-soft) 100%);
-  border: 1.5px solid var(--mg-border-soft); border-radius: 20px;
-  padding: 1.1rem 1.2rem 1rem;
-  box-shadow: 0 2px 12px rgba(36,49,38,0.08), 0 1px 3px rgba(36,49,38,0.04);
-  display: flex; flex-direction: column; gap: 1rem;
+.mood-card {
+  background: var(--j-card);
+  border: 1px solid var(--j-border);
+  border-radius: var(--j-radius);
+  box-shadow: var(--j-shadow);
+  padding: 24px;
+  display: flex; flex-direction: column; gap: 16px;
+  transition: transform .2s, box-shadow .2s;
 }
-.duo-card.xubao { border-color: #d4789a; box-shadow: 3px 3px 0 #a04060; }
-.duo-card.azai  { border-color: #7ab0d4; box-shadow: 3px 3px 0 #3a6080; }
-
-.duo-name { display: flex; align-items: center; gap: .5rem; }
-.duo-avatar { font-size: 1.3rem; line-height: 1; }
-.duo-label {
-  font-family: var(--mg-font-heading);
-  font-size: 1.1rem; font-weight: 500; color: var(--mg-green-deep); letter-spacing: .05em;
-}
+.mood-card:hover { transform: translateY(-2px); box-shadow: 0 2px 4px rgba(20,30,20,.05), 0 10px 22px rgba(20,30,20,.07); }
+.mood-card-head { display: flex; align-items: center; gap: 8px; }
+.mood-avatar { font-size: 1.2rem; line-height: 1; }
+.mood-name { font-family: var(--mg-font-heading); font-size: 1.05rem; font-weight: 600; color: var(--j-text); }
 
 /* ── Sliders ── */
-.sliders { display: flex; flex-direction: column; gap: .85rem; }
-.slider-row { display: flex; flex-direction: column; gap: .35rem; }
-.slider-top { display: flex; align-items: center; gap: .4rem; }
-.slider-label { font-family: var(--mg-font-body); font-size: .78rem; color: var(--mg-text-body); flex: 1; }
+.sliders { display: flex; flex-direction: column; gap: 16px; }
+.slider-row { display: flex; flex-direction: column; gap: 6px; }
+.slider-top { display: flex; align-items: center; gap: 8px; }
+.slider-label { font-family: var(--mg-font-body); font-size: .78rem; color: var(--j-text); flex: 1; }
 .slider-icon { font-size: 1rem; line-height: 1; }
-.slider-val { font-family: var(--mg-font-body); font-size: .82rem; font-weight: 600; color: var(--mg-green-deep); min-width: 1.1rem; text-align: right; }
-.slider-track-wrap { display: flex; flex-direction: column; gap: .3rem; }
+.slider-val { font-family: var(--mg-font-body); font-size: .82rem; font-weight: 600; color: var(--j-text); min-width: 1.1rem; text-align: right; }
+.slider-track-wrap { display: flex; flex-direction: column; gap: 6px; }
 
 .slider-input {
   -webkit-appearance: none; appearance: none;
   width: 100%; height: 4px; border-radius: 20px;
-  background: linear-gradient(to right, var(--col, var(--mg-green-main)) 0%, var(--col, var(--mg-green-main)) var(--pct,0%), rgba(95,127,100,.18) var(--pct,0%), rgba(95,127,100,.18) 100%);
+  background: linear-gradient(to right, var(--col, var(--j-accent)) 0%, var(--col, var(--j-accent)) var(--pct,0%), var(--j-border) var(--pct,0%), var(--j-border) 100%);
   outline: none; cursor: pointer;
 }
 .slider-input::-webkit-slider-thumb {
   -webkit-appearance: none; width: 14px; height: 14px; border-radius: 50%;
-  background: var(--col, var(--mg-green-main)); border: 2px solid var(--mg-bg-card);
+  background: var(--col, var(--j-accent)); border: 2px solid #fff;
   box-shadow: 0 1px 4px rgba(0,0,0,.25); cursor: pointer; transition: transform .15s;
 }
 .slider-input::-webkit-slider-thumb:hover { transform: scale(1.25); }
 .slider-input::-moz-range-thumb {
   width: 14px; height: 14px; border-radius: 50%;
-  background: var(--col, var(--mg-green-main)); border: 2px solid var(--mg-bg-card);
+  background: var(--col, var(--j-accent)); border: 2px solid #fff;
   box-shadow: 0 1px 4px rgba(0,0,0,.25); cursor: pointer;
 }
 
 .slider-dots { display: flex; gap: 3px; align-items: center; }
-.dot { flex: 1; height: 5px; border-radius: 1px; background: rgba(95,127,100,.15); transition: background .2s; }
-.dot-on { background: var(--mg-green-main); }
+.dot { flex: 1; height: 4px; border-radius: 1px; background: var(--j-border); transition: background .2s; }
+.dot-on { background: var(--j-accent); }
 
-/* ── Anger chart ── */
-.anger-chart {
-  background: rgba(251,250,247,.55);
-  border: 1px solid rgba(95,127,100,.18);
-  border-radius: 14px;
-  padding: .6rem .7rem .4rem;
+.mood-card-foot {
+  display: flex; flex-direction: column; gap: 8px; align-items: flex-start;
+  padding-top: 8px; border-top: 1px solid var(--j-border);
 }
-.chart-title {
-  font-family: var(--mg-font-body);
-  font-size: .66rem; letter-spacing: .12em;
-  color: var(--mg-text-label); margin: 0 0 .3rem;
-}
+.saved-note { font-family: var(--mg-font-body); font-size: .68rem; color: var(--j-text-muted); }
 
-.duo-footer { display: flex; flex-direction: column; gap: .4rem; align-items: flex-start; }
-.duo-save-btn {
-  align-self: stretch; padding: .4rem .8rem;
-  background: linear-gradient(135deg, var(--mg-green-main), var(--mg-green-dark));
-  border: none; border-radius: 20px; color: var(--mg-bg-card);
-  font-family: var(--mg-font-body); font-size: .78rem; letter-spacing: .06em;
-  cursor: pointer; box-shadow: 0 2px 8px rgba(36,49,38,0.15); transition: transform .2s, box-shadow .2s;
+.btn-primary {
+  padding: 8px 20px;
+  background: var(--j-accent);
+  border: none; border-radius: 999px; color: #fff;
+  font-family: var(--mg-font-body); font-size: .8rem; letter-spacing: .04em;
+  cursor: pointer; transition: background .2s, transform .2s;
 }
-.duo-card.xubao .duo-save-btn { background: linear-gradient(135deg, #d4789a, #a8446a); box-shadow: 2px 2px 0 #7a2040; }
-.duo-card.azai  .duo-save-btn { background: linear-gradient(135deg, #5a9abf, #3a6e90); box-shadow: 2px 2px 0 #204a60; }
-.duo-save-btn:hover { transform: translateY(-2px); }
-.duo-card.xubao .duo-save-btn:hover { box-shadow: 3px 3px 0 #7a2040; }
-.duo-card.azai  .duo-save-btn:hover { box-shadow: 3px 3px 0 #204a60; }
-.saved-time { font-family: var(--mg-font-body); font-size: .65rem; color: var(--mg-text-muted); opacity: .85; }
+.btn-primary:hover:not(:disabled) { background: var(--j-accent-dark); transform: translateY(-1px); }
+.btn-primary:disabled { opacity: .4; cursor: not-allowed; }
 
-/* ── Divider ── */
-.section-divider { display: flex; align-items: center; gap: .5rem; justify-content: center; }
-.div-line { flex: 1; max-width: 50px; height: 1px; background: linear-gradient(90deg, transparent, var(--mg-border-soft)); }
-.div-line:last-child { background: linear-gradient(90deg, var(--mg-border-soft), transparent); }
-.div-icon { color: var(--mg-green-main); font-size: .8rem; }
-.div-text { font-family: var(--mg-font-body); font-size: .62rem; letter-spacing: .25em; color: var(--mg-text-muted); white-space: nowrap; }
-
-/* ── Picker ── */
-.mood-picker {
-  background: linear-gradient(145deg, var(--mg-bg-card) 0%, var(--mg-bg-green-soft) 100%);
-  border: 1.5px solid var(--mg-border-soft); border-radius: 20px;
-  padding: 1.2rem 1.4rem; box-shadow: 0 2px 12px rgba(36,49,38,0.08), 0 1px 3px rgba(36,49,38,0.04);
+/* ── Journal card ── */
+.journal-card {
+  background: var(--j-card);
+  border: 1px solid var(--j-border);
+  border-radius: var(--j-radius);
+  box-shadow: var(--j-shadow);
+  padding: 24px;
+  display: flex; flex-direction: column; gap: 16px;
 }
-.picker-label { font-family: var(--mg-font-body); font-size: .78rem; color: var(--mg-text-muted); letter-spacing: .1em; margin: 0 0 .9rem; }
-.emoji-row { display: flex; flex-wrap: wrap; gap: .6rem; }
+.emoji-row { display: flex; flex-wrap: wrap; gap: 8px; }
 .emoji-btn {
-  display: flex; flex-direction: column; align-items: center; gap: .25rem;
-  padding: .5rem .7rem; border: 1.5px solid rgba(95,127,100,.3); border-radius: 20px;
-  background: rgba(251,250,247,.6); cursor: pointer;
-  transition: transform .2s, border-color .2s, background .2s, box-shadow .2s;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 8px 14px; border: 1px solid var(--j-border); border-radius: 12px;
+  background: #fff; cursor: pointer;
+  transition: border-color .2s, background .2s, transform .2s;
 }
-.emoji-btn:hover { transform: translateY(-2px); border-color: var(--mg-green-main); background: rgba(238,243,234,.9); }
-.emoji-btn.active { background: rgba(220,231,213,.9); box-shadow: 0 0 0 2px var(--accent, var(--mg-green-main)); transform: translateY(-2px); }
-.emoji { font-size: 1.6rem; line-height: 1; }
-.emoji-label { font-family: var(--mg-font-body); font-size: .65rem; color: var(--mg-text-muted); }
+.emoji-btn:hover { transform: translateY(-1px); border-color: var(--j-accent); }
+.emoji-btn.active { border-color: var(--j-accent); background: var(--j-accent-soft); }
+.emoji { font-size: 1.4rem; line-height: 1; }
+.emoji-label { font-family: var(--mg-font-body); font-size: .62rem; color: var(--j-text-muted); }
 
-/* ── Note ── */
-.note-section {
-  background: linear-gradient(145deg, var(--mg-bg-card) 0%, var(--mg-bg-green-soft) 100%);
-  border: 1.5px solid var(--mg-border-soft); border-radius: 20px;
-  padding: 1rem 1.2rem; box-shadow: 0 2px 12px rgba(36,49,38,0.08), 0 1px 3px rgba(36,49,38,0.04);
-  display: flex; flex-direction: column; gap: .7rem;
-}
 .note-input {
-  width: 100%; resize: none; border: 1px solid rgba(95,127,100,.3); border-radius: 20px;
-  padding: .65rem .8rem; font-family: var(--mg-font-body); font-size: .88rem; color: var(--mg-green-deep);
-  background: rgba(251,250,247,.6); outline: none; transition: border-color .2s; box-sizing: border-box;
+  width: 100%; resize: none; border: 1px solid var(--j-border); border-radius: 12px;
+  padding: 12px 16px; font-family: var(--mg-font-body); font-size: .9rem; color: var(--j-text);
+  background: #fff; outline: none; transition: border-color .2s, box-shadow .2s; box-sizing: border-box;
 }
-.note-input:focus { border-color: var(--mg-green-main); background: rgba(251,250,247,.85); box-shadow: 0 0 0 3px rgba(95,127,100,.2); }
-.note-input::placeholder { color: var(--mg-text-label); }
-.note-footer { display: flex; justify-content: space-between; align-items: center; }
-.char-count { font-size: .72rem; color: var(--mg-text-label); font-family: var(--mg-font-body); }
-.save-btn {
-  padding: .45rem 1.2rem;
-  background: linear-gradient(135deg, var(--mg-green-main), var(--mg-green-dark));
-  border: none; border-radius: 20px; color: var(--mg-bg-card);
-  font-family: var(--mg-font-body); font-size: .8rem; letter-spacing: .08em;
-  cursor: pointer; box-shadow: 0 2px 8px rgba(36,49,38,0.15); transition: transform .2s, box-shadow .2s, opacity .2s;
-}
-.save-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(36,49,38,0.2); }
-.save-btn:disabled { opacity: .45; cursor: not-allowed; }
+.note-input:focus { border-color: var(--j-accent); box-shadow: 0 0 0 3px var(--j-accent-soft); }
+.note-input::placeholder { color: var(--j-text-muted); }
+.journal-foot { display: flex; justify-content: space-between; align-items: center; }
+.char-count { font-family: var(--mg-font-body); font-size: .7rem; color: var(--j-text-muted); }
 
-/* ── Entries ── */
-.entry-list { display: flex; flex-direction: column; gap: .75rem; }
-.entry-card {
-  display: flex; align-items: flex-start; gap: .9rem;
-  padding: .85rem 1rem;
-  background: linear-gradient(145deg, var(--mg-bg-card) 0%, var(--mg-bg-green-soft) 100%);
-  border: 1.5px solid rgba(95,127,100,.3); border-left: 3px solid var(--entry-color, var(--mg-green-main));
-  border-radius: 20px; box-shadow: 0 2px 12px rgba(36,49,38,0.08), 0 1px 3px rgba(36,49,38,0.04);
-  transition: transform .2s, box-shadow .2s;
+/* ── Trend ── */
+.trend-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 640px) { .trend-grid { grid-template-columns: 1fr; } }
+.trend-card {
+  background: var(--j-card); border: 1px solid var(--j-border); border-radius: var(--j-radius);
+  box-shadow: var(--j-shadow); padding: 16px;
 }
-.entry-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(36,49,38,0.12), 0 2px 6px rgba(36,49,38,0.06); }
-.entry-emoji { font-size: 1.5rem; line-height: 1; flex-shrink: 0; margin-top: .1rem; }
-.entry-body { flex: 1; display: flex; flex-direction: column; gap: .3rem; }
-.entry-meta { display: flex; align-items: center; gap: .7rem; flex-wrap: wrap; }
-.entry-mood-label { font-family: var(--mg-font-body); font-size: .82rem; font-weight: 500; color: var(--mg-green-deep); }
-.entry-date { font-family: var(--mg-font-body); font-size: .7rem; color: var(--mg-text-muted); }
-.entry-note { font-family: var(--mg-font-body); font-size: .84rem; color: var(--mg-text-body); line-height: 1.55; margin: 0; }
-.entry-del {
-  flex-shrink: 0; background: none; border: none; color: var(--mg-text-label); font-size: .7rem;
-  cursor: pointer; padding: .2rem .3rem; border-radius: 20px; opacity: .5; transition: opacity .2s, color .2s;
+.trend-name { font-family: var(--mg-font-body); font-size: .7rem; letter-spacing: .06em; color: var(--j-text-muted); margin: 0 0 8px; }
+
+/* ── History ── */
+.history-card {
+  background: var(--j-card); border: 1px solid var(--j-border); border-radius: var(--j-radius);
+  box-shadow: var(--j-shadow); overflow: hidden;
 }
-.entry-del:hover { opacity: 1; color: #c0392b; }
+.history-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--j-border);
+}
+.history-row:last-child { border-bottom: none; }
+.h-emoji { font-size: 1.1rem; line-height: 1; flex-shrink: 0; }
+.h-date { font-family: var(--mg-font-body); font-size: .72rem; color: var(--j-text-muted); flex-shrink: 0; width: 40px; }
+.h-note {
+  flex: 1; min-width: 0;
+  font-family: var(--mg-font-body); font-size: .85rem; color: var(--j-text);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.h-del {
+  flex-shrink: 0; background: none; border: none; color: var(--j-text-muted); font-size: .7rem;
+  cursor: pointer; padding: 4px; border-radius: 8px; opacity: .5; transition: opacity .2s, color .2s;
+}
+.h-del:hover { opacity: 1; color: #a23b3b; }
+
+.btn-text {
+  align-self: flex-start;
+  background: none; border: none; color: var(--j-accent);
+  font-family: var(--mg-font-body); font-size: .78rem; letter-spacing: .03em;
+  cursor: pointer; padding: 4px 0;
+}
+.btn-text:hover { text-decoration: underline; }
 
 /* ── Empty / Loading ── */
-.empty-state { text-align: center; padding: 2rem 1rem; opacity: .65; }
-.empty-icon { font-size: 2rem; display: block; margin-bottom: .6rem; }
-.empty-state p { font-family: var(--mg-font-body); font-size: .84rem; color: var(--mg-text-muted); }
+.empty-state { text-align: center; padding: 32px 16px; }
+.empty-state p { font-family: var(--mg-font-body); font-size: .85rem; color: var(--j-text-muted); }
 
-/* ── Transition ── */
-.entry-enter-active { transition: all .3s ease; }
-.entry-leave-active { transition: all .25s ease; }
-.entry-enter-from { opacity: 0; transform: translateY(-8px); }
-.entry-leave-to   { opacity: 0; transform: translateX(8px); }
+/* ── Row transition ── */
+.row-enter-active, .row-leave-active { transition: all .25s ease; }
+.row-enter-from, .row-leave-to { opacity: 0; transform: translateY(-6px); }
 </style>
