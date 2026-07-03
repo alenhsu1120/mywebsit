@@ -55,6 +55,11 @@ const items = [
     title: 'M.S. in Computer Science',
     desc: 'Focused on systems and algorithmic foundations that continue to shape how I approach backend and quantitative engineering today.',
   },
+  {
+    period: 'National Taiwan University',
+    title: 'B.A. in Japanese',
+    desc: 'Started learning programming languages (including C/C++ and Python) in the second year of undergraduate studies after taking a big data analysis course, which sparked an interest in software development and computer science.',
+  },
 ]
 </script>
 
