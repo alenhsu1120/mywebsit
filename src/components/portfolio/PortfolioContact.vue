@@ -29,21 +29,15 @@ const { el, visible } = useReveal()
 const contacts = [
   {
     label: 'Email',
-    value: 'you@example.com',
-    href: 'mailto:you@example.com',
+    value: 'wonderful102662@gmail.com',
+    href: 'mailto:wonderful102662@gmail.com',
     icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#5F7F64" stroke-width="1.3"/><path d="M4 7l8 6 8-6" stroke="#5F7F64" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
   },
   {
     label: 'GitHub',
-    value: 'github.com/yourusername',
-    href: 'https://github.com/yourusername',
+    value: 'github.com/alenhsu1120',
+    href: 'https://github.com/alenhsu1120',
     icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3a9 9 0 0 0-2.84 17.54c.45.08.61-.2.61-.43v-1.68c-2.5.55-3.03-1.2-3.03-1.2-.41-1.04-1-1.32-1-1.32-.82-.56.06-.55.06-.55.9.06 1.38.93 1.38.93.8 1.37 2.1.98 2.6.75.08-.58.31-.98.57-1.2-2-.22-4.1-1-4.1-4.45 0-.98.35-1.79.93-2.42-.09-.22-.4-1.14.09-2.38 0 0 .76-.24 2.5.93a8.6 8.6 0 0 1 4.55 0c1.73-1.17 2.5-.93 2.5-.93.48 1.24.17 2.16.08 2.38.58.63.93 1.44.93 2.42 0 3.46-2.1 4.23-4.1 4.45.33.28.61.83.61 1.68v2.48c0 .24.16.51.62.43A9 9 0 0 0 12 3Z" stroke="#5F7F64" stroke-width="1.1"/></svg>`,
-  },
-  {
-    label: 'LinkedIn',
-    value: 'linkedin.com/in/yourusername',
-    href: 'https://linkedin.com/in/yourusername',
-    icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="2.5" stroke="#5F7F64" stroke-width="1.3"/><circle cx="8" cy="8.2" r="1" fill="#5F7F64"/><path d="M8 11v6M12 17v-3.6c0-1.3.9-2.4 2.2-2.4 1.3 0 1.8 1 1.8 2.4V17" stroke="#5F7F64" stroke-width="1.3" stroke-linecap="round"/></svg>`,
   },
 ]
 </script>
