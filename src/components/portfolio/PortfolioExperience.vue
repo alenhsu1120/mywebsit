@@ -42,13 +42,8 @@ const { el, visible } = useReveal()
 const items = [
   {
     period: 'Present',
-    title: 'Backend & Trading Systems Engineer',
-    desc: 'Developing order management, matching, and strategy processing logic for live trading infrastructure in C++, with data services in Python and C#.',
-  },
-  {
-    period: 'Earlier',
-    title: 'Systems & Infrastructure Development',
-    desc: 'Worked across Linux-based backend services, Redis and relational databases, building the internal tooling data pipelines depend on.',
+    title: 'Backend Engineer',
+    desc: 'Developed low-latency trading systems in C++ for order management, matching, and strategy execution, with supporting services in Python and C#. Worked on Linux backend services, Redis, and relational databases to support internal trading data pipelines and infrastructure.',
   },
   {
     period: 'Graduate Studies',
