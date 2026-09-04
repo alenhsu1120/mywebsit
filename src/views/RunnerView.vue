@@ -74,6 +74,15 @@
         </button>
       </div>
 
+      <p v-if="hasOverrides || canUndo" class="saved-note">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M4.2 3.6 H13 L15.8 6.4 V16.4 H4.2 Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+          <path d="M7 3.6 V8 H12.4 V3.6" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+          <path d="M7 11.4 H13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+        已自動保存在這台裝置的瀏覽器，重新整理或下次進來會自動還原。
+      </p>
+
       <!-- ── 棒次表 ── -->
       <div class="table-card">
         <div class="table-scroll">
@@ -192,7 +201,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount, ref } from 'vue'
+import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import PortfolioPageShell from '@/components/portfolio/PortfolioPageShell.vue'
 import PortfolioSubNav from '@/components/portfolio/PortfolioSubNav.vue'
 
@@ -304,15 +313,70 @@ const baseEnd = new Map(
   baseRows.filter((r): r is LegRow => r.kind === 'leg').map((r) => [r.leg, r.end]),
 )
 
-const overrides = ref<Record<number, number>>({})
+/* ── localStorage 保存：重新整理後還原填過的時間與復原歷史 ── */
+const LS_KEY = 'runner-baton-v1'
+const MAX_HISTORY = 50
+
+/* 存進去的資料可能被改壞或跨版本殘留，讀回來一律先過濾 */
+function sanitize(raw: unknown): Record<number, number> {
+  const out: Record<number, number> = {}
+  if (!raw || typeof raw !== 'object') return out
+  for (const [k, v] of Object.entries(raw as Record<string, unknown>)) {
+    const leg = Number(k)
+    if (!Number.isInteger(leg) || leg < 1 || leg > legs.length) continue
+    if (typeof v !== 'number' || !Number.isFinite(v) || v < 0 || v > 4 * 86400) continue
+    out[leg] = Math.round(v)
+  }
+  return out
+}
+
+function loadSaved(): { overrides: Record<number, number>; history: Record<number, number>[] } {
+  try {
+    const raw = localStorage.getItem(LS_KEY)
+    if (!raw) return { overrides: {}, history: [] }
+    const parsed = JSON.parse(raw) as { overrides?: unknown; history?: unknown }
+    return {
+      overrides: sanitize(parsed.overrides),
+      history: Array.isArray(parsed.history)
+        ? parsed.history
+            /* 非物件的項目整個丟掉，否則會變成沒有意義的復原步驟 */
+            .filter((h): h is object => !!h && typeof h === 'object')
+            .slice(-MAX_HISTORY)
+            .map(sanitize)
+        : [],
+    }
+  } catch {
+    /* JSON 壞掉或瀏覽器停用儲存 → 當成沒存過 */
+    return { overrides: {}, history: [] }
+  }
+}
+
+const saved = loadSaved()
+const overrides = ref<Record<number, number>>(saved.overrides)
 
 /* 每次變更前把舊狀態壓進 history，供「回復上一步」使用 */
-const history = ref<Record<number, number>[]>([])
+const history = ref<Record<number, number>[]>(saved.history)
 const canUndo = computed(() => history.value.length > 0)
 const hasOverrides = computed(() => Object.keys(overrides.value).length > 0)
 
+/* overrides / history 一律整份替換，所以不需要 deep watch */
+watch([overrides, history], () => {
+  try {
+    if (!hasOverrides.value && history.value.length === 0) {
+      localStorage.removeItem(LS_KEY)
+      return
+    }
+    localStorage.setItem(
+      LS_KEY,
+      JSON.stringify({ overrides: overrides.value, history: history.value.slice(-MAX_HISTORY) }),
+    )
+  } catch {
+    /* 隱私模式或空間不足：保存失敗不影響頁面操作 */
+  }
+})
+
 function commit(next: Record<number, number>) {
-  history.value = [...history.value, overrides.value]
+  history.value = [...history.value, overrides.value].slice(-MAX_HISTORY)
   overrides.value = next
 }
 
@@ -901,6 +965,17 @@ const levelClass = (lv: Level) => LEVEL_CLASS[lv]
 .chip:hover { border-color: var(--mg-clay); color: var(--mg-clay); }
 .chip-x { font-size: 1rem; line-height: 1; opacity: .55; }
 .chip-reset { color: var(--mg-text-muted); background: transparent; font-weight: 400; }
+
+.saved-note {
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  margin-top: .9rem;
+  font-family: var(--mg-font-body);
+  font-size: .78rem;
+  color: var(--mg-text-muted);
+}
+.saved-note svg { width: 15px; height: 15px; flex-shrink: 0; color: var(--mg-green-main); }
 
 /* ── 表格 ── */
 .table-card {
