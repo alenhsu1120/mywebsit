@@ -112,9 +112,6 @@
                   <td class="c-time c-finish">
                     {{ fmtClock(row.end) }}
                     <span v-if="row.overridden" class="tag-actual">實際</span>
-                    <span v-else-if="row.shift !== 0" class="shift" :class="row.shift < 0 ? 'up' : 'down'">
-                      {{ fmtShift(row.shift) }}
-                    </span>
                   </td>
                   <td class="c-date">{{ fmtDate(row.end) }}</td>
                 </template>
@@ -413,13 +410,6 @@ const WEEK = ['五', '六', '日', '一']
 const fmtDate = (sec: number) => DAYS[Math.floor(sec / 86400)] ?? '—'
 const weekday = (sec: number) => WEEK[Math.floor(sec / 86400)] ?? '—'
 
-function fmtShift(sec: number): string {
-  const sign = sec < 0 ? '−' : '+'
-  const s = Math.abs(sec)
-  const h = Math.floor(s / 3600)
-  const m = Math.floor((s % 3600) / 60)
-  return h > 0 ? `${sign}${h}:${pad(m)}` : `${sign}${m}分`
-}
 
 /* ═══════════════════════════════════════════════════════════════
    產生圖檔：把目前的棒次表畫到 canvas，輸出成 JPEG
@@ -595,11 +585,7 @@ function renderTable(): Promise<Blob> {
     } else if (r.shift !== 0) {
       ctx.fillStyle = '#9C4B00'
       ctx.font = font(14, 700)
-      ctx.textAlign = 'center'
-      ctx.fillText(fmtClock(r.end), fx, cy - 5)
-      ctx.font = font(10, 600)
-      ctx.fillStyle = r.shift < 0 ? '#2E7D5B' : IMG.alert
-      ctx.fillText(fmtShift(r.shift), fx, cy + 8)
+      cell(fmtClock(r.end), 7, cy)
     } else {
       ctx.fillStyle = IMG.finish
       ctx.font = font(14, 600)
