@@ -59,6 +59,23 @@
           <span class="menu-arrow">›</span>
         </RouterLink>
 
+        <RouterLink to="/journal/runner" class="menu-card">
+          <div class="menu-icon">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="23" cy="9" r="3.2" fill="rgba(95,127,100,.3)" stroke="#5F7F64" stroke-width="1.3"/>
+              <path d="M22 14 L17 21 L21 25 L19 33" stroke="#2F4F3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <path d="M17 21 L11 24" stroke="#5F7F64" stroke-width="1.4" stroke-linecap="round"/>
+              <path d="M22 14 L28 17 L30 23" stroke="#5F7F64" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <path d="M6 15 H12 M5 19 H10" stroke="#5F7F64" stroke-width="1.1" stroke-linecap="round" opacity=".55"/>
+            </svg>
+          </div>
+          <div class="menu-text">
+            <span class="menu-label">Runner</span>
+            <span class="menu-desc">跑步的路上 · 留下奔跑的身影</span>
+          </div>
+          <span class="menu-arrow">›</span>
+        </RouterLink>
+
       </nav>
     </div>
   </PortfolioPageShell>
