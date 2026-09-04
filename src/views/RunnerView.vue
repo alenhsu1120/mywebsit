@@ -31,6 +31,33 @@
         </label>
 
         <button type="submit" class="apply-btn">更新</button>
+
+        <div class="act-row">
+          <button type="button" class="act-btn" :disabled="!hasOverrides" @click="resetOverrides">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M4 10a6 6 0 1 0 1.9-4.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <path d="M3.6 4.2 V7.4 H6.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            恢復原始狀態
+          </button>
+
+          <button type="button" class="act-btn" :disabled="!canUndo" @click="undo">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M7.6 4.4 L3.6 8.4 L7.6 12.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M3.6 8.4 H11.4 a4.6 4.6 0 0 1 0 9.2 H8.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+            回復上一步
+          </button>
+
+          <button type="button" class="act-btn act-primary" :disabled="generating" @click="generateImage">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <rect x="2.6" y="4.2" width="14.8" height="11.6" rx="2" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="7.2" cy="8.4" r="1.5" stroke="currentColor" stroke-width="1.4"/>
+              <path d="M3.4 14.2 L8 10.2 L11.4 13 L14 10.8 L16.8 13.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            {{ generating ? '產生中…' : '產生圖檔' }}
+          </button>
+        </div>
       </form>
 
       <div v-if="overrideList.length" class="chips">
@@ -45,7 +72,6 @@
         >
           第 {{ o.leg }} 棒 → {{ fmtClock(o.sec) }}<span class="chip-x">×</span>
         </button>
-        <button type="button" class="chip chip-reset" @click="resetOverrides">全部重設</button>
       </div>
 
       <!-- ── 棒次表 ── -->
@@ -132,19 +158,35 @@
       </p>
 
       <!-- ── 原始圖檔 ── -->
-      <details class="origin">
-        <summary>原始棒次表圖檔</summary>
+      <details
+        class="origin"
+        :open="originOpen"
+        @toggle="originOpen = ($event.target as HTMLDetailsElement).open"
+      >
+        <summary>
+          {{ generatedUrl ? '棒次表圖檔（已重新產生）' : '原始棒次表圖檔' }}
+        </summary>
         <figure class="photo-card">
-          <img :src="runnerUrl" alt="2026 CRUFU RUN 7th 西臺灣棒次表" loading="lazy" />
+          <img :src="displayUrl" alt="2026 CRUFU RUN 7th 西臺灣棒次表" loading="lazy" />
           <figcaption>
-            <a :href="runnerUrl" download="runner.JPG" class="dl-btn">
-              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M10 3.5 V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                <path d="M6.2 8.6 L10 12.4 L13.8 8.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M4.5 15.2 H15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
-              <span>下載原始圖檔</span>
-            </a>
+            <p v-if="generatedUrl" class="gen-note">
+              已依目前時間產生新圖檔，覆蓋了這裡顯示的原圖。<br />
+              瀏覽器無法寫回伺服器，這次替換只在本次瀏覽有效 —
+              下載後把 <code>public/runner.JPG</code> 換掉並重新部署才會永久生效。
+            </p>
+            <div class="cap-actions">
+              <button v-if="generatedUrl" type="button" class="dl-btn dl-ghost" @click="revertImage">
+                還原原圖
+              </button>
+              <a :href="displayUrl" download="runner.JPG" class="dl-btn">
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M10 3.5 V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  <path d="M6.2 8.6 L10 12.4 L13.8 8.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M4.5 15.2 H15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span>{{ generatedUrl ? '下載新圖檔' : '下載原始圖檔' }}</span>
+              </a>
+            </div>
           </figcaption>
         </figure>
       </details>
@@ -153,7 +195,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onBeforeUnmount, ref } from 'vue'
 import PortfolioPageShell from '@/components/portfolio/PortfolioPageShell.vue'
 import PortfolioSubNav from '@/components/portfolio/PortfolioSubNav.vue'
 
@@ -267,6 +309,23 @@ const baseEnd = new Map(
 
 const overrides = ref<Record<number, number>>({})
 
+/* 每次變更前把舊狀態壓進 history，供「回復上一步」使用 */
+const history = ref<Record<number, number>[]>([])
+const canUndo = computed(() => history.value.length > 0)
+const hasOverrides = computed(() => Object.keys(overrides.value).length > 0)
+
+function commit(next: Record<number, number>) {
+  history.value = [...history.value, overrides.value]
+  overrides.value = next
+}
+
+function undo() {
+  const prev = history.value[history.value.length - 1]
+  if (!prev) return
+  history.value = history.value.slice(0, -1)
+  overrides.value = prev
+}
+
 const rows = computed<Row[]>(() =>
   schedule(overrides.value).map((r) =>
     r.kind === 'leg' ? { ...r, shift: r.end - (baseEnd.get(r.leg) ?? r.end) } : r,
@@ -314,10 +373,10 @@ function applyOverride() {
     (r): r is LegRow => r.kind === 'leg' && r.leg === formLeg.value,
   )
   if (!current) return
-  overrides.value = {
+  commit({
     ...overrides.value,
     [formLeg.value]: resolveDay(formTime.value, current.end),
-  }
+  })
   formTime.value = ''
   if (formLeg.value < legs.length) formLeg.value += 1
 }
@@ -325,11 +384,12 @@ function applyOverride() {
 function removeOverride(leg: number) {
   const next = { ...overrides.value }
   delete next[leg]
-  overrides.value = next
+  commit(next)
 }
 
 function resetOverrides() {
-  overrides.value = {}
+  if (!hasOverrides.value) return
+  commit({})
 }
 
 /* ── 格式化 ── */
@@ -360,6 +420,313 @@ function fmtShift(sec: number): string {
   const m = Math.floor((s % 3600) / 60)
   return h > 0 ? `${sign}${h}:${pad(m)}` : `${sign}${m}分`
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   產生圖檔：把目前的棒次表畫到 canvas，輸出成 JPEG
+   （瀏覽器無法寫回伺服器上的 public/runner.JPG，
+     所以這裡是換掉頁面上顯示的圖 + 提供下載覆蓋原檔）
+   ═══════════════════════════════════════════════════════════════ */
+const generating   = ref(false)
+const generatedUrl = ref('')
+const originOpen   = ref(false)
+
+const displayUrl   = computed(() => generatedUrl.value || runnerUrl)
+
+const FF = '"Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif'
+const font = (size: number, weight: number | string = 400) => `${weight} ${size}px ${FF}`
+
+const COL_W    = [74, 94, 112, 140, 108, 122, 124, 124, 86]
+const COL_HEAD = ['棒次', '跑者', '距離 (km)', '配速 (/km)', '難易度', '單棒時間', '預計起跑', '預計完成', '日期']
+
+const IMG = {
+  ink:      '#1F3864',
+  headBg:   '#1F4E79',
+  headText: '#FFFFFF',
+  bandA:    '#FFF8E1',
+  bandB:    '#EAF2F9',
+  grid:     '#B7C7DA',
+  time:     '#1F4E79',
+  finish:   '#2E75B6',
+  wait:     '#FFF2CC',
+  actual:   '#FBE2C4',
+  alert:    '#C00000',
+  sumBg:    '#EAF2F9',
+  sumBd:    '#9DC3E6',
+  muted:    '#5A6B84',
+}
+const LEVEL_INK: Record<Level, string> = {
+  極難: '#C00000',
+  難:   '#C00000',
+  適中: '#D26A00',
+  易:   '#3F8F2A',
+  極易: '#2E7D5B',
+}
+
+function renderTable(): Promise<Blob> {
+  const W = 1024
+  const PAD = 20
+  const HEAD_H = 34
+  const ROW_H = 30
+  const body = rows.value
+
+  const notes: string[] = []
+  if (overrideList.value.length) {
+    notes.push(
+      '已套用實際完成時間：' +
+        overrideList.value.map((o) => `第 ${o.leg} 棒 ${fmtClock(o.sec)}`).join('、'),
+    )
+  }
+
+  const tableTop = 100 + notes.length * 22
+  const tableH   = HEAD_H + body.length * ROW_H
+  const sumTop   = tableTop + tableH + 18
+  const SUM_H    = 80
+  const H        = sumTop + SUM_H + 48
+
+  const dpr = 2
+  const canvas = document.createElement('canvas')
+  canvas.width = W * dpr
+  canvas.height = H * dpr
+  const ctx = canvas.getContext('2d')
+  if (!ctx) return Promise.reject(new Error('canvas 2d context 取得失敗'))
+  ctx.scale(dpr, dpr)
+  ctx.textBaseline = 'middle'
+
+  ctx.fillStyle = '#FFFFFF'
+  ctx.fillRect(0, 0, W, H)
+
+  /* ── 標題 ── */
+  ctx.fillStyle = IMG.headBg
+  ctx.font = font(25, 700)
+  ctx.textAlign = 'center'
+  ctx.fillText('2026 CRUFU RUN 7th – 西臺灣棒次表（含配速、難易度與時間預估）', W / 2, 40)
+
+  ctx.font = font(14, 600)
+  ctx.textAlign = 'left'
+  ctx.fillStyle = IMG.ink
+  ctx.fillText('起跑日期：2026/09/19（五）04:20', PAD, 70)
+  ctx.textAlign = 'right'
+  ctx.fillStyle = IMG.alert
+  ctx.fillText('第 21 棒需在 01:10 才能出發（強制等待）', W - PAD, 70)
+
+  ctx.textAlign = 'left'
+  ctx.font = font(13, 600)
+  ctx.fillStyle = '#8A5A00'
+  notes.forEach((n, i) => ctx.fillText(n, PAD, 92 + i * 22))
+
+  /* ── 欄位 x 座標 ── */
+  const tableW = COL_W.reduce((a, b) => a + b, 0)
+  const x0 = Math.round((W - tableW) / 2)
+  const colX: number[] = []
+  COL_W.reduce((acc, w, i) => {
+    colX[i] = acc
+    return acc + w
+  }, x0)
+
+  const cell = (text: string, i: number, cy: number, span = 1) => {
+    let w = 0
+    for (let k = i; k < i + span; k++) w += COL_W[k] ?? 0
+    ctx.textAlign = 'center'
+    ctx.fillText(text, (colX[i] ?? x0) + w / 2, cy)
+  }
+
+  /* ── 表頭 ── */
+  ctx.fillStyle = IMG.headBg
+  ctx.fillRect(x0, tableTop, tableW, HEAD_H)
+  ctx.fillStyle = IMG.headText
+  ctx.font = font(14, 700)
+  COL_HEAD.forEach((h, i) => cell(h, i, tableTop + HEAD_H / 2))
+
+  /* ── 資料列 ── */
+  body.forEach((r, ri) => {
+    const y = tableTop + HEAD_H + ri * ROW_H
+    const cy = y + ROW_H / 2
+
+    if (r.kind === 'wait') ctx.fillStyle = IMG.wait
+    else if (r.overridden) ctx.fillStyle = IMG.actual
+    else ctx.fillStyle = ri % 2 === 0 ? IMG.bandA : IMG.bandB
+    ctx.fillRect(x0, y, tableW, ROW_H)
+
+    if (r.kind === 'wait') {
+      ctx.font = font(14, 700)
+      ctx.fillStyle = IMG.ink
+      cell('—', 0, cy)
+      cell('強制等待（第 21 棒需在 01:10 才能出發）', 1, cy, 4)
+      ctx.font = font(14, 400)
+      cell(r.dur > 0 ? '約 ' + fmtDur(r.dur) : '無等待', 5, cy)
+      ctx.fillStyle = IMG.time
+      ctx.font = font(14, 600)
+      cell(fmtClock(r.start), 6, cy)
+      ctx.fillStyle = IMG.alert
+      ctx.font = font(14, 700)
+      cell(fmtClock(r.end), 7, cy)
+      ctx.fillStyle = IMG.muted
+      ctx.font = font(13, 400)
+      cell(fmtDate(r.end), 8, cy)
+      return
+    }
+
+    ctx.font = font(14, 700)
+    ctx.fillStyle = IMG.ink
+    cell(String(r.leg), 0, cy)
+    ctx.font = font(14, 600)
+    cell(r.runner, 1, cy)
+    ctx.font = font(14, 400)
+    ctx.fillStyle = '#33405C'
+    cell(r.km.toFixed(1), 2, cy)
+    cell(r.paceLabel, 3, cy)
+    ctx.font = font(14, 700)
+    ctx.fillStyle = LEVEL_INK[r.level]
+    cell(r.level, 4, cy)
+    ctx.font = font(14, 400)
+    ctx.fillStyle = '#33405C'
+    cell(r.note ?? fmtDur(r.dur), 5, cy)
+    ctx.font = font(14, 600)
+    ctx.fillStyle = IMG.time
+    cell(fmtClock(r.start), 6, cy)
+
+    /* 預計完成：實際時間標記，或與原表的差異 */
+    const fx = (colX[7] ?? x0) + (COL_W[7] ?? 0) / 2
+    if (r.overridden) {
+      ctx.fillStyle = '#9C4B00'
+      ctx.font = font(14, 700)
+      ctx.textAlign = 'center'
+      ctx.fillText(fmtClock(r.end) + ' ✽', fx, cy)
+    } else if (r.shift !== 0) {
+      ctx.fillStyle = '#9C4B00'
+      ctx.font = font(14, 700)
+      ctx.textAlign = 'center'
+      ctx.fillText(fmtClock(r.end), fx, cy - 5)
+      ctx.font = font(10, 600)
+      ctx.fillStyle = r.shift < 0 ? '#2E7D5B' : IMG.alert
+      ctx.fillText(fmtShift(r.shift), fx, cy + 8)
+    } else {
+      ctx.fillStyle = IMG.finish
+      ctx.font = font(14, 600)
+      cell(fmtClock(r.end), 7, cy)
+    }
+
+    ctx.fillStyle = IMG.muted
+    ctx.font = font(13, 400)
+    cell(fmtDate(r.end), 8, cy)
+  })
+
+  /* ── 格線 ── */
+  ctx.strokeStyle = IMG.grid
+  ctx.lineWidth = 1
+  ctx.beginPath()
+  for (let i = 0; i <= body.length + 1; i++) {
+    const y = i === 0 ? tableTop : tableTop + HEAD_H + (i - 1) * ROW_H
+    ctx.moveTo(x0, y + 0.5)
+    ctx.lineTo(x0 + tableW, y + 0.5)
+  }
+  const waitIdx = body.findIndex((r) => r.kind === 'wait')
+  for (let i = 0; i <= COL_W.length; i++) {
+    const x = (colX[i] ?? x0 + tableW) + 0.5
+    if (i > 1 && i < 5 && waitIdx >= 0) {
+      /* 強制等待列的合併欄不畫豎線 */
+      const wy = tableTop + HEAD_H + waitIdx * ROW_H
+      ctx.moveTo(x, tableTop)
+      ctx.lineTo(x, wy)
+      ctx.moveTo(x, wy + ROW_H)
+      ctx.lineTo(x, tableTop + tableH)
+    } else {
+      ctx.moveTo(x, tableTop)
+      ctx.lineTo(x, tableTop + tableH)
+    }
+  }
+  ctx.stroke()
+
+  /* ── 總結 ── */
+  ctx.fillStyle = IMG.sumBg
+  ctx.fillRect(x0, sumTop, tableW, SUM_H)
+  ctx.strokeStyle = IMG.sumBd
+  ctx.strokeRect(x0 + 0.5, sumTop + 0.5, tableW - 1, SUM_H - 1)
+
+  const third = tableW / 3
+  const blocks: [string, string, string][] = [
+    ['總距離', `${totalKm.toFixed(1)} km`, IMG.headBg],
+    ['總跑步時間（不含等待）', `約 ${fmtDur(totalRunSec)}`, IMG.headBg],
+    [
+      '預估完賽時間（含等待）',
+      `2026/${fmtDate(finishSec.value)}（${weekday(finishSec.value)}）${fmtClock(finishSec.value)}`,
+      IMG.alert,
+    ],
+  ]
+  ctx.textAlign = 'center'
+  blocks.forEach(([label, value, ink], i) => {
+    const cx = x0 + third * i + third / 2
+    ctx.font = font(13, 600)
+    ctx.fillStyle = IMG.muted
+    ctx.fillText(label, cx, sumTop + 22)
+    ctx.font = font(21, 700)
+    ctx.fillStyle = ink
+    ctx.fillText(value, cx, sumTop + 50)
+    if (i > 0) {
+      ctx.strokeStyle = IMG.sumBd
+      ctx.beginPath()
+      ctx.moveTo(x0 + third * i + 0.5, sumTop + 12)
+      ctx.lineTo(x0 + third * i + 0.5, sumTop + SUM_H - 12)
+      ctx.stroke()
+    }
+  })
+  if (finishShift.value !== 0) {
+    ctx.font = font(12, 600)
+    ctx.fillStyle = finishShift.value < 0 ? '#2E7D5B' : IMG.alert
+    ctx.fillText(
+      `比原表${finishShift.value < 0 ? '快' : '慢'} ${fmtDur(Math.abs(finishShift.value))}`,
+      x0 + third * 2 + third / 2,
+      sumTop + 68,
+    )
+  }
+
+  /* ── 註腳 ── */
+  ctx.textAlign = 'left'
+  ctx.font = font(12, 400)
+  ctx.fillStyle = IMG.muted
+  ctx.fillText(
+    '* 第 26 棒穎萱配速為 6:30–8:00/km，表中時間以中間值 7:15/km 估算。' +
+      (overrideList.value.length ? '　✽ 為實際完成時間，其後棒次已連鎖重算。' : ''),
+    PAD,
+    sumTop + SUM_H + 22,
+  )
+  ctx.fillText(`產生時間：${new Date().toLocaleString('zh-TW', { hour12: false })}`, PAD, sumTop + SUM_H + 40)
+
+  return new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob(
+      (blob) => (blob ? resolve(blob) : reject(new Error('canvas.toBlob 回傳 null'))),
+      'image/jpeg',
+      0.95,
+    )
+  })
+}
+
+async function generateImage() {
+  if (generating.value) return
+  generating.value = true
+  try {
+    if (document.fonts?.ready) await document.fonts.ready
+    const blob = await renderTable()
+    if (generatedUrl.value) URL.revokeObjectURL(generatedUrl.value)
+    generatedUrl.value = URL.createObjectURL(blob)
+    originOpen.value = true
+  } catch (e) {
+    console.error('[Runner] 產生圖檔失敗:', e)
+    window.alert('產生圖檔失敗，請改用其他瀏覽器再試一次。')
+  } finally {
+    generating.value = false
+  }
+}
+
+function revertImage() {
+  if (!generatedUrl.value) return
+  URL.revokeObjectURL(generatedUrl.value)
+  generatedUrl.value = ''
+}
+
+onBeforeUnmount(() => {
+  if (generatedUrl.value) URL.revokeObjectURL(generatedUrl.value)
+})
 
 const LEVEL_CLASS: Record<Level, string> = {
   極難: 'hard2',
@@ -473,6 +840,47 @@ const levelClass = (lv: Level) => LEVEL_CLASS[lv]
   transform: translateY(-2px);
   box-shadow: 0 10px 22px rgba(36,49,38,0.14);
 }
+
+/* ── 三顆操作按鈕 ── */
+.act-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-left: auto;
+}
+.act-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-family: var(--mg-font-body);
+  font-size: .84rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: var(--mg-green-dark);
+  background: var(--mg-bg-card);
+  border: 1px solid var(--mg-border-soft);
+  border-radius: 999px;
+  padding: .5rem 1rem;
+  cursor: pointer;
+  transition: transform .25s cubic-bezier(.16,1,.3,1), border-color .25s, color .25s, box-shadow .25s;
+}
+.act-btn svg { width: 16px; height: 16px; color: var(--mg-green-main); }
+.act-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: var(--mg-border-hover);
+  box-shadow: 0 8px 18px rgba(36,49,38,0.08);
+}
+.act-btn:disabled {
+  opacity: .42;
+  cursor: not-allowed;
+}
+.act-primary {
+  color: #FBFAF7;
+  background: var(--mg-brown);
+  border-color: var(--mg-brown);
+}
+.act-primary svg { color: #FBFAF7; }
+.act-primary:hover:not(:disabled) { background: var(--mg-clay); border-color: var(--mg-clay); }
 
 /* ── 已套用的調整 ── */
 .chips {
@@ -653,8 +1061,37 @@ const levelClass = (lv: Level) => LEVEL_CLASS[lv]
 }
 .photo-card figcaption {
   display: flex;
-  justify-content: flex-end;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .8rem;
   padding: .9rem .3rem .2rem;
+}
+.gen-note {
+  flex: 1 1 20rem;
+  font-family: var(--mg-font-body);
+  font-size: .78rem;
+  line-height: 1.65;
+  color: var(--mg-text-muted);
+}
+.gen-note code {
+  font-size: .95em;
+  padding: .05rem .3rem;
+  border-radius: 5px;
+  background: var(--mg-bg-green-soft);
+  color: var(--mg-green-dark);
+}
+.cap-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-left: auto;
+}
+.dl-ghost {
+  background: transparent;
+  cursor: pointer;
+  color: var(--mg-text-muted);
+  font-weight: 400;
 }
 .dl-btn {
   display: inline-flex;
@@ -684,5 +1121,9 @@ const levelClass = (lv: Level) => LEVEL_CLASS[lv]
   .input-bar { flex-direction: column; align-items: stretch; }
   .field-input { min-width: 0; width: 100%; }
   .apply-btn { width: 100%; }
+  .act-row { margin-left: 0; }
+  .act-btn { flex: 1 1 8rem; justify-content: center; }
+  .cap-actions { margin-left: 0; width: 100%; }
+  .cap-actions .dl-btn { flex: 1; justify-content: center; }
 }
 </style>
