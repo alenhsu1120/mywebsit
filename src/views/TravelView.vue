@@ -1689,9 +1689,18 @@ const spots: Record<SpotKey, {
   overflow: hidden;
   margin-bottom: 2rem;
   border-radius: 20px;
-  aspect-ratio: 16 / 8;
   min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: 0 2px 12px rgba(36,49,38,0.08), 0 1px 3px rgba(36,49,38,0.04);
+}
+/* 零寬度的 pseudo 撐出 16:8 的最小高度：內容比它高時整塊會自己長高，
+   不會像固定 aspect-ratio 那樣在窄螢幕把標題和城市標籤裁掉 */
+.cover::before {
+  content: '';
+  width: 0;
+  padding-top: 50%;
 }
 .cover-photo {
   position: absolute;
@@ -1709,6 +1718,7 @@ const spots: Record<SpotKey, {
 .cover-content {
   position: relative;
   z-index: 1;
+  width: 100%;
   padding: 52px 28px 44px;
 }
 .cover-credit {
@@ -1976,6 +1986,16 @@ const spots: Record<SpotKey, {
 .modal-enter-from, .modal-leave-to { opacity: 0; }
 .modal-enter-from .modal-box { transform: scale(.96) translateY(8px); }
 .modal-leave-to   .modal-box { transform: scale(.96) translateY(8px); }
+
+@media (max-width: 600px) {
+  .cover          { min-height: 200px; border-radius: 16px; }
+  .cover-content  { padding: 34px 16px 36px; }
+  .cover-sub      { font-size: 11px; letter-spacing: 2.5px; margin-bottom: 8px; }
+  .cover-dates    { font-size: 13px; margin-top: 10px; letter-spacing: .5px; }
+  .cover-cities   { gap: 6px; margin-top: 14px; }
+  .city-tag       { font-size: 11px; padding: 4px 12px; letter-spacing: .5px; }
+  .cover-credit   { font-size: 10px; right: 10px; bottom: 8px; }
+}
 
 @media (max-width: 480px) {
   .travel-wrap    { padding: 3rem 1rem 3rem; }
