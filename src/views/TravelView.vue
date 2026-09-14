@@ -959,7 +959,7 @@
         </div>
         <div class="day-info">
           <h2>抵達東京後的輕鬆第一晚</h2>
-          <div class="day-weekday">15:20 成田落地　→　21:00 回飯店</div>
+          <div class="day-weekday">15:20 成田落地　→　約 22:00 回飯店</div>
         </div>
       </div>
 
@@ -1149,12 +1149,52 @@
         </div>
       </div>
 
+      <!-- 湯屋 -->
+      <div class="card ticket">
+        <div class="card-header">
+          <span class="card-icon">♨️</span>
+          <span class="card-title">逛完去泡湯　ひだまりの泉 萩の湯</span>
+          <span class="card-time">21:00～22:00</span>
+        </div>
+        <div class="spot-grid">
+          <div class="spot-item clickable" @click="openSpot('haginoyu')">
+            <div class="spot-icon">♨️</div>
+            <div class="spot-name">萩の湯 <span class="spot-arrow">›</span></div>
+            <div class="spot-desc">東京都內最大級的公眾浴場，有露天風呂。鶯谷站北口步行 3 分鐘，就在住宿附近。</div>
+          </div>
+        </div>
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=%E3%81%B2%E3%81%A0%E3%81%BE%E3%82%8A%E3%81%AE%E6%B3%89%20%E8%90%A9%E3%81%AE%E6%B9%AF%20%E6%A0%B9%E5%B2%B8"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="address-box address-link"
+          style="margin-top:12px"
+        >
+          <span class="addr-label">地址　<span class="map-hint">📍 點擊開啟 Google Maps</span></span>
+          <span class="addr-text">〒110-0003　東京都台東区根岸 2-13-13</span>
+          <span class="addr-dist">🚶 JR 鶯谷站北口步行 3 分鐘</span>
+        </a>
+        <ul class="steps" style="margin-top:12px">
+          <li><span class="step-num orange">●</span><span>A、B 方案<strong>都接得上</strong>——從阿美橫町搭 1 站回鶯谷，或本來就留在鶯谷，都走得到</span></li>
+          <li><span class="step-num orange">●</span><span>毛巾與盥洗用品可現場<strong>租借或購買</strong>，不用特地從飯店帶</span></li>
+          <li><span class="step-num orange">●</span><span>二樓食事處「こもれび」泡完可以再喝一杯（最後點餐 22:00）</span></li>
+        </ul>
+        <div class="alert">
+          <span class="alert-icon">🕐</span>
+          <span>昼夜時段營業到 <strong>25:00</strong>（最後受付 24:30），吃完飯再過來非常從容，把飛一整天的疲勞洗掉。</span>
+        </div>
+        <div class="alert" style="margin-top:8px">
+          <span class="alert-icon">⚠️</span>
+          <span><strong>每月第三個週二公休</strong>，出發前再確認一次；入浴前先在淋浴區把身體洗乾淨再下池是基本禮儀。</span>
+        </div>
+      </div>
+
       <!-- 回飯店 -->
       <div class="card hotel">
         <div class="card-header">
           <span class="card-icon">🏠</span>
           <span class="card-title">回飯店　第一天結束</span>
-          <span class="card-time">21:00</span>
+          <span class="card-time">約 22:00</span>
         </div>
         <ul class="steps">
           <li><span class="step-num purple">●</span><span>洗澡</span></li>
@@ -1176,7 +1216,8 @@
           <li><span class="step-num gray">🚶</span><span><strong>18:30～19:00</strong>　鶯谷／根岸附近散步</span></li>
           <li><span class="step-num gray">🍢</span><span><strong>19:00～20:30</strong>　居酒屋／好吃晚餐</span></li>
           <li><span class="step-num gray">🛍️</span><span><strong>20:30～21:00</strong>　有體力 → 上野／阿美橫町　｜　累了 → 鶯谷附近隨便逛逛</span></li>
-          <li><span class="step-num gray">🏠</span><span><strong>21:00</strong>　回飯店</span></li>
+          <li><span class="step-num gray">♨️</span><span><strong>21:00～22:00</strong>　萩の湯泡湯</span></li>
+          <li><span class="step-num gray">🏠</span><span><strong>約 22:00</strong>　回飯店</span></li>
         </ul>
       </div>
 
@@ -1217,6 +1258,7 @@
           <li><span class="step-num gray">✓</span><span>把住宿的<strong>日文地址</strong>存在手機，計程車或問路用得到</span></li>
           <li><span class="step-num gray">✓</span><span>出發前再確認一次候選居酒屋的公休日與營業時間</span></li>
           <li><span class="step-num gray">✓</span><span>網卡／漫遊在機場就開通，出站前先連上</span></li>
+          <li><span class="step-num gray">✓</span><span>萩の湯每月第三個週二公休，確認當天有沒有開；有刺青的話也先查一下規定</span></li>
         </ul>
       </div>
 
@@ -1248,7 +1290,7 @@
           </div>
 
           <!-- 照片 -->
-          <div class="photo-gallery">
+          <div v-if="spots[activeSpot].photos.length" class="photo-gallery">
             <div class="photo-main">
               <img :src="spots[activeSpot].photos[photoIndex]" :alt="spots[activeSpot].name" @error="onImgError" />
             </div>
@@ -1266,6 +1308,18 @@
 
           <!-- 詳細介紹 -->
           <div class="modal-desc">{{ spots[activeSpot].desc }}</div>
+
+          <!-- 地址 -->
+          <a
+            v-if="spots[activeSpot].address"
+            :href="mapsUrl(spots[activeSpot])"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="address-box address-link modal-address"
+          >
+            <span class="addr-label">地址　<span class="map-hint">📍 點擊開啟 Google Maps</span></span>
+            <span class="addr-text">{{ spots[activeSpot].address }}</span>
+          </a>
 
           <!-- 資訊列 -->
           <div class="modal-info-grid">
@@ -1313,7 +1367,7 @@ const tokyoDay = ref(1)
 type SpotKey =
   | 'sakae' | 'oasis' | 'tvtower' | 'mitsui' | 'nagoyacastle' | 'osu' | 'asunal' | 'aeon' | 'inuyama' | 'jokamachi'
   /* 東京 */
-  | 'uguisudani' | 'izakaya' | 'ameyoko'
+  | 'uguisudani' | 'izakaya' | 'ameyoko' | 'haginoyu'
 
 const activeSpot = ref<SpotKey | null>(null)
 const photoIndex = ref(0)
@@ -1331,18 +1385,30 @@ function onImgError(e: Event) {
   (e.target as HTMLImageElement).style.display = 'none'
 }
 
-const spots: Record<SpotKey, {
+interface Spot {
   icon: string
   name: string
   subtitle: string
   desc: string
+  /* 地址與 Google Maps 查詢字串；沒填的景點不會顯示地址區塊 */
+  address?: string
+  mapQuery?: string
   photos: string[]
   infos: { icon: string; label: string; value: string }[]
-}> = {
+}
+
+/* 用店名／地名查詢比用地址穩，日文名稱 Google Maps 幾乎都能直接定位 */
+function mapsUrl(spot: Spot): string {
+  return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(spot.mapQuery ?? spot.name)
+}
+
+const spots: Record<SpotKey, Spot> = {
   sakae: {
     icon: '🛍',
     name: '榮商圈',
     subtitle: 'Sakae, Nagoya',
+    address: '愛知県名古屋市中区栄　（栄三丁目一帯）',
+    mapQuery: '栄 名古屋市中区',
     desc: '榮商圈是名古屋最繁華的商業娛樂核心，自江戶時代便是名古屋城東南要道，明治維新後逐步發展為現代商業重鎮。商圈內匯聚松坂屋（1910年開業，名古屋首家百貨）、PARCO、LACHIC 等頂級百貨，以及地下街、唐吉軻德等多元購物選擇。地標「名古屋電視塔」建於1954年，是日本首座電視塔，登上 MIRAI360 展望台可俯瞰 90 公尺高的城市全景。久屋大通公園貫穿商圈，綠意盎然、寬敞舒適，旁邊還有 SUNSHINE SAKAE 摩天輪可欣賞浪漫夜景。愛知縣美術館與愛知縣藝術劇場亦坐落於此，使榮商圈兼具購物、休閒與文化深度。',
     photos: [
       'https://upload.wikimedia.org/wikipedia/commons/2/24/Nagoya_Sakae_area_from_Midland_Square.JPG',
@@ -1360,6 +1426,8 @@ const spots: Record<SpotKey, {
     icon: '🌀',
     name: '綠洲21',
     subtitle: 'Oasis 21, Nagoya',
+    address: '〒461-0005　愛知県名古屋市東区東桜一丁目 11-1',
+    mapQuery: 'オアシス21',
     desc: '綠洲21（Oasis 21）於 2002 年正式開幕，是名古屋榮商圈最具代表性的地標建築，曾獲 TripAdvisor 票選「外國遊客最佳打卡地」第二名。其最大亮點為建築師笠井秀樹設計的橢圓形玻璃屋頂「水之宇宙飛船（Spaceship Aqua）」，懸浮於地面上方 14 公尺，屋頂鋪滿淺水，陽光穿透後在樓下商場投射出美麗水波光影。建築共分三層：地面層「綠之大地」種滿花木、中層「銀河廣場」設有 30 間商店與餐廳及巴士站、上層玻璃屋頂提供環繞步道，可俯瞰名古屋電視塔與榮商圈全景。入場完全免費，夜間燈光秀從日落延續至 23:00，以十種炫彩色系輪替照亮夜空。',
     photos: [
       'https://upload.wikimedia.org/wikipedia/commons/f/f8/Oasis_21.JPG',
@@ -1377,6 +1445,8 @@ const spots: Record<SpotKey, {
     icon: '🗼',
     name: '名古屋電視塔',
     subtitle: 'Nagoya TV Tower, Sakae',
+    address: '〒460-0003　愛知県名古屋市中区錦三丁目 6-15先',
+    mapQuery: '中部電力 MIRAI TOWER',
     desc: '名古屋電視塔建於1954年，高180公尺，是日本第一座電視塔，聳立於榮的久屋大通公園中心軸線上。2019年翻新後展望台改名「MIRAI360」，以現代感設計呈現360度名古屋全景，可俯瞰整個榮商圈、遠眺名古屋城方向。白天塔身銀白挺立，入夜後以白色與金色燈光點亮，與近在咫尺的綠洲21玻璃水頂相互映照，構成榮區最具代表性的城市夜景。建議在綠洲21頂層步道抬頭看電視塔，視覺衝擊感最強。',
     photos: [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Nagoya_TV_Tower_2010.jpg/800px-Nagoya_TV_Tower_2010.jpg',
@@ -1408,6 +1478,8 @@ const spots: Record<SpotKey, {
     icon: '🏯',
     name: '名古屋城',
     subtitle: 'Nagoya Castle',
+    address: '〒460-0031　愛知県名古屋市中区本丸 1-1',
+    mapQuery: '名古屋城',
     desc: '名古屋城建於1612年，是德川家康為第九子義直所建的居城，也是江戶時代規模最宏大的平城之一。城頂一對金色鯱鉾（金のしゃちほこ）是名古屋最具代表性的象徵，傳說可保城池不受火災侵襲。2018年完成重建的「本丸御殿」是此次參觀重點，以江戶時代御殿建築技法復原，內部障壁畫以金箔與色彩描繪動植物，金碧輝煌令人嘆為觀止。天守閣目前因耐震補強工程封閉，無法登頂。城內廣大的二之丸庭園與外苑也適合散步拍照。入場費 ¥500，16:30 最後入場，17:00 關閉。',
     photos: [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Nagoya_Castle%28Larger%29.jpg/960px-Nagoya_Castle%28Larger%29.jpg',
@@ -1425,6 +1497,8 @@ const spots: Record<SpotKey, {
     icon: '🏮',
     name: '大須商店街',
     subtitle: 'Osu Shopping Street, Nagoya',
+    address: '〒460-0011　愛知県名古屋市中区大須　（二丁目〜三丁目一帯）',
+    mapQuery: '大須商店街',
     desc: '大須商店街是名古屋最有個性的商業街區，全長約1.7公里，擁有超過1,200間店鋪，融合傳統神社、二手動漫、電器行、街頭美食與個性小店，氣氛介於東京秋葉原與大阪日本橋之間，但更有在地庶民感。大須觀音（萬松寺）是商店街的精神核心，境內常年香火鼎盛。萬松寺旁的機器人表演每天定時展出，是必看的奇特景點。傍晚過後人潮湧入，唐揚雞、章魚燒、鯛魚燒等街頭小吃攤開始飄香，非常適合邊走邊吃解決晚餐。ACG 愛好者對這裡的二手動漫店和扭蛋機台難以自拔。',
     photos: [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Osu_street_mall_-_5334482637.jpg/960px-Osu_street_mall_-_5334482637.jpg',
@@ -1442,6 +1516,8 @@ const spots: Record<SpotKey, {
     icon: '🏬',
     name: 'AEON MALL Nagoya Noritake Garden',
     subtitle: 'AEON Mall Noritake Garden, Nagoya',
+    address: '〒451-8501　愛知県名古屋市西区則武新町三丁目',
+    mapQuery: 'イオンモール Nagoya Noritake Garden',
     desc: 'AEON MALL Nagoya Noritake Garden 緊鄰名古屋站西口，步行約 10 分鐘，是結合購物、餐飲與自然綠地的舒適型商場。商場一側緊鄰知名的則武（Noritake）陶瓷工廠舊址改建的「Noritake no Mori」公園，綠意盎然。館內進駐 MUJI、UNIQLO、各式餐廳及甜點咖啡廳，非常適合早午餐後輕鬆閒逛。Starbucks 面對庭園的座位區氣氛尤佳。這裡不是大型血拼型商場，而是以舒適悠閒著稱，適合旅程暖身、不耗費太多精力的上午行程。',
     photos: [
       'https://upload.wikimedia.org/wikipedia/commons/0/08/Entrance_of_AEON_MALL_Nagoya_Noritake_Garden_%28Noritake_Garden_side%29.jpg',
@@ -1459,6 +1535,8 @@ const spots: Record<SpotKey, {
     icon: '🏯',
     name: '犬山城',
     subtitle: 'Inuyama Castle, Aichi',
+    address: '〒484-0082　愛知県犬山市大字犬山字北古券 65-2',
+    mapQuery: '犬山城',
     desc: '犬山城建於1537年，是日本現存最古老的木造天守之一，被指定為國寶（日本僅五座國寶城堡之一）。天守聳立於木曾川旁的小丘之上，高約18公尺，登頂可360度俯瞰木曾川蜿蜒流過的壯麗景色，晴天時甚至遠眺可見御嶽山。城內保留原始木造樓梯，坡度極陡，爬上去需要手腳並用，但頂層的視野令人嘆為觀止。城堡對岸是成田山名古屋別院，搭船渡河也是特色體驗之一。春天賞櫻、秋天紅葉，犬山城四季皆美，是愛知縣最值得一訪的城堡。',
     photos: [
       'https://upload.wikimedia.org/wikipedia/commons/f/fd/Inuyama_Castle_Keep_Tower_20170409.jpg',
@@ -1476,6 +1554,8 @@ const spots: Record<SpotKey, {
     icon: '🏮',
     name: '犬山城下町',
     subtitle: 'Inuyama Jokamachi Old Town',
+    address: '〒484-0082　愛知県犬山市大字犬山　（本町通り一帯）',
+    mapQuery: '犬山城下町 本町通り',
     desc: '犬山城下町是城堡腳下延伸出來的江戶時代古街，全長約400公尺，兩側林立著古民家改建的餐廳、甜點鋪、工藝雜貨店和土產店。街道保留了江戶時代的町屋建築風貌，石板路與格子窗構成濃厚的歷史氛圍。必吃的飛驒牛握壽司是城下町的招牌美食，肉質軟嫩鮮甜，通常一口一個即食；五平餅是傳統串烤米餅，塗上味噌醬或核桃醬烤製，香氣十足；各式抹茶甜點也是人氣選擇。下午是人潮最旺、店家最齊全的時段，建議 15:00 後悠閒漫步，是整趟犬山行程最精華的體驗。',
     photos: [
       'https://upload.wikimedia.org/wikipedia/commons/a/a0/Inuyama_Castle_from_Inuyama_Jokamachi_in_the_Spring.jpg',
@@ -1493,6 +1573,8 @@ const spots: Record<SpotKey, {
     icon: '🏬',
     name: 'ASUNAL 金山',
     subtitle: 'ASUNAL Kanayama, Nagoya',
+    address: '〒460-0022　愛知県名古屋市中区金山一丁目 17-18',
+    mapQuery: 'アスナル金山',
     desc: 'ASUNAL金山是位於金山站北口旁的半開放式商業設施，名稱取自「明日（ASHITA）＋nal」，象徵充滿活力的明日感。商場以輕鬆的在地生活感為主軸，與榮商圈的觀光人潮不同，這裡是名古屋市民平日愛逛的休閒去處。一樓戶外廣場不定期舉辦市集與活動，晚上燈光柔和、氛圍宜人。餐廳區涵蓋居酒屋、咖啡廳、義式料理等多種選擇，適合晚餐或餐後甜點。對於想感受名古屋在地生活氣息、避開過多觀光客的旅人，金山是很好的選擇。',
     photos: [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/ASUNAL_Kanayama20220531-1.jpg/960px-ASUNAL_Kanayama20220531-1.jpg',
@@ -1512,6 +1594,8 @@ const spots: Record<SpotKey, {
     icon: '🏮',
     name: '鶯谷・根岸街區',
     subtitle: 'Uguisudani & Negishi, Taito',
+    address: '〒110-0003　東京都台東区根岸　（鶯谷駅周辺）',
+    mapQuery: '鶯谷駅',
     desc: '鶯谷站在 JR 山手線與京濱東北線上，就在上野的隔壁一站，出站後即是台東區根岸一帶。這裡幾乎沒有大型觀光設施，是很純粹的東京生活圈：低矮的住宅街、巷口的小寺院、掛著紅燈籠的居酒屋、24 小時的便利商店，以及一間間開給附近居民與上班族的小餐廳。因為緊鄰上野，交通非常方便，但走出車站兩三分鐘就完全是另一種安靜的節奏，很適合剛落地、還不想被人潮淹沒的第一晚。散步的重點不在「去哪一個點」，而是沿路看招牌、看住宅、看晚上的街道，遇到有興趣的小店就推門進去。',
     photos: [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/JRE_Uguisudani-STA_North-Gate.jpg/960px-JRE_Uguisudani-STA_North-Gate.jpg',
@@ -1529,6 +1613,8 @@ const spots: Record<SpotKey, {
     icon: '🍶',
     name: '鶯谷・根岸的居酒屋',
     subtitle: 'Izakaya around Uguisudani',
+    address: '東京都台東区根岸・下谷　（鶯谷駅周辺）',
+    mapQuery: '鶯谷駅 居酒屋',
     desc: '居酒屋是日本最日常的晚餐場景——不是正襟危坐的一頓飯，而是點一堆小菜慢慢吃、慢慢喝。串燒（燒鳥）、炸物（唐揚、串炸）、烤魚、玉子燒、刺身、漬物都是常見品項，份量偏小所以很適合多點幾樣分食；喝的則有生啤、Highball 與日本酒。鶯谷、根岸一帶因為是生活圈，居酒屋密度高、價位親民，而且不少店營業到 23:00 以後，第一天就算比較晚才到也不用擔心。多數店家入座後會先上一小碟「お通し」（類似座位費的小菜，約 ¥300～500），這是日本居酒屋的慣例，不是點錯餐。',
     photos: [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Yakitori_restaurant_%28izakaya%29_in_Ota%2C_Tokyo.jpg/960px-Yakitori_restaurant_%28izakaya%29_in_Ota%2C_Tokyo.jpg',
@@ -1542,10 +1628,27 @@ const spots: Record<SpotKey, {
       { icon: '⚠️', label: '注意', value: '公休日與營業時間出發前再確認；小店不一定收信用卡' },
     ],
   },
+  haginoyu: {
+    icon: '♨️',
+    name: 'ひだまりの泉 萩の湯',
+    subtitle: 'Haginoyu, Negishi',
+    address: '〒110-0003　東京都台東区根岸 2-13-13',
+    mapQuery: 'ひだまりの泉 萩の湯 根岸',
+    desc: '萩の湯是東京都內規模最大的公眾浴場（錢湯）之一，就在 JR 鶯谷站北口步行 3 分鐘、根岸的住宅區裡。它不是溫泉會館那種觀光設施，而是在地人天天會來的錢湯，但設備相當新：男女湯都有多種浴池與露天風呂，另有需加價的桑拿。營業時間分成早湯與昼夜兩段，晚上一路開到 25:00（最後受付 24:30），所以吃完晚餐、逛完街再過來完全來得及，也是把飛行一整天的疲勞洗掉最舒服的收尾。二樓有食事處「こもれび」，泡完可以再喝一杯。錢湯是日本最日常的洗澡文化，入浴前先在淋浴區把身體洗乾淨再下池是基本禮儀。',
+    photos: [],
+    infos: [
+      { icon: '🚶', label: '交通', value: 'JR 鶯谷站北口步行 3 分鐘' },
+      { icon: '🕐', label: '營業時間', value: '朝湯 6:00–9:00（最後受付 8:30）· 昼夜 11:00–25:00（最後受付 24:30）' },
+      { icon: '💰', label: '入浴料', value: '約 ¥600，桑拿另計（以現場公告為準）' },
+      { icon: '⚠️', label: '公休', value: '每月第三個週二' },
+    ],
+  },
   ameyoko: {
     icon: '🛍️',
     name: '阿美橫町',
     subtitle: 'Ameya-Yokochō, Ueno',
+    address: '〒110-0005　東京都台東区上野四丁目〜六丁目',
+    mapQuery: 'アメヤ横丁',
     desc: '阿美橫町（アメ橫）位於 JR 上野站與御徒町站之間的高架鐵道下方與兩側，長約 400 公尺，聚集約 400 間店鋪。它源自二戰後的黑市，名稱由來有兩種說法：一說來自當時大量販售的糖果「飴（あめ）」，一說來自美軍（American）流通的物資。現在賣的東西包羅萬象——海鮮乾貨、水果、零食、藥妝、球鞋、雜貨都有，叫賣聲此起彼落，是東京少數還留著市場氣味的街區。傍晚之後傳統商店陸續打烊，整條街的重心會換成居酒屋、立飲與小吃攤，氣氛反而更熱鬧。第一天晚上來的重點不在採買，而在感受那股東京街頭的密度。',
     photos: [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Ameya-Yokoch%C5%8D_Entrance.jpg/960px-Ameya-Yokoch%C5%8D_Entrance.jpg',
@@ -1856,6 +1959,15 @@ const spots: Record<SpotKey, {
   background: rgba(155,89,182,.12);
   border-color: #9b59b6;
 }
+/* 景點 Modal 裡的地址：沿用飯店那組結構，換成 modal 的綠色系 */
+.modal-address {
+  margin-bottom: 1.2rem;
+  background: var(--mg-bg-green-soft);
+}
+.modal-address:hover { background: var(--mg-green-pale); }
+.modal-address .addr-label,
+.modal-address .map-hint { color: var(--mg-green-main); }
+.modal-address .addr-text { color: var(--mg-green-deep); line-height: 1.5; }
 
 /* ── Spots ── */
 .spot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
