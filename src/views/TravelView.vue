@@ -919,27 +919,316 @@
 
     <!-- 東京 -->
     <div v-if="activeTab === 'tokyo'">
+
+      <!-- 封面 -->
       <div class="cover">
         <img class="cover-photo" src="https://images.unsplash.com/photo-1513407030348-c983a97b98d8?q=80&w=1600&auto=format&fit=crop" alt="Tokyo Tower lit up at dusk above the city skyline" />
         <div class="cover-scrim" />
         <div class="cover-content">
           <div class="cover-sub">Travel Guide</div>
           <h1 class="cover-title">東京旅遊手冊</h1>
-          <div class="cover-dates">敬請期待</div>
+          <div class="cover-dates">Day 1 已完成規劃　·　其餘天數陸續更新</div>
           <div class="cover-cities">
             <span class="city-tag">✈ 成田機場</span>
-            <span class="city-tag">🗼 東京鐵塔</span>
-            <span class="city-tag">🌸 淺草</span>
+            <span class="city-tag">🏮 鶯谷・根岸</span>
+            <span class="city-tag">🛍 阿美橫町</span>
           </div>
         </div>
         <span class="cover-credit">Photo — Louie Martinez / Unsplash</span>
       </div>
-      <div class="coming-soon">
-        <div class="cs-icon">🗼</div>
-        <div class="cs-title">東京行程規劃中</div>
-        <div class="cs-desc">內容即將更新，敬請期待。</div>
+
+      <!-- 天數標籤列 -->
+      <div class="day-tab-bar">
+        <button
+          class="day-tab-btn"
+          :class="{ active: tokyoDay === 1 }"
+          @click="tokyoDay = 1"
+        >
+          <span class="day-tab-num">D1</span>
+          <span class="day-tab-date">抵達日</span>
+        </button>
       </div>
-    </div>
+
+      <!-- 第一天 -->
+      <div v-if="tokyoDay === 1">
+
+      <div class="day-header">
+        <div class="day-badge">
+          <span class="badge-num">D1</span>
+          <span class="badge-label">DAY 1</span>
+        </div>
+        <div class="day-info">
+          <h2>抵達東京後的輕鬆第一晚</h2>
+          <div class="day-weekday">15:20 成田落地　→　21:00 回飯店</div>
+        </div>
+      </div>
+
+      <!-- 今日主題 -->
+      <div class="card tip">
+        <div class="card-header">
+          <span class="card-icon">🎯</span>
+          <span class="card-title">今天的目標</span>
+        </div>
+        <div class="alert" style="margin-top:0">
+          <span class="alert-icon">🌙</span>
+          <span>「晚上出去感受一下東京，但<strong>不要把自己搞得很累</strong>。」因為下午才抵達，今天不趕行程。</span>
+        </div>
+        <ul class="steps" style="margin-top:12px">
+          <li><span class="step-num gray">●</span><span>抵達東京 → 住進根岸</span></li>
+          <li><span class="step-num gray">●</span><span>吃一頓好吃的日本料理</span></li>
+          <li><span class="step-num gray">●</span><span>在飯店附近感受東京的晚上</span></li>
+          <li><span class="step-num gray">●</span><span>輕鬆睡覺</span></li>
+        </ul>
+      </div>
+
+      <!-- 抵達 -->
+      <div class="card transport">
+        <div class="card-header">
+          <span class="card-icon">✈️</span>
+          <span class="card-title">抵達成田機場</span>
+          <span class="card-time">15:20 落地</span>
+        </div>
+        <ul class="steps">
+          <li><span class="step-num blue">1</span><span><strong>入境審查</strong>　建議先在飛機上或手機填好 Visit Japan Web，過關較快</span></li>
+          <li><span class="step-num blue">2</span><span><strong>領行李</strong></span></li>
+          <li><span class="step-num blue">3</span><span><strong>前往東京市區</strong>　在機場車站買票／取網卡</span></li>
+          <li><span class="step-num blue">4</span><span><strong>前往根岸住宿</strong></span></li>
+        </ul>
+        <div class="alert">
+          <span class="alert-icon">⏱</span>
+          <span>入境加領行李一般抓 <strong>40～60 分鐘</strong>，也就是大約 <strong>16:20～16:30</strong> 才會走到機場車站。</span>
+        </div>
+      </div>
+
+      <!-- 交通 -->
+      <div class="card transport">
+        <div class="card-header">
+          <span class="card-icon">🚃</span>
+          <span class="card-title">成田機場 → 鶯谷／根岸</span>
+          <span class="card-time">約 16:30 出發</span>
+        </div>
+        <ul class="steps">
+          <li><span class="step-num blue">A</span><span><strong>京成 Skyliner</strong>（最快）　成田機場 → <strong>京成上野站</strong>，約 <strong>41 分鐘</strong>，全車指定席</span></li>
+          <li><span class="step-num blue">↓</span><span>京成上野站步行約 <strong>5 分鐘</strong>轉到 <strong>JR 上野站</strong></span></li>
+          <li><span class="step-num blue">↓</span><span>JR <strong>山手線／京濱東北線</strong>，上野 → <strong>鶯谷</strong>只有 <strong>1 站</strong>，約 2 分鐘</span></li>
+          <li><span class="step-num blue">B</span><span><strong>京成本線 特急</strong>（較省錢、較慢）　直達京成上野約 <strong>75 分鐘</strong>，不用劃位</span></li>
+        </ul>
+        <table class="info-table" style="margin-top:16px">
+          <thead><tr><th>路線</th><th>時間</th><th style="text-align:right">費用（日圓）</th></tr></thead>
+          <tbody>
+            <tr><td>京成 Skyliner（成田 → 京成上野）</td><td>約 41 分</td><td class="price">約 ¥2,500～2,600</td></tr>
+            <tr><td>京成本線 特急（成田 → 京成上野）</td><td>約 75 分</td><td class="price">約 ¥1,100</td></tr>
+            <tr><td>JR 上野 → 鶯谷</td><td>約 2 分</td><td class="price">約 ¥150</td></tr>
+          </tbody>
+        </table>
+        <div class="alert" style="margin-top:14px">
+          <span class="alert-icon">⚠️</span>
+          <span>票價與班距<strong>以京成電鐵官網為準</strong>，出發前再確認一次；Skyliner 可先在網路上訂位。</span>
+        </div>
+        <div class="alert" style="margin-top:8px">
+          <span class="alert-icon">🏨</span>
+          <span>照這個節奏走，預計 <strong>18:00～18:30</strong> 抵達住宿。</span>
+        </div>
+      </div>
+
+      <!-- 飯店 -->
+      <div class="card hotel">
+        <div class="card-header">
+          <span class="card-icon">🏨</span>
+          <span class="card-title">Check-in ＋ 稍微休息</span>
+          <span class="card-time">18:00～18:30</span>
+        </div>
+        <div class="hotel-name">根岸／鶯谷一帶住宿</div>
+        <div class="hotel-name-sub">飯店名稱與地址待補</div>
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=東京都台東区根岸"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="address-box address-link"
+        >
+          <span class="addr-label">區域　<span class="map-hint">📍 點擊開啟 Google Maps</span></span>
+          <span class="addr-text">東京都台東區 根岸　（鶯谷站周邊）</span>
+          <span class="addr-dist">🚃 JR 山手線・京濱東北線「鶯谷站」　｜　上野站 1 站</span>
+        </a>
+        <div class="alert" style="margin-top:12px">
+          <span class="alert-icon">💡</span>
+          <span>回飯店放行李、整理一下就好。<strong>第一天不趕行程</strong>，接下來都是走路可到的範圍。</span>
+        </div>
+      </div>
+
+      <!-- 散步 -->
+      <div class="card sightseeing">
+        <div class="card-header">
+          <span class="card-icon">🌃</span>
+          <span class="card-title">鶯谷／根岸附近散步</span>
+          <span class="card-time">18:30～19:00</span>
+        </div>
+        <div class="spot-grid">
+          <div class="spot-item clickable" @click="openSpot('uguisudani')">
+            <div class="spot-icon">🏮</div>
+            <div class="spot-name">鶯谷・根岸街區 <span class="spot-arrow">›</span></div>
+            <div class="spot-desc">不是大型觀光景點，而是比較有生活感的東京街區，適合第一晚慢慢走、隨意看。</div>
+          </div>
+        </div>
+        <ul class="steps" style="margin-top:12px">
+          <li><span class="step-num teal">🏠</span><span>日本住宅街</span></li>
+          <li><span class="step-num teal">🏮</span><span>居酒屋招牌</span></li>
+          <li><span class="step-num teal">🚃</span><span>鶯谷車站周邊</span></li>
+          <li><span class="step-num teal">🏪</span><span>便利商店</span></li>
+          <li><span class="step-num teal">🍜</span><span>小餐廳</span></li>
+          <li><span class="step-num teal">🌃</span><span>晚上的東京街道</span></li>
+        </ul>
+        <div class="alert">
+          <span class="alert-icon">💡</span>
+          <span><strong>不用設定一定要去哪一家店</strong>，看到有興趣的小店就進去看看。</span>
+        </div>
+      </div>
+
+      <!-- 晚餐 -->
+      <div class="card food">
+        <div class="card-header">
+          <span class="card-icon">🍢</span>
+          <span class="card-title">第一晚的日本晚餐　居酒屋</span>
+          <span class="card-time">19:00～20:30</span>
+        </div>
+        <div class="spot-grid">
+          <div class="spot-item clickable" @click="openSpot('izakaya')">
+            <div class="spot-icon">🍶</div>
+            <div class="spot-name">鶯谷・根岸的居酒屋 <span class="spot-arrow">›</span></div>
+            <div class="spot-desc">第一選擇。可以坐下來慢慢吃、慢慢喝的那種店，不用趕。</div>
+          </div>
+        </div>
+        <ul class="steps" style="margin-top:12px">
+          <li><span class="step-num food-color">●</span><span><strong>很多小菜可以分食</strong></span></li>
+          <li><span class="step-num food-color">●</span><span>串燒 · 炸物 · 烤魚 · 玉子燒</span></li>
+          <li><span class="step-num food-color">●</span><span>日本酒 ／ 啤酒 ／ Highball</span></li>
+        </ul>
+        <table class="info-table" style="margin-top:16px">
+          <thead><tr><th>候選店家</th><th>位置</th><th>營業到</th></tr></thead>
+          <tbody>
+            <tr><td><strong>居酒屋 響 HIBIKI</strong></td><td>鶯谷站步行約 1 分鐘</td><td>23:00</td></tr>
+            <tr><td><strong>居酒屋 關所</strong></td><td>鶯谷站旁</td><td>23:30（週一～週六）</td></tr>
+          </tbody>
+        </table>
+        <div class="alert" style="margin-top:14px">
+          <span class="alert-icon">🌙</span>
+          <span>這一帶不少店營業到晚上甚至深夜，<strong>不用擔心第一天太晚才到</strong>。營業時間出發前再確認一次。</span>
+        </div>
+        <div class="alert" style="margin-top:8px">
+          <span class="alert-icon">🥩</span>
+          <span>想吃得更有名、認真吃一餐的話，也可以考慮<strong>根岸一帶的燒肉</strong>。</span>
+        </div>
+      </div>
+
+      <!-- 飯後小逛 -->
+      <div class="card sightseeing">
+        <div class="card-header">
+          <span class="card-icon">🛍️</span>
+          <span class="card-title">吃完飯後小逛　二選一</span>
+          <span class="card-time">20:30～21:00</span>
+        </div>
+        <div class="spot-grid">
+          <div class="spot-item clickable" @click="openSpot('ameyoko')">
+            <div class="spot-icon">🛍️</div>
+            <div class="spot-name">A 方案　阿美橫町 <span class="spot-arrow">›</span></div>
+            <div class="spot-desc">有體力就去。鶯谷 → 上野只有 1 站，熱鬧、街頭、小吃、居酒屋，很有東京生活感。</div>
+          </div>
+          <div class="spot-item">
+            <div class="spot-icon">🏪</div>
+            <div class="spot-name">B 方案　留在鶯谷</div>
+            <div class="spot-desc">累了就直接在鶯谷附近走一下，買個便利商店甜點／飲料就回飯店。</div>
+          </div>
+        </div>
+        <div class="alert" style="margin-top:12px">
+          <span class="alert-icon">⚠️</span>
+          <span>阿美橫町<strong>不要當成「晚上逛市場」</strong>——很多傳統商店晚上會陸續關門。第一天到得比較晚的話，重點是<strong>看街道 ＋ 感受氣氛 ＋ 吃東西</strong>，而不是認真購物。</span>
+        </div>
+        <div class="alert" style="margin-top:8px">
+          <span class="alert-icon">💚</span>
+          <span>如果吃完飯覺得「今天其實已經夠了」，就選 B。<strong>完全不用為了「有去一個景點」而硬搭車。</strong></span>
+        </div>
+      </div>
+
+      <!-- 回飯店 -->
+      <div class="card hotel">
+        <div class="card-header">
+          <span class="card-icon">🏠</span>
+          <span class="card-title">回飯店　第一天結束</span>
+          <span class="card-time">21:00</span>
+        </div>
+        <ul class="steps">
+          <li><span class="step-num purple">●</span><span>洗澡</span></li>
+          <li><span class="step-num purple">●</span><span>整理行李</span></li>
+          <li><span class="step-num purple">●</span><span>休息</span></li>
+        </ul>
+      </div>
+
+      <!-- 最簡單版本 -->
+      <div class="card tip">
+        <div class="card-header">
+          <span class="card-icon">🗺️</span>
+          <span class="card-title">Day 1 最簡單版本</span>
+        </div>
+        <ul class="steps">
+          <li><span class="step-num gray">✈️</span><span><strong>15:20</strong>　抵達成田機場</span></li>
+          <li><span class="step-num gray">🚆</span><span>前往根岸</span></li>
+          <li><span class="step-num gray">🏨</span><span><strong>18:00～18:30</strong>　Check-in</span></li>
+          <li><span class="step-num gray">🚶</span><span><strong>18:30～19:00</strong>　鶯谷／根岸附近散步</span></li>
+          <li><span class="step-num gray">🍢</span><span><strong>19:00～20:30</strong>　居酒屋／好吃晚餐</span></li>
+          <li><span class="step-num gray">🛍️</span><span><strong>20:30～21:00</strong>　有體力 → 上野／阿美橫町　｜　累了 → 鶯谷附近隨便逛逛</span></li>
+          <li><span class="step-num gray">🏠</span><span><strong>21:00</strong>　回飯店</span></li>
+        </ul>
+      </div>
+
+      <!-- 今天不安排 -->
+      <div class="card tip">
+        <div class="card-header">
+          <span class="card-icon">🚫</span>
+          <span class="card-title">今天不安排　全部留到其他天</span>
+        </div>
+        <ul class="steps">
+          <li><span class="step-num gray">✕</span><span>新宿 · 東京都廳 · 哥吉拉 · 巨大貓</span></li>
+          <li><span class="step-num gray">✕</span><span>淺草寺</span></li>
+          <li><span class="step-num gray">✕</span><span>谷中銀座</span></li>
+          <li><span class="step-num gray">✕</span><span>大型百貨購物</span></li>
+          <li><span class="step-num gray">✕</span><span>為了景點一直搭車</span></li>
+        </ul>
+        <div class="alert" style="margin-top:12px">
+          <span class="alert-icon">🕕</span>
+          <span><strong>谷中銀座</strong>有約 60 間小店、老東京下町感很強，但大部分店家 <strong>18:00 左右就關門</strong>，所以排<strong>白天</strong>會比第一晚好很多。</span>
+        </div>
+        <div class="alert" style="margin-top:8px">
+          <span class="alert-icon">🌃</span>
+          <span><strong>新宿</strong>留給後面某一天晚上，如果到時候還想去，再專門安排一個新宿夜晚。</span>
+        </div>
+      </div>
+
+      <!-- 備忘 -->
+      <div class="card tip">
+        <div class="card-header">
+          <span class="card-icon">📋</span>
+          <span class="card-title">第一天行前備忘</span>
+        </div>
+        <ul class="steps">
+          <li><span class="step-num gray">✓</span><span>Visit Japan Web 事先填好，入境比較快</span></li>
+          <li><span class="step-num gray">✓</span><span>Skyliner 是否要先上網訂位</span></li>
+          <li><span class="step-num gray">✓</span><span>Suica／PASMO（實體或手機）先準備好</span></li>
+          <li><span class="step-num gray">✓</span><span>準備一點日幣現金，小居酒屋不一定收卡</span></li>
+          <li><span class="step-num gray">✓</span><span>把住宿的<strong>日文地址</strong>存在手機，計程車或問路用得到</span></li>
+          <li><span class="step-num gray">✓</span><span>出發前再確認一次候選居酒屋的公休日與營業時間</span></li>
+          <li><span class="step-num gray">✓</span><span>網卡／漫遊在機場就開通，出站前先連上</span></li>
+        </ul>
+      </div>
+
+      <div class="more-hint">✦ &nbsp; 其餘天數持續更新中 &nbsp; ✦</div>
+
+      <footer class="travel-footer">
+        🇯🇵 Tokyo Trip &nbsp;｜&nbsp; Have a great journey!
+      </footer>
+
+      </div><!-- end tokyo day 1 -->
+
+    </div><!-- end tokyo -->
 
     <!-- ── 景點 Modal ── -->
     <Transition name="modal">
@@ -1018,7 +1307,13 @@ const dayTabs = [
 ]
 const activeDay = ref(1)
 
-type SpotKey = 'sakae' | 'oasis' | 'tvtower' | 'mitsui' | 'nagoyacastle' | 'osu' | 'asunal' | 'aeon' | 'inuyama' | 'jokamachi'
+/* 東京分頁的天數獨立記，跟名古屋的 activeDay 互不影響 */
+const tokyoDay = ref(1)
+
+type SpotKey =
+  | 'sakae' | 'oasis' | 'tvtower' | 'mitsui' | 'nagoyacastle' | 'osu' | 'asunal' | 'aeon' | 'inuyama' | 'jokamachi'
+  /* 東京 */
+  | 'uguisudani' | 'izakaya' | 'ameyoko'
 
 const activeSpot = ref<SpotKey | null>(null)
 const photoIndex = ref(0)
@@ -1209,6 +1504,60 @@ const spots: Record<SpotKey, {
       { icon: '🕐', label: '建議停留', value: '30 分鐘～1 小時' },
       { icon: '💰', label: '費用', value: '逛街免費，餐飲自費' },
       { icon: '🕘', label: '營業時間', value: '商場 ～ 21:30，餐廳多至 22:00～23:00' },
+    ],
+  },
+
+  /* ── 東京 ── */
+  uguisudani: {
+    icon: '🏮',
+    name: '鶯谷・根岸街區',
+    subtitle: 'Uguisudani & Negishi, Taito',
+    desc: '鶯谷站在 JR 山手線與京濱東北線上，就在上野的隔壁一站，出站後即是台東區根岸一帶。這裡幾乎沒有大型觀光設施，是很純粹的東京生活圈：低矮的住宅街、巷口的小寺院、掛著紅燈籠的居酒屋、24 小時的便利商店，以及一間間開給附近居民與上班族的小餐廳。因為緊鄰上野，交通非常方便，但走出車站兩三分鐘就完全是另一種安靜的節奏，很適合剛落地、還不想被人潮淹沒的第一晚。散步的重點不在「去哪一個點」，而是沿路看招牌、看住宅、看晚上的街道，遇到有興趣的小店就推門進去。',
+    photos: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/JRE_Uguisudani-STA_North-Gate.jpg/960px-JRE_Uguisudani-STA_North-Gate.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/JRE_Uguisudani-STA_South-Gate.jpg/960px-JRE_Uguisudani-STA_South-Gate.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Anraku-ji_%28Negishi%2C_Taito%29_01.jpg/960px-Anraku-ji_%28Negishi%2C_Taito%29_01.jpg',
+    ],
+    infos: [
+      { icon: '🚃', label: '交通', value: 'JR 山手線・京濱東北線「鶯谷站」；上野站 1 站約 2 分鐘' },
+      { icon: '🕐', label: '建議停留', value: '30 分鐘（第一晚散步）' },
+      { icon: '💰', label: '費用', value: '免費' },
+      { icon: '⭐', label: '看點', value: '住宅街 · 居酒屋招牌 · 車站周邊的夜色' },
+    ],
+  },
+  izakaya: {
+    icon: '🍶',
+    name: '鶯谷・根岸的居酒屋',
+    subtitle: 'Izakaya around Uguisudani',
+    desc: '居酒屋是日本最日常的晚餐場景——不是正襟危坐的一頓飯，而是點一堆小菜慢慢吃、慢慢喝。串燒（燒鳥）、炸物（唐揚、串炸）、烤魚、玉子燒、刺身、漬物都是常見品項，份量偏小所以很適合多點幾樣分食；喝的則有生啤、Highball 與日本酒。鶯谷、根岸一帶因為是生活圈，居酒屋密度高、價位親民，而且不少店營業到 23:00 以後，第一天就算比較晚才到也不用擔心。多數店家入座後會先上一小碟「お通し」（類似座位費的小菜，約 ¥300～500），這是日本居酒屋的慣例，不是點錯餐。',
+    photos: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Yakitori_restaurant_%28izakaya%29_in_Ota%2C_Tokyo.jpg/960px-Yakitori_restaurant_%28izakaya%29_in_Ota%2C_Tokyo.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Izakaya_Exterior_Gotanda.jpg/960px-Izakaya_Exterior_Gotanda.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Views_at_night_in_April_of_2019_around_the_Ueno_neighborhood_in_Tokyo_01.jpg/960px-Views_at_night_in_April_of_2019_around_the_Ueno_neighborhood_in_Tokyo_01.jpg',
+    ],
+    infos: [
+      { icon: '🏪', label: '候選', value: '居酒屋 響 HIBIKI（鶯谷站步行 1 分，至 23:00）· 居酒屋 關所（站旁，週一～六至 23:30）' },
+      { icon: '🕐', label: '建議停留', value: '1～1.5 小時' },
+      { icon: '💰', label: '預算', value: '一人約 ¥3,000～5,000（含酒）' },
+      { icon: '⚠️', label: '注意', value: '公休日與營業時間出發前再確認；小店不一定收信用卡' },
+    ],
+  },
+  ameyoko: {
+    icon: '🛍️',
+    name: '阿美橫町',
+    subtitle: 'Ameya-Yokochō, Ueno',
+    desc: '阿美橫町（アメ橫）位於 JR 上野站與御徒町站之間的高架鐵道下方與兩側，長約 400 公尺，聚集約 400 間店鋪。它源自二戰後的黑市，名稱由來有兩種說法：一說來自當時大量販售的糖果「飴（あめ）」，一說來自美軍（American）流通的物資。現在賣的東西包羅萬象——海鮮乾貨、水果、零食、藥妝、球鞋、雜貨都有，叫賣聲此起彼落，是東京少數還留著市場氣味的街區。傍晚之後傳統商店陸續打烊，整條街的重心會換成居酒屋、立飲與小吃攤，氣氛反而更熱鬧。第一天晚上來的重點不在採買，而在感受那股東京街頭的密度。',
+    photos: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Ameya-Yokoch%C5%8D_Entrance.jpg/960px-Ameya-Yokoch%C5%8D_Entrance.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Ameyoko_June_2022.jpg/960px-Ameyoko_June_2022.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Street_View_of_Ameya-Yokocho.jpg/960px-Street_View_of_Ameya-Yokocho.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Ueno_Ameya-Yokocho_shops_under_track_2015.jpg/960px-Ueno_Ameya-Yokocho_shops_under_track_2015.jpg',
+    ],
+    infos: [
+      { icon: '🚃', label: '交通', value: 'JR 上野站／御徒町站步行 1～2 分鐘；鶯谷搭 1 站即達' },
+      { icon: '🕐', label: '建議停留', value: '30 分鐘～1 小時' },
+      { icon: '💰', label: '費用', value: '逛街免費，小吃自費' },
+      { icon: '⚠️', label: '注意', value: '傳統商店約 19:00～20:00 陸續關門，晚上以居酒屋與小吃為主' },
     ],
   },
 }
