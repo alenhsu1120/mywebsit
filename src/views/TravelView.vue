@@ -1725,22 +1725,32 @@
       <!-- 新宿 -->
       <div class="card food">
         <div class="card-header">
-          <span class="card-icon">🌃</span>
-          <span class="card-title">新宿　逛街・晚餐・夜生活</span>
-          <span class="card-time">晚上</span>
+          <span class="card-icon">🏳️‍🌈</span>
+          <span class="card-title">新宿逛街・女同志酒吧</span>
+          <span class="card-time">17:30～00:00</span>
         </div>
         <div class="spot-grid">
           <div class="spot-item clickable" @click="openSpot('shinjuku')">
             <div class="spot-icon">🌃</div>
-            <div class="spot-name">新宿 <span class="spot-arrow">›</span></div>
-            <div class="spot-desc">百貨、居酒屋和霓虹招牌密集的不夜城，晚上最有東京大城市的感覺。</div>
+            <div class="spot-name">新宿・新宿二丁目 <span class="spot-arrow">›</span></div>
+            <div class="spot-desc">百貨、居酒屋和霓虹招牌密集的不夜城；二丁目是東京最有名的 LGBTQ+ 夜生活街區。</div>
           </div>
         </div>
         <ul class="steps" style="margin-top:12px">
-          <li><span class="step-num food-color">●</span><span>新宿逛街、吃晚餐</span></li>
-          <li><span class="step-num food-color">●</span><span>體力與時間允許的話，去<strong>新宿二丁目</strong>體驗東京夜生活</span></li>
-          <li><span class="step-num food-color">●</span><span>依體力決定停留時間，再回住宿休息</span></li>
+          <li><span class="step-num food-color">🍽</span><span><strong>17:30～19:00</strong>　新宿晚餐</span></li>
+          <li><span class="step-num food-color">🛍</span><span><strong>19:00～20:30</strong>　新宿街區散步、逛百貨或休息</span></li>
+          <li><span class="step-num food-color">🚶</span><span><strong>20:30</strong>　前往<strong>新宿二丁目</strong>（Shinjuku Ni-chōme）</span></li>
+          <li><span class="step-num food-color">🍸</span><span><strong>21:00～00:00</strong>　女同志酒吧體驗：選一間女同志友善酒吧，和仔仔一起喝一杯、聊天，感受東京 LGBTQ+ 夜生活</span></li>
+          <li><span class="step-num food-color">🏠</span><span><strong>00:00 左右</strong>　離開酒吧，搭車返回住宿</span></li>
         </ul>
+        <div class="alert">
+          <span class="alert-icon">💗</span>
+          <span>出發前確認酒吧<strong>星期日的營業時間、入場規則及低消</strong>，避免抵達後才發現沒有營業。</span>
+        </div>
+        <div class="alert" style="margin-top:8px">
+          <span class="alert-icon">🚕</span>
+          <span>00:00 左右離開時，先確認<strong>末班車時間</strong>，趕不上就改搭計程車回住宿。隔天一早要退房，別玩太晚。</span>
+        </div>
       </div>
 
       <!-- 東京鐵塔（備選） -->
@@ -1775,7 +1785,10 @@
             <tr><td><strong>上午</strong></td><td>⛩️ 明治神宮參拜、林蔭步道散步</td></tr>
             <tr><td><strong>中午～下午</strong></td><td>🛍️ 竹下通 · 表參道 · CELINE · 咖啡廳</td></tr>
             <tr><td><strong>下午～傍晚</strong></td><td>🚥 澀谷十字路口 · 商圈 · Nintendo TOKYO · SHIBUYA SKY（依預約時段）</td></tr>
-            <tr><td><strong>晚上</strong></td><td>🌃 新宿逛街、晚餐 ·（新宿二丁目 看體力）</td></tr>
+            <tr><td><strong>17:30～19:00</strong></td><td>🍽 新宿晚餐</td></tr>
+            <tr><td><strong>19:00～20:30</strong></td><td>🛍 新宿街區散步、逛百貨或休息</td></tr>
+            <tr><td><strong>21:00～00:00</strong></td><td>🏳️‍🌈 新宿二丁目 女同志酒吧</td></tr>
+            <tr><td><strong>00:00 左右</strong></td><td>🏠 搭車返回住宿（確認末班車，必要時計程車）</td></tr>
             <tr><td><strong>備選</strong></td><td>🗼 東京鐵塔（尚未決定）</td></tr>
           </tbody>
         </table>
@@ -1821,17 +1834,65 @@
         </div>
       </div>
 
-      <!-- 最後散步 -->
+      <!-- 早餐散步 -->
       <div class="card sightseeing">
         <div class="card-header">
           <span class="card-icon">☕</span>
-          <span class="card-title">早餐・散步・最後採買</span>
-          <span class="card-time">上午～下午</span>
+          <span class="card-title">早餐・散步</span>
+          <span class="card-time">11:00 前</span>
         </div>
         <ul class="steps">
           <li><span class="step-num teal">●</span><span>在<strong>住宿附近、日暮里或上野</strong>一帶吃早餐、散步</span></li>
+          <li><span class="step-num teal">●</span><span>留時間移動到日本橋，<strong>11:00 左右</strong>到分身機器人咖啡廳</span></li>
+        </ul>
+      </div>
+
+      <!-- 分身機器人咖啡廳 -->
+      <div class="card food">
+        <div class="card-header">
+          <span class="card-icon">🤖</span>
+          <span class="card-title">分身ロボットカフェ DAWN ver.β</span>
+          <span class="status pending">待確認</span>
+          <span class="card-time">約 11:00</span>
+        </div>
+        <div class="spot-grid">
+          <div class="spot-item">
+            <div class="spot-icon">🤖</div>
+            <div class="spot-name">分身機器人咖啡廳 DAWN</div>
+            <div class="spot-desc">由不方便外出的人在遠端操作分身機器人來點餐、送餐、聊天的咖啡廳，是很特別的體驗。</div>
+          </div>
+        </div>
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=%E5%88%86%E8%BA%AB%E3%83%AD%E3%83%9C%E3%83%83%E3%83%88%E3%82%AB%E3%83%95%E3%82%A7%20DAWN%20ver.%CE%B2"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="address-box address-link"
+          style="margin-top:12px"
+        >
+          <span class="addr-label">地址　<span class="map-hint">📍 點擊開啟 Google Maps</span></span>
+          <span class="addr-text">東京都中央區日本橋本町 3-8-3　日本橋生命科學大樓 3 號館 1 樓</span>
+          <span class="addr-dist">🚃 JR「新日本橋站」5 號出口附近</span>
+        </a>
+        <div class="alert">
+          <span class="alert-icon">⚠️</span>
+          <span>是否需要<strong>預約</strong>、10/26（一）當天的<strong>營業時間</strong>出發前確認。</span>
+        </div>
+        <div class="alert" style="margin-top:8px">
+          <span class="alert-icon">🧳</span>
+          <span>日本橋離住宿有一段距離，吃完還要回住宿取行李、再去成田，<strong>不要待太久</strong>。</span>
+        </div>
+      </div>
+
+      <!-- 最後採買 -->
+      <div class="card sightseeing">
+        <div class="card-header">
+          <span class="card-icon">🛍️</span>
+          <span class="card-title">最後採買・取行李</span>
+          <span class="card-time">下午</span>
+        </div>
+        <ul class="steps">
           <li><span class="step-num teal">●</span><span><strong>最後採買</strong></span></li>
-          <li><span class="step-num teal">●</span><span>回去取行李</span></li>
+          <li><span class="step-num teal">●</span><span>回住宿取行李</span></li>
         </ul>
       </div>
 
@@ -1891,8 +1952,9 @@
           <thead><tr><th>時間</th><th>行程</th></tr></thead>
           <tbody>
             <tr><td><strong>早上</strong></td><td>🏨 退房、寄放行李</td></tr>
-            <tr><td><strong>上午～下午</strong></td><td>☕ 住宿附近／日暮里／上野 早餐散步 · 最後採買</td></tr>
-            <tr><td><strong>下午</strong></td><td>🧳 取回行李，前往成田機場</td></tr>
+            <tr><td><strong>11:00 前</strong></td><td>☕ 住宿附近／日暮里／上野 早餐散步</td></tr>
+            <tr><td><strong>約 11:00</strong></td><td>🤖 分身ロボットカフェ DAWN ver.β（日本橋）</td></tr>
+            <tr><td><strong>下午</strong></td><td>🛍️ 最後採買 · 🧳 取回行李，前往成田機場</td></tr>
             <tr><td><strong>17:00～17:30</strong></td><td>抵達成田機場，報到、安檢、免稅店</td></tr>
             <tr><td><strong>19:55</strong></td><td>✈️ 虎航 TR875 起飛</td></tr>
             <tr><td><strong>23:10</strong></td><td>🛬 抵達桃園機場第一航廈（台灣時間）</td></tr>
@@ -1936,8 +1998,14 @@
             <span v-if="!shop.hours.length" class="status pending">營業時間待確認</span>
           </div>
           <div class="food-cuisine">{{ shop.cuisine }}</div>
-          <div class="food-photo-placeholder">
-            <div class="food-photo-label">📷 照片待確認　<span class="status pending">尚未取得使用授權</span></div>
+          <figure class="food-photo">
+            <img :src="foodPhotoBase + shop.photo.file" :alt="shop.photo.alt" loading="lazy" @error="onImgError" />
+            <figcaption>
+              照片來源：<a :href="shop.photo.sourceUrl" target="_blank" rel="noopener noreferrer">{{ shop.photo.source }} ↗</a>
+            </figcaption>
+          </figure>
+          <div class="food-more-photos">
+            <div class="food-photo-label">更多照片</div>
             <div class="food-photo-links">
               <a
                 v-for="link in shop.photoLinks"
@@ -2039,8 +2107,8 @@
           <li><span class="step-num gray">D1</span><span>成田 → 住宿的交通方式；萩の湯當天營業時間</span></li>
           <li><span class="step-num gray">D2</span><span>巴士訂位頁面與業者通知；<strong>回程列車（河口湖 → 立川）實際班次</strong></span></li>
           <li><span class="step-num gray">D3</span><span>煙火<strong>官方最新規則、施放時間、指定入口與觀賞區</strong>；當日交通管制與散場動線；外食飲料規定</span></li>
-          <li><span class="step-num gray">D4</span><span><strong>SHIBUYA SKY 預約時段</strong>；東京鐵塔要不要去</span></li>
-          <li><span class="step-num gray">D5</span><span>住宿能否寄放行李；機場交通；虎航報到截止時間</span></li>
+          <li><span class="step-num gray">D4</span><span><strong>SHIBUYA SKY 預約時段</strong>；新宿二丁目酒吧週日營業時間、入場規則與低消；末班車時間；東京鐵塔要不要去</span></li>
+          <li><span class="step-num gray">D5</span><span>住宿能否寄放行李；分身ロボットカフェ是否要預約、當天營業時間；機場交通；虎航報到截止時間</span></li>
         </ul>
       </div>
 
@@ -2183,9 +2251,13 @@ interface FoodShop {
   fit: string
   /* 店家提供的 Google Maps 連結，比用店名搜尋準，能直接對到正確分店 */
   mapUrl: string
-  /* 照片還沒取得使用授權，先放可點擊的連結讓人去看，不嵌入別人的圖 */
+  /* 從店家官網或介紹頁抓下的原圖，放在 public/travel/food/，個人使用，附上來源 */
+  photo: { file: string; alt: string; source: string; sourceUrl: string }
+  /* 想看更多照片時點出去的連結 */
   photoLinks: { label: string; url: string }[]
 }
+
+const foodPhotoBase = import.meta.env.BASE_URL + 'travel/food/'
 
 const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
   {
@@ -2196,6 +2268,7 @@ const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
         cuisine: '🍜 柚子鹽拉麵',
         address: '澀谷區千駄谷 3-63-1　原宿 Grand Foresta 1F',
         mapUrl: 'https://maps.app.goo.gl/nRhHsCjc8FuXxeZ66',
+        photo: { file: 'afuri.jpg', alt: 'AFURI 的柚子鹽拉麵', source: 'FUN! JAPAN', sourceUrl: 'https://www.fun-japan.jp/tw/articles/11160' },
         photoLinks: [
           { label: 'Google Maps 店家照片', url: 'https://maps.app.goo.gl/nRhHsCjc8FuXxeZ66' },
           { label: 'Google 圖片搜尋', url: 'https://www.google.com/search?tbm=isch&q=AFURI+%E5%8E%9F%E5%AE%BF+%E6%9F%9A%E5%AD%90%E5%A1%A9%E3%82%89%E3%83%BC%E3%82%81%E3%82%93' },
@@ -2215,6 +2288,7 @@ const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
         cuisine: '☕ 日式喫茶店・布丁',
         address: '港區西新橋 1-20-11　安藤大樓 1F',
         mapUrl: 'https://maps.app.goo.gl/jrrGbFkwU4kJNmuV7',
+        photo: { file: 'hekkelun.jpg', alt: 'ヘッケルン的ジャンボプリン', source: 'GIGAZINE', sourceUrl: 'https://gigazine.net/news/20161024-hekkelun' },
         photoLinks: [
           { label: 'Google Maps 店家照片', url: 'https://maps.app.goo.gl/jrrGbFkwU4kJNmuV7' },
           { label: 'Google 圖片搜尋', url: 'https://www.google.com/search?tbm=isch&q=%E3%83%98%E3%83%83%E3%82%B1%E3%83%AB%E3%83%B3+%E3%83%97%E3%83%AA%E3%83%B3' },
@@ -2233,6 +2307,7 @@ const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
         cuisine: '🐱 咖啡・餐點・保護貓咖啡廳',
         address: '台東區谷中 3-15-1',
         mapUrl: 'https://maps.app.goo.gl/W27CRhTVfFhSj1Kc8',
+        photo: { file: 'yadorigi.jpg', alt: '宿木カフェ的貓咪與貓咪拿鐵', source: '宿木カフェ 官方網站', sourceUrl: 'https://yadorigicafe.com/' },
         photoLinks: [
           { label: 'Google Maps 店家照片', url: 'https://maps.app.goo.gl/W27CRhTVfFhSj1Kc8' },
           { label: 'Google 圖片搜尋', url: 'https://www.google.com/search?tbm=isch&q=%E5%AE%BF%E6%9C%A8%E3%82%AB%E3%83%95%E3%82%A7+%E8%B0%B7%E4%B8%AD+%E7%8C%AB' },
@@ -2251,6 +2326,7 @@ const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
         cuisine: '🥩 壽喜燒',
         address: '新宿區新宿 3-34-11　Peace 大樓 5F',
         mapUrl: 'https://maps.app.goo.gl/khFNszYDruy2sQzGA',
+        photo: { file: 'hokuto.jpg', alt: '北斗的黑毛和牛壽喜燒', source: 'Retty', sourceUrl: 'https://retty.me/restaurant/100001752187/' },
         photoLinks: [
           { label: 'Google Maps 店家照片', url: 'https://maps.app.goo.gl/khFNszYDruy2sQzGA' },
           { label: 'Google 圖片搜尋', url: 'https://www.google.com/search?tbm=isch&q=Hokuto+Casual+Sukiyaki+Shinjuku' },
@@ -2265,6 +2341,7 @@ const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
         cuisine: '🥩 A5 和牛壽喜燒',
         address: '新宿區新宿 3-35-17　F.U.Assets 1F',
         mapUrl: 'https://maps.app.goo.gl/HdzRLXrq322jjjFc6',
+        photo: { file: 'goku.jpg', alt: '極 GOKU 的 A5 和牛壽喜燒套餐', source: '極 GOKU 新宿 官方店家頁', sourceUrl: 'https://goku-shinjuku.owst.jp/' },
         photoLinks: [
           { label: 'Google Maps 店家照片', url: 'https://maps.app.goo.gl/HdzRLXrq322jjjFc6' },
           { label: 'Google 圖片搜尋', url: 'https://www.google.com/search?tbm=isch&q=WAGYU+SUKIYAKI+GOKU+%E6%96%B0%E5%AE%BF' },
@@ -2284,6 +2361,7 @@ const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
         cuisine: '🔥 日式燒肉',
         address: '中央區日本橋人形町 1-4-13　重本大樓 1F',
         mapUrl: 'https://maps.app.goo.gl/iZpde9d8LqoreKsY7',
+        photo: { file: 'yakiniku-happy.jpg', alt: '焼肉Happy 的燒肉', source: 'Retty', sourceUrl: 'https://retty.me/restaurant/100001473869/' },
         photoLinks: [
           { label: 'Google Maps 店家照片', url: 'https://maps.app.goo.gl/iZpde9d8LqoreKsY7' },
           { label: 'Google 圖片搜尋', url: 'https://www.google.com/search?tbm=isch&q=%E7%84%BC%E8%82%89Happy+%E4%BA%BA%E5%BD%A2%E7%94%BA' },
@@ -2302,6 +2380,7 @@ const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
         cuisine: '🍜 鮭魚拉麵・創意法式拉麵',
         address: '新宿區神樂坂 6-26　Casa Ioki 3，102 室',
         mapUrl: 'https://maps.app.goo.gl/eTUyortqTk9fkFpYA',
+        photo: { file: 'salmon-noodle.jpg', alt: 'サーモンnoodle3.0 的鮭魚拉麵', source: 'Time Out Tokyo', sourceUrl: 'https://www.timeout.jp/tokyo/ja/%E3%83%AC%E3%82%B9%E3%83%88%E3%83%A9%E3%83%B3/salmon-noodle-3-0' },
         photoLinks: [
           { label: 'Google Maps 店家照片', url: 'https://maps.app.goo.gl/eTUyortqTk9fkFpYA' },
           { label: 'Google 圖片搜尋', url: 'https://www.google.com/search?tbm=isch&q=%E3%82%B5%E3%83%BC%E3%83%A2%E3%83%B3noodle3.0+%E7%A5%9E%E6%A5%BD%E5%9D%82' },
@@ -2321,6 +2400,7 @@ const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
         cuisine: '🍸 復古餐廳酒吧・咖啡時段',
         address: '中央區銀座 7-3-13　新銀座大樓 1 號館 10F',
         mapUrl: 'https://maps.app.goo.gl/4JFnfQcMcioAAX9k7',
+        photo: { file: 'orions.webp', alt: 'ST. SAWAI オリオンズ 的布丁聖代', source: 'HAMONI 收錄的 Instagram 貼文', sourceUrl: 'https://hamoni.jp/shop/z5vGOBvxDCKa6p2yFNCFFtRqdIintD0w' },
         photoLinks: [
           { label: 'Google Maps 店家照片', url: 'https://maps.app.goo.gl/4JFnfQcMcioAAX9k7' },
           { label: 'Google 圖片搜尋', url: 'https://www.google.com/search?tbm=isch&q=ST.+SAWAI+%E3%82%AA%E3%83%AA%E3%82%AA%E3%83%B3%E3%82%BA+%E9%8A%80%E5%BA%A7' },
@@ -2884,7 +2964,7 @@ const spots: Record<SpotKey, Spot> = {
       { icon: '🚃', label: '交通', value: 'JR 山手線「新宿站」' },
       { icon: '🕐', label: '建議停留', value: '依體力決定' },
       { icon: '🍜', label: '晚餐', value: '東口商圈 · 思い出横丁' },
-      { icon: '🌈', label: '夜生活', value: '新宿二丁目（看體力與時間）' },
+      { icon: '🌈', label: '夜生活', value: '新宿二丁目 女同志酒吧 21:00～00:00' },
     ],
   },
   tokyotower: {
@@ -3260,13 +3340,22 @@ const spots: Record<SpotKey, Spot> = {
 .food-shop-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .food-name    { font-family: var(--mg-font-body); font-size: 15px; font-weight: 800; color: var(--mg-green-deep); }
 .food-cuisine { font-family: var(--mg-font-body); font-size: 12px; color: #777; margin-top: 3px; }
-.food-photo-placeholder {
-  margin-top: 10px;
-  padding: 14px;
+/* 照片保持原始比例、不裁切：比卡片寬時才等比縮小，否則以原尺寸置中 */
+.food-photo { margin: 10px 0 0; }
+.food-photo img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
   border-radius: 12px;
-  border: 1.5px dashed var(--mg-border-soft);
-  background: rgba(255,255,255,.45);
 }
+.food-photo figcaption {
+  font-family: var(--mg-font-body);
+  font-size: 11px; color: var(--mg-text-muted);
+  margin-top: 6px; text-align: center;
+}
+.food-photo figcaption a { color: inherit; }
+.food-more-photos { margin-top: 10px; }
 .food-photo-label { font-family: var(--mg-font-body); font-size: 12px; font-weight: 700; color: var(--mg-text-muted); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
 .food-photo-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
 .food-photo-link {
