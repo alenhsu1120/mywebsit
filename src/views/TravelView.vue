@@ -2147,11 +2147,11 @@ import PortfolioPageShell from '@/components/portfolio/PortfolioPageShell.vue'
 import PortfolioSubNav from '@/components/portfolio/PortfolioSubNav.vue'
 
 const tabs = [
+  { key: 'tokyo',    label: '東京',   icon: '🗼' },
   { key: 'nagoya',   label: '名古屋', icon: '🏯' },
   { key: 'hongkong', label: '香港',   icon: '🏮' },
-  { key: 'tokyo',    label: '東京',   icon: '🗼' },
 ]
-const activeTab = ref('nagoya')
+const activeTab = ref('tokyo')
 
 const dayTabs = [
   { day: 1, date: '6/18' },
