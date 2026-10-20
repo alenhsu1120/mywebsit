@@ -986,10 +986,25 @@
       <div class="card transport">
         <div class="card-header">
           <span class="card-icon">✈️</span>
-          <span class="card-title">抵達成田機場</span>
-          <span class="card-time">15:20 落地</span>
+          <span class="card-title">去程航班　樂桃航空 MM626</span>
+          <span class="card-time">10:50 起飛 → 15:20 落地</span>
         </div>
-        <ul class="steps">
+        <table class="info-table">
+          <thead><tr><th>項目</th><th>內容</th></tr></thead>
+          <tbody>
+            <tr><td>日期</td><td><strong>2026/10/22（四）</strong></td></tr>
+            <tr><td>航班</td><td><strong>樂桃航空 MM626</strong></td></tr>
+            <tr><td>出發</td><td>🛫 <strong>10:50</strong>　桃園機場 <strong>第一航廈</strong>（台灣時間）</td></tr>
+            <tr><td>抵達</td><td>🛬 <strong>15:20</strong>　成田機場 <strong>第一航廈</strong>（日本時間）</td></tr>
+            <tr><td>飛行時間</td><td>約 3 小時 30 分</td></tr>
+            <tr><td>行李</td><td>🧳 托運行李 <strong>1 件 20 公斤</strong></td></tr>
+          </tbody>
+        </table>
+        <div class="alert" style="margin-top:14px">
+          <span class="alert-icon">🕐</span>
+          <span>日本比台灣<strong>快 1 小時</strong>，落地後記得把手機時間確認一下。</span>
+        </div>
+        <ul class="steps" style="margin-top:12px">
           <li><span class="step-num blue">1</span><span><strong>入境審查</strong>　建議先在飛機上或手機填好 Visit Japan Web，過關較快</span></li>
           <li><span class="step-num blue">2</span><span><strong>領行李</strong></span></li>
           <li><span class="step-num blue">3</span><span><strong>前往東京市區</strong>　在機場車站買票／取網卡</span></li>
@@ -1039,16 +1054,16 @@
           <span class="card-title">Check-in ＋ 稍微休息</span>
           <span class="card-time">18:00～18:30</span>
         </div>
-        <div class="hotel-name">根岸／鶯谷一帶住宿</div>
-        <div class="hotel-name-sub">飯店名稱與地址待補</div>
+        <div class="hotel-name">根岸 小島ビル</div>
+        <div class="hotel-name-sub">住宿名稱待補</div>
         <a
-          href="https://www.google.com/maps/search/?api=1&query=東京都台東区根岸"
+          href="https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%8F%B0%E6%9D%B1%E5%8C%BA%E6%A0%B9%E5%B2%B82-1-9"
           target="_blank"
           rel="noopener noreferrer"
           class="address-box address-link"
         >
-          <span class="addr-label">區域　<span class="map-hint">📍 點擊開啟 Google Maps</span></span>
-          <span class="addr-text">東京都台東區 根岸　（鶯谷站周邊）</span>
+          <span class="addr-label">地址　<span class="map-hint">📍 點擊開啟 Google Maps</span></span>
+          <span class="addr-text">〒110-0003　東京都台東区根岸 2-1-9　小島ビル</span>
           <span class="addr-dist">🚃 JR 山手線・京濱東北線「鶯谷站」　｜　上野站 1 站</span>
         </a>
         <div class="alert" style="margin-top:12px">
@@ -1842,22 +1857,27 @@
       <div class="card transport">
         <div class="card-header">
           <span class="card-icon">✈️</span>
-          <span class="card-title">回程航班　樂桃航空</span>
-          <span class="card-time">19:55 起飛</span>
+          <span class="card-title">回程航班　虎航 TR875</span>
+          <span class="card-time">19:55 起飛 → 23:10 抵台</span>
         </div>
         <table class="info-table">
-          <thead><tr><th>航空公司</th><th>出發</th><th>機場</th></tr></thead>
+          <thead><tr><th>項目</th><th>內容</th></tr></thead>
           <tbody>
-            <tr>
-              <td><strong>樂桃航空</strong></td>
-              <td><strong>19:55</strong></td>
-              <td>🛫 成田機場</td>
-            </tr>
+            <tr><td>日期</td><td><strong>2026/10/26（一）</strong></td></tr>
+            <tr><td>航班</td><td><strong>虎航 TR875</strong></td></tr>
+            <tr><td>出發</td><td>🛫 <strong>19:55</strong>　成田機場 <strong>第一航廈</strong>（日本時間）</td></tr>
+            <tr><td>抵達</td><td>🛬 <strong>23:10</strong>　桃園機場 <strong>第一航廈</strong>（台灣時間）</td></tr>
+            <tr><td>飛行時間</td><td>約 4 小時 15 分</td></tr>
+            <tr><td>行李</td><td>🧳 加購托運行李 <strong>20 公斤</strong></td></tr>
           </tbody>
         </table>
         <div class="alert" style="margin-top:14px">
           <span class="alert-icon">⏰</span>
-          <span>航空公司<strong>報到截止時間</strong>與航廈出發前確認。<strong>以不錯過班機為最高優先。</strong></span>
+          <span>航空公司<strong>報到截止時間</strong>出發前確認。<strong>以不錯過班機為最高優先。</strong></span>
+        </div>
+        <div class="alert" style="margin-top:8px">
+          <span class="alert-icon">🧳</span>
+          <span>回程有最後採買，打包時注意行李<strong>不要超過 20 公斤</strong>。</span>
         </div>
       </div>
 
@@ -1874,7 +1894,8 @@
             <tr><td><strong>上午～下午</strong></td><td>☕ 住宿附近／日暮里／上野 早餐散步 · 最後採買</td></tr>
             <tr><td><strong>下午</strong></td><td>🧳 取回行李，前往成田機場</td></tr>
             <tr><td><strong>17:00～17:30</strong></td><td>抵達成田機場，報到、安檢、免稅店</td></tr>
-            <tr><td><strong>19:55</strong></td><td>✈️ 樂桃航空起飛</td></tr>
+            <tr><td><strong>19:55</strong></td><td>✈️ 虎航 TR875 起飛</td></tr>
+            <tr><td><strong>23:10</strong></td><td>🛬 抵達桃園機場第一航廈（台灣時間）</td></tr>
           </tbody>
         </table>
       </div>
@@ -2010,7 +2031,7 @@
           <li><span class="step-num gray">D2</span><span>巴士訂位頁面與業者通知；<strong>回程列車（河口湖 → 立川）實際班次</strong></span></li>
           <li><span class="step-num gray">D3</span><span>煙火<strong>官方最新規則、施放時間、指定入口與觀賞區</strong>；當日交通管制與散場動線；外食飲料規定</span></li>
           <li><span class="step-num gray">D4</span><span><strong>SHIBUYA SKY 預約時段</strong>；東京鐵塔要不要去</span></li>
-          <li><span class="step-num gray">D5</span><span>住宿能否寄放行李；機場交通；樂桃報到截止時間</span></li>
+          <li><span class="step-num gray">D5</span><span>住宿能否寄放行李；機場交通；虎航報到截止時間</span></li>
         </ul>
       </div>
 
