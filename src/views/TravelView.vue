@@ -1323,6 +1323,10 @@
           <span class="alert-icon">⚠️</span>
           <span>出發前再次確認訂位頁面與業者通知。</span>
         </div>
+        <div class="alert" style="margin-top:8px">
+          <span class="alert-icon">🔗</span>
+          <span>訂位詳細頁面：登入 <a href="https://www.fujiyamaconnect.jp/signin/" target="_blank" rel="noopener noreferrer"><strong>FUJIYAMA CONNECT ↗</strong></a> 查看，上車前先打開準備好。</span>
+        </div>
       </div>
 
       <!-- 河口湖 -->
@@ -1568,6 +1572,26 @@
         <div class="alert" style="margin-top:8px">
           <span class="alert-icon">🚫</span>
           <span>煙火結束後<strong>不安排</strong>立刻前往新宿、澀谷等遠距離行程，散場後直接回住宿。</span>
+        </div>
+
+        <!-- 取票 -->
+        <div class="card-header" style="margin-top:16px; margin-bottom:6px">
+          <span class="card-icon">🏪</span>
+          <span class="card-title">取票方式　7-Eleven 店頭發券</span>
+          <span class="status pending">記得取票</span>
+        </div>
+        <ul class="steps">
+          <li><span class="step-num orange">1</span><span>到任一間 <strong>7-Eleven（セブン-イレブン）</strong>，直接到<strong>櫃台收銀處</strong></span></li>
+          <li><span class="step-num orange">2</span><span>出示 <strong>引換票番号（13 碼）</strong>給店員，不需要操作多功能事務機</span></li>
+          <li><span class="step-num orange">3</span><span>領取<strong>購買張數的全部票券</strong>（官方提醒常有人漏領）</span></li>
+        </ul>
+        <div class="alert">
+          <span class="alert-icon">🔒</span>
+          <span>引換票番号存在手機的取票截圖裡，也可以登入 <a href="https://t.pia.jp/" target="_blank" rel="noopener noreferrer"><strong>チケットぴあ ↗</strong></a> 在「Myチケット」頁面查到。號碼等同票券，<strong>不要公開</strong>。</span>
+        </div>
+        <div class="alert" style="margin-top:8px">
+          <span class="alert-icon">💡</span>
+          <span>10/22 抵達後就可以在住宿附近的 7-Eleven 先取票，<strong>不要拖到 10/24 當天</strong>。</span>
         </div>
       </div>
 
@@ -2106,7 +2130,7 @@
         <ul class="steps">
           <li><span class="step-num gray">D1</span><span>成田 → 住宿的交通方式；萩の湯當天營業時間</span></li>
           <li><span class="step-num gray">D2</span><span>巴士訂位頁面與業者通知；<strong>回程列車（河口湖 → 立川）實際班次</strong></span></li>
-          <li><span class="step-num gray">D3</span><span>煙火<strong>官方最新規則、施放時間、指定入口與觀賞區</strong>；當日交通管制與散場動線；外食飲料規定</span></li>
+          <li><span class="step-num gray">D3</span><span>煙火<strong>官方最新規則、施放時間、指定入口與觀賞區</strong>；當日交通管制與散場動線；外食飲料規定；<strong>到 7-Eleven 取票</strong>（10/22 抵達後就可以取）</span></li>
           <li><span class="step-num gray">D4</span><span><strong>SHIBUYA SKY 預約時段</strong>；新宿二丁目酒吧週日營業時間、入場規則與低消；末班車時間；東京鐵塔要不要去</span></li>
           <li><span class="step-num gray">D5</span><span>住宿能否寄放行李；分身ロボットカフェ是否要預約、當天營業時間；機場交通；虎航報到截止時間</span></li>
         </ul>
