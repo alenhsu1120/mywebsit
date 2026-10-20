@@ -1936,12 +1936,21 @@
             <span v-if="!shop.hours.length" class="status pending">營業時間待確認</span>
           </div>
           <div class="food-cuisine">{{ shop.cuisine }}</div>
-          <figure v-if="shop.photo" class="food-photo">
-            <img :src="shop.photo.url" :alt="shop.photo.caption" loading="lazy" @error="onImgError" />
-            <figcaption>{{ shop.photo.caption }}　·　Photo — {{ shop.photo.credit }} / Wikimedia Commons</figcaption>
-          </figure>
+          <div class="food-photo-placeholder">
+            <div class="food-photo-label">📷 照片待確認　<span class="status pending">尚未取得使用授權</span></div>
+            <div class="food-photo-links">
+              <a
+                v-for="link in shop.photoLinks"
+                :key="link.url"
+                :href="link.url"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="food-photo-link"
+              >{{ link.label }} ↗</a>
+            </div>
+          </div>
           <a
-            :href="mapsUrl(shop)"
+            :href="shop.mapUrl"
             target="_blank"
             rel="noopener noreferrer"
             class="address-box address-link"
@@ -2168,13 +2177,14 @@ interface FoodShop {
   name: string
   cuisine: string
   address: string
-  mapQuery: string
   hours: string[]
   notes: string[]
   /* 對照行程：哪天順路、哪天剛好公休 */
   fit: string
-  /* 只用 Commons 上授權可用的照片；找不到店家本身的照片時用同類料理，caption 標「示意圖」 */
-  photo?: { url: string; caption: string; credit: string }
+  /* 店家提供的 Google Maps 連結，比用店名搜尋準，能直接對到正確分店 */
+  mapUrl: string
+  /* 照片還沒取得使用授權，先放可點擊的連結讓人去看，不嵌入別人的圖 */
+  photoLinks: { label: string; url: string }[]
 }
 
 const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
@@ -2185,12 +2195,12 @@ const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
         name: 'AFURI 阿夫利 原宿店',
         cuisine: '🍜 柚子鹽拉麵',
         address: '澀谷區千駄谷 3-63-1　原宿 Grand Foresta 1F',
-        mapQuery: 'AFURI 原宿',
-        photo: {
-          url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Yuzu_Shio_Ramen_%40_Afuri_%40_Ebisu_%2814018053090%29.jpg/960px-Yuzu_Shio_Ramen_%40_Afuri_%40_Ebisu_%2814018053090%29.jpg',
-          caption: 'AFURI 惠比壽店的柚子鹽拉麵',
-          credit: 'Guilhem Vellut, CC BY 2.0',
-        },
+        mapUrl: 'https://maps.app.goo.gl/nRhHsCjc8FuXxeZ66',
+        photoLinks: [
+          { label: 'Google Maps 店家照片', url: 'https://maps.app.goo.gl/nRhHsCjc8FuXxeZ66' },
+          { label: 'Google 圖片搜尋', url: 'https://www.google.com/search?tbm=isch&q=AFURI+%E5%8E%9F%E5%AE%BF+%E6%9F%9A%E5%AD%90%E5%A1%A9%E3%82%89%E3%83%BC%E3%82%81%E3%82%93' },
+          { label: '官方網站', url: 'https://afuri.com/' },
+        ],
         hours: [],
         notes: [],
         fit: 'D4（週日）逛原宿・表參道時順路，可以當午餐。',
@@ -2204,12 +2214,11 @@ const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
         name: 'ヘッケルン（Hekkelun）',
         cuisine: '☕ 日式喫茶店・布丁',
         address: '港區西新橋 1-20-11　安藤大樓 1F',
-        mapQuery: 'ヘッケルン 西新橋',
-        photo: {
-          url: 'https://upload.wikimedia.org/wikipedia/commons/c/c9/Japanese_Caramel_Custard_Pudding%2C_Purin%2C_Flan.jpg',
-          caption: '示意圖：日式布丁（非本店）',
-          credit: 'Clairenguyen23, CC BY-SA 4.0',
-        },
+        mapUrl: 'https://maps.app.goo.gl/jrrGbFkwU4kJNmuV7',
+        photoLinks: [
+          { label: 'Google Maps 店家照片', url: 'https://maps.app.goo.gl/jrrGbFkwU4kJNmuV7' },
+          { label: 'Google 圖片搜尋', url: 'https://www.google.com/search?tbm=isch&q=%E3%83%98%E3%83%83%E3%82%B1%E3%83%AB%E3%83%B3+%E3%83%97%E3%83%AA%E3%83%B3' },
+        ],
         hours: [],
         notes: ['留意平日營業、週末公休的安排'],
         fit: '不在目前路線上；如果週末公休，這趟只有 10/22（四）、10/23（五）、10/26（一）是平日，要排的話需要另外調整。',
@@ -2223,12 +2232,11 @@ const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
         name: '宿木カフェ（Yadorigi Cafe）',
         cuisine: '🐱 咖啡・餐點・保護貓咖啡廳',
         address: '台東區谷中 3-15-1',
-        mapQuery: '宿木カフェ 谷中',
-        photo: {
-          url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Its_raining_cats_and_cats%2C_cat_cafe_Nekorobi_in_Ikebukuro%2C_Tokyo_%282012_photo%3B_cropped_2022%29.jpg/960px-Its_raining_cats_and_cats%2C_cat_cafe_Nekorobi_in_Ikebukuro%2C_Tokyo_%282012_photo%3B_cropped_2022%29.jpg',
-          caption: '示意圖：東京的貓咖啡廳（非本店）',
-          credit: 'Takashi Hososhima, CC BY-SA 2.0',
-        },
+        mapUrl: 'https://maps.app.goo.gl/W27CRhTVfFhSj1Kc8',
+        photoLinks: [
+          { label: 'Google Maps 店家照片', url: 'https://maps.app.goo.gl/W27CRhTVfFhSj1Kc8' },
+          { label: 'Google 圖片搜尋', url: 'https://www.google.com/search?tbm=isch&q=%E5%AE%BF%E6%9C%A8%E3%82%AB%E3%83%95%E3%82%A7+%E8%B0%B7%E4%B8%AD+%E7%8C%AB' },
+        ],
         hours: ['週三、週五：11:00–19:00', '週四：11:00–21:00', '週六、週日：11:00–19:00', '公休：週一、週二'],
         notes: ['不同訂餐平台的週三、週五時段略有出入，以店家公告為準'],
         fit: '谷中離日暮里很近，但 D5（10/26）是週一公休。D1（週四）營業到 21:00，鶯谷過去不遠，可以當備案。',
@@ -2242,12 +2250,12 @@ const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
         name: 'Hokuto 大衆すき焼き北斗',
         cuisine: '🥩 壽喜燒',
         address: '新宿區新宿 3-34-11　Peace 大樓 5F',
-        mapQuery: '大衆すき焼き北斗 新宿中央東口店',
-        photo: {
-          url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Sukiyaki_01.jpg/960px-Sukiyaki_01.jpg',
-          caption: '示意圖：壽喜燒（非本店）',
-          credit: 'ajari, CC BY 2.0',
-        },
+        mapUrl: 'https://maps.app.goo.gl/khFNszYDruy2sQzGA',
+        photoLinks: [
+          { label: 'Google Maps 店家照片', url: 'https://maps.app.goo.gl/khFNszYDruy2sQzGA' },
+          { label: 'Google 圖片搜尋', url: 'https://www.google.com/search?tbm=isch&q=Hokuto+Casual+Sukiyaki+Shinjuku' },
+          { label: '官方 Instagram', url: 'https://www.instagram.com/hokuto_sukiyaki_tokyo/' },
+        ],
         hours: [],
         notes: [],
         fit: 'D4（週日）晚上在新宿，可以當晚餐候選。',
@@ -2256,12 +2264,12 @@ const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
         name: 'WAGYU SUKIYAKI 極 GOKU',
         cuisine: '🥩 A5 和牛壽喜燒',
         address: '新宿區新宿 3-35-17　F.U.Assets 1F',
-        mapQuery: 'WAGYU SUKIYAKI 極 GOKU 新宿',
-        photo: {
-          url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Yonezawa_beef_sukiyaki_at_pension_in_Yonezawa_Ski_Resort.jpg/960px-Yonezawa_beef_sukiyaki_at_pension_in_Yonezawa_Ski_Resort.jpg',
-          caption: '示意圖：和牛壽喜燒（非本店）',
-          credit: 'Syced, CC0',
-        },
+        mapUrl: 'https://maps.app.goo.gl/HdzRLXrq322jjjFc6',
+        photoLinks: [
+          { label: 'Google Maps 店家照片', url: 'https://maps.app.goo.gl/HdzRLXrq322jjjFc6' },
+          { label: 'Google 圖片搜尋', url: 'https://www.google.com/search?tbm=isch&q=WAGYU+SUKIYAKI+GOKU+%E6%96%B0%E5%AE%BF' },
+          { label: '官方店家頁', url: 'https://goku-shinjuku.owst.jp/' },
+        ],
         hours: ['每日：11:00–23:00'],
         notes: ['官方店家資訊標示全年無休'],
         fit: 'D4（週日）晚上在新宿，可以當晚餐候選。',
@@ -2275,12 +2283,11 @@ const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
         name: '焼肉Happy（焼肉はっぴぃ）',
         cuisine: '🔥 日式燒肉',
         address: '中央區日本橋人形町 1-4-13　重本大樓 1F',
-        mapQuery: '焼肉はっぴぃ 人形町',
-        photo: {
-          url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Yakiniku_002.jpg/960px-Yakiniku_002.jpg',
-          caption: '示意圖：日式燒肉（非本店）',
-          credit: 'Jonathan Lin, CC BY-SA 2.0',
-        },
+        mapUrl: 'https://maps.app.goo.gl/iZpde9d8LqoreKsY7',
+        photoLinks: [
+          { label: 'Google Maps 店家照片', url: 'https://maps.app.goo.gl/iZpde9d8LqoreKsY7' },
+          { label: 'Google 圖片搜尋', url: 'https://www.google.com/search?tbm=isch&q=%E7%84%BC%E8%82%89Happy+%E4%BA%BA%E5%BD%A2%E7%94%BA' },
+        ],
         hours: [],
         notes: [],
         fit: '不在目前路線上，要去的話需要另外安排時間。',
@@ -2294,12 +2301,12 @@ const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
         name: 'Salmon noodle 3.0（サーモンnoodle3.0）',
         cuisine: '🍜 鮭魚拉麵・創意法式拉麵',
         address: '新宿區神樂坂 6-26　Casa Ioki 3，102 室',
-        mapQuery: 'サーモンnoodle3.0 神楽坂',
-        photo: {
-          url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Bowl_of_shio_ramen_with_pork.jpg/960px-Bowl_of_shio_ramen_with_pork.jpg',
-          caption: '示意圖：鹽味拉麵（非本店，也不是鮭魚拉麵）',
-          credit: 'GiveMeMollusks, CC0',
-        },
+        mapUrl: 'https://maps.app.goo.gl/eTUyortqTk9fkFpYA',
+        photoLinks: [
+          { label: 'Google Maps 店家照片', url: 'https://maps.app.goo.gl/eTUyortqTk9fkFpYA' },
+          { label: 'Google 圖片搜尋', url: 'https://www.google.com/search?tbm=isch&q=%E3%82%B5%E3%83%BC%E3%83%A2%E3%83%B3noodle3.0+%E7%A5%9E%E6%A5%BD%E5%9D%82' },
+          { label: '官方 Instagram', url: 'https://www.instagram.com/salmon.noodle3.0/' },
+        ],
         hours: ['午餐：11:00–15:30（最後點餐 15:10）', '晚餐：17:00–21:00（最後點餐 20:40）'],
         notes: ['公休日不固定'],
         fit: '不在目前路線上，要去的話需要另外安排時間。',
@@ -2313,12 +2320,11 @@ const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
         name: 'ST. SAWAI オリオンズ（Ginza Orions）',
         cuisine: '🍸 復古餐廳酒吧・咖啡時段',
         address: '中央區銀座 7-3-13　新銀座大樓 1 號館 10F',
-        mapQuery: 'ST.SAWAIオリオンズ 銀座',
-        photo: {
-          url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/%E5%90%8D%E6%9B%B2%E5%96%AB%E8%8C%B6%E3%83%B4%E3%82%A3%E3%82%AA%E3%83%AD%E3%83%B3.jpg/960px-%E5%90%8D%E6%9B%B2%E5%96%AB%E8%8C%B6%E3%83%B4%E3%82%A3%E3%82%AA%E3%83%AD%E3%83%B3.jpg',
-          caption: '示意圖：東京的復古喫茶店（非本店）',
-          credit: 'Eugene Ormandy, CC BY-SA 4.0',
-        },
+        mapUrl: 'https://maps.app.goo.gl/4JFnfQcMcioAAX9k7',
+        photoLinks: [
+          { label: 'Google Maps 店家照片', url: 'https://maps.app.goo.gl/4JFnfQcMcioAAX9k7' },
+          { label: 'Google 圖片搜尋', url: 'https://www.google.com/search?tbm=isch&q=ST.+SAWAI+%E3%82%AA%E3%83%AA%E3%82%AA%E3%83%B3%E3%82%BA+%E9%8A%80%E5%BA%A7' },
+        ],
         hours: ['咖啡時段：13:00–18:00', '晚餐時段：18:00–23:00（最後點餐 22:00）', '公休：週六、週日及日本國定假日'],
         notes: ['晚餐時段可能有服務費'],
         fit: '週六、週日公休，這趟的平日分別是抵達日、河口湖日和回程日，目前排不太進去。',
@@ -2364,8 +2370,8 @@ interface Spot {
 }
 
 /* 用店名／地名查詢比用地址穩，日文名稱 Google Maps 幾乎都能直接定位 */
-function mapsUrl(place: { name: string; mapQuery?: string }): string {
-  return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(place.mapQuery ?? place.name)
+function mapsUrl(spot: Spot): string {
+  return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(spot.mapQuery ?? spot.name)
 }
 
 const spots: Record<SpotKey, Spot> = {
@@ -3254,19 +3260,25 @@ const spots: Record<SpotKey, Spot> = {
 .food-shop-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .food-name    { font-family: var(--mg-font-body); font-size: 15px; font-weight: 800; color: var(--mg-green-deep); }
 .food-cuisine { font-family: var(--mg-font-body); font-size: 12px; color: #777; margin-top: 3px; }
-.food-photo { margin: 10px 0 0; }
-.food-photo img {
-  width: 100%; height: 200px;
-  object-fit: cover; display: block;
+.food-photo-placeholder {
+  margin-top: 10px;
+  padding: 14px;
   border-radius: 12px;
-  border: 1.5px solid var(--mg-border-soft);
-  background: #d4eada;
+  border: 1.5px dashed var(--mg-border-soft);
+  background: rgba(255,255,255,.45);
 }
-.food-photo figcaption {
+.food-photo-label { font-family: var(--mg-font-body); font-size: 12px; font-weight: 700; color: var(--mg-text-muted); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.food-photo-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+.food-photo-link {
   font-family: var(--mg-font-body);
-  font-size: 10px; color: var(--mg-text-muted);
-  margin-top: 4px; letter-spacing: .02em;
+  font-size: 12px; font-weight: 600;
+  color: #e67e22; text-decoration: none;
+  padding: 5px 12px; border-radius: 14px;
+  border: 1px solid rgba(230,126,34,.45);
+  background: rgba(230,126,34,.06);
+  transition: background .18s;
 }
+.food-photo-link:hover { background: rgba(230,126,34,.15); }
 
 /* ── More / Footer ── */
 .more-hint {
