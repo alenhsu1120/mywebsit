@@ -982,28 +982,6 @@
         </div>
       </div>
 
-      <!-- 今日主題 -->
-      <div class="card tip">
-        <div class="card-header">
-          <span class="card-icon">🎯</span>
-          <span class="card-title">今天的目標</span>
-        </div>
-        <div class="alert" style="margin-top:0">
-          <span class="alert-icon">🌙</span>
-          <span>「晚上出去感受一下東京，但<strong>不要把自己搞得很累</strong>。」因為下午才抵達，今天不趕行程。</span>
-        </div>
-        <ul class="steps" style="margin-top:12px">
-          <li><span class="step-num gray">●</span><span>抵達東京 → 住進根岸</span></li>
-          <li><span class="step-num gray">●</span><span>吃一頓好吃的日本料理</span></li>
-          <li><span class="step-num gray">●</span><span>在飯店附近感受東京的晚上</span></li>
-          <li><span class="step-num gray">●</span><span>輕鬆睡覺</span></li>
-        </ul>
-        <div class="alert">
-          <span class="alert-icon">⚠️</span>
-          <span>若入境或交通延誤，<strong>以吃飯、入住和休息為優先</strong>，散步和泡湯都可以直接取消。交通方式與錢湯營業時間<strong>出發前確認</strong>。</span>
-        </div>
-      </div>
-
       <!-- 抵達 -->
       <div class="card transport">
         <div class="card-header">
@@ -1248,29 +1226,6 @@
         </ul>
       </div>
 
-      <!-- 今天不安排 -->
-      <div class="card tip">
-        <div class="card-header">
-          <span class="card-icon">🚫</span>
-          <span class="card-title">今天不安排　全部留到其他天</span>
-        </div>
-        <ul class="steps">
-          <li><span class="step-num gray">✕</span><span>新宿 · 東京都廳 · 哥吉拉 · 巨大貓</span></li>
-          <li><span class="step-num gray">✕</span><span>淺草寺</span></li>
-          <li><span class="step-num gray">✕</span><span>谷中銀座</span></li>
-          <li><span class="step-num gray">✕</span><span>大型百貨購物</span></li>
-          <li><span class="step-num gray">✕</span><span>為了景點一直搭車</span></li>
-        </ul>
-        <div class="alert" style="margin-top:12px">
-          <span class="alert-icon">🕕</span>
-          <span><strong>谷中銀座</strong>有約 60 間小店、老東京下町感很強，但大部分店家 <strong>18:00 左右就關門</strong>，所以排<strong>白天</strong>會比第一晚好很多。</span>
-        </div>
-        <div class="alert" style="margin-top:8px">
-          <span class="alert-icon">🌃</span>
-          <span><strong>新宿</strong>留給後面某一天晚上，如果到時候還想去，再專門安排一個新宿夜晚。</span>
-        </div>
-      </div>
-
       <!-- 備忘 -->
       <div class="card tip">
         <div class="card-header">
@@ -1308,22 +1263,6 @@
         <div class="day-info">
           <h2>富士山・河口湖一日遊 🗻</h2>
           <div class="day-weekday">2026 年 10 月 23 日（五）</div>
-        </div>
-      </div>
-
-      <!-- 今日主題 -->
-      <div class="card tip">
-        <div class="card-header">
-          <span class="card-icon">🎯</span>
-          <span class="card-title">今天的重點</span>
-        </div>
-        <ul class="steps">
-          <li><span class="step-num gray">●</span><span>看富士山、拍照、在湖邊散步</span></li>
-          <li><span class="step-num gray">●</span><span><strong>順利往返</strong>比多跑一個景點重要</span></li>
-        </ul>
-        <div class="alert">
-          <span class="alert-icon">☁️</span>
-          <span>富士山能見度受天氣影響，<strong>不保證看得到</strong>。這天比較累，景點以當天交通、天氣和體力為準，不必硬塞滿。</span>
         </div>
       </div>
 
@@ -1418,26 +1357,6 @@
         </div>
       </div>
 
-      <!-- 午餐 -->
-      <div class="card food">
-        <div class="card-header">
-          <span class="card-icon">🍲</span>
-          <span class="card-title">午餐　山梨特色餺飥麵（ほうとう）</span>
-          <span class="card-time">中午</span>
-        </div>
-        <div class="spot-grid">
-          <div class="spot-item clickable" @click="openSpot('hoto')">
-            <div class="spot-icon">🍲</div>
-            <div class="spot-name">ほうとう <span class="spot-arrow">›</span></div>
-            <div class="spot-desc">山梨的鄉土料理，寬扁麵和南瓜、蔬菜一起用味噌湯底燉煮，熱熱一鍋上桌。</div>
-          </div>
-        </div>
-        <div class="alert">
-          <span class="alert-icon">💡</span>
-          <span>店家還沒選定，營業時間與排隊狀況<strong>出發前確認</strong>。</span>
-        </div>
-      </div>
-
       <!-- 回程 -->
       <div class="card transport">
         <div class="card-header">
@@ -1480,7 +1399,7 @@
             <tr><td><strong>約 06:00</strong></td><td>從住宿出門，前往東京站</td></tr>
             <tr><td><strong>06:50</strong></td><td>🚌 東京站八重洲南口發車（已預訂）</td></tr>
             <tr><td><strong>約 08:52</strong></td><td>抵達河口湖站</td></tr>
-            <tr><td><strong>白天</strong></td><td>🗻 河口湖散步 · 大石公園 · 🍲 ほうとう ·（天上山纜車 備選）</td></tr>
+            <tr><td><strong>白天</strong></td><td>🗻 河口湖散步 · 大石公園 ·（天上山纜車 備選）</td></tr>
             <tr><td><strong>回程</strong></td><td>🚆 河口湖 → 立川 → 住宿（班次依已訂車票，出發前確認）</td></tr>
             <tr><td><strong>晚上</strong></td><td>宵夜或休息</td></tr>
           </tbody>
@@ -1996,6 +1915,10 @@
             <span v-if="!shop.hours.length" class="status pending">營業時間待確認</span>
           </div>
           <div class="food-cuisine">{{ shop.cuisine }}</div>
+          <figure v-if="shop.photo" class="food-photo">
+            <img :src="shop.photo.url" :alt="shop.photo.caption" loading="lazy" @error="onImgError" />
+            <figcaption>{{ shop.photo.caption }}　·　Photo — {{ shop.photo.credit }} / Wikimedia Commons</figcaption>
+          </figure>
           <a
             :href="mapsUrl(shop)"
             target="_blank"
@@ -2229,6 +2152,8 @@ interface FoodShop {
   notes: string[]
   /* 對照行程：哪天順路、哪天剛好公休 */
   fit: string
+  /* 只用 Commons 上授權可用的照片；找不到店家本身的照片時用同類料理，caption 標「示意圖」 */
+  photo?: { url: string; caption: string; credit: string }
 }
 
 const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
@@ -2240,6 +2165,11 @@ const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
         cuisine: '🍜 柚子鹽拉麵',
         address: '澀谷區千駄谷 3-63-1　原宿 Grand Foresta 1F',
         mapQuery: 'AFURI 原宿',
+        photo: {
+          url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Yuzu_Shio_Ramen_%40_Afuri_%40_Ebisu_%2814018053090%29.jpg/960px-Yuzu_Shio_Ramen_%40_Afuri_%40_Ebisu_%2814018053090%29.jpg',
+          caption: 'AFURI 惠比壽店的柚子鹽拉麵',
+          credit: 'Guilhem Vellut, CC BY 2.0',
+        },
         hours: [],
         notes: [],
         fit: 'D4（週日）逛原宿・表參道時順路，可以當午餐。',
@@ -2254,6 +2184,11 @@ const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
         cuisine: '☕ 日式喫茶店・布丁',
         address: '港區西新橋 1-20-11　安藤大樓 1F',
         mapQuery: 'ヘッケルン 西新橋',
+        photo: {
+          url: 'https://upload.wikimedia.org/wikipedia/commons/c/c9/Japanese_Caramel_Custard_Pudding%2C_Purin%2C_Flan.jpg',
+          caption: '示意圖：日式布丁（非本店）',
+          credit: 'Clairenguyen23, CC BY-SA 4.0',
+        },
         hours: [],
         notes: ['留意平日營業、週末公休的安排'],
         fit: '不在目前路線上；如果週末公休，這趟只有 10/22（四）、10/23（五）、10/26（一）是平日，要排的話需要另外調整。',
@@ -2268,6 +2203,11 @@ const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
         cuisine: '🐱 咖啡・餐點・保護貓咖啡廳',
         address: '台東區谷中 3-15-1',
         mapQuery: '宿木カフェ 谷中',
+        photo: {
+          url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Its_raining_cats_and_cats%2C_cat_cafe_Nekorobi_in_Ikebukuro%2C_Tokyo_%282012_photo%3B_cropped_2022%29.jpg/960px-Its_raining_cats_and_cats%2C_cat_cafe_Nekorobi_in_Ikebukuro%2C_Tokyo_%282012_photo%3B_cropped_2022%29.jpg',
+          caption: '示意圖：東京的貓咖啡廳（非本店）',
+          credit: 'Takashi Hososhima, CC BY-SA 2.0',
+        },
         hours: ['週三、週五：11:00–19:00', '週四：11:00–21:00', '週六、週日：11:00–19:00', '公休：週一、週二'],
         notes: ['不同訂餐平台的週三、週五時段略有出入，以店家公告為準'],
         fit: '谷中離日暮里很近，但 D5（10/26）是週一公休。D1（週四）營業到 21:00，鶯谷過去不遠，可以當備案。',
@@ -2282,6 +2222,11 @@ const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
         cuisine: '🥩 壽喜燒',
         address: '新宿區新宿 3-34-11　Peace 大樓 5F',
         mapQuery: '大衆すき焼き北斗 新宿中央東口店',
+        photo: {
+          url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Sukiyaki_01.jpg/960px-Sukiyaki_01.jpg',
+          caption: '示意圖：壽喜燒（非本店）',
+          credit: 'ajari, CC BY 2.0',
+        },
         hours: [],
         notes: [],
         fit: 'D4（週日）晚上在新宿，可以當晚餐候選。',
@@ -2291,6 +2236,11 @@ const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
         cuisine: '🥩 A5 和牛壽喜燒',
         address: '新宿區新宿 3-35-17　F.U.Assets 1F',
         mapQuery: 'WAGYU SUKIYAKI 極 GOKU 新宿',
+        photo: {
+          url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Yonezawa_beef_sukiyaki_at_pension_in_Yonezawa_Ski_Resort.jpg/960px-Yonezawa_beef_sukiyaki_at_pension_in_Yonezawa_Ski_Resort.jpg',
+          caption: '示意圖：和牛壽喜燒（非本店）',
+          credit: 'Syced, CC0',
+        },
         hours: ['每日：11:00–23:00'],
         notes: ['官方店家資訊標示全年無休'],
         fit: 'D4（週日）晚上在新宿，可以當晚餐候選。',
@@ -2305,6 +2255,11 @@ const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
         cuisine: '🔥 日式燒肉',
         address: '中央區日本橋人形町 1-4-13　重本大樓 1F',
         mapQuery: '焼肉はっぴぃ 人形町',
+        photo: {
+          url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Yakiniku_002.jpg/960px-Yakiniku_002.jpg',
+          caption: '示意圖：日式燒肉（非本店）',
+          credit: 'Jonathan Lin, CC BY-SA 2.0',
+        },
         hours: [],
         notes: [],
         fit: '不在目前路線上，要去的話需要另外安排時間。',
@@ -2319,6 +2274,11 @@ const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
         cuisine: '🍜 鮭魚拉麵・創意法式拉麵',
         address: '新宿區神樂坂 6-26　Casa Ioki 3，102 室',
         mapQuery: 'サーモンnoodle3.0 神楽坂',
+        photo: {
+          url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Bowl_of_shio_ramen_with_pork.jpg/960px-Bowl_of_shio_ramen_with_pork.jpg',
+          caption: '示意圖：鹽味拉麵（非本店，也不是鮭魚拉麵）',
+          credit: 'GiveMeMollusks, CC0',
+        },
         hours: ['午餐：11:00–15:30（最後點餐 15:10）', '晚餐：17:00–21:00（最後點餐 20:40）'],
         notes: ['公休日不固定'],
         fit: '不在目前路線上，要去的話需要另外安排時間。',
@@ -2333,6 +2293,11 @@ const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
         cuisine: '🍸 復古餐廳酒吧・咖啡時段',
         address: '中央區銀座 7-3-13　新銀座大樓 1 號館 10F',
         mapQuery: 'ST.SAWAIオリオンズ 銀座',
+        photo: {
+          url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/%E5%90%8D%E6%9B%B2%E5%96%AB%E8%8C%B6%E3%83%B4%E3%82%A3%E3%82%AA%E3%83%AD%E3%83%B3.jpg/960px-%E5%90%8D%E6%9B%B2%E5%96%AB%E8%8C%B6%E3%83%B4%E3%82%A3%E3%82%AA%E3%83%AD%E3%83%B3.jpg',
+          caption: '示意圖：東京的復古喫茶店（非本店）',
+          credit: 'Eugene Ormandy, CC BY-SA 4.0',
+        },
         hours: ['咖啡時段：13:00–18:00', '晚餐時段：18:00–23:00（最後點餐 22:00）', '公休：週六、週日及日本國定假日'],
         notes: ['晚餐時段可能有服務費'],
         fit: '週六、週日公休，這趟的平日分別是抵達日、河口湖日和回程日，目前排不太進去。',
@@ -2345,7 +2310,7 @@ type SpotKey =
   | 'sakae' | 'oasis' | 'tvtower' | 'mitsui' | 'nagoyacastle' | 'osu' | 'asunal' | 'aeon' | 'inuyama' | 'jokamachi'
   /* 東京 */
   | 'uguisudani' | 'izakaya' | 'ameyoko' | 'haginoyu'
-  | 'kawaguchiko' | 'oishipark' | 'tenjoyama' | 'hoto'
+  | 'kawaguchiko' | 'oishipark' | 'tenjoyama'
   | 'sensoji' | 'nakamise' | 'skytree' | 'odaiba'
   | 'meiji' | 'takeshita' | 'omotesando' | 'shibuya' | 'shibuyasky' | 'nintendo' | 'shinjuku' | 'tokyotower'
 
@@ -2695,22 +2660,6 @@ const spots: Record<SpotKey, Spot> = {
       { icon: '🕐', label: '建議停留', value: '1 小時左右（不含排隊）' },
       { icon: '💰', label: '費用', value: '纜車票價出發前確認' },
       { icon: '🤔', label: '狀態', value: '備選：依天氣、排隊與剩餘時間決定' },
-    ],
-  },
-  hoto: {
-    icon: '🍲',
-    name: 'ほうとう（餺飥麵）',
-    subtitle: 'Hōtō, Yamanashi',
-    desc: 'ほうとう是山梨縣的鄉土料理，用比烏龍麵更寬、更扁的麵條，和南瓜、白菜、菇類、根莖類蔬菜一起放進味噌湯底燉煮，通常裝在小鐵鍋裡熱熱上桌。南瓜煮到化開後湯頭會帶一點甜味，麵條吸滿湯汁，份量也很足。河口湖一帶有不少專賣店，是來富士山行程的經典午餐，秋天微涼的天氣吃起來特別剛好。熱門店家中午常要排隊。',
-    photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/H%C5%8Dt%C5%8D_udon_%282%29%2C_20161225.jpg/960px-H%C5%8Dt%C5%8D_udon_%282%29%2C_20161225.jpg',
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Houtou.jpg/960px-Houtou.jpg',
-    ],
-    infos: [
-      { icon: '📍', label: '在哪吃', value: '河口湖周邊專賣店（店家未選定）' },
-      { icon: '🕐', label: '建議停留', value: '約 1 小時（含排隊）' },
-      { icon: '🍲', label: '特色', value: '寬扁麵 · 南瓜 · 味噌湯底 · 鐵鍋上桌' },
-      { icon: '⚠️', label: '注意', value: '營業時間與公休日出發前確認' },
     ],
   },
   sensoji: {
@@ -3284,6 +3233,19 @@ const spots: Record<SpotKey, Spot> = {
 .food-shop-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .food-name    { font-family: var(--mg-font-body); font-size: 15px; font-weight: 800; color: var(--mg-green-deep); }
 .food-cuisine { font-family: var(--mg-font-body); font-size: 12px; color: #777; margin-top: 3px; }
+.food-photo { margin: 10px 0 0; }
+.food-photo img {
+  width: 100%; height: 200px;
+  object-fit: cover; display: block;
+  border-radius: 12px;
+  border: 1.5px solid var(--mg-border-soft);
+  background: #d4eada;
+}
+.food-photo figcaption {
+  font-family: var(--mg-font-body);
+  font-size: 10px; color: var(--mg-text-muted);
+  margin-top: 4px; letter-spacing: .02em;
+}
 
 /* ── More / Footer ── */
 .more-hint {
