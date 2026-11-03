@@ -9,6 +9,7 @@ import MoodDiaryView     from '@/views/MoodDiaryView.vue'
 import EyesView          from '@/views/EyesView.vue'
 import RunnerView        from '@/views/RunnerView.vue'
 import QuarrelView       from '@/views/QuarrelView.vue'
+import QuarrelEntryView  from '@/views/QuarrelEntryView.vue'
 import PrivateView       from '@/views/PrivateView.vue'
 import TravelView        from '@/views/TravelView.vue'
 import TradingSystemsView from '@/views/TradingSystemsView.vue'
@@ -25,6 +26,7 @@ const router = createRouter({
     { path: '/journal/eyes',           component: EyesView,        meta: { bare: true } },
     { path: '/journal/runner',         component: RunnerView,      meta: { bare: true } },
     { path: '/journal/quarrel',        component: QuarrelView,     meta: { bare: true } },
+    { path: '/journal/quarrel/:slug',  component: QuarrelEntryView, meta: { bare: true } },
     { path: '/travel',                 component: TravelView,      meta: { bare: true } },
     { path: '/programming',            component: ProgrammingView, meta: { bare: true } },
     { path: '/programming/research',   component: ResearchView,    meta: { bare: true } },
