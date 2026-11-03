@@ -76,6 +76,22 @@
           <span class="menu-arrow">›</span>
         </RouterLink>
 
+        <RouterLink to="/journal/quarrel" class="menu-card">
+          <div class="menu-icon">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 10 h15 a2.5 2.5 0 0 1 2.5 2.5 v7 a2.5 2.5 0 0 1 -2.5 2.5 h-8 l-4 3.5 v-3.5 h-3 a2.5 2.5 0 0 1 -2.5 -2.5 v-7 a2.5 2.5 0 0 1 2.5 -2.5 z" fill="rgba(95,127,100,.15)" stroke="#5F7F64" stroke-width="1.3" stroke-linejoin="round"/>
+              <path d="M35 17 h-12 v6 a2.5 2.5 0 0 1 -2.5 2.5 h-2 v1 a2.5 2.5 0 0 0 2.5 2.5 h6 l4 3.5 v-3.5 h4 a2.5 2.5 0 0 0 2.5 -2.5 v-7 a2.5 2.5 0 0 0 -2.5 -2.5 z" fill="rgba(95,127,100,.3)" stroke="#5F7F64" stroke-width="1.3" stroke-linejoin="round"/>
+              <path d="M12 13.5 v4 M12 20 v.4" stroke="#2F4F3A" stroke-width="1.6" stroke-linecap="round"/>
+              <path d="M26 21 l4 4 M30 21 l-4 4" stroke="#2F4F3A" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="menu-text">
+            <span class="menu-label">吵架</span>
+            <span class="menu-desc">即將開放 · Coming Soon</span>
+          </div>
+          <span class="menu-arrow">›</span>
+        </RouterLink>
+
       </nav>
     </div>
   </PortfolioPageShell>
