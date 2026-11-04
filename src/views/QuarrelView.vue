@@ -11,8 +11,13 @@
 
       <ul class="entry-list">
         <li v-for="e in entries" :key="e.slug">
-          <RouterLink :to="`/journal/quarrel/${e.slug}`" class="entry-card">
+          <RouterLink
+            :to="`/journal/quarrel/${e.slug}`"
+            class="entry-card"
+            :class="{ 'is-pinned': e.pinned }"
+          >
             <span class="entry-meta">
+              <span v-if="e.pinned" class="entry-pin">置頂</span>
               <time :datetime="e.date">{{ formatDate(e.date) }}</time>
               <span aria-hidden="true">·</span>
               <span>閱讀約 {{ readingMinutes(e) }} 分鐘</span>
@@ -105,6 +110,18 @@ import { entries, formatDate, readingMinutes } from '@/data/relationship'
   font-size: .8rem;
   letter-spacing: .06em;
   color: #85877F;
+}
+.entry-card.is-pinned {
+  border-color: #C9D2C6;
+  background: #F6F8F4;
+}
+.entry-pin {
+  padding: 0 .6rem;
+  border-radius: 999px;
+  background: #344B3F;
+  font-weight: 600;
+  letter-spacing: .12em;
+  color: #fff;
 }
 .entry-title {
   font-family: 'Noto Serif TC', var(--mg-font-heading);

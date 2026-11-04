@@ -1,8 +1,18 @@
 import type { Block, RelationshipEntry } from './types'
-import anger from './entries/2026-11-03-anger'
+import boundary from './entries/2026-11-04-boundary'
+import emotionSop from './entries/emotion-first-aid-sop'
+import together from './entries/2026-11-04-together'
 
-/** 新日記：在 entries/ 新增檔案後加到這裡（新的放前面）。 */
-export const entries: RelationshipEntry[] = [anger]
+/**
+ * 新日記：在 entries/ 新增檔案後加到這裡（新的放前面）。
+ * 設定 pinned: true 的日記會永遠排在最前面。
+ */
+const all: RelationshipEntry[] = [emotionSop, together, boundary]
+
+export const entries: RelationshipEntry[] = [
+  ...all.filter(e => e.pinned),
+  ...all.filter(e => !e.pinned),
+]
 
 export function findEntry(slug: string): RelationshipEntry | undefined {
   return entries.find(e => e.slug === slug)

@@ -577,7 +577,8 @@ button { font: inherit; }
 .j-groups--soft .j-group,
 .j-groups--cards .j-group,
 .j-groups--warm .j-group,
-.j-groups--sop .j-group {
+.j-groups--sop .j-group,
+.j-groups--stages .j-group {
   padding: 1.6rem 1.8rem;
   border: 1px solid var(--j-line);
   border-radius: 18px;
@@ -716,6 +717,14 @@ button { font: inherit; }
 .tone-forest { border-top-color: var(--j-forest) !important; }
 .tone-forest .j-badge { background: var(--j-forest); color: #fff; }
 
+/* stages：單欄四階段 */
+.j-groups--stages { display: grid; gap: 1.1rem; }
+.j-groups--stages .j-group { border-top-width: 3px; }
+.tone-green { border-top-color: #8FB08A !important; }
+.tone-green .j-badge { background: #E6EFE3; color: #4F6E4A; }
+.tone-blue { border-top-color: #8DA7BC !important; }
+.tone-blue .j-badge { background: #E3EBF2; color: #45627A; }
+
 /* 11 growth */
 .j-sec--prose :deep(.jb-pull) { font-size: 1.24em; }
 
@@ -850,7 +859,8 @@ button { font: inherit; }
   .j-groups--soft .j-group,
   .j-groups--cards .j-group,
   .j-groups--warm .j-group,
-  .j-groups--sop .j-group { padding: 1.25rem 1.15rem; border-radius: 16px; }
+  .j-groups--sop .j-group,
+  .j-groups--stages .j-group { padding: 1.25rem 1.15rem; border-radius: 16px; }
   .j-groups--sop { grid-template-columns: minmax(0, 1fr); }
   .j-groups--cards .j-group { grid-template-columns: minmax(0, 1fr); gap: .2rem; }
   .j-groups--timeline .j-group { gap: 1rem; }

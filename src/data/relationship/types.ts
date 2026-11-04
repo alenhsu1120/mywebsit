@@ -31,6 +31,8 @@ export type GroupTone =
   | 'orange'
   | 'sage'
   | 'forest'
+  | 'green'
+  | 'blue'
 
 export interface Group {
   title: string
@@ -53,6 +55,8 @@ export type SectionLayout =
   | 'sop'
   | 'letter'
   | 'tags'
+  /** 單欄、依階段上色的卡片（例如四階段 SOP） */
+  | 'stages'
 
 export interface Section {
   id: string
@@ -70,6 +74,8 @@ export interface Section {
 
 export interface RelationshipEntry {
   slug: string
+  /** 永遠置頂於日記列表 */
+  pinned?: boolean
   eyebrow: string
   title: string
   subtitle: string
