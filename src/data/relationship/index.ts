@@ -2,12 +2,14 @@ import type { Block, RelationshipEntry } from './types'
 import boundary from './entries/2026-11-04-boundary'
 import emotionSop from './entries/emotion-first-aid-sop'
 import together from './entries/2026-11-04-together'
+import travelCare from './entries/2026-11-04-travel-care'
+import tokyoTime from './entries/2026-11-04-tokyo-time'
 
 /**
  * 新日記：在 entries/ 新增檔案後加到這裡（新的放前面）。
  * 設定 pinned: true 的日記會永遠排在最前面。
  */
-const all: RelationshipEntry[] = [emotionSop, together, boundary]
+const all: RelationshipEntry[] = [emotionSop, tokyoTime, travelCare, together, boundary]
 
 export const entries: RelationshipEntry[] = [
   ...all.filter(e => e.pinned),
