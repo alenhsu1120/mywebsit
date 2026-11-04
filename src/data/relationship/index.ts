@@ -4,12 +4,13 @@ import emotionSop from './entries/emotion-first-aid-sop'
 import together from './entries/2026-11-04-together'
 import travelCare from './entries/2026-11-04-travel-care'
 import tokyoTime from './entries/2026-11-04-tokyo-time'
+import cuteGuide from './entries/zaizai-cute-guide'
 
 /**
  * 新日記：在 entries/ 新增檔案後加到這裡（新的放前面）。
- * 設定 pinned: true 的日記會永遠排在最前面。
+ * 設定 pinned: true 的日記會永遠排在最前面（置頂日記之間依此陣列順序）。
  */
-const all: RelationshipEntry[] = [emotionSop, tokyoTime, travelCare, together, boundary]
+const all: RelationshipEntry[] = [cuteGuide, emotionSop, boundary, travelCare, tokyoTime, together]
 
 export const entries: RelationshipEntry[] = [
   ...all.filter(e => e.pinned),
