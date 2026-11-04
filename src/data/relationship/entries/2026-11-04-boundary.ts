@@ -2,6 +2,8 @@ import type { RelationshipEntry } from '../types'
 
 const entry: RelationshipEntry = {
   slug: '2026-11-04-boundary',
+  collection: 'communication',
+  cover: { art: 'letter', alt: '手繪的信封與信紙，封口是愛心封蠟' },
   eyebrow: 'RELATIONSHIP JOURNAL',
   title: '我希望妳學會保護自己',
   subtitle: '關於仔仔與大學同學 A 的界線',

@@ -2,6 +2,8 @@ import type { RelationshipEntry } from '../types'
 
 const entry: RelationshipEntry = {
   slug: '2026-11-04-travel-care',
+  collection: 'travel',
+  cover: { art: 'suitcase', alt: '手繪的行李箱與提袋，貼著愛心和星星貼紙' },
   eyebrow: 'RELATIONSHIP JOURNAL',
   title: '我不想一直當照顧者',
   subtitle: '旅行中的照顧責任與相處界線',

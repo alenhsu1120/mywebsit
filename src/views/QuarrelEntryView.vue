@@ -22,21 +22,13 @@
     <div v-else class="j-page">
       <!-- ───────── Hero ───────── -->
       <header class="j-hero">
-        <svg class="j-hero-leaves" viewBox="0 0 320 320" aria-hidden="true">
-          <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
-            <path d="M40 300 C90 230 150 170 290 40" />
-            <path d="M120 215 C100 180 104 150 126 128 C144 152 142 186 120 215 Z" />
-            <path d="M120 215 C122 186 124 158 126 128" opacity=".6" />
-            <path d="M170 166 C190 136 220 124 252 128 C236 156 208 170 170 166 Z" />
-            <path d="M170 166 C196 150 222 138 252 128" opacity=".6" />
-            <path d="M212 120 C198 92 204 64 226 48 C240 74 234 102 212 120 Z" />
-            <path d="M212 120 C216 96 220 72 226 48" opacity=".6" />
-            <path d="M80 258 C96 236 122 226 150 230 C134 252 108 262 80 258 Z" />
-            <path d="M80 258 C104 246 126 236 150 230" opacity=".6" />
-          </g>
-        </svg>
 
         <div class="j-hero-inner">
+          <p class="j-collection">
+            <span>{{ collection?.en }}</span>
+            <span aria-hidden="true">·</span>
+            <span>{{ collection?.zh }}</span>
+          </p>
           <p class="j-eyebrow">{{ entry.eyebrow }}</p>
           <h1 class="j-title">
             <span class="j-title-main">{{ entry.title }}</span>
@@ -61,6 +53,11 @@
             <button type="button" class="j-btn" @click="printPage">列印文章</button>
             <span class="j-sr" role="status">{{ copied ? '已複製文章連結' : '' }}</span>
           </div>
+
+          <figure class="j-cover">
+            <span class="j-cover-tape" aria-hidden="true" />
+            <img :src="coverSrc(entry)" :alt="entry.cover.alt" width="400" height="300" />
+          </figure>
         </div>
       </header>
 
@@ -149,6 +146,37 @@
         <p class="j-closing">{{ entry.closing }}</p>
       </section>
 
+      <!-- ───────── Related & prev/next ───────── -->
+      <nav class="j-more" aria-label="更多日記">
+        <div v-if="related.length" class="j-related">
+          <p class="j-more-label">MORE {{ collection?.en }}</p>
+          <h2 class="j-more-title">相關文章</h2>
+          <ul>
+            <li v-for="r in related" :key="r.slug">
+              <RouterLink :to="`/journal/quarrel/${r.slug}`" class="j-rel">
+                <img :src="coverSrc(r)" alt="" width="400" height="300" loading="lazy" />
+                <span class="j-rel-body">
+                  <span class="j-rel-title">{{ r.title }}</span>
+                  <span class="j-rel-meta">{{ formatDate(r.date) }} · 閱讀約 {{ readingMinutes(r) }} 分鐘</span>
+                </span>
+              </RouterLink>
+            </li>
+          </ul>
+        </div>
+
+        <div class="j-pager">
+          <RouterLink v-if="adjacent.prev" :to="`/journal/quarrel/${adjacent.prev.slug}`" class="j-page-link">
+            <span class="j-page-dir">‹ 上一篇</span>
+            <span class="j-page-title">{{ adjacent.prev.title }}</span>
+          </RouterLink>
+          <span v-else />
+          <RouterLink v-if="adjacent.next" :to="`/journal/quarrel/${adjacent.next.slug}`" class="j-page-link is-next">
+            <span class="j-page-dir">下一篇 ›</span>
+            <span class="j-page-title">{{ adjacent.next.title }}</span>
+          </RouterLink>
+        </div>
+      </nav>
+
       <button
         type="button"
         class="j-top"
@@ -170,12 +198,23 @@ import PortfolioPageShell from '@/components/portfolio/PortfolioPageShell.vue'
 import PortfolioSubNav from '@/components/portfolio/PortfolioSubNav.vue'
 import JournalBlocks from '@/components/journal/JournalBlocks.vue'
 import { checklistKey, type ChecklistState } from '@/components/journal/checklist'
-import { findEntry, formatDate, readingMinutes } from '@/data/relationship'
+import {
+  adjacentEntries,
+  collectionOf,
+  coverSrc,
+  findEntry,
+  formatDate,
+  readingMinutes,
+  relatedEntries,
+} from '@/data/relationship'
 import type { SectionLayout } from '@/data/relationship/types'
 
 const route = useRoute()
 const entry = computed(() => findEntry(String(route.params.slug)))
 const minutes = computed(() => (entry.value ? readingMinutes(entry.value) : 0))
+const collection = computed(() => (entry.value ? collectionOf(entry.value) : undefined))
+const related = computed(() => (entry.value ? relatedEntries(entry.value) : []))
+const adjacent = computed(() => (entry.value ? adjacentEntries(entry.value) : {}) as ReturnType<typeof adjacentEntries>)
 
 const checklist = reactive<ChecklistState>({})
 provide(checklistKey, checklist)
@@ -187,6 +226,8 @@ watch(
   entry,
   e => {
     document.title = e ? `${e.title}｜關係成長日記` : '關係成長日記'
+    // 換篇時清空勾選狀態（不同文章可能使用相同的清單 id）
+    for (const k of Object.keys(checklist)) delete checklist[k]
   },
   { immediate: true },
 )
@@ -338,14 +379,50 @@ button { font: inherit; }
     radial-gradient(ellipse 60% 70% at 85% 20%, rgba(137,154,136,.16), transparent 70%),
     radial-gradient(ellipse 50% 60% at 10% 100%, rgba(233,238,231,.9), transparent 70%);
 }
-.j-hero-leaves {
+.j-collection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+  margin: 0 0 .9rem;
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  color: var(--j-olive);
+}
+/* 封面：拍立得＋膠帶 */
+.j-cover {
+  position: relative;
+  width: min(100%, 360px);
+  margin: 2.4rem 0 0;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid var(--j-line);
+  box-shadow: 0 16px 34px rgba(48,54,48,.09);
+  transform: rotate(-1.5deg);
+}
+.j-cover img { display: block; width: 100%; height: auto; border-radius: 3px; }
+.j-cover-tape {
   position: absolute;
-  right: max(2rem, calc(50% - 600px));
-  top: 50%;
-  width: min(320px, 38vw);
-  transform: translateY(-50%);
-  color: var(--j-sage);
-  opacity: .45;
+  top: -11px;
+  left: 50%;
+  width: 84px;
+  height: 22px;
+  margin-left: -42px;
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.25) 0 6px, transparent 6px 12px),
+    rgba(216, 200, 178, .62);
+  transform: rotate(-4deg);
+}
+@media (min-width: 1081px) {
+  .j-hero-inner { padding-right: calc(2.5rem + 340px); }
+  .j-cover {
+    position: absolute;
+    right: 2.5rem;
+    top: 50%;
+    width: 300px;
+    margin: 0;
+    transform: translateY(-50%) rotate(2deg);
+  }
 }
 .j-hero-inner {
   position: relative;
@@ -791,6 +868,76 @@ button { font: inherit; }
   color: var(--j-forest);
 }
 
+/* ── Related & prev/next ── */
+.j-more {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 2.5rem 6rem;
+}
+.j-more-label {
+  margin: 0 0 .4rem;
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .24em;
+  color: var(--j-olive);
+}
+.j-more-title {
+  margin: 0 0 1.2rem;
+  font-family: var(--j-serif);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--j-forest);
+}
+.j-related { margin-bottom: 2.6rem; }
+.j-related ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.j-rel {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
+  padding: .7rem;
+  border: 1px solid var(--j-line);
+  border-radius: 14px;
+  background: var(--j-card);
+  text-decoration: none;
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+.j-rel:hover { transform: translateY(-2px); border-color: #C9D2C6; box-shadow: 0 10px 24px rgba(48,54,48,.06); }
+.j-rel img { width: 96px; height: 72px; object-fit: cover; border-radius: 8px; }
+.j-rel-body { display: grid; gap: .3rem; }
+.j-rel-title { font-family: var(--j-serif); font-size: .98rem; line-height: 1.5; color: var(--j-forest); }
+.j-rel-meta { font-size: .76rem; color: var(--j-muted); }
+.j-pager {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--j-line);
+}
+.j-page-link {
+  display: grid;
+  gap: .35rem;
+  min-height: 44px;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--j-line);
+  border-radius: 14px;
+  background: var(--j-card);
+  text-decoration: none;
+  transition: border-color .2s, transform .2s;
+}
+.j-page-link:hover { border-color: #C9D2C6; transform: translateY(-2px); }
+.j-page-link.is-next { text-align: right; }
+.j-page-dir { font-size: .74rem; letter-spacing: .14em; color: var(--j-olive); }
+.j-page-title { font-family: var(--j-serif); font-size: .98rem; line-height: 1.5; color: var(--j-forest); }
+
 /* ── Back to top ── */
 .j-top {
   position: fixed;
@@ -839,7 +986,6 @@ button { font: inherit; }
   }
   .j-toc-mobile ol { padding: 0 1.2rem 1rem; }
   .j-toc-mobile button { padding: .5rem 0; min-height: 40px; }
-  .j-hero-leaves { opacity: .25; }
 }
 @media (max-width: 1080px) and (min-width: 800px) {
   .j-toc-mobile { margin-left: auto; margin-right: auto; width: calc(100% - 5rem); }
@@ -851,7 +997,9 @@ button { font: inherit; }
 @media (max-width: 640px) {
   .j-page { font-size: 16px; line-height: 1.9; }
   .j-hero-inner { padding: 3.5rem 1.25rem 2.8rem; }
-  .j-hero-leaves { width: 200px; right: -40px; top: 30%; opacity: .18; }
+  .j-cover { margin-top: 2rem; }
+  .j-more { padding: 0 1.25rem 5rem; }
+  .j-related ul, .j-pager { grid-template-columns: minmax(0, 1fr); }
   .j-title { padding-left: 1rem; }
   .j-layout { padding: 2.2rem 1.25rem 1rem; }
   .j-sec { padding-bottom: 2.6rem; margin-bottom: 2.6rem; }
@@ -874,12 +1022,13 @@ button { font: inherit; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .j-page, .j-btn, .j-group, .j-top, .j-progress span { animation: none !important; transition: none !important; }
+  .j-page, .j-btn, .j-group, .j-top, .j-progress span, .j-rel, .j-page-link { animation: none !important; transition: none !important; }
+  .j-rel:hover, .j-page-link:hover { transform: none; }
 }
 
 /* ── Print ── */
 @media print {
-  :global(.sub-bar), .j-progress, .j-toc, .j-toc-mobile, .j-actions, .j-top, .j-hero-leaves { display: none !important; }
+  :global(.sub-bar), .j-progress, .j-toc, .j-toc-mobile, .j-actions, .j-top, .j-cover, .j-more { display: none !important; }
   .j-page { animation: none; background: #fff; }
   .j-layout { display: block; padding: 0 0 1rem; }
   .j-hero { background: none; }

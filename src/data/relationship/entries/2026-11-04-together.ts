@@ -2,6 +2,8 @@ import type { RelationshipEntry } from '../types'
 
 const entry: RelationshipEntry = {
   slug: '2026-11-04-together',
+  collection: 'communication',
+  cover: { art: 'mugs', alt: '手繪的兩個馬克杯，熱氣在上方圍成愛心' },
   eyebrow: 'RELATIONSHIP JOURNAL',
   title: '我們每天都在一起，卻好像沒有真正相處',
   subtitle: '同居生活中的陪伴落差與情緒累積',

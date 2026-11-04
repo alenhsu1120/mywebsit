@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#F4F0E8"/>
+  <ellipse cx="200" cy="252" rx="150" ry="14" fill="#D8C8B2" opacity=".45"/>
+  <path d="M60 70C120 30 220 36 270 60" fill="none" stroke="#899A88" stroke-width="1.8" stroke-dasharray="2 8" stroke-linecap="round"/>
+  <path d="M272 52l20 6-16 10-1-8z" fill="#FBFAF7" stroke="#899A88" stroke-width="1.6" stroke-linejoin="round"/>
+  <g stroke="#344B3F" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M150 104v-20a10 10 0 0 1 10-10h40a10 10 0 0 1 10 10v20" fill="none"/>
+    <rect x="112" y="104" width="136" height="140" rx="18" fill="#DCE7D5"/>
+    <path d="M146 104v140M214 104v140" fill="none" stroke="#7F9B7A"/>
+    <circle cx="136" cy="250" r="6" fill="#FBFAF7"/><circle cx="224" cy="250" r="6" fill="#FBFAF7"/>
+    <path d="M262 150c0-22 14-30 24-30s24 8 24 30" fill="none"/>
+    <path d="M250 150h72l-6 94h-60z" fill="#EADFCC"/>
+  </g>
+  <circle cx="180" cy="150" r="15" fill="#FBFAF7" stroke="#C48A6A" stroke-width="1.6"/>
+  <path transform="translate(173 144) scale(.7)" d="M0 6C0-2 10-2 10 5C10-2 20-2 20 6C20 13 10 18 10 20C10 18 0 13 0 6Z" fill="#C48A6A"/>
+  <rect x="160" y="190" width="40" height="22" rx="4" fill="#FBFAF7" stroke="#B08968" stroke-width="1.6" transform="rotate(-8 180 201)"/>
+  <path transform="translate(286 196) scale(.9)" d="M0-11L2.6-2.6L11 0L2.6 2.6L0 11L-2.6 2.6L-11 0L-2.6-2.6Z" fill="#B08968" opacity=".7"/>
+  <path transform="translate(330 96)" d="M0-11L2.6-2.6L11 0L2.6 2.6L0 11L-2.6 2.6L-11 0L-2.6-2.6Z" fill="#B08968" opacity=".45"/>
+</svg>

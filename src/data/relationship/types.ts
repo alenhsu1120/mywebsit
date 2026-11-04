@@ -72,10 +72,28 @@ export interface Section {
   letterTitle?: string
 }
 
+/** 列表頁的故事類型（與文章內的 categories 分開，不影響原本分類） */
+export type Collection = 'sweet' | 'cute' | 'travel' | 'communication' | 'milestone'
+
+/** public/images/journal/ 內的原創插畫檔名（不含副檔名） */
+export type CoverArt = 'puppy' | 'puppies' | 'fuji' | 'suitcase' | 'letter' | 'mugs' | 'checklist'
+
+export interface Cover {
+  /** 原創插畫；若同時有 image，優先顯示 image */
+  art?: CoverArt
+  /** 真實照片，路徑相對於 public/，例如 'images/journal/travel/tokyo.webp' */
+  image?: string
+  alt: string
+}
+
 export interface RelationshipEntry {
   slug: string
   /** 永遠置頂於日記列表 */
   pinned?: boolean
+  /** 列表頁的精選故事（只取第一篇） */
+  featured?: boolean
+  collection: Collection
+  cover: Cover
   eyebrow: string
   title: string
   subtitle: string

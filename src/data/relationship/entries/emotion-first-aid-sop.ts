@@ -3,6 +3,8 @@ import type { RelationshipEntry } from '../types'
 const entry: RelationshipEntry = {
   slug: 'emotion-first-aid-sop',
   pinned: true,
+  collection: 'communication',
+  cover: { art: 'checklist', alt: '手繪的筆記本檢查清單，角落貼著愛心 OK 繃' },
   eyebrow: 'RELATIONSHIP GUIDE',
   title: '我們的情緒急救 SOP',
   subtitle: '許寶與仔仔｜生氣時的衝突處理指南',

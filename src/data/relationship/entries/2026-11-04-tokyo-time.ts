@@ -2,6 +2,8 @@ import type { RelationshipEntry } from '../types'
 
 const entry: RelationshipEntry = {
   slug: '2026-11-04-tokyo-time',
+  collection: 'travel',
+  cover: { art: 'fuji', alt: '手繪的富士山與湖面，天空有紙飛機' },
   eyebrow: 'RELATIONSHIP JOURNAL',
   title: '東京旅行中的時間管理與情緒溝通',
   subtitle: '比起誰輸誰贏，更重要的是下次能不能做得更好',
