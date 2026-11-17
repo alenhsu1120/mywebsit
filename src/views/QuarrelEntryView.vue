@@ -373,7 +373,8 @@ button { font: inherit; }
   transform: rotate(-4deg);
 }
 @media (min-width: 1081px) {
-  .j-hero-inner { padding-right: calc(2.5rem + 340px); }
+  /* min-height：直式封面（約 300×420）也能完整顯示，不被 .j-hero 的 overflow 裁掉 */
+  .j-hero-inner { padding-right: calc(2.5rem + 340px); min-height: 30rem; }
   .j-cover {
     position: absolute;
     right: 2.5rem;
