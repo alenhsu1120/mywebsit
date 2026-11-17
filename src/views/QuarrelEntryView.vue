@@ -138,37 +138,6 @@
         <p v-if="entry.closing" class="j-closing">{{ entry.closing }}</p>
       </section>
 
-      <!-- ───────── Related & prev/next ───────── -->
-      <nav class="j-more" aria-label="更多日記">
-        <div v-if="related.length" class="j-related">
-          <p class="j-more-label">MORE {{ collection?.en }}</p>
-          <h2 class="j-more-title">相關文章</h2>
-          <ul>
-            <li v-for="r in related" :key="r.slug">
-              <RouterLink :to="`/journal/quarrel/${r.slug}`" class="j-rel">
-                <img :src="coverSrc(r)" alt="" width="400" height="300" loading="lazy" :class="{ 'is-contain': r.cover.fit === 'contain' }" />
-                <span class="j-rel-body">
-                  <span class="j-rel-title">{{ r.title }}</span>
-                  <span class="j-rel-meta">{{ formatDate(r.date) }} · 閱讀約 {{ readingMinutes(r) }} 分鐘</span>
-                </span>
-              </RouterLink>
-            </li>
-          </ul>
-        </div>
-
-        <div class="j-pager">
-          <RouterLink v-if="adjacent.prev" :to="`/journal/quarrel/${adjacent.prev.slug}`" class="j-page-link">
-            <span class="j-page-dir">‹ 上一篇</span>
-            <span class="j-page-title">{{ adjacent.prev.title }}</span>
-          </RouterLink>
-          <span v-else />
-          <RouterLink v-if="adjacent.next" :to="`/journal/quarrel/${adjacent.next.slug}`" class="j-page-link is-next">
-            <span class="j-page-dir">下一篇 ›</span>
-            <span class="j-page-title">{{ adjacent.next.title }}</span>
-          </RouterLink>
-        </div>
-      </nav>
-
       <button
         type="button"
         class="j-top"
@@ -191,13 +160,11 @@ import PortfolioSubNav from '@/components/portfolio/PortfolioSubNav.vue'
 import JournalBlocks from '@/components/journal/JournalBlocks.vue'
 import { checklistKey, type ChecklistState } from '@/components/journal/checklist'
 import {
-  adjacentEntries,
   collectionOf,
   coverSrc,
   findEntry,
   formatDate,
   readingMinutes,
-  relatedEntries,
 } from '@/data/relationship'
 import type { SectionLayout } from '@/data/relationship/types'
 
@@ -205,8 +172,6 @@ const route = useRoute()
 const entry = computed(() => findEntry(String(route.params.slug)))
 const minutes = computed(() => (entry.value ? readingMinutes(entry.value) : 0))
 const collection = computed(() => (entry.value ? collectionOf(entry.value) : undefined))
-const related = computed(() => (entry.value ? relatedEntries(entry.value) : []))
-const adjacent = computed(() => (entry.value ? adjacentEntries(entry.value) : {}) as ReturnType<typeof adjacentEntries>)
 
 const checklist = reactive<ChecklistState>({})
 provide(checklistKey, checklist)
@@ -815,77 +780,6 @@ button { font: inherit; }
   color: var(--j-forest);
 }
 
-/* ── Related & prev/next ── */
-.j-more {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 0 2.5rem 6rem;
-}
-.j-more-label {
-  margin: 0 0 .4rem;
-  font-size: .7rem;
-  font-weight: 600;
-  letter-spacing: .24em;
-  color: var(--j-olive);
-}
-.j-more-title {
-  margin: 0 0 1.2rem;
-  font-family: var(--j-serif);
-  font-size: 1.3rem;
-  font-weight: 500;
-  color: var(--j-forest);
-}
-.j-related { margin-bottom: 2.6rem; }
-.j-related ul {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.j-rel {
-  display: grid;
-  grid-template-columns: 96px minmax(0, 1fr);
-  align-items: center;
-  gap: 1rem;
-  height: 100%;
-  padding: .7rem;
-  border: 1px solid var(--j-line);
-  border-radius: 14px;
-  background: var(--j-card);
-  text-decoration: none;
-  transition: transform .2s, border-color .2s, box-shadow .2s;
-}
-.j-rel:hover { transform: translateY(-2px); border-color: #C9D2C6; box-shadow: 0 10px 24px rgba(48,54,48,.06); }
-.j-rel img { width: 96px; height: 72px; object-fit: cover; border-radius: 8px; }
-.j-rel img.is-contain { object-fit: contain; background: var(--j-card); }
-.j-rel-body { display: grid; gap: .3rem; }
-.j-rel-title { font-family: var(--j-serif); font-size: .98rem; line-height: 1.5; color: var(--j-forest); }
-.j-rel-meta { font-size: .76rem; color: var(--j-muted); }
-.j-pager {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--j-line);
-}
-.j-page-link {
-  display: grid;
-  gap: .35rem;
-  min-height: 44px;
-  padding: 1rem 1.2rem;
-  border: 1px solid var(--j-line);
-  border-radius: 14px;
-  background: var(--j-card);
-  text-decoration: none;
-  transition: border-color .2s, transform .2s;
-}
-.j-page-link:hover { border-color: #C9D2C6; transform: translateY(-2px); }
-.j-page-link.is-next { text-align: right; }
-.j-page-dir { font-size: .74rem; letter-spacing: .14em; color: var(--j-olive); }
-.j-page-title { font-family: var(--j-serif); font-size: .98rem; line-height: 1.5; color: var(--j-forest); }
-
 /* ── Back to top ── */
 .j-top {
   position: fixed;
@@ -946,8 +840,6 @@ button { font: inherit; }
   .j-page { font-size: 16px; line-height: 1.9; }
   .j-hero-inner { padding: 3.5rem 1.25rem 2.8rem; }
   .j-cover { margin-top: 2rem; }
-  .j-more { padding: 0 1.25rem 5rem; }
-  .j-related ul, .j-pager { grid-template-columns: minmax(0, 1fr); }
   .j-title { padding-left: 1rem; }
   .j-layout { padding: 2.2rem 1.25rem 1rem; }
   .j-sec { padding-bottom: 2.6rem; margin-bottom: 2.6rem; }
@@ -970,13 +862,12 @@ button { font: inherit; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .j-page, .j-btn, .j-group, .j-top, .j-progress span, .j-rel, .j-page-link { animation: none !important; transition: none !important; }
-  .j-rel:hover, .j-page-link:hover { transform: none; }
+  .j-page, .j-btn, .j-group, .j-top, .j-progress span { animation: none !important; transition: none !important; }
 }
 
 /* ── Print ── */
 @media print {
-  :global(.sub-bar), .j-progress, .j-toc, .j-toc-mobile, .j-actions, .j-top, .j-cover, .j-more { display: none !important; }
+  :global(.sub-bar), .j-progress, .j-toc, .j-toc-mobile, .j-actions, .j-top, .j-cover { display: none !important; }
   .j-page { animation: none; background: #fff; }
   .j-layout { display: block; padding: 0 0 1rem; }
   .j-hero { background: none; }

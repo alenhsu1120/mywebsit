@@ -44,17 +44,6 @@ export function coverSrc(entry: RelationshipEntry): string {
   return `${base}images/journal/${entry.cover.art ?? 'puppies'}.svg`
 }
 
-/** 同類型的其他日記 */
-export function relatedEntries(entry: RelationshipEntry, limit = 2): RelationshipEntry[] {
-  return entries.filter(e => e.slug !== entry.slug && e.collection === entry.collection).slice(0, limit)
-}
-
-/** 依列表順序的上一篇／下一篇 */
-export function adjacentEntries(entry: RelationshipEntry) {
-  const i = entries.findIndex(e => e.slug === entry.slug)
-  return { prev: i > 0 ? entries[i - 1] : undefined, next: i >= 0 ? entries[i + 1] : undefined }
-}
-
 export function findEntry(slug: string): RelationshipEntry | undefined {
   return entries.find(e => e.slug === slug)
 }
