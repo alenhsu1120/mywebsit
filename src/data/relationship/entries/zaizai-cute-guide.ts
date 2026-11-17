@@ -5,7 +5,7 @@ const entry: RelationshipEntry = {
   pinned: true,
   collection: 'cute',
   featured: true,
-  cover: { image: 'images/journal/zaizai-cute-matcha-tokyo.jpg', fit: 'contain', alt: '仔仔在 The Matcha Tokyo 拿著抹茶飲料，背著小包包' },
+  cover: { image: 'images/journal/zaizai-cute-matcha-tokyo-portrait.jpg', fit: 'contain', alt: '仔仔在 The Matcha Tokyo 拿著抹茶飲料，背著小包包' },
   eyebrow: 'OUR LITTLE COLLECTION OF YOU',
   title: '♡ 仔仔可愛圖鑑',
   subtitle: '一本關於仔仔的小小圖鑑',

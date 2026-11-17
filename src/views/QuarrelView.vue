@@ -22,9 +22,9 @@
             <span class="rj-tape rj-tape--b" aria-hidden="true" />
             <img
               :src="heroSrc"
-              width="520"
-              height="420"
-              alt="手繪插畫：兩隻小狗狗並肩坐在草地上，上方有一顆愛心"
+              width="900"
+              height="1200"
+              alt="許寶和仔仔靠在一起的自拍"
             />
             <figcaption>許寶 &amp; 仔仔</figcaption>
           </figure>
@@ -184,7 +184,7 @@ import type { Collection } from '@/data/relationship/types'
 type Filter = 'all' | Collection
 
 const base = import.meta.env.BASE_URL
-const heroSrc = `${base}images/journal/puppies.svg`
+const heroSrc = `${base}images/journal/journal-hero-us-selfie.jpg`
 const emptySrc = `${base}images/journal/puppy.svg`
 
 const filter = ref<Filter>('all')
