@@ -83,6 +83,8 @@ export interface Cover {
   art?: CoverArt
   /** 真實照片，路徑相對於 public/，例如 'images/journal/travel/tokyo.webp' */
   image?: string
+  /** 'contain'：列表卡片等固定比例的框也完整顯示整張照片（適合直式照片），不裁切 */
+  fit?: 'cover' | 'contain'
   alt: string
 }
 

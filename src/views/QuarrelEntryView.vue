@@ -146,7 +146,7 @@
           <ul>
             <li v-for="r in related" :key="r.slug">
               <RouterLink :to="`/journal/quarrel/${r.slug}`" class="j-rel">
-                <img :src="coverSrc(r)" alt="" width="400" height="300" loading="lazy" />
+                <img :src="coverSrc(r)" alt="" width="400" height="300" loading="lazy" :class="{ 'is-contain': r.cover.fit === 'contain' }" />
                 <span class="j-rel-body">
                   <span class="j-rel-title">{{ r.title }}</span>
                   <span class="j-rel-meta">{{ formatDate(r.date) }} · 閱讀約 {{ readingMinutes(r) }} 分鐘</span>
@@ -856,6 +856,7 @@ button { font: inherit; }
 }
 .j-rel:hover { transform: translateY(-2px); border-color: #C9D2C6; box-shadow: 0 10px 24px rgba(48,54,48,.06); }
 .j-rel img { width: 96px; height: 72px; object-fit: cover; border-radius: 8px; }
+.j-rel img.is-contain { object-fit: contain; background: var(--j-card); }
 .j-rel-body { display: grid; gap: .3rem; }
 .j-rel-title { font-family: var(--j-serif); font-size: .98rem; line-height: 1.5; color: var(--j-forest); }
 .j-rel-meta { font-size: .76rem; color: var(--j-muted); }

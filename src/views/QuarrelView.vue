@@ -132,7 +132,7 @@
                   :class="[{ 'is-pinned': e.pinned }, `deco-${i % 3}`]"
                 >
                   <div class="rj-card-media">
-                    <img :src="coverSrc(e)" :alt="e.cover.alt" width="400" height="300" loading="lazy" />
+                    <img :src="coverSrc(e)" :alt="e.cover.alt" width="400" height="300" loading="lazy" :class="{ 'is-contain': e.cover.fit === 'contain' }" />
                     <span v-if="e.pinned" class="rj-pin">置頂</span>
                     <span class="rj-postmark" aria-hidden="true">{{ postmark(e.date) }}</span>
                   </div>
@@ -599,6 +599,7 @@ button { font: inherit; }
   object-fit: cover;
   transition: transform .22s var(--rj-ease);
 }
+.rj-card-media img.is-contain { object-fit: contain; }
 .rj-card:hover .rj-card-media img { transform: scale(1.04); }
 .rj-pin {
   position: absolute;

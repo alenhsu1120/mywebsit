@@ -86,7 +86,7 @@
             </svg>
           </div>
           <div class="menu-text">
-            <span class="menu-label">吵架</span>
+            <span class="menu-label">小日記</span>
             <span class="menu-desc">關係成長日記 · 在衝突裡學習珍惜彼此</span>
           </div>
           <span class="menu-arrow">›</span>
