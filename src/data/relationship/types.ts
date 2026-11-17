@@ -72,7 +72,7 @@ export interface Section {
   letterTitle?: string
 }
 
-/** 列表頁的故事類型（與文章內的 categories 分開，不影響原本分類） */
+/** 列表頁的故事類型 */
 export type Collection = 'sweet' | 'cute' | 'travel' | 'communication' | 'milestone'
 
 /** public/images/journal/ 內的原創插畫檔名（不含副檔名） */
@@ -100,7 +100,6 @@ export interface RelationshipEntry {
   lede: string
   /** ISO 日期 YYYY-MM-DD */
   date: string
-  categories: string[]
   summary: string
   /** 摘要下方的結語，留空則不顯示 */
   closing: string

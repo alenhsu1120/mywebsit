@@ -41,17 +41,9 @@
             <span aria-hidden="true">·</span>
             <span>閱讀約 {{ minutes }} 分鐘</span>
           </p>
-          <ul class="j-cats" aria-label="分類">
-            <li v-for="c in entry.categories" :key="c">{{ c }}</li>
-          </ul>
 
           <div class="j-actions">
             <RouterLink to="/journal/quarrel" class="j-btn">‹ 返回日記列表</RouterLink>
-            <button type="button" class="j-btn" @click="copyLink">
-              {{ copied ? '已複製連結' : '複製文章連結' }}
-            </button>
-            <button type="button" class="j-btn" @click="printPage">列印文章</button>
-            <span class="j-sr" role="status">{{ copied ? '已複製文章連結' : '' }}</span>
           </div>
 
           <figure class="j-cover">
@@ -284,31 +276,6 @@ function goTo(id: string) {
 function toTop() {
   window.scrollTo({ top: 0, behavior: reducedMotion() ? 'auto' : 'smooth' })
 }
-
-// ── 文章操作 ──
-const copied = ref(false)
-let copiedTimer: number | undefined
-
-async function copyLink() {
-  const url = window.location.href
-  try {
-    await navigator.clipboard.writeText(url)
-  } catch {
-    const ta = document.createElement('textarea')
-    ta.value = url
-    document.body.appendChild(ta)
-    ta.select()
-    document.execCommand('copy')
-    ta.remove()
-  }
-  copied.value = true
-  window.clearTimeout(copiedTimer)
-  copiedTimer = window.setTimeout(() => (copied.value = false), 2000)
-}
-
-function printPage() {
-  window.print()
-}
 </script>
 
 <style scoped>
@@ -337,14 +304,6 @@ function printPage() {
 @keyframes j-fade {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: none; }
-}
-
-.j-sr {
-  position: absolute;
-  width: 1px; height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
 }
 
 button { font: inherit; }
@@ -470,26 +429,10 @@ button { font: inherit; }
   display: flex;
   flex-wrap: wrap;
   gap: .6rem;
-  margin: 0 0 .9rem;
+  margin: 0 0 2rem;
   font-size: .85rem;
   letter-spacing: .06em;
   color: var(--j-muted);
-}
-.j-cats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .5rem;
-  margin: 0 0 2rem;
-  padding: 0;
-  list-style: none;
-}
-.j-cats li {
-  padding: .2rem .9rem;
-  border: 1px solid rgba(137,154,136,.45);
-  border-radius: 999px;
-  background: rgba(255,255,255,.6);
-  font-size: .82rem;
-  color: var(--j-olive);
 }
 .j-actions {
   display: flex;

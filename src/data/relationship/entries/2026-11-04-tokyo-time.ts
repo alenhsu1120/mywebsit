@@ -3,13 +3,13 @@ import type { RelationshipEntry } from '../types'
 const entry: RelationshipEntry = {
   slug: '2026-11-04-tokyo-time',
   collection: 'travel',
-  cover: { art: 'fuji', alt: '手繪的富士山與湖面，天空有紙飛機' },
+  // 照片來源：Weiqi Xiong on Unsplash
+  cover: { image: 'images/journal/tokyo-time-fuji-torii.jpg', alt: '紅色鳥居框住遠方積雪的富士山' },
   eyebrow: 'RELATIONSHIP JOURNAL',
   title: '東京旅行中的時間管理與情緒溝通',
   subtitle: '比起誰輸誰贏，更重要的是下次能不能做得更好',
   lede: '感情不是辯論比賽，不需要爭出誰比較有道理。',
   date: '2026-11-04',
-  categories: ['旅行相處', '時間管理', '情緒表達'],
   summary:
     '東京旅行因晚餐排隊、逛街超時與隔天早起，引發時間管理和情緒表達的衝突。透過雙方觀點交叉整理，理解彼此對睡眠、體諒與溝通的不同需求，並學習建立共同的時間界線。',
   closing: '你們是一起旅行、一起生活的夥伴',

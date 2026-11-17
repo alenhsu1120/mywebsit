@@ -4,13 +4,13 @@ const entry: RelationshipEntry = {
   slug: 'emotion-first-aid-sop',
   pinned: true,
   collection: 'communication',
-  cover: { art: 'checklist', alt: '手繪的筆記本檢查清單，角落貼著愛心 OK 繃' },
+  // 照片來源：Niranjan _ Photographs on Unsplash
+  cover: { image: 'images/journal/emotion-sop-grumpy-cat.jpg', alt: '一隻皺著眉頭、表情生氣的橘色小貓公仔' },
   eyebrow: 'RELATIONSHIP GUIDE',
   title: '我們的情緒急救 SOP',
   subtitle: '許寶與仔仔｜生氣時的衝突處理指南',
   lede: '我們可以有不同的想法，也可以對彼此感到失望，但不應該因為一時的情緒，讓最親近的人受到不必要的傷害。',
   date: '2026-11-04',
-  categories: ['情緒管理', '衝突處理', '共同約定'],
   summary:
     '這份指南不是要判斷誰對誰錯，而是希望在衝突發生時，兩個人都知道自己可以怎麼做。共同目標：不是讓對方先低頭，而是讓雙方都能在安全、被尊重的狀態下，把事情說清楚。',
   closing: '我們要一起解決問題，而不是一起被問題傷害',
