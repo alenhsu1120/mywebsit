@@ -90,7 +90,7 @@
           <!-- ───────── Featured ───────── -->
           <section v-if="showFeatured && featuredEntry" class="rj-featured" aria-labelledby="rj-featured-title">
             <RouterLink :to="`/journal/quarrel/${featuredEntry.slug}`" class="rj-feature">
-              <div class="rj-feature-media">
+              <div class="rj-feature-media" :class="{ 'is-portrait': featuredEntry.cover.fit === 'contain' }">
                 <span class="rj-tape rj-tape--c" aria-hidden="true" />
                 <img :src="coverSrc(featuredEntry)" :alt="featuredEntry.cover.alt" width="400" height="300" />
               </div>
@@ -525,6 +525,8 @@ button { font: inherit; }
   transition: transform .25s var(--rj-ease);
 }
 .rj-feature-media { overflow: visible; }
+/* 直式封面：縮小並置中，避免精選區被拉得太高 */
+.rj-feature-media.is-portrait { width: min(100%, 320px); justify-self: center; }
 .rj-tape--c { top: -12px; left: 50%; margin-left: -46px; transform: rotate(-3deg); }
 .rj-feature:hover .rj-feature-media { transform: rotate(0deg) translateY(-4px); box-shadow: 0 22px 44px rgba(48,54,48,.11); }
 .rj-feature-title {

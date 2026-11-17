@@ -46,7 +46,7 @@
             <RouterLink to="/journal/quarrel" class="j-btn">‹ 返回日記列表</RouterLink>
           </div>
 
-          <figure class="j-cover">
+          <figure class="j-cover" :class="{ 'is-portrait': entry.cover.fit === 'contain' }">
             <span class="j-cover-tape" aria-hidden="true" />
             <img :src="coverSrc(entry)" :alt="entry.cover.alt" width="400" height="300" />
           </figure>
@@ -360,6 +360,8 @@ button { font: inherit; }
   transform: rotate(-1.5deg);
 }
 .j-cover img { display: block; width: 100%; height: auto; border-radius: 3px; }
+/* 直式封面縮小一點 */
+.j-cover.is-portrait { width: min(100%, 260px); }
 .j-cover-tape {
   position: absolute;
   top: -11px;
@@ -383,6 +385,7 @@ button { font: inherit; }
     margin: 0;
     transform: translateY(-50%) rotate(2deg);
   }
+  .j-cover.is-portrait { width: 240px; right: calc(2.5rem + 30px); }
 }
 .j-hero-inner {
   position: relative;
