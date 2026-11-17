@@ -143,7 +143,7 @@
       <section class="j-summary" aria-labelledby="h-summary">
         <p class="j-summary-label" id="h-summary">事件摘要</p>
         <p class="j-summary-text">{{ entry.summary }}</p>
-        <p class="j-closing">{{ entry.closing }}</p>
+        <p v-if="entry.closing" class="j-closing">{{ entry.closing }}</p>
       </section>
 
       <!-- ───────── Related & prev/next ───────── -->

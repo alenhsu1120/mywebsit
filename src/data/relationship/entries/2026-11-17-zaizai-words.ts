@@ -12,7 +12,7 @@ const entry: RelationshipEntry = {
   categories: ['仔仔語錄', '愛與接納', '共同成長'],
   summary:
     '收藏仔仔曾經對許寶說過的一段話：不完美的地方，恰好給了對方愛你的機會。我們在彼此不完美的時候，學習理解、陪伴與接納。',
-  closing: '不完美，是讓另一個人參與你生命的機會',
+  closing: '',
   sections: [
     {
       id: 'words',

@@ -102,6 +102,7 @@ export interface RelationshipEntry {
   date: string
   categories: string[]
   summary: string
+  /** 摘要下方的結語，留空則不顯示 */
   closing: string
   sections: Section[]
 }
