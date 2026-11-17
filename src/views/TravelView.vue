@@ -2275,13 +2275,13 @@ interface FoodShop {
   fit: string
   /* 店家提供的 Google Maps 連結，比用店名搜尋準，能直接對到正確分店 */
   mapUrl: string
-  /* 從店家官網或介紹頁抓下的原圖，放在 public/travel/food/，個人使用，附上來源 */
+  /* 從店家官網或介紹頁抓下的原圖，放在 public/images/travel/food/，個人使用，附上來源 */
   photo: { file: string; alt: string; source: string; sourceUrl: string }
   /* 想看更多照片時點出去的連結 */
   photoLinks: { label: string; url: string }[]
 }
 
-const foodPhotoBase = import.meta.env.BASE_URL + 'travel/food/'
+const foodPhotoBase = import.meta.env.BASE_URL + 'images/travel/food/'
 
 const tokyoFoodAreas: { area: string; shops: FoodShop[] }[] = [
   {

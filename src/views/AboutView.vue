@@ -256,7 +256,7 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 
-const avatarUrl = import.meta.env.BASE_URL + 'avatar.jpg'
+const avatarUrl = import.meta.env.BASE_URL + 'images/profile/avatar.jpg'
 </script>
 
 <style scoped>

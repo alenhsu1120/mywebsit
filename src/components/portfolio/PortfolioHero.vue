@@ -47,7 +47,7 @@
 </template>
 
 <script setup lang="ts">
-import heroPortrait from '@/assets/portfolio/hero-portrait.jpg'
+const heroPortrait = import.meta.env.BASE_URL + 'images/portfolio/hero-portrait.jpg'
 
 function scrollTo(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })

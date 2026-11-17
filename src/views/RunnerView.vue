@@ -178,13 +178,13 @@
             <p v-if="generatedUrl" class="gen-note">
               已依目前時間產生新圖檔，覆蓋了這裡顯示的原圖。<br />
               瀏覽器無法寫回伺服器，這次替換只在本次瀏覽有效 —
-              下載後把 <code>public/runner.JPG</code> 換掉並重新部署才會永久生效。
+              下載後把 <code>public/images/runner/runner.jpg</code> 換掉並重新部署才會永久生效。
             </p>
             <div class="cap-actions">
               <button v-if="generatedUrl" type="button" class="dl-btn dl-ghost" @click="revertImage">
                 還原原圖
               </button>
-              <a :href="displayUrl" download="runner.JPG" class="dl-btn">
+              <a :href="displayUrl" download="runner.jpg" class="dl-btn">
                 <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M10 3.5 V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
                   <path d="M6.2 8.6 L10 12.4 L13.8 8.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -205,7 +205,7 @@ import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import PortfolioPageShell from '@/components/portfolio/PortfolioPageShell.vue'
 import PortfolioSubNav from '@/components/portfolio/PortfolioSubNav.vue'
 
-const runnerUrl = import.meta.env.BASE_URL + 'runner.JPG'
+const runnerUrl = import.meta.env.BASE_URL + 'images/runner/runner.jpg'
 
 /* ── 賽事常數（秒，以 2026/09/19 00:00 為原點） ── */
 const RACE_START = 4 * 3600 + 20 * 60          // 9/19 04:20 第 1 棒起跑
@@ -477,7 +477,7 @@ const weekday = (sec: number) => WEEK[Math.floor(sec / 86400)] ?? '—'
 
 /* ═══════════════════════════════════════════════════════════════
    產生圖檔：把目前的棒次表畫到 canvas，輸出成 JPEG
-   （瀏覽器無法寫回伺服器上的 public/runner.JPG，
+   （瀏覽器無法寫回伺服器上的 public/images/runner/runner.jpg，
      所以這裡是換掉頁面上顯示的圖 + 提供下載覆蓋原檔）
    ═══════════════════════════════════════════════════════════════ */
 const generating   = ref(false)

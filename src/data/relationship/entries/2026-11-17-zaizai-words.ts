@@ -3,7 +3,8 @@ import type { RelationshipEntry } from '../types'
 const entry: RelationshipEntry = {
   slug: '2026-11-17-zaizai-words',
   collection: 'sweet',
-  cover: { art: 'letter', alt: '手繪的信封與信紙插畫' },
+  // 照片來源：Khadeeja Yasser on Unsplash
+  cover: { image: 'images/journal/zaizai-words-heart-sand.jpg', alt: '沙灘上畫的一顆愛心，遠方是海浪' },
   eyebrow: 'WORDS FROM ZAIZAI',
   title: '仔仔說過的很棒的話',
   subtitle: '不完美，是讓另一個人參與你生命的機會',
@@ -39,13 +40,6 @@ const entry: RelationshipEntry = {
         },
         { t: 'p', text: '而我也學習在她不完美的時候，給她同樣的理解與接納。' },
       ],
-    },
-    {
-      id: 'tags',
-      title: '關係紀錄標籤',
-      nav: '標籤',
-      layout: 'tags',
-      intro: [{ t: 'tags', items: ['#仔仔語錄', '#不完美', '#被愛', '#安全感', '#理解', '#接納'] }],
     },
   ],
 }
